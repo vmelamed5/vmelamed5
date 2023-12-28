@@ -1,0 +1,340 @@
+<!-- MADE BY VADIM MELAMED -->
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Get-VPASSQLSafes</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="../index.html">VpasModule</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="../index.html">Home</a></li>
+								<li><a href="../install.html">Install</a></li>
+								<li><a href="./New-VPASToken.html">Commands</a></li>
+								<li><a href="../updates.html">Updates</a></li>
+								<li><a href="../about.html">About</a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm">Docs</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Banner -->
+				<center>
+					<section id="banner" style="margin-bottom: -5%;">
+						<div class="inner">
+							<div class="logo"><span><a style="text-decoration: none" href="../index.html"><img src="images\VpasModuleLOGO.png" alt="VpasModuleLOGO"></a></span></div>
+
+							<p>Command Documentation</p>
+							<ul class="actions" style="display: inline-flex;">
+								<li><a href="../index.html" class="button icon solid" style="background-color: #2e3141;">Home</a></li>
+								<li><a href="../install.html" class="button icon solid" style="background-color: #2e3141;">Install</a></li>
+								<li><a href="./New-VPASToken.html" class="button icon solid" style="background-color: #2e3141;">Commands</a></li>
+								<li><a href="../updates.html" class="button icon solid" style="background-color: #2e3141;">Updates</a></li>
+								<li><a href="../about.html" class="button icon solid" style="background-color: #2e3141;">About</a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm" class="button icon solid" style="background-color: #2e3141;">Docs</a></li>
+							</ul>
+						</div>
+					</section>
+				</center>
+
+				<!-- SIDENAV -->
+					<div class="sidenav" style="width: 400px;">
+						<a>Jump To:</a>
+						<a><b>Authentication</b></a>
+						<a href="./New-VPASToken.html" style="font-size: 20px; color: #f5f5f5;">New-VPASToken</a>
+						<a href="./Remove-VPASToken.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASToken</a>
+						<a href="./Add-VPASAuthenticationMethod.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASAuthenticationMethod</a>
+						<a href="./Get-VPASAuthenticationMethods.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAuthenticationMethods</a>
+						<a href="./Get-VPASSpecificAuthenticationMethod.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSpecificAuthenticationMethod</a>
+						<a href="./Remove-VPASAuthenticationMethod.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASAuthenticationMethod</a>
+						<a href="./Update-VPASAuthenticationMethod.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASAuthenticationMethod</a>
+						<a><b>Accounts</a></b>
+						<a href="./Add-VPASAccount.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASAccount</a>
+						<a href="./Remove-VPASAccount.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASAccount</a>
+						<a href="./Update-VPASAccountFields.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASAccountFields</a>
+						<a href="./Get-VPASAccountDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAccountDetails</a>
+						<a href="./Get-VPASAccountActivity.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAccountActivity</a>
+						<a href="./Get-VPASPasswordHistory.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPasswordHistory</a>
+						<a href="./Get-VPASPasswordValue.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPasswordValue</a>
+						<a href="./Unlock-VPASExclusiveAccount.html" style="font-size: 20px; color: #f5f5f5;">Unlock-VPASExclusiveAccount</a>
+						<a href="./Invoke-VPASAccountPasswordAction.html" style="font-size: 20px; color: #f5f5f5;">Invoke-VPASAccountPasswordAction</a>
+						<a href="./Add-VPASAccountGroup.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASAccountGroup</a>
+						<a href="./Get-VPASAccountGroups.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAccountGroups</a>
+						<a href="./Get-VPASSafeAccountGroups.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSafeAccountGroups</a>
+						<a href="./Add-VPASAccountToAccountGroup.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASAccountToAccountGroup</a>
+						<a href="./Get-VPASAccountGroupMembers.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAccountGroupMembers</a>
+						<a href="./Remove-VPASAccountFromAccountGroup.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASAccountFromAccountGroup</a>
+						<a href="./Get-VPASDiscoveredAccounts.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASDiscoveredAccounts</a>
+						<a href="./Remove-VPASAllDiscoveredAccounts.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASAllDiscoveredAccounts</a>
+						<a href="./Set-VPASLinkedAccount.html" style="font-size: 20px; color: #f5f5f5;">Set-VPASLinkedAccount</a>
+						<a href="./Remove-VPASLinkedAccount.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASLinkedAccount</a>
+						<a><b>Applications</a></b>
+						<a href="./Add-VPASApplication.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASApplication</a>
+						<a href="./Remove-VPASApplication.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASApplication</a>
+						<a href="./Get-VPASAllApplications.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAllApplications</a>
+						<a href="./Get-VPASApplicationDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASApplicationDetails</a>
+						<a href="./Add-VPASApplicationAuthentication.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASApplicationAuthentication</a>
+						<a href="./Remove-VPASApplicationAuthentication.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASApplicationAuthentication</a>
+						<a href="./Get-VPASApplicationAuthentications.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASApplicationAuthentications</a>
+						<a><b>Safe</a></b>
+						<a href="./Add-VPASSafe.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASSafe</a>
+						<a href="./Remove-VPASSafe.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASSafe</a>
+						<a href="./Update-VPASSafe.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASSafe</a>
+						<a href="./Get-VPASSafes.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSafes</a>
+						<a href="./Get-VPASSafeDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSafeDetails</a>
+						<a href="./Get-VPASSafesByPlatformID.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSafesByPlatformID</a>
+						<a><b>Safe Members</a></b>
+						<a href="./Add-VPASSafeMember.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASSafeMember</a>
+						<a href="./Remove-VPASSafeMember.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASSafeMember</a>
+						<a href="./Update-VPASSafeMember.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASSafeMember</a>
+						<a href="./Get-VPASSafeMembers.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSafeMembers</a>
+						<a href="./Get-VPASSafeMemberSearch.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSafeMemberSearch</a>
+						<a><b>Platforms</a></b>
+						<a href="./Copy-VPASPlatform.html" style="font-size: 20px; color: #f5f5f5;">Copy-VPASPlatform</a>
+						<a href="./Remove-VPASPlatform.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASPlatform</a>
+						<a href="./Export-VPASPlatform.html" style="font-size: 20px; color: #f5f5f5;">Export-VPASPlatform</a>
+						<a href="./Import-VPASPlatform.html" style="font-size: 20px; color: #f5f5f5;">Import-VPASPlatform</a>
+						<a href="./Enable-VPASPlatform.html" style="font-size: 20px; color: #f5f5f5;">Enable-VPASPlatform</a>
+						<a href="./Disable-VPASPlatform.html" style="font-size: 20px; color: #f5f5f5;">Disable-VPASPlatform</a>
+						<a href="./Get-VPASPlatformDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPlatformDetails</a>
+						<a href="./Get-VPASPlatformDetailsSearch.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPlatformDetailsSearch</a>
+						<a href="./Copy-VPASGroupPlatform.html" style="font-size: 20px; color: #f5f5f5;">Copy-VPASGroupPlatform</a>
+						<a href="./Remove-VPASGroupPlatform.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASGroupPlatform</a>
+						<a href="./Disable-VPASGroupPlatform.html" style="font-size: 20px; color: #f5f5f5;">Disable-VPASGroupPlatform</a>
+						<a href="./Enable-VPASGroupPlatform.html" style="font-size: 20px; color: #f5f5f5;">Enable-VPASGroupPlatform</a>
+						<a href="./Get-VPASGroupPlatformDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASGroupPlatformDetails</a>
+						<a href="./Copy-VPASUsagePlatform.html" style="font-size: 20px; color: #f5f5f5;">Copy-VPASUsagePlatform</a>
+						<a href="./Remove-VPASUsagePlatform.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASUsagePlatform</a>
+						<a href="./Get-VPASUsagePlatformDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASUsagePlatformDetails</a>
+						<a href="./Copy-VPASRotationalPlatform.html" style="font-size: 20px; color: #f5f5f5;">Copy-VPASRotationalPlatform</a>
+						<a href="./Remove-VPASRotationalPlatform.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASRotationalPlatform</a>
+						<a href="./Disable-VPASRotationalPlatform.html" style="font-size: 20px; color: #f5f5f5;">Disable-VPASRotationalPlatform</a>
+						<a href="./Enable-VPASRotationalPlatform.html" style="font-size: 20px; color: #f5f5f5;">Enable-VPASRotationalPlatform</a>
+						<a href="./Get-VPASRotationalPlatformDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASRotationalPlatformDetails</a>
+						<a><b>Internal</a></b>
+						<a href="./Add-VPASAllowedReferrer.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASAllowedReferrer</a>
+						<a href="./Get-VPASAllowedReferrer.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAllowedReferrer</a>
+						<a href="./Get-VPASVaultDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASVaultDetails</a>
+						<a href="./Get-VPASVaultVersion.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASVaultVersion</a>
+						<a href="./Get-VPASSystemComponents.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSystemComponents</a>
+						<a href="./Get-VPASSystemHealth.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSystemHealth</a>
+						<a href="./Remove-VPASDirectory.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASDirectory</a>
+						<a href="./Get-VPASAllDirectories.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAllDirectories</a>
+						<a href="./Get-VPASDirectoryDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASDirectoryDetails</a>
+						<a href="./Get-VPASDirectoryMappings.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASDirectoryMappings</a>
+						<a href="./Get-VPASDirectoryMappingDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASDirectoryMappingDetails</a>
+						<a><b>PSM</a></b>
+						<a href="./New-VPASPSMSession.html" style="font-size: 20px; color: #f5f5f5;">New-VPASPSMSession</a>
+						<a href="./Get-VPASAllConnectionComponents.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAllConnectionComponents</a>
+						<a href="./Get-VPASAllPSMServers.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASAllPSMServers</a>
+						<a href="./Get-VPASPSMSettingsByPlatformID.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPSMSettingsByPlatformID</a>
+						<a href="./Update-VPASPSMSettingsByPlatformID.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASPSMSettingsByPlatformID</a>
+						<a href="./Get-VPASActiveSessionActivities.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASActiveSessionActivities</a>
+						<a href="./Get-VPASActiveSessionProperties.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASActiveSessionProperties</a>
+						<a href="./Get-VPASActiveSessions.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASActiveSessions</a>
+						<a href="./Invoke-VPASActivePSMSessionAction.html" style="font-size: 20px; color: #f5f5f5;">Invoke-VPASActivePSMSessionAction</a>
+						<a href="./Watch-VPASActivePSMSession.html" style="font-size: 20px; color: #f5f5f5;">Watch-VPASActivePSMSession</a>
+						<a href="./Get-VPASPSMSessionActivities.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPSMSessionActivities</a>
+						<a href="./Get-VPASPSMSessionDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPSMSessionDetails</a>
+						<a href="./Get-VPASPSMSessionProperties.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPSMSessionProperties</a>
+						<a href="./Get-VPASPSMSessions.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASPSMSessions</a>
+						<a><b>EPV Users</a></b>
+						<a href="./Add-VPASEPVUser.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASEPVUser</a>
+						<a href="./Remove-VPASEPVUser.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASEPVUser</a>
+						<a href="./Disable-.VPASEPVUserhtml" style="font-size: 20px; color: #f5f5f5;">Disable-VPASEPVUser</a>
+						<a href="./Enable-VPASEPVUser.html" style="font-size: 20px; color: #f5f5f5;">Enable-VPASEPVUser</a>
+						<a href="./Get-VPASEPVUserDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASEPVUserDetails</a>
+						<a href="./Get-VPASEPVUserDetailsSearch.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASEPVUserDetailsSearch</a>
+						<a href="./Get-VPASCurrentEPVUserDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASCurrentEPVUserDetails</a>
+						<a href="./Update-VPASEPVUser.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASEPVUser</a>
+						<a href="./Reset-VPASEPVUserPassword.html" style="font-size: 20px; color: #f5f5f5;">Reset-VPASEPVUserPassword</a>
+						<a><b>EPV Group</a></b>
+						<a href="./Add-VPASEPVGroup.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASEPVGroup</a>
+						<a href="./Remove-VPASEPVGroup.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASEPVGroup</a>
+						<a href="./Update-VPASEPVGroup.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASEPVGroup</a>
+						<a href="./Get-VPASEPVGroupDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASEPVGroupDetails</a>
+						<a href="./Add-VPASMemberEPVGroup.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASMemberEPVGroup</a>
+						<a href="./Remove-VPASMemberEPVGroup.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASMemberEPVGroup</a>
+						<a><b>Bulk Actions</a></b>
+						<a href="./Add-VPASBulkAccounts.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASBulkAccounts</a>
+						<a href="./Add-VPASBulkSafeMembers.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASBulkSafeMembers</a>
+						<a href="./Add-VPASBulkSafes.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASBulkSafes</a>
+						<a href="./Get-VPASBulkTemplateFiles.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASBulkTemplateFiles</a>
+						<a href="./Confirm-VPASBulkFile.html" style="font-size: 20px; color: #f5f5f5;">Confirm-VPASBulkFile</a>
+						<a><b>Safe Audit</a></b>
+						<a href="./Set-VPASAuditSafeTest.html" style="font-size: 20px; color: #f5f5f5;">Set-VPASAuditSafeTest</a>
+						<a href="./Invoke-VPASAuditSafeTest.html" style="font-size: 20px; color: #f5f5f5;">Invoke-VPASAuditSafeTest</a>
+						<a><b>Reporting</a></b>
+						<a href="./Invoke-VPASReporting.html" style="font-size: 20px; color: #f5f5f5;">Invoke-VPASReporting</a>
+						<a><b>SQL</a></b>
+						<a href="./Set-VPASSQLConnectionDetails.html" style="font-size: 20px; color: #f5f5f5;">Set-VPASSQLConnectionDetails</a>
+						<a href="./Test-VPASSQLConnectionDetails.html" style="font-size: 20px; color: #f5f5f5;">Test-VPASSQLConnectionDetails</a>
+						<a href="./Get-VPASSQLAccounts.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSQLAccounts</a>
+						<a href="./Get-VPASSQLPlatforms.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSQLPlatforms</a>
+						<a href="./Get-VPASSQLSafes.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASSQLSafes</a>
+						<a href="./Invoke-VPASQuery.html" style="font-size: 20px; color: #f5f5f5;">Invoke-VPASQuery</a>
+						<a><b>Roles (Identity)</a></b>
+						<a href="./Add-VPASIdentityRole.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASIdentityRole</a>
+						<a href="./Remove-VPASIdentityRole.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASIdentityRole</a>
+						<a href="./Update-VPASIdentityRole.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASIdentityRole</a>
+						<a href="./Get-VPASIdentityRoleDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityRoleDetails</a>
+						<a href="./Get-VPASIdentityRoles.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityRoles</a>
+						<a><b>Security Questions (Identity)</a></b>
+						<a href="./Add-VPASIdentitySecurityQuestionAdmin.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASIdentitySecurityQuestionAdmin</a>
+						<a href="./Remove-VPASIdentityAdminSecurityQuestion.html" style="font-size: 20px; color: #f5f5f5;">Remove-VPASIdentityAdminSecurityQuestion</a>
+						<a href="./Get-VPASIdentityAdminSecurityQuestion.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityAdminSecurityQuestion</a>
+						<a href="./Get-VPASIdentityAllAdminSecurityQuestions.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityAllAdminSecurityQuestions</a>
+						<a href="./Get-VPASIdentityCurrentUserSecurityQuestions.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityCurrentUserSecurityQuestions</a>
+						<a href="./Add-VPASIdentityUserSecurityQuestions.html" style="font-size: 20px; color: #f5f5f5;">Add-VPASIdentityUserSecurityQuestions</a>
+						<a href="./Get-VPASIdentityUserSecurityQuestions.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityUserSecurityQuestions</a>
+						<a href="./Reset-VPASIdentityUserSecurityQuestions.html" style="font-size: 20px; color: #f5f5f5;">Reset-VPASIdentityUserSecurityQuestions</a>
+						<a><b>Users (Identity)</a></b>
+						<a href="./Get-VPASIdentityAllUsers.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityAllUsers</a>
+						<a href="./Get-VPASIdentityUserDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityUserDetails</a>
+						<a href="./Get-VPASIdentityCurrentUserDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityCurrentUserDetails</a>
+						<a href="./Set-VPASIdentityUserState.html" style="font-size: 20px; color: #f5f5f5;">Set-VPASIdentityUserState</a>
+						<a href="./Set-VPASIdentityUserStatus.html" style="font-size: 20px; color: #f5f5f5;">Set-VPASIdentityUserStatus</a>
+						<a href="./Test-VPASIdentityUserLocked.html" style="font-size: 20px; color: #f5f5f5;">Test-VPASIdentityUserLocked</a>
+						<a href="./New-VPASIdentityGenerateUserPassword.html" style="font-size: 20px; color: #f5f5f5;">New-VPASIdentityGenerateUserPassword</a>
+						<a href="./Update-VPASIdentityCurrentUserPassword.html" style="font-size: 20px; color: #f5f5f5;">Update-VPASIdentityCurrentUserPassword</a>
+						<a><b>Internal (Identity)</a></b>
+						<a href="./Get-VPASIdentityTenantDetails.html" style="font-size: 20px; color: #f5f5f5;">Get-VPASIdentityTenantDetails</a>
+					</div>
+				
+				
+
+				<!-- Wrapper -->
+					<section id="wrapper">
+
+						<!-- One -->
+							<section id="one" class="wrapper spotlight style1">
+								<div class="inner">
+									<div class="content" style="width: 150%; margin-right: 0%">
+										<div id="CommandTitleAnchor">
+											<h1 style="text-align: center; font-size: 40px; text-transform: none;"><b>Get-VPASSQLSafes</b></h1>
+											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
+											<br>
+											
+											<!-- BUTTON NAVIGATION -->
+											<ul class="actions" style="">
+												<li><a href="#SynopsisAnchor" class="button icon solid">Synopsis</a></li>
+												<li><a href="#DescriptionAnchor" class="button icon solid">Description</a></li>
+												<li><a href="#SyntaxAnchor" class="button icon solid">Syntax</a></li>
+												<li><a href="#ParameterAnchor" class="button icon solid">Parameters</a></li>
+												<li><a href="#ExampleAnchor" class="button icon solid">Examples</a></li>
+												<li><a href="#OutputAnchor" class="button icon solid">Outputs</a></li>
+											</ul>
+											
+											<!-- SYNOPSIS  -->
+											<div id="SynopsisAnchor">
+											<br><br>
+											<h1 style="text-align: left;">Synopsis:</h1>
+											<table style="background: #2e3141">
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>GET SQL SAFES</b></p></td></tr>
+											</table>
+											</div>
+											
+											<!-- DESCRIPTION  -->
+											<div id="DescriptionAnchor">
+											<br><br>
+											<h1 style="text-align: left;">Description:</h1>
+											<table style="background: #2e3141">
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>USE THIS FUNCTION TO OUTPUT ALL SAFES AND SAFE MEMBERS INTO AN SQL TABLE</b></p></td></tr>
+											</table>
+											</div>
+											
+											<!-- SYNTAX  -->
+											<div id="SyntaxAnchor">
+											<br><br>
+											<h1 style="text-align: left;">Syntax:</h1>
+											<table style="background: #2e3141">
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>Get-VPASSQLSafes [-EstimatedSafeCount] &lt;String&gt; [[-SearchQuery] &lt;String&gt;] [[-token] &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+											</table>
+											</div>
+											
+											<!-- PARAMETERS  -->
+											<div id="ParameterAnchor">
+											<br><br>
+											<h1 style="text-align: left;">Parameters:</h1>
+											<table style="background: #2e3141">
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>-EstimatedSafeCount &lt;String&gt;<br>Upper estimate of the amount of safes in the environment<br>Round to the nearest 1000th to be sure to capture all the target safes<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>-SearchQuery &lt;String&gt;<br>Search string to find target resource via username, address, safe, platform, etc.<br>Comma separated for multiple fields, or to search all pass a blank value like so: " "<br><br>Required: false<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: 3<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
+											</table>
+											</div>
+											
+											<!-- EXAMPLE  -->
+											<div id="ExampleAnchor">
+											<br><br>
+											<h1 style="text-align: left;">Examples:</h1>
+											<table style="background: #2e3141">
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>$SQLSafes = Get-VPASSQLSafes -EstimatedSafeCount {ESTIMATED SAFE COUNT VALUE}</b></p></td></tr>
+											</table>
+											</div>
+											
+											<!-- OUTPUT  -->
+											<div id="OutputAnchor">
+											<br><br>
+											<h1 style="text-align: left;">Outputs:</h1>
+											<table style="background: #2e3141">
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>$true if successful</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 17px;"><b>$false if failed</b></p></td></tr>
+											</table>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</section>
+					</section>
+
+				<!-- Footer -->
+
+					<section id="footer">
+						<div class="inner">
+							<center>
+							<ul class="actions" style="margin-left: 200px; margin-right: auto; margin-top: -10%;">
+								<li><a target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/vmelamed5" class="icon solid"><img src="../images/BuyMeACoffee.png"></a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/vmelamed5" class="icon solid"><img src="../images/GithubSponsor.png"></a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://venmo.com/u/Vadim-Melamed" class="icon solid"><img src="../images/Venmo.png"></a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/paypalme/vmelamed5" class="icon solid"><img src="../images/Paypal.png"></a></li>
+							</ul>
+							</center>
+							<ul class="copyright" style="margin-top: -1%;">
+								<center><li>&copy; 2021 Vadim Melamed. All rights reserved.</li></center>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
