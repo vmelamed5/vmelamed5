@@ -7,14 +7,37 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
+	<script>
+			function ToggleSideNavFunctionHeader() {
+				var x = document.getElementById("SideNavToggleIDHeader").textContent;
+				if(x === ">"){
+					document.getElementById("SideNavToggleIDHeader").innerHTML = "<";
+					openNavHeader();
+				}
+				else{
+					document.getElementById("SideNavToggleIDHeader").innerHTML = ">";
+					closeNavHeader();
+				}
+			}			
+			function openNavHeader() {
+				document.getElementById("mySidebar").style.width = "200px";
+				document.getElementById("maintempHeader").style.marginLeft = "200px";
+			}
+
+			function closeNavHeader() {
+			  document.getElementById("mySidebar").style.width = "0";
+			  document.getElementById("maintempHeader").style.marginLeft= "0";
+			}
+			
+	</script>
 	<body class="is-preload">
 
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
 				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">VpasModule</a></h1>
+					<header id="header" class="inner">
+						<h1><div id="maintempHeader"><button id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()">></button><a href="index.html">&emsp;VpasModule</a></div></h1>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -55,12 +78,12 @@
 					</section>
 				</center>
 				
-				<!-- SIDENAV -->
-					<div class="sidenav">
-						<a>Jump To:</a>
-						<a href="#FutureEnhancementsAnchor"><b>Wishlist</b></a>
-						<a href="#UpdateHistoryAnchor"><b>Updates</b></a>
-					</div>
+				<!-- SIDENAV -->  
+				<div class="sidebar" id="mySidebar">
+					<a href="#FutureEnhancementsAnchor"><b>Wishlist</b></a>
+					<a href="#UpdateHistoryAnchor"><b>Updates</b></a>
+				</div>
+				<!-- END OF SIDENAV BAR -->
 				
 				<!-- Wrapper -->
 					<section id="wrapper">
