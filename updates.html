@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>VpasModule-Updates</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">VpasModule</a></h1>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<div class="inner">
+							<h2>Menu</h2>
+							<ul class="links">
+								<li><a href="index.html">Home</a></li>
+								<li><a href="install.html">Install</a></li>
+								<li><a href="commands/New-VPASToken.html">Commands</a></li>
+								<li><a href="updates.html">Updates</a></li>
+								<li><a href="about.html">About</a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm">Docs</a></li>
+							</ul>
+							<a href="#" class="close">Close</a>
+						</div>
+					</nav>
+
+				<!-- Banner -->
+				<center>
+					<section id="banner" style="margin-bottom: -5%;">
+						<div class="inner">
+							<div class="logo"><span><a style="text-decoration: none" href="./index.html"><img src="images\VpasModuleLOGO.png" alt="VpasModuleLOGO"></a></span></div>
+
+							<p>Update History + Release Notes</p>
+							<ul class="actions" style="display: inline-flex;">
+								<li><a href="./index.html" class="button icon solid" style="background-color: #2e3141;">Home</a></li>
+								<li><a href="./install.html" class="button icon solid" style="background-color: #2e3141;">Install</a></li>
+								<li><a href="./commands/New-VPASToken.html" class="button icon solid" style="background-color: #2e3141;">Commands</a></li>
+								<li><a href="./updates.html" class="button icon solid" style="background-color: #2e3141;">Updates</a></li>
+								<li><a href="./about.html" class="button icon solid" style="background-color: #2e3141;">About</a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm" class="button icon solid" style="background-color: #2e3141;">Docs</a></li>
+							</ul>
+						</div>
+					</section>
+				</center>
+				
+				<!-- SIDENAV -->
+					<div class="sidenav">
+						<a>Jump To:</a>
+						<a href="#FutureEnhancementsAnchor"><b>Wishlist</b></a>
+						<a href="#UpdateHistoryAnchor"><b>Updates</b></a>
+					</div>
+				
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<br><br><br>
+						<!-- Future Wishlist -->
+							<section>
+								<div class="inner" style="width: 50%; margin: auto">
+									<div id="FutureEnhancementsAnchor">
+										<br><br>
+										<h3 class="major" style="background-color: #4c5c96; padding: 18px;">VpasModule Wishlist:</h3>
+										<!--WISHLIST-->
+										<p style="padding: 0; margin: 0;"><b>***If you have any suggestions for specific use cases that you would like to see, please feel free to reach out: vpasmodule@gmail.com***</b></p> 
+										<li>Invoke-VPASReporting: Build upon this command to add more reporting capabilities such as Discovered Accounts, Account Compliance, ApplicationID Auths, etc.</li>
+										<li>Expand further into CyberArk's Identity APIs</li>
+										<li>Expand further into CyberArk's EPM APIs</li>
+										<li>Expand further into -WhatIf parameter and build upon the implications of -WhatIf parameter</li>
+										<li>Standardize the LOG file created by the -APITextRecording parameter</li>
+										<li>Better optimize current commands for a more seamless experience</li>
+									</div>
+								</div>
+							</section>
+						<!-- Versions History -->
+							<section>
+								<div class="inner" style="width: 50%; margin: auto">
+										<div id="UpdateHistoryAnchor">
+											<br>
+											<br>
+											<h3 class="major">VpasModule Versions:</h3>
+											<div class="table-wrapper">
+												
+												<!--v13.2.0-->
+												<button type="button" class="collapsibleUpdate">VpasModule v13.2.0 (Current Version)</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>November 12th 2023</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">-WhatIf/-HideWhatIfOutput parameters added to every Remove command to simulate what would happen if the target API call is invoked and what implications that call would have (*WORK IN PROGRESS - will build on this in future releases)</li>
+														<li class="UpdateList">-APITextRecording parameter added to New-VPASToken command to enable a text recording of every command run, return values, and outputs for the duration of the APIToken. Output is saved to a LOG file to the user's AppData directory</li>
+														<li class="UpdateList">-NoSSL parameter removed from every command and will only need to be initiated via New-VPASToken command and the preference will be carried over for the duration of the APIToken</li>
+														<li class="UpdateList">Update-VPASAccountFields: added -LogonDomain and -CustomField parameters to better handle optional platform properties</li>
+														<li class="UpdateList">Add-VPASEPVUser and Update-VPASEPVUser: added -AuthenticationMethod and -DistinguishedName parameters as more optional parameters when creating or updating an EPVUser</li>
+														<li class="UpdateList">Add-VPASSafe: fixed bug where -NumberOfDaysRetention and -NumberOfVersionRetention parameters would clash and overwrite each other</li>
+														<li class="UpdateList">Get-VPASAccountGroupMembers: fixed bug where -NoSSL preference would enable https instead of http</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">Add-VPASIdentityRole</li>
+														<li class="UpdateList">Get-VPASIdentityTenantDetails</li>
+														<li class="UpdateList">Get-VPASIdentityUserSecurityQuestions</li>
+														<li class="UpdateList">Reset-VPASIdentityUserSecurityQuestions</li>
+														<li class="UpdateList">Add-VPASIdentityUserSecurityQuestions</li>
+														<li class="UpdateList">Get-VPASIdentityRoles</li>
+														<li class="UpdateList">Get-VPASIdentityRoleDetails</li>
+												</div>
+												
+												<!--v13.1.1-->
+												<button type="button" class="collapsibleUpdate">VpasModule v13.1.1</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>June 28th 2023</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Changed every command in VpasModule to follow powershell best practice verb-noun naming ***BIG CHANGE***</li>
+														<li class="UpdateList">Reworked the way a login token is generated and stored, removing the need to pass -token to every command ***BIG CHANGE***</li>
+														<li class="UpdateList">New-VPASToken - added the ability to authenticate into ISPSS via internal authentication "ispss_cyberark"</li>
+														<li class="UpdateList">Added parameter descriptions to ever parameter in VpasModule to better understand information if "get-help" is run</li>
+														<li class="UpdateList">Fixed several bugs discovered in commands</li>
+														<li class="UpdateList">Updated verbose comments to better log what is happening if ocmmands are run with the -verbose flag</li>
+														<li class="UpdateList">Many QOL updates on VpasModule itself to better conform to powershell "best practice"</li>
+														<li class="UpdateList">Changed the layout of the VpasModule Commands page, every command has it's own page now</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">Add-VPASIdentityRole</li>
+														<li class="UpdateList">Add-VPASIdentitySecurityQuestionAdmin</li>
+														<li class="UpdateList">Get-VPASIdentityAdminSecurityQuestion</li>
+														<li class="UpdateList">Get-VPASIdentityAllAdminSecurityQuestions</li>
+														<li class="UpdateList">Get-VPASIdentityAllUsers</li>
+														<li class="UpdateList">Get-VPASIdentityCurrentUserDetails</li>
+														<li class="UpdateList">Get-VPASIdentityCurrentUserSecurityQuestions</li>
+														<li class="UpdateList">Get-VPASIdentityUserDetails</li>
+														<li class="UpdateList">New-VPASIdentityGenerateUserPassword</li>
+														<li class="UpdateList">Remove-VPASIdentityAdminSecurityQuestion</li>
+														<li class="UpdateList">Remove-VPASIdentityRole</li>
+														<li class="UpdateList">Set-VPASIdentityUserState</li>
+														<li class="UpdateList">Set-VPASIdentityUserStatus</li>
+														<li class="UpdateList">Test-VPASIdentityUserLocked</li>
+														<li class="UpdateList">Update-VPASIdentityCurrentUserPassword</li>
+														<li class="UpdateList">Update-VPASIdentityRole</li>
+												</div>
+												
+												<!--v13.0.0-->
+												<button type="button" class="collapsibleUpdate">VpasModule v13.0.0</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>February 19th 2023</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">VLogin - added "ISPSS" as an option to authenticate into PrivilegeCloud Shared Services via Oauth. Added "IdentityURL" parameter to facilitate this. To set this authentication up, please view this article by CyberArk: https://docs.cyberark.com/Product-Doc/OnlineHelp/PrivCloud-SS/Latest/en/Content/ISPSS/ISPSS-API-Authentication.htm</li>
+														<li class="UpdateList">VAddSafeMember - added [String]$MemberType parameter as optional, possible values: User, Group, Role to handle the api change in PrivilegeCloud</li>
+														<li class="UpdateList">VGetDirectoryDetails + VDeleteDirectory + VGetAllDirectories + VGetDirectoryMappings + VGetDirectoryMappingDetails + VGetDirectoryMappingIDHelper - commands work properly for SelfHosted environments, but due to the lack of vault authorizations (ManageDirectoryMapping) in PrivilegeCloud, these commands will NOT work in SharedServices environments</li>
+														<li class="UpdateList">VDeleteApplicationAuthentication + VGetAllApplications + VGetApplicationDetails + VGetApplicationAuthIDHelper + VGetApplicationAuthentications + VDeleteApplication + VAddApplication + VAddApplicationAuthentication - commands work properly for SelfHosted environments, currently unavailable in PrivilegedCloud Shared Services</li>
+														<li class="UpdateList">VGetBulkTemplateFiles - added [Switch]$ISPSS as optional to account for memberType in PrivilegeCloud Shared Services add safe member API call</li>
+														<li class="UpdateList">VBulkValidateFile - added [Switch]$ISPSS as optional to account for memberType in PrivilegeCloud Shared Services add safe member api call</li>
+														<li class="UpdateList">VGetPasswordValue - added [Switch]$HideOutput as optional to hide messages if needed</li>
+														<li class="UpdateList">VGetPlatformDetailsSearch - fixed the blank searchQuery to find all platforms (bug fix)</li>
+														<li class="UpdateList">VReporting - added [Switch]$HideOutput as optional to hide messages if needed</li>
+														<li class="UpdateList">VGetDiscoveredAccounts - removed $Limit and $Offset as parameters, added [String]$PlatformType('Windows Server Local','Windows Desktop Local','Windows Domain','Unix','Unix SSH Key','AWS','AWS Access Keys','Azure Password Management'), [String]$Privileged('true','false'), [String]$Enabled('true','false') to better query discovered accounts</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VDisableEPVUser</li>
+														<li class="UpdateList">VEnableEPVUser</li>
+														<li class="UpdateList">VUpdateEPVGroup</li>
+												</div>
+												
+												<!--v12.6.1-->
+												<button type="button" class="collapsibleUpdate">VpasModule v12.6.1</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>December 23rd 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">VBulkValidateFile - fixed AddUpdateSafeMembers CSV file flagging RequestsAuthorizationLevel1 + RequestsAuthorizationLevel2 incorrectly</li>
+														<li class="UpdateList">VGetUsagePlatformDetails - changed platformID variable to be mandatory</li>
+														<li class="UpdateList">VDeleteUsagePlatform - fixed return comment, true if successful otherwise false</li>
+														<li class="UpdateList">VGetGroupPlatformDetails - changed platformID variable to be mandatory</li>
+														<li class="UpdateList">VGetRotationalPlatformDetails - changed platformID variable to be mandatory</li>
+														<li class="UpdateList">VReporting - added "Limit" variable to handle default safe return size of only 25</li>
+														<li class="UpdateList">VGetEPVGroupDetails - added "IncludeMembers" parameter to the api call to return GroupMembers as well</li>
+														<li class="UpdateList">VGetPlatformDetailsSearch - fixed description comment to be more accurate</li>
+														<li class="UpdateList">VConnectWithPSM - removed unused variable "ActiveSessionID"</li>
+														<li class="UpdateList">VGetPasswordValue - added "CopyToClipboard" parameter to api call to return the secret to the clipboard instead of printing it out to the console</li>
+														<li class="UpdateList">VUpdatePSMSettingsByPlatformID - added "Action" parameter to api call to better distinguish adding or removing ConnectionComponents</li>
+														<li class="UpdateList">VLogin - added the ability to authenticate in via saml - for more information look here: https://github.com/allynl93/PS-SAML-Interactive</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VGetEPVUserDetailsSearch</li>
+												</div>
+												
+												<!--v12.6-->
+												<button type="button" class="collapsibleUpdate">VpasModule v12.6</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>October 17th 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">VBulkValidateFile - fixed AddUpdateSafeMembers CSV file flagging RequestsAuthorizationLevel1 + RequestsAuthorizationLevel2 incorrectly</li>
+														<li class="UpdateList">CyberArk v12.6 is the new long term service version</li>
+														<li class="UpdateList">Cleaned up various Get-Help tags in newer commands</li>
+														<li class="UpdateList">Added more functionality and new commands</li>
+														<li class="UpdateList">VReporting: Added more report types and report outputs</li>
+														<li class="UpdateList">SQLCommands: Updated table names and layout for each export command</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VGetAuthenticationMethodIDHelper</li>
+														<li class="UpdateList">VGetDirectoryMappingIDHelper</li>
+														<li class="UpdateList">VGetRecordingIDHelper</li>
+														<li class="UpdateList">VActionActiveSession</li>
+														<li class="UpdateList">VAddAuthenticationMethod</li>
+														<li class="UpdateList">VConnectWithPSM</li>
+														<li class="UpdateList">VDeleteAuthenticationMethod</li>
+														<li class="UpdateList">VDeleteDirectory</li>
+														<li class="UpdateList">VGetActiveSessionActivities</li>
+														<li class="UpdateList">VGetActiveSessionProperties</li>
+														<li class="UpdateList">VGetAllDirectories</li>
+														<li class="UpdateList">VGetAuthenticationMethods</li>
+														<li class="UpdateList">VGetDirectoryDetails</li>
+														<li class="UpdateList">VGetDirectoryMappingDetails</li>
+														<li class="UpdateList">VGetDirectoryMappings</li>
+														<li class="UpdateList">VGetPSMSessionActivities</li>
+														<li class="UpdateList">VGetPSMSessionDetails</li>
+														<li class="UpdateList">VGetPSMSessionProperties</li>
+														<li class="UpdateList">VGetSpecificAuthenticationMethod</li>
+														<li class="UpdateList">VGetVaultDetails</li>
+														<li class="UpdateList">VGetVaultVersion</li>
+														<li class="UpdateList">VImportPlatform</li>
+														<li class="UpdateList">VMonitorActiveSession</li>
+														<li class="UpdateList">VUpdateAuthenticationMethod</li>
+												</div>
+												
+												<!--v12.2.3-->
+												<button type="button" class="collapsibleUpdate">VpasModule v12.2.3</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>July 31st 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Added PVWA variable into the token variable, removing the need to pass it into any command except VLogin to initialize it</li>
+														<li class="UpdateList">Last update to v12.2 as CyberArk is moving to new long term service version v12.6</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">None</li>
+												</div>
+												
+												<!--v12.2.2-->
+												<button type="button" class="collapsibleUpdate">VpasModule v12.2.2</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>July 13th 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Advanced feature request SQL support: Export vault data into an SQL database for various reporting</li>
+														<li class="UpdateList">Advanced feature request Safe Audit support: Run a "check" on safes and safe members to confirm proper convention is being followed based on custom parameters</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VCheckSQLConnectionDetails</li>
+														<li class="UpdateList">VGetSQLAccounts</li>
+														<li class="UpdateList">VGetSQLPlatforms</li>
+														<li class="UpdateList">VGetSQLSafes</li>
+														<li class="UpdateList">VQueryDB</li>
+														<li class="UpdateList">VSetSQLConnectionDetails</li>
+														<li class="UpdateList">VRunAuditSafeTest</li>
+														<li class="UpdateList">VSetAuditSafeTest</li>
+												</div>
+												
+												<!--v12.2.1-->
+												<button type="button" class="collapsibleUpdate">VpasModule v12.2.1</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>June 20th 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Started accepting requests for Advanced features (bulk actions + reporting)</li>
+														<li class="UpdateList">VLogin: cookie (WebSession) functionality added in case PVWA LoadBalancer is not setup properly with sticky sessions</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VLogger</li>
+														<li class="UpdateList">VBulkAddUpdateSafeMembers</li>
+														<li class="UpdateList">VBulkCreateAccounts</li>
+														<li class="UpdateList">VBulkCreateSafes</li>
+														<li class="UpdateList">VBulkValidateFile</li>
+														<li class="UpdateList">VGetBulkTemplateFiles</li>
+														<li class="UpdateList">VReporting</li>
+												</div>
+												
+												<!--v12.2-->
+												<button type="button" class="collapsibleUpdate">VpasModule v12.2</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>May 3rd 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">No significant changes to the API from v11.6 up to v12, development started for v12.2 as the long term support version of CyberArk</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VGetAccountGroupIDHelper</li>
+														<li class="UpdateList">VGetActiveSessionIDHelper</li>
+														<li class="UpdateList">VGetDiscoveredAccountIDHelper</li>
+														<li class="UpdateList">VAddAllowedReferrer</li>
+														<li class="UpdateList">VDeleteAllDiscoveredAccounts</li>
+														<li class="UpdateList">VGetActiveSessions</li>
+														<li class="UpdateList">VGetAllowedReferrer</li>
+														<li class="UpdateList">VGetDiscoveredAccounts</li>
+														<li class="UpdateList">VGetPasswordHistory</li>
+														<li class="UpdateList">VGetPSMSessions</li>
+														<li class="UpdateList">VGetSafeMemberSearch</li>
+														<li class="UpdateList">VLinkAccount</li>
+														<li class="UpdateList">VUnlinkAccount</li>
+												</div>
+												
+												<!--v11.6-->
+												<button type="button" class="collapsibleUpdate">VpasModule v11.6</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>April 18th 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Added functionality</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VDeleteEPVGroup</li>
+														<li class="UpdateList">VGetAllConnectionComponents</li>
+														<li class="UpdateList">VGetAllPSMServers</li>
+														<li class="UpdateList">VGetPSMSettingsByPlatformID</li>
+														<li class="UpdateList">VUpdatePSMSettingsByPlatformID</li>
+														<li class="UpdateList">VGetCurrentEPVUserDetails</li>
+												</div>
+												
+												<!--v11.5-->
+												<button type="button" class="collapsibleUpdate">VpasModule v11.5</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>March 29th 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Platforms now categorized as Rotational, Group, Usage, Target</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VGetGroupPlatformIDHelper</li>
+														<li class="UpdateList">VGetPlatformIDHelper</li>
+														<li class="UpdateList">VGetRotationalPlatformIDHelper</li>
+														<li class="UpdateList">VGetUsagePlatformIDHelper</li>
+														<li class="UpdateList">VActivateGroupPlatform</li>
+														<li class="UpdateList">VActivatePlatform</li>
+														<li class="UpdateList">VActivateRotationalPlatform</li>
+														<li class="UpdateList">VDeactivateGroupPlatform</li>
+														<li class="UpdateList">VDeactivatePlatform</li>
+														<li class="UpdateList">VDeactivateRotationalPlatform</li>
+														<li class="UpdateList">VDeleteGroupPlatform</li>
+														<li class="UpdateList">VDeletePlatform</li>
+														<li class="UpdateList">VDeleteRotationalPlatform</li>
+														<li class="UpdateList">VDeleteUsagePlatform</li>
+														<li class="UpdateList">VDuplicateGroupPlatform</li>
+														<li class="UpdateList">VDuplicatePlatform</li>
+														<li class="UpdateList">VDuplicateRotationalPlatform</li>
+														<li class="UpdateList">VDuplicateUsagePlatform</li>
+														<li class="UpdateList">VGetGroupPlatformDetails</li>
+														<li class="UpdateList">VGetRotationalPlatformDetails</li>
+														<li class="UpdateList">VGetUsagePlatformDetails</li>
+												</div>
+												
+												<!--v11.4-->
+												<button type="button" class="collapsibleUpdate">VpasModule v11.4</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>March 11th 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">VLogin: added ConcurrentSessions</li>
+														<li class="UpdateList">VGetPlatformDetailsSearch: fixed an error that prevented the search query from finding target platforms</li>
+														<li class="UpdateList">VGetAccountIDHelper: fixed an error that prevented the search query from finding target accountID </li>
+														<li class="UpdateList">VGetApplicationAuthIDHelper: fixed an error that prevented the search query from finding target ApplicationID Auth</li>
+														<li class="UpdateList">VGetEPVGroupIDHelper: fixed an error that prevented the search query from finding target EPVGroupID</li>
+														<li class="UpdateList">VGetEPVUserIDHelper: fixed an error that prevented the search query from finding target EPVUserID</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">None</li>
+												</div>
+												
+												<!--v11.3-->
+												<button type="button" class="collapsibleUpdate">VpasModule v11.3</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>March 3rd 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Added Get-Help content (Descriptions, Examples, Syntax, Return Values, etc.)</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">None</li>
+												</div>
+												
+												<!--v11.2-->
+												<button type="button" class="collapsibleUpdate">VpasModule v11.2</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>March 1st 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">No updates, just keeping up with CyberArk's versioning</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">None</li>
+												</div>
+												
+												<!--v11.1-->
+												<button type="button" class="collapsibleUpdate">VpasModule v11.1</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>February 22nd 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">VLogin: added TLS 1.2 support + modified authentication from a WebRequest to a RestMethod</li>
+														<li class="UpdateList">VAddSafeMember: added grouped safe permissions to lessen the amount of flags needed to pass to the command</li>
+														<li class="UpdateList">Modified return value for various commands from 0,1 to True,False</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VCreateEPVGroup</li>
+														<li class="UpdateList">VGetPlatformDetailsSearch</li>
+														<li class="UpdateList">VGetSafesByPlatformID</li>
+												</div>
+												
+												<!--v10.10-->
+												<button type="button" class="collapsibleUpdate">VpasModule v10.10</button>
+												<div class="contentUpdate">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>February 12th 2022</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">VpasModule debut!</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">VAccountPasswordAction</li>
+														<li class="UpdateList">VActivateEPVUser</li>
+														<li class="UpdateList">VAddAccountGroup</li>
+														<li class="UpdateList">VAddAccountToAccountGroup</li>
+														<li class="UpdateList">VAddApplication</li>
+														<li class="UpdateList">VAddApplicationAuthentication</li>
+														<li class="UpdateList">VAddEPVUser</li>
+														<li class="UpdateList">VAddMemberEPVGroup</li>
+														<li class="UpdateList">VAddSafeMember</li>
+														<li class="UpdateList">VCheckInAccount</li>
+														<li class="UpdateList">VCreateAccount</li>
+														<li class="UpdateList">VCreateSafe</li>
+														<li class="UpdateList">VDeleteAccount</li>
+														<li class="UpdateList">VDeleteAccountFromAccountGroup</li>
+														<li class="UpdateList">VDeleteApplication</li>
+														<li class="UpdateList">VDeleteApplicationAuthentication</li>
+														<li class="UpdateList">VDeleteEPVUser</li>
+														<li class="UpdateList">VDeleteMemberEPVGroup</li>
+														<li class="UpdateList">VDeleteSafe</li>
+														<li class="UpdateList">VDeleteSafeMember</li>
+														<li class="UpdateList">VExportPlatform</li>
+														<li class="UpdateList">VGetAccountActivity</li>
+														<li class="UpdateList">VGetAccountDetails</li>
+														<li class="UpdateList">VGetAccountGroupMembers</li>
+														<li class="UpdateList">VGetAccountGroups</li>
+														<li class="UpdateList">VGetAllApplications</li>
+														<li class="UpdateList">VGetApplicationAuthentications</li>
+														<li class="UpdateList">VGetApplicationDetails</li>
+														<li class="UpdateList">VGetEPVGroupDetails</li>
+														<li class="UpdateList">VGetEPVUserDetails</li>
+														<li class="UpdateList">VGetPasswordValue</li>
+														<li class="UpdateList">VGetPlatformDetails</li>
+														<li class="UpdateList">VGetSafeAccountGroups</li>
+														<li class="UpdateList">VGetSafeDetails</li>
+														<li class="UpdateList">VGetSafeMembers</li>
+														<li class="UpdateList">VGetSafes</li>
+														<li class="UpdateList">VLogin</li>
+														<li class="UpdateList">VLogoff</li>
+														<li class="UpdateList">Vout</li>
+														<li class="UpdateList">VResetEPVUserPassword</li>
+														<li class="UpdateList">VSystemComponents</li>
+														<li class="UpdateList">VSystemHealth</li>
+														<li class="UpdateList">VUpdateAccountFields</li>
+														<li class="UpdateList">VUpdateEPVUser</li>
+														<li class="UpdateList">VUpdateSafe</li>
+														<li class="UpdateList">VUpdateSafeMember</li>
+												</div>
+
+												<script>
+												var coll = document.getElementsByClassName("collapsibleUpdate");
+												var i;
+
+												for (i = 0; i < coll.length; i++) {
+												  coll[i].addEventListener("click", function() {
+													this.classList.toggle("active");
+													var content = this.nextElementSibling;
+													if (content.style.display === "block") {
+													  content.style.display = "none";
+													} else {
+													  content.style.display = "block";
+													}
+												  });
+												}
+												</script>
+											</div>
+										</div>
+									</div>
+								</section>
+								
+					<!-- Footer -->
+					<section id="footer">
+						<div class="inner">
+							<center>
+							<ul class="actions" style="margin-left: 200px; margin-right: auto; margin-top: -5%;">
+								<li><a target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/vmelamed5" class="icon solid"><img src="./images/BuyMeACoffee.png"></a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/vmelamed5" class="icon solid"><img src="./images/GithubSponsor.png"></a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://venmo.com/u/Vadim-Melamed" class="icon solid"><img src="./images/Venmo.png"></a></li>
+								<li><a target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/paypalme/vmelamed5" class="icon solid"><img src="./images/Paypal.png"></a></li>
+							</ul>
+							</center>
+							<ul class="copyright" style="margin-top: -1%;">
+								<center><li>&copy; 2021 Vadim Melamed. All rights reserved.</li></center>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
