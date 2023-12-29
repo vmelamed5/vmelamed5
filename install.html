@@ -13,10 +13,12 @@
 				if(x === ">"){
 					document.getElementById("SideNavToggleIDHeader").innerHTML = "<";
 					openNavHeader();
+					document.getElementById("VpasModuleAnchorID").innerHTML = "";
 				}
 				else{
 					document.getElementById("SideNavToggleIDHeader").innerHTML = ">";
 					closeNavHeader();
+					document.getElementById("VpasModuleAnchorID").innerHTML = "&emsp;VpasModule";
 				}
 			}			
 			function openNavHeader() {
@@ -36,7 +38,7 @@
 
 				<!-- Header -->
 					<header id="header" class="inner">
-						<h1><div id="maintempHeader"><button style="width: 50px;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()">></button><a href="index.html">&emsp;VpasModule</a></div></h1>
+						<h1><div id="maintempHeader"><button style="width: 50px;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()">></button><a id="VpasModuleAnchorID" href="index.html" style="width: 50%;">&emsp;VpasModule</a></div></h1>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -91,13 +93,13 @@
 						<!-- One -->
 							<section id="one" class="wrapper spotlight style1">
 								<div class="inner">
-									<div class="content" style="width: 150%; margin-right: 5%">
+									<div class="content" style="width: 100%; margin-right: 5%;">
 										<div id="AutomaticInstallAnchor">
 											<br>
 											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
 											<br>
 											<h1 style="text-align: left;">Automatic Installation</h1>
-											<table style="background: #2e3141">
+											<table style="background: #2e3141;">
 												<tr>
 													<td>
 														<p style="text-align: left;">01) Open PowerShell as Admin<br>- Right click PowerShell and run as admin<br><br>*If no admin rights, open PowerShell as a normal user</p>
@@ -176,7 +178,6 @@
 											</table>
 										</div>
 									</div>
-									
 								</div>
 							</section>
 					</section>
