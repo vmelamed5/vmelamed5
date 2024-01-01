@@ -2844,6 +2844,15 @@ input, select, textarea {
 			table.alt tfoot {
 				border-top: 0;
 			}
+			
+			table img{
+				transition:transform 0.25s ease;
+			}
+			
+			table img:hover{
+				-webkit-transform:scale(1.5);
+				transform:scale(1.5);
+			}
 
 /* Button */
 
@@ -4292,7 +4301,6 @@ input, select, textarea {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
 }
-
 
 html{scroll-behavior:smooth}
 
