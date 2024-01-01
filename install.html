@@ -10,13 +10,13 @@
 	<script>
 			function ToggleSideNavFunctionHeader() {
 				var x = document.getElementById("SideNavToggleIDHeader").textContent;
-				if(x === ">"){
-					document.getElementById("SideNavToggleIDHeader").innerHTML = "<";
+				if(x === ">>"){
+					document.getElementById("SideNavToggleIDHeader").innerHTML = "<<";
 					openNavHeader();
 					document.getElementById("VpasModuleAnchorID").innerHTML = "";
 				}
 				else{
-					document.getElementById("SideNavToggleIDHeader").innerHTML = ">";
+					document.getElementById("SideNavToggleIDHeader").innerHTML = ">>";
 					closeNavHeader();
 					document.getElementById("VpasModuleAnchorID").innerHTML = "&emsp;VpasModule";
 				}
@@ -38,7 +38,7 @@
 
 				<!-- Header -->
 					<header id="header" class="inner">
-						<h1><div id="maintempHeader"><button style="width: 50px;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()">></button><a id="VpasModuleAnchorID" href="index.html" style="width: 50%;">&emsp;VpasModule</a></div></h1>
+						<h1><div id="maintempHeader"><button style="width: 50px;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()"><b>>></b></button><a id="VpasModuleAnchorID" href="index.html" style="width: 50%;">&emsp;VpasModule</a></div></h1>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -99,80 +99,82 @@
 											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
 											<br>
 											<h1 style="text-align: left;">Automatic Installation</h1>
-											<table style="background: #2e3141;">
+											
+											<table class="inner" style="background: #2e3141; width: 100%;">
 												<tr>
 													<td>
 														<p style="text-align: left;">01) Open PowerShell as Admin<br>- Right click PowerShell and run as admin<br><br>*If no admin rights, open PowerShell as a normal user</p>
-														<img src="images\AutomaticInstall01.gif">
+														<img src="images\AutomaticInstall01.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">02) Type in: "Install-Module VpasModule"<br>- ​To install a specific version of VpasModule pass the -RequiredVersion flag: "Install-Module VpasModule -RequiredVersion 13.2.0"<br><br>*If no admin rights, pass the -scope flag: "Install-Module VpasModule -RequiredVersion 13.2.0 -Scope Currentuser"</p>
-														<img src="images\AutomaticInstall02.gif">
+														<img src="images\AutomaticInstall02.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">03) Accept All [A]<br>- ​Enter A to accept all</p>
-														<img src="images\AutomaticInstall03.gif">
+														<img src="images\AutomaticInstall03.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">04) Type in: "Import-Module VpasModule"<br>- To see what commands are being imported, pass the -Verbose flag: "Import-Module VpasModule -Verbose"</p>
-														<img src="images\AutomaticInstall04.gif">
+														<img src="images\AutomaticInstall04.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">05) Confirm VpasModule is recognized<br>- ​Type in: "Get-Module -ListAvailable -Name VpasModule" and confirm VpasModule exists</p>
-														<img src="images\AutomaticInstall05.gif">
+														<img src="images\AutomaticInstall05.gif" style="width: 100%;">
 													</td>
 												</tr>
 											</table>
-										</div>
+											</div>
 										
 										<div id="ManualInstallAnchor">
 											<br>
 											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
 											<br>
 											<h1 style="text-align: left;">Manual Installation</h1>
-											<table style="background: #2e3141">
+											
+											<table class="inner" style="background: #2e3141; width: 100%;">
 												<tr>
 													<td>
 														<p style="text-align: left;">01) Click on the Github Button<br>- ​​Or browse to: <a target="_blank" rel="noopener noreferrer" href="https://github.com/vmelamed5/CyberArk">https://github.com/vmelamed5/CyberArk</a></p>
-														<img src="images\ManualInstall01.gif">
+														<img src="images\ManualInstall01.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">02) Download the code<br>- Click the code button and download the ZIP file</p>
-														<img src="images\ManualInstall02.gif">
+														<img src="images\ManualInstall02.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">03) Extract VpasModule<br>- ​Right click on the ZIP folder and extract it</p>
-														<img src="images\ManualInstall03.gif">
+														<img src="images\ManualInstall03.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">04) Move VpasModule to module path<br>- ​To find module path, open PowerShell and type in: "$env:PSModulePath"</p>
-														<img src="images\ManualInstall04.gif">
+														<img src="images\ManualInstall04.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">05) Import-Module VpasModule<br>- ​Close and re-open PowerShell and type in: "Import-Module VpasModule"<br>- pass the -Verbose flag: "Import-Module VpasModule -Verbose" to see all commands</p>
-														<img src="images\ManualInstall05.gif">
+														<img src="images\ManualInstall05.gif" style="width: 100%;">
 													</td>
 												</tr>
 												<tr>
 													<td>
 														<p style="text-align: left;">06) Confirm VpasModule is recognized<br>- Type in: "Get-Module -ListAvailable -Name VpasModule" and confirm VpasModule exists</p>
-														<img src="images\ManualInstall06.gif">
+														<img src="images\ManualInstall06.gif" style="width: 100%;">
 													</td>
 												</tr>
 											</table>
