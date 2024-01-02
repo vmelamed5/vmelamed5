@@ -11,18 +11,20 @@
 	<script>
 			function ToggleSideNavFunctionHeader() {
 				var x = document.getElementById("SideNavToggleIDHeader").textContent;
-				if(x === ">"){
-					document.getElementById("SideNavToggleIDHeader").innerHTML = "<";
+				if(x === ">>"){
+					document.getElementById("SideNavToggleIDHeader").innerHTML = "<<";
 					openNavHeader();
+					document.getElementById("VpasModuleAnchorID").innerHTML = "";
 				}
 				else{
-					document.getElementById("SideNavToggleIDHeader").innerHTML = ">";
+					document.getElementById("SideNavToggleIDHeader").innerHTML = ">>";
 					closeNavHeader();
+					document.getElementById("VpasModuleAnchorID").innerHTML = "&emsp;VpasModule";
 				}
 			}			
 			function openNavHeader() {
-				document.getElementById("mySidebar").style.width = "400px";
-				document.getElementById("maintempHeader").style.marginLeft = "400px";
+				document.getElementById("mySidebar").style.width = "250px";
+				document.getElementById("maintempHeader").style.marginLeft = "250px";
 			}
 
 			function closeNavHeader() {
@@ -35,10 +37,10 @@
 
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
-
+				<br>
 				<!-- Header -->
 					<header id="header" class="inner">
-						<h1><div id="maintempHeader"><button id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()">></button><a href="index.html">&emsp;VpasModule</a></div></h1>
+						<h1><div id="maintempHeader"><button style="width: 50px;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()"><b>>></b></button><a id="VpasModuleAnchorID" href="../index.html" style="width: 50%;">&emsp;VpasModule</a></div></h1>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -64,7 +66,7 @@
 				<center>
 					<section id="banner" style="margin-bottom: -5%; margin-top: -5%;">
 						<div class="inner">
-							<div class="logo"><span><a style="text-decoration: none" href="../index.html"><img src="images\VpasModuleLOGO.png" alt="VpasModuleLOGO"></a></span></div>
+							<div class="logo"><span><a style="text-decoration: none;" href="../index.html"><img style="width: 70%;" src="images\VpasModuleLOGO.png" alt="VpasModuleLOGO"></a></span></div>
 
 							<p>Command Documentation</p>
 							<ul class="actions" style="display: inline-flex;">
@@ -250,9 +252,9 @@
 						<!-- One -->
 							<section id="one" class="wrapper spotlight style1">
 								<div class="inner">
-									<div class="content" style="width: 150%; margin-right: 0%">
+									<div class="content" style="width: 100%; margin-right: 0%">
 										<div id="CommandTitleAnchor">
-											<h1 style="text-align: center; font-size: 40px; text-transform: none;"><b>Get-VPASBulkTemplateFiles</b></h1>
+											<h1 style="text-align: center; text-transform: none;"><b>Get-VPASBulkTemplateFiles</b></h1>
 											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
 											<br>
 											
@@ -267,60 +269,60 @@
 											</ul>
 											
 											<!-- SYNOPSIS  -->
-											<div id="SynopsisAnchor">
+											<div id="SynopsisAnchor" style="overflow-x: auto;">
 											<br><br>
 											<h1 style="text-align: left;">Synopsis:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>GET BULK TEMPLATE FILES</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>GET BULK TEMPLATE FILES</b></p></td></tr>
 											</table>
 											</div>
 											
 											<!-- DESCRIPTION  -->
-											<div id="DescriptionAnchor">
+											<div id="DescriptionAnchor" style="overflow-x: auto;">
 											<br><br>
 											<h1 style="text-align: left;">Description:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>USE THIS FUNCTION TO GENERATE BULK TEMPLATE FILES</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO GENERATE BULK TEMPLATE FILES</b></p></td></tr>
 											</table>
 											</div>
 											
 											<!-- SYNTAX  -->
-											<div id="SyntaxAnchor">
+											<div id="SyntaxAnchor" style="overflow-x: auto;">
 											<br><br>
 											<h1 style="text-align: left;">Syntax:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>Get-VPASBulkTemplateFiles [-BulkTemplate] &lt;String&gt; [[-OutputDirectory] &lt;String&gt;] [[-ISPSS]] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASBulkTemplateFiles [-BulkTemplate] &lt;String&gt; [[-OutputDirectory] &lt;String&gt;] [[-ISPSS]] [&lt;CommonParameters&gt;]</b></p></td></tr>
 											</table>
 											</div>
 											
 											<!-- PARAMETERS  -->
-											<div id="ParameterAnchor">
+											<div id="ParameterAnchor" style="overflow-x: auto;">
 											<br><br>
 											<h1 style="text-align: left;">Parameters:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>-BulkTemplate &lt;String&gt;<br>Specific bulk operation to generate a CSVFile for<br>Possible values: BulkSafeCreation, BulkAccountCreation, BulkSafeMembers<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>-OutputDirectory &lt;String&gt;<br>Where to place the newly generated CSV template file<br><br>Required: false<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>-ISPSS [&lt;SwitchParameter&gt;]<br>For saas environments<br>The APIs for adding safe members introduced a new parameter for saas environments. Enable this flag for saas environments<br><br>Required: false<br>Position: 3<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-BulkTemplate &lt;String&gt;<br>Specific bulk operation to generate a CSVFile for<br>Possible values: BulkSafeCreation, BulkAccountCreation, BulkSafeMembers<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-OutputDirectory &lt;String&gt;<br>Where to place the newly generated CSV template file<br><br>Required: false<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ISPSS [&lt;SwitchParameter&gt;]<br>For saas environments<br>The APIs for adding safe members introduced a new parameter for saas environments. Enable this flag for saas environments<br><br>Required: false<br>Position: 3<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
 											</table>
 											</div>
 											
 											<!-- EXAMPLE  -->
-											<div id="ExampleAnchor">
+											<div id="ExampleAnchor" style="overflow-x: auto;">
 											<br><br>
 											<h1 style="text-align: left;">Examples:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>$TemplateFile = Get-VPASBulkTemplateFiles -BulkTemplate {BULKTEMPLATE VALUE}</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$TemplateFile = Get-VPASBulkTemplateFiles -BulkTemplate {BULKTEMPLATE VALUE}</b></p></td></tr>
 											</table>
 											</div>
 											
 											<!-- OUTPUT  -->
-											<div id="OutputAnchor">
+											<div id="OutputAnchor" style="overflow-x: auto;">
 											<br><br>
 											<h1 style="text-align: left;">Outputs:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>$true if successful</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 17px;"><b>$false if failed</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$true if successful</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$false if failed</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -331,11 +333,10 @@
 					</section>
 
 				<!-- Footer -->
-
 					<section id="footer">
 						<div class="inner">
 							<center>
-							<ul class="actions" style="margin-left: 200px; margin-right: auto; margin-top: -10%;">
+							<ul class="actions" style="margin-left: auto; margin-right: auto;">
 								<li><a target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/vmelamed5" class="icon solid"><img src="../images/BuyMeACoffee.png"></a></li>
 								<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/vmelamed5" class="icon solid"><img src="../images/GithubSponsor.png"></a></li>
 								<li><a target="_blank" rel="noopener noreferrer" href="https://venmo.com/u/Vadim-Melamed" class="icon solid"><img src="../images/Venmo.png"></a></li>

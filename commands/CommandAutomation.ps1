@@ -14,6 +14,7 @@ $inputData = Get-Content -Path Template-Page.html
 
 foreach($recCommand in $AllCommands.Name){
     $fileName = "$recCommand" + ".html"
+    Write-Host "BUILDING FILE: `t$fileName" -ForegroundColor Cyan
     Write-Output "<!-- MADE BY VADIM MELAMED -->" | Set-Content $fileName
     $CommandHelp = Get-help $recCommand -Full
 
