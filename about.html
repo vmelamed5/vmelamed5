@@ -10,13 +10,15 @@
 	<script>
 			function ToggleSideNavFunctionHeader() {
 				var x = document.getElementById("SideNavToggleIDHeader").textContent;
-				if(x === ">"){
-					document.getElementById("SideNavToggleIDHeader").innerHTML = "<";
+				if(x === ">>"){
+					document.getElementById("SideNavToggleIDHeader").innerHTML = "<<";
 					openNavHeader();
+					document.getElementById("VpasModuleAnchorID").innerHTML = "";
 				}
 				else{
-					document.getElementById("SideNavToggleIDHeader").innerHTML = ">";
+					document.getElementById("SideNavToggleIDHeader").innerHTML = ">>";
 					closeNavHeader();
+					document.getElementById("VpasModuleAnchorID").innerHTML = "&emsp;VpasModule";
 				}
 			}			
 			function openNavHeader() {
@@ -37,7 +39,7 @@
 
 				<!-- Header -->
 					<header id="header" class="inner">
-						<h1><div id="maintempHeader"><button style="width: 5%;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()">></button><a href="index.html">&emsp;VpasModule</a></div></h1>
+						<h1><div id="maintempHeader"><button style="width: 50px;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()"><b>>></b></button><a id="VpasModuleAnchorID" href="index.html" style="width: 50%;">&emsp;VpasModule</a></div></h1>
 						<nav>
 							<a href="#menu">Menu</a>
 						</nav>
@@ -102,11 +104,12 @@
 												<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/vmelamed5/CyberArk" class="button icon solid" style="width: 100%; background-color: #2e3141;"><i class="fab fa-github fa-lg"></i>GitHub</a></li>
 												<li><a target="_blank" rel="noopener noreferrer" href="https://www.powershellgallery.com/packages/VpasModule" class="button icon solid" style="width: 100%; background-color: #2e3141;"><i class="fas fa-laptop-code fa-lg"></i>PowershellGallery</a></li>
 												<li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/vadim-melamed/" class="button icon solid" style="width: 100%; background-color: #2e3141;"><i class="fab fa-linkedin fa-lg"></i>LinkedIn</a></li>
+												<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/vmelamed5" class="button icon solid" style="background-color: #2e3141;"><i class="fas fa-heart fa-lg" style="color: #ff00a2;"></i> GitHub Sponsor</a></li>
 											</ul>
 										</div>
 									</div>
 									</center>
-									<div id="AboutAnchor" class="content" style="width: 150%; margin-right: 5%">
+									<div id="AboutAnchor" class="content" style="width: 100%; margin-right: 5%;">
 										<br><br>
 										<h1 class="major">About VpasModule:</h1>
 										<p>I am assuming since you are here, you probably know a thing or two about CyberArk. Like you, I was tasked to do something painfully ​repetitive in my ​environment and figured there had to be an easier, more automated way to complete my task. This is how the initial pieces of VpasModule was created, just a bunch of PowerShell files with different api calls that I used for myself to automate repetitive tasks.</p> 
@@ -115,10 +118,6 @@
 										
 										<h1 id="HelpAnchor" class="major"><br><br>I need your help:</h1>
 										<p>I hope this module helps make your day easier, and if you can make my day easier by sponsoring me on github, that would be greaty appreciated. Donations always welcome! As the saying goes, "time is money" right? I would love to be able to spend even more time perfecting this module and expanding the capabilities and functionality to make your day even easier. Please and thank you in advance!</p>
-										<ul class="actions" style="float: right;">
-											<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/vmelamed5" class="button icon solid" style="background-color: #2e3141;"><i class="fas fa-heart fa-lg" style="color: #ff00a2;"></i> GitHub Sponsor</a></li>
-										</ul>
-
 									</div>
 								</div>
 							</section>
