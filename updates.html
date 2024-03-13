@@ -117,8 +117,47 @@
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
 												
+												<!--v14.0.1-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.0.1 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;">Published Date:</p> 
+														<li>March 12th 2024</li>
+													<br>
+													<p class="UpdateTags">Important Notes:</p>
+														<li class="UpdateList">Add-VPASApplication: -Disabled parameter has been changed to be a flag instead of a String</li>
+														<li class="UpdateList">Get-VPASEPVCurrentEPVUserDetails - re-reroutes to Get-VPASIdentityCurrentUserDetails for ISPSS Tenants + returns false for Standard tenants</li>
+														<li class="UpdateList">New-VPASToken - fixed the APITextRecording to handle the different tenants with retrieving the current logged in user</li>
+														<li class="UpdateList">Add-VPASSafeMember - Added the ability to input a hashtable of safe permissions (Hashtable of permissions will take priority over the flags passed)</li>
+														<li class="UpdateList">Add-VPASApplicationAuthentication: -AuthType parameter validateset updated address to machineAddress and Certificate to certificateSerialNumber</li>
+														<li class="UpdateList">Get-VPASSafes: -IncludeAccounts parameter added to include accounts in the return value</li>
+														<li class="UpdateList">Get-VPASSafeDetails: -IncludeAccounts parameter added to include accounts in the return value</li>
+														<li class="UpdateList">Get-VPASSafeMembers: -LimitSearchTo parameter added to return either UsersOnly or GroupsOnly</li>
+														<li class="UpdateList">Update-VPASSafeMember: Added the ability to input a hashtable of safe permissions (Hashtable of permissions will take priority over the flags passed)</li>
+														<li class="UpdateList">Get-VPASAccountDetails: -SavedFilter parameter added to run prebuilt search queries (Regular, Recently, New, Link, Deleted, PolicyFailures, AccessedByUsers, ModifiedByUsers, ModifiedByCPM, DisabledPasswordByUser, DisabledPasswordByCPM, ScheduledForChange, ScheduledForVerify, ScheduledForReconcile, SuccessfullyReconciled, FailedChange, FailedVerify, FailedReconcile, LockedOrNew, Locked, Favorites)</li>
+														<li class="UpdateList">Get-VPASSafeAccountGroups: This command is no longer needed as Get-VPASAccountGroups achieves the same functionality</li>
+														<li class="UpdateList">Unlock-VPASExclusiveAccount: -AdminUnlock parameter added to unlock an exclusive account skipping the release workflow</li>
+														<li class="UpdateList">Get-VPASPlatformDetailsSearch: return value now returns all platform properties</li>
+														<li class="UpdateList">Get-VPASAllSafes: removed -Limit and -Offset parameters, api will loop in batches of 25 until there are no more safes</li>
+														<li class="UpdateList">Add-VPASBulkAccounts: added support for additional PlatformAccountProperties</li>
+														<li class="UpdateList">Invoke-VPASReporting: added more fields to the plaform export report, including required and optional properties</li>
+													<br>
+													<p class="UpdateTags">New Commands:</p>
+														<li class="UpdateList">Get-VPASEPVUserTypes: Retrieve the various types of EPV users (SelfHosted Only)</li>
+														<li class="UpdateList">Get-VPASAllEPVGroups: Retrieve all EPVGroups</li>
+														<li class="UpdateList">Get-VPASAllSafes: Retrieve all Safes</li>
+														<li class="UpdateList">Get-VPASAllAccounts: Retrieve all Accounts</li>
+														<li class="UpdateList">Get-VPASAccountPrivateSSHKey: Retrieve private SSH Key and save to a PEM file</li>
+														<li class="UpdateList">Get-VPASAllPlatforms: Retrieve all platforms details</li>
+														<li class="UpdateList">Get-VPASAllRotationalPlatforms: Retrieve all rotational group platforms details</li>
+														<li class="UpdateList">Get-VPASAllGroupPlatforms: Retrieve all group platforms details</li>
+														<li class="UpdateList">Get-VPASAllUsagePlatforms: Retrieve all usage platforms details</li>
+														<li class="UpdateList">Get-VPASIdentityAllRoles: Retrieve all roles in Identity</li>
+														<li class="UpdateList">Get-VPASAllActiveSessions: Retrieve all active sessions</li>
+														<li class="UpdateList">Get-VPASAllPSMSessions: Retrieve all psm sessions</li>
+												</div>
+												
 												<!--v13.2.0-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v13.2.0 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v13.2.0</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;">Published Date:</p> 
 														<li>November 12th 2023</li>
