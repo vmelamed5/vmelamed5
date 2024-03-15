@@ -1,5 +1,5 @@
 ﻿#COMMAND AUTOMATION
-import-module vpasmodule -RequiredVersion 14.0.1 -Force
+import-module vpasmodule -RequiredVersion 14.0.3 -Force
 
 function LogFile{
     param($fileName, $str)
