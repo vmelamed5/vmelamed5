@@ -100,6 +100,10 @@
 										<!--WISHLIST-->
 										<p style="padding: 0; margin: 0;"><b>***If you have any suggestions for specific use cases that you would like to see, please feel free to reach out: vpasmodule@gmail.com***</b></p> 
 										<li>Invoke-VPASReporting: Build upon this command to add more reporting capabilities such as Discovered Accounts, Account Compliance, ApplicationID Auths, etc.</li>
+										<li>Invoke-VPASMetricsPSM: Build upon this command to add more PSM related metrics, as well as enhancing the visual output</li>
+										<li>Invoke-VPASMetricsCPM: Build upon this command to add more CPM related metrics, as well as enhancing the visual output</li>
+										<li>Invoke-VPASMetricsAccounts: Build upon this command to add more Account related metrics, as well as enhancing the visual output</li>
+										<li>Metrics (general): expand the metric capabilities to other fields of CyberArk (other components, other requests, etc)
 										<li>Expand further into CyberArk's Identity APIs</li>
 										<li>Expand further into CyberArk's EPM APIs</li>
 										<li>Expand further into -WhatIf parameter and build upon the implications of -WhatIf parameter</li>
@@ -117,8 +121,50 @@
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
 												
+												<!--v14.1.0-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.1.0 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
+														<li>May 18th 2024</li>
+													<br>
+													<p class="UpdateTags"><b><u>Important Notes:</u></b></p>
+														<li class="UpdateList"><b>New-VPASToken:</b> -HideWarnings parameter ADDED to supress any output to the console, for cosmetics</li>
+														<li class="UpdateList"><b>Add-VPASApplicationAuthentication:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Add-VPASSafe:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Get-VPASAccountDetails:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Get-VPASAccountDetails:</b> -ExactMatch parameter ADDED to return values with an exact match (not a wildcard search)</li>
+														<li class="UpdateList"><b>Get-VPASDiscoveredAccountsDependencies:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Invoke-VPASAccountPasswordAction:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Add-VPASApplication:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Get-VPASPSMSessions:</b> -FromTime and -ToTime parameters ADDED to filter search to a specified date range</li>
+														<li class="UpdateList"><b>Add-VPASAccount:</b> CHANGED -extraprops from a string to hashtable like so: @{PropertyName1 = "PropertyValue1"}</li>
+														<li class="UpdateList"><b>Get-VPASAllPlatforms:</b> If this API call fails, due to a failed platform import or a missing policy.ini file, api will run Get-VPASAllTargetPlatforms instead</li>
+														<li class="UpdateList"><b>Get-VPASPlatformDetailsSearch:</b> If query via Get-VPASAllPlatforms fails, due to a failed platform import or a missing policy.ini file, api will query via Get-VPASAllTargetPlatforms instead</li>
+														<li class="UpdateList"><b>Get-VPASSQLPlatforms:</b> If query via Get-VPASAllPlatforms fails, due to a failed platform import or a missing policy.ini file, api will query via Get-VPASAllTargetPlatforms instead</li>
+														<li class="UpdateList"><b>Get-VPASReporting:</b> Platform Details Report updated if query via Get-VPASAllPlatforms fails, due to a failed platform import or a missing policy.ini file, api will query via Get-VPASAllTargetPlatforms instead</li>
+													<br>
+													<p class="UpdateTags"><b><u>New Commands:</u></b></p>
+														<li class="UpdateList"><b>Invoke-VPASMetricsPSM:</b> Generate PSM related metrics (PSM sessions in the last X days, PSM servers utilized in the last X days, PSM connection components used in the last X days, Users connecting via PSM in the last X days)</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsCPM:</b> Generate CPM related metrics (CPMs assigned to safes, CPMs assigned to accounts, CPM management status)</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsAccounts:</b> Generate Account related metrics (Onboarded account types, Accounts onboarded in the last X days, Account compliance status)</li>
+														<li class="UpdateList"><b>Get-VPASAllowedIPs:</b> retrieve the allowed or whitelisted IPs that cyberark cloud communicates with</li>
+														<li class="UpdateList"><b>Add-VPASAllowedIPs:</b> add an allowed or whitelisted IP for cyberark cloud to communicate to</li>
+														<li class="UpdateList"><b>Get-VPASAllEPVUsers:</b> retrieve all EPVUser details</li>
+														<li class="UpdateList"><b>Import-VPASConnectionComponent:</b> imports a zip folder holding the contents for a connection component</li>
+														<li class="UpdateList"><b>Add-VPASAccountRequest:</b> create an account request for an account with dual control enabled</li>
+														<li class="UpdateList"><b>Get-VPASAccountRequestDetails:</b> retrieve details for an existing account request made by user</li>
+														<li class="UpdateList"><b>Get-VPASAllAccountRequests:</b> retrieve all account requests made by user</li>
+														<li class="UpdateList"><b>Remove-VPASAccountRequest:</b> delete an existing account request made by user</li>
+														<li class="UpdateList"><b>Get-VPASAllIncomingRequests:</b> retrieve all incoming requests made by users</li>
+														<li class="UpdateList"><b>Get-VPASIncomingRequestDetails:</b> retrieve details for an incoming request made by users</li>
+														<li class="UpdateList"><b>Approve-VPASIncomingRequest:</b> approve an incoming request for an account requiring approval</li>
+														<li class="UpdateList"><b>Deny-VPASIncomingRequest:</b> deny an incoming request for an account requiring approval</li>
+														<li class="UpdateList"><b>Invoke-VPASUserLicenseReport:</b> run a report to display current license usage</li>
+														<li class="UpdateList"><b>Get-VPASAllTargetPlatforms:</b> retrieve all target platform details</li>
+												</div>
+												
 												<!--v14.0.3-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v14.0.3 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.0.3</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;">Published Date:</p> 
 														<li>March 12th 2024</li>
