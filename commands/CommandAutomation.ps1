@@ -1,5 +1,5 @@
 ﻿#COMMAND AUTOMATION
-import-module vpasmodule -RequiredVersion 14.0.3 -Force
+import-module vpasmodule -RequiredVersion 14.1.0 -Force
 
 function LogFile{
     param($fileName, $str)
@@ -7,10 +7,26 @@ function LogFile{
     write-output "$str" | Add-Content $fileName
 }
 
+$CommandMatrix = @{}
+$inputCommandMatrix = Import-Csv -Path "CommandMatrix.csv"
+foreach($rec in $inputCommandMatrix){
+    $commandName = $rec.CommandName
+    $SelfHostedStatus = $rec.SelfHosted
+    $SharedServicesStatus = $rec.SharedServices
+    $PCloudStandardStatus = $rec.PCloudStandard
+    $CommandMatrix += @{
+        $commandName = @{
+            SelfHosted = $SelfHostedStatus
+            SharedServices = $SharedServicesStatus
+            PCloudStandard = $PCloudStandardStatus
+        }
+    }
+}
+
 $AllCommands = Get-Command -Module vpasmodule
 #$AllCommands = @{Name="New-VPASToken"} #<-- TESTING
 
-$inputData = Get-Content -Path Template-Page.html
+$inputData = Get-Content -Path "Template-Page.html"
 
 foreach($recCommand in $AllCommands.Name){
     $fileName = "$recCommand" + ".html"
@@ -137,6 +153,21 @@ foreach($recCommand in $AllCommands.Name){
                 $recnewline = $recline -replace "ENTER_OUTPUTS_HERE",$recEntry
                 LogFile -fileName $fileName -str $recnewline
             }
+        }
+        elseif($recline -match "SelfHostedFlag"){
+            $flagoutput = $CommandMatrix.$recCommand.SelfHosted.ToLower()
+            $recnewline = $recline -replace "SelfHostedFlag",$flagoutput
+            LogFile -fileName $fileName -str $recnewline
+        }
+        elseif($recline -match "SharedServicesFlag"){
+            $flagoutput = $CommandMatrix.$recCommand.SharedServices.ToLower()
+            $recnewline = $recline -replace "SharedServicesFlag",$flagoutput
+            LogFile -fileName $fileName -str $recnewline
+        }
+        elseif($recline -match "PCloudStandardFlag"){
+            $flagoutput = $CommandMatrix.$recCommand.PCloudStandard.ToLower()
+            $recnewline = $recline -replace "PCloudStandardFlag",$flagoutput
+            LogFile -fileName $fileName -str $recnewline
         }
         else{
             #JUST WRITE LINE BY LINE IF NO MATCH
