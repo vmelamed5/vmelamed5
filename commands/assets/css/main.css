@@ -4192,6 +4192,7 @@ input, select, textarea {
 }
 
 /*INSTALL VADIM EDITS*/
+
 .sidenav {
   height: 100%;
   width: 200px;
@@ -4296,3 +4297,32 @@ input, select, textarea {
 
 html{scroll-behavior:smooth}
 
+.graphiccontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.graphiclight {
+    width: 25px;
+    height: 25px;
+    margin: 0 20px;
+    border-radius: 50%;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: white;
+}
+.graphiclight.on {
+	background: rgb(0,247,255);
+	background: radial-gradient(circle, rgba(0,247,255,1) 0%, rgba(0,244,255,1) 0%, rgba(0,0,0,1) 100%);
+}
+.graphiclight.off {
+    background-color: #808080;
+}
+.graphictag {
+    text-align: center;
+    font-weight: bold;
+}
