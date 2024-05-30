@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Add-VPASAuthenticationMethod</title>
+		<title>Approve-VPASIncomingRequest</title>
 		<link rel="icon" type="image/x-icon" href="images\favicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -294,7 +294,7 @@
 								<div class="inner">
 									<div class="content" style="width: 100%; margin-right: 0%">
 										<div id="CommandTitleAnchor">
-											<h1 style="text-align: center; text-transform: none;"><b>Add-VPASAuthenticationMethod</b></h1>
+											<h1 style="text-align: center; text-transform: none;"><b>Approve-VPASIncomingRequest</b></h1>
 											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
 											<br>
 											
@@ -335,7 +335,7 @@
 											<br>
 											<h1 style="text-align: left;">Synopsis:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>ADD AUTHENTICATION METHOD</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>APPROVE AN INCOMING REQUEST IN CYBERARK</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -344,7 +344,7 @@
 											<br>
 											<h1 style="text-align: left;">Description:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO ADD AUTHENTICATION METHOD INTO CYBERARK</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO APPROVE AN INCOMING REQUEST IN CYBERARK</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -353,7 +353,7 @@
 											<br>
 											<h1 style="text-align: left;">Syntax:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Add-VPASAuthenticationMethod [-AuthenticationMethodID] &lt;String&gt; [[-DisplayName] &lt;String&gt;] [[-Enabled] &lt;String&gt;] [[-MobileEnabled] &lt;String&gt;] [[-LogoffURL] &lt;String&gt;] [[-SecondFactorAuth] &lt;String&gt;] [[-SignInLabel] &lt;String&gt;] [[-UsernameFieldLabel] &lt;String&gt;] [[-PasswordFieldLabel] &lt;String&gt;] [[-token] &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Approve-VPASIncomingRequest [[-RequestedSafe] &lt;String&gt;] [[-RequestedPlatform] &lt;String&gt;] [[-RequestedUsername] &lt;String&gt;] [[-RequestedAddress] &lt;String&gt;] [[-RequestedAcctID] &lt;String&gt;] [[-RequestedReason] &lt;String&gt;] [[-requestID] &lt;String&gt;] [-approveReason] &lt;String&gt; [[-token] &lt;Hashtable&gt;] [[-WhatIf]] [[-HideWhatIfOutput]] [&lt;CommonParameters&gt;]</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -362,16 +362,17 @@
 											<br>
 											<h1 style="text-align: left;">Parameters:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AuthenticationMethodID &lt;String&gt;<br>Unique ID that will be used to map to this AuthenticationMethod<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-DisplayName &lt;String&gt;<br>Display value of the AuthenticationMethod<br><br>Required: false<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-Enabled &lt;String&gt;<br>Specify if the AuthenticationMethod will be enabled<br>AuthenticationMethod will NOT appear if set to disabled<br>Possible values: TRUE, FALSE<br><br>Required: false<br>Position: 3<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-MobileEnabled &lt;String&gt;<br>Allow the AuthenticationMethod to be visible on mobile<br>Possible values: TRUE, FALSE<br><br>Required: false<br>Position: 4<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-LogoffURL &lt;String&gt;<br>Redirect link that EndUsers will funnel through on logoff<br><br>Required: false<br>Position: 5<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-SecondFactorAuth &lt;String&gt;<br>Enable a second factor authentication<br>Possible values: cyberark, radius, ldap<br><br>Required: false<br>Position: 6<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-SignInLabel &lt;String&gt;<br>Visual title of the AuthenticationMethod<br>This is what EndUsers will see<br><br>Required: false<br>Position: 7<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-UsernameFieldLabel &lt;String&gt;<br>Visual tag for the Username box<br>This is what EndUsers will see<br><br>Required: false<br>Position: 8<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-PasswordFieldLabel &lt;String&gt;<br>Visual tag for the Password box<br>This is what EndUsers will see<br><br>Required: false<br>Position: 9<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: 10<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestedSafe &lt;String&gt;<br>Safe name that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestedPlatform &lt;String&gt;<br>PlatformID that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestedUsername &lt;String&gt;<br>Username that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: 3<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestedAddress &lt;String&gt;<br>Address that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: 4<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestedAcctID &lt;String&gt;<br>Unique ID that maps to a single account, passing this variable will skip query functions to find target account<br><br>Required: false<br>Position: 5<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestedReason &lt;String&gt;<br>Reason that will be used to query and find the target account request<br><br>Required: false<br>Position: 6<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-requestID &lt;String&gt;<br>Unique ID that maps to a single account request, passing this variable will skip any query functions<br><br>Required: false<br>Position: 7<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-approveReason &lt;String&gt;<br>Reason for approving the incoming request, will be saved for audit purposes<br><br>Required: true<br>Position: 8<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: 9<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-WhatIf [&lt;SwitchParameter&gt;]<br>Run code simulation to see what is affected by running the command as well as any possible implications<br>This is a code simulation flag, meaning the command will NOT actually run<br><br>Required: false<br>Position: 10<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-HideWhatIfOutput [&lt;SwitchParameter&gt;]<br>Suppress any code simulation output from the console<br><br>Required: false<br>Position: 11<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
 											</table>
 											</div>
@@ -381,7 +382,8 @@
 											<br>
 											<h1 style="text-align: left;">Examples:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$AddAuthenticationMethodJSON = Add-VPASAuthenticationMethod -AuthenticationMethodID (AUTHENTICATION METHOD IS VALUE}</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$WhatIfSimulation = Approve-VPASIncomingRequest -RequestedAcctID {ACCTID VALUE} -requestID {REQUESTID VALUE} -approveReason {REASON VALUE} -WhatIf</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$ApproveIncomingRequestStatus = Approve-VPASIncomingRequest -RequestedAcctID {ACCTID VALUE} -requestID {REQUESTID VALUE} -approveReason {REASON VALUE}</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -390,7 +392,7 @@
 											<br>
 											<h1 style="text-align: left;">Outputs:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>JSON Object (AuthenticationMethod) if successful</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$true if successful</b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$false if failed</b></p></td></tr>
 											</table>
 											</div>
