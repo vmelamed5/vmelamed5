@@ -4301,12 +4301,11 @@ html{scroll-behavior:smooth}
     display: flex;
     justify-content: center;
     align-items: center;
-
+	flex-wrap: wrap;
 }
 .graphiclight {
     width: 25px;
     height: 25px;
-    margin: 0 20px;
     border-radius: 50%;
     background-color: grey;
     display: flex;
@@ -4325,4 +4324,6 @@ html{scroll-behavior:smooth}
 .graphictag {
     text-align: center;
     font-weight: bold;
+	margin-left: 10px;
 }
+
