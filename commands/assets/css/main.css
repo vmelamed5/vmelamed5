@@ -4326,4 +4326,12 @@ html{scroll-behavior:smooth}
     font-weight: bold;
 	margin-left: 10px;
 }
-
+ul.noformatlist{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+li.nospacelist{
+	margin: 0;
+	padding: 0;
+}
