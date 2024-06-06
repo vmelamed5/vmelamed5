@@ -4353,6 +4353,73 @@ li.nospacelist{
 
 .tooltip .tooltiptext {
   visibility: hidden;
+  width: 225px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 75%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.metrics-container-reverse {
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin: 0;
+	background-color: #4C5C96;
+}
+
+.metric-reverse {
+	text-align: left;
+}
+
+/*COMMAND DROP DOWN*/
+.commanddropdown-container {
+	position: relative;
+	display: inline-block;
+	width: 300px;
+}
+.commanddropdown-input {
+	width: 100%;
+	box-sizing: border-box;
+}
+.commanddropdown-list {
+	width: 100%;
+	border: 1px solid #ccc;
+	border-top: none;
+	max-height: 200px;
+	overflow-y: auto;
+	z-index: 1000;
+}
+.commanddropdown-list div {
+	padding: 8px;
+	cursor: pointer;
+}
+.commanddropdown-list div:hover {
+	background-color: #4C5C96;
+}
+.hidden {
+	display: none;
+}
+
+/* REQUIRED PARAMETERS INPUTS */
+.requiredtooltip {
+  position: relative;
+}
+
+.requiredtooltip .requiredtooltiptext {
+  visibility: hidden;
   width: 250px;
   background-color: black;
   color: #fff;
@@ -4363,12 +4430,11 @@ li.nospacelist{
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-  top: -5px;
-  left: 105%;
+  top: 60%;
+  left: 20%;
   margin-left: -60px;
 }
 
-.tooltip:hover .tooltiptext {
+.requiredtooltip:hover .requiredtooltiptext {
   visibility: visible;
 }
-
