@@ -391,7 +391,7 @@ function GenerateIfStatementsToGetParamLabelValues{
 }
 
 $inputfile = Get-Content -Path "C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\scriptbuilder\Template-Page.html"
-$outputfile = "C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\scriptbuilder\scriptbuilder.html"
+$outputfile = "C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\scriptbuilder\ScriptBuilder.html"
 write-output "<!-- VpasModule ScriptBuilder -->" | Set-Content $outputfile
 $counter = 0
 
