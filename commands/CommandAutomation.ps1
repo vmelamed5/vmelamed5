@@ -1,6 +1,18 @@
 ﻿#COMMAND AUTOMATION
 import-module vpasmodule -RequiredVersion 14.1.0 -Force
 
+<#
+    Vadim Notes:
+        - For new commands, add command in Template-Page sidebar section (lines 127ish - 315ish):
+            ...
+            <li class="nospacelist"><a href="./NEW-COMMAND.html" style="font-size: 14px; color: #f5f5f5;">&#8226; NEW-COMMAND</a></li>
+            ...
+        - For new commands, add to CSV file (CommandMatrix.csv)
+            ...
+            NEW-COMMAND,TRUE,FALSE,FALSE
+            ...
+#>
+
 function LogFile{
     param($fileName, $str)
 
