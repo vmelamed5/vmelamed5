@@ -101,11 +101,8 @@
 										<h3 class="major" style="background-color: #4c5c96; padding: 18px;">VpasModule Wishlist:</h3>
 										<!--WISHLIST-->
 										<p style="padding: 0; margin: 0;"><b>***If you have any suggestions for specific use cases that you would like to see, please feel free to reach out: vpasmodule@gmail.com***</b></p> 
-										<li>Invoke-VPASReporting: Build upon this command to add more reporting capabilities such as Discovered Accounts, Account Compliance, ApplicationID Auths, etc.</li>
-										<li>Invoke-VPASMetricsPSM: Build upon this command to add more PSM related metrics, as well as enhancing the visual output</li>
-										<li>Invoke-VPASMetricsCPM: Build upon this command to add more CPM related metrics, as well as enhancing the visual output</li>
-										<li>Invoke-VPASMetricsAccounts: Build upon this command to add more Account related metrics, as well as enhancing the visual output</li>
-										<li>Metrics (general): expand the metric capabilities to other fields of CyberArk (other components, other requests, etc)
+										<li>Invoke-VPASReporting: Build upon this command to add more reporting capabilities such as Discovered Accounts, Account Compliance, etc.</li>
+										<li>Metrics (general): expand the metric capabilities to other fields of CyberArk (other components, other requests, etc), as well as enhancing the visual outputs
 										<li>Expand further into CyberArk's Identity APIs</li>
 										<li>Expand further into CyberArk's EPM APIs</li>
 										<li>Expand further into -WhatIf parameter and build upon the implications of -WhatIf parameter</li>
@@ -122,9 +119,27 @@
 											<br>
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
+												<!--v14.2.0-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.0 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
+														<li>June 20th 2024</li>
+													<br>
+													<p class="UpdateTags"><b><u>Important Notes:</u></b></p>
+														<li class="UpdateList"><b>Bug:</b> -WhatIf parameter has been fixed for the following commands: Invoke-VPASReporting; Remove-VPASSafeMember; Remove-VPASPlatform; Remove-VPASMemberEPVGroup; Remove-VPASIdentityRole; Remove-VPASEPVGroup; Remove-VPASApplication; Remove-VPASAccount;</li>
+														<li class="UpdateList"><b>Invoke-VPASReporting:</b> Added new report "ApplicationIDAuthentications", which lists out every authentication method required by each ApplicationID</li>
+														<li class="UpdateList"><b>Invoke-VPASReporting:</b> Added new report "PlatformLinkedAccounts", which lists out every linked account found on each platform</li>
+														<li class="UpdateList"><b>Get-VPASCurrentEPVUserDetails:</b> no longer works for privilegecloud standard environments, logic placed to handle that</li>
+														<li class="UpdateList"><b>Invoke-VPASUserLicense:</b> does not work for SelfHosted environments, message will now display stating that instead of just failing</li>
+													<br>
+													<p class="UpdateTags"><b><u>New Commands:</u></b></p>
+														<li class="UpdateList"><b>Invoke-VPASMetricsPlatforms:</b> Generate Platform related metrics (Amount of Accounts Assigned to which Platforms, Amount of Accounts Assigned to Platforms with Automatic vs Manual Rotation Flows, Amount of Accounts Assigned to Platforms with Automatic vs Manual Verification Flows)</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsProviders:</b> Generate Provider related metrics (Amount of safes that contain ApplicationIDs, Amount of accounts that can be pulled via the providers)</li>
+														<li class="UpdateList"><b>Get-VPASAllDiscoveredAccounts:</b> Get all discovered accounts in the pending safe list</li>
+												</div>
 												
 												<!--v14.1.0-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v14.1.0 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.1.0</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
 														<li>May 18th 2024</li>
