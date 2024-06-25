@@ -1,5 +1,5 @@
 ﻿#COMMAND AUTOMATION
-import-module vpasmodule -RequiredVersion 14.1.0 -Force
+import-module vpasmodule -RequiredVersion 14.2.0 -Force
 
 <#
     Vadim Notes:
@@ -11,6 +11,8 @@ import-module vpasmodule -RequiredVersion 14.1.0 -Force
             ...
             NEW-COMMAND,TRUE,FALSE,FALSE
             ...
+        - Fun fact - because im lazy, run this from the directory templatePage is in otherwise it will create in System32
+        - Dont forget to import the newest module version
 #>
 
 function LogFile{
