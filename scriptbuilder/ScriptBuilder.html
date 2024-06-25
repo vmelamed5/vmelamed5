@@ -154,6 +154,8 @@
 			var divoptionalGetVPASAllConnectionComponents = document.getElementById('divoptionalGet-VPASAllConnectionComponents');
 			var divGetVPASAllDirectories = document.getElementById('divGet-VPASAllDirectories');
 			var divoptionalGetVPASAllDirectories = document.getElementById('divoptionalGet-VPASAllDirectories');
+			var divGetVPASAllDiscoveredAccounts = document.getElementById('divGet-VPASAllDiscoveredAccounts');
+			var divoptionalGetVPASAllDiscoveredAccounts = document.getElementById('divoptionalGet-VPASAllDiscoveredAccounts');
 			var divGetVPASAllEPVGroups = document.getElementById('divGet-VPASAllEPVGroups');
 			var divoptionalGetVPASAllEPVGroups = document.getElementById('divoptionalGet-VPASAllEPVGroups');
 			var divGetVPASAllEPVUsers = document.getElementById('divGet-VPASAllEPVUsers');
@@ -296,6 +298,10 @@
 			var divoptionalInvokeVPASMetricsAccounts = document.getElementById('divoptionalInvoke-VPASMetricsAccounts');
 			var divInvokeVPASMetricsCPM = document.getElementById('divInvoke-VPASMetricsCPM');
 			var divoptionalInvokeVPASMetricsCPM = document.getElementById('divoptionalInvoke-VPASMetricsCPM');
+			var divInvokeVPASMetricsPlatforms = document.getElementById('divInvoke-VPASMetricsPlatforms');
+			var divoptionalInvokeVPASMetricsPlatforms = document.getElementById('divoptionalInvoke-VPASMetricsPlatforms');
+			var divInvokeVPASMetricsProviders = document.getElementById('divInvoke-VPASMetricsProviders');
+			var divoptionalInvokeVPASMetricsProviders = document.getElementById('divoptionalInvoke-VPASMetricsProviders');
 			var divInvokeVPASMetricsPSM = document.getElementById('divInvoke-VPASMetricsPSM');
 			var divoptionalInvokeVPASMetricsPSM = document.getElementById('divoptionalInvoke-VPASMetricsPSM');
 			var divInvokeVPASQuery = document.getElementById('divInvoke-VPASQuery');
@@ -471,6 +477,7 @@
 					else if (input.value === 'Get-VPASAllApplications') {divGetVPASAllApplications.style.display = 'block'; divoptionalGetVPASAllApplications.style.display = 'block';}
 					else if (input.value === 'Get-VPASAllConnectionComponents') {divGetVPASAllConnectionComponents.style.display = 'block'; divoptionalGetVPASAllConnectionComponents.style.display = 'block';}
 					else if (input.value === 'Get-VPASAllDirectories') {divGetVPASAllDirectories.style.display = 'block'; divoptionalGetVPASAllDirectories.style.display = 'block';}
+					else if (input.value === 'Get-VPASAllDiscoveredAccounts') {divGetVPASAllDiscoveredAccounts.style.display = 'block'; divoptionalGetVPASAllDiscoveredAccounts.style.display = 'block';}
 					else if (input.value === 'Get-VPASAllEPVGroups') {divGetVPASAllEPVGroups.style.display = 'block'; divoptionalGetVPASAllEPVGroups.style.display = 'block';}
 					else if (input.value === 'Get-VPASAllEPVUsers') {divGetVPASAllEPVUsers.style.display = 'block'; divoptionalGetVPASAllEPVUsers.style.display = 'block';}
 					else if (input.value === 'Get-VPASAllGroupPlatforms') {divGetVPASAllGroupPlatforms.style.display = 'block'; divoptionalGetVPASAllGroupPlatforms.style.display = 'block';}
@@ -542,6 +549,8 @@
 					else if (input.value === 'Invoke-VPASAuditSafeTest') {divInvokeVPASAuditSafeTest.style.display = 'block'; divoptionalInvokeVPASAuditSafeTest.style.display = 'block';}
 					else if (input.value === 'Invoke-VPASMetricsAccounts') {divInvokeVPASMetricsAccounts.style.display = 'block'; divoptionalInvokeVPASMetricsAccounts.style.display = 'block';}
 					else if (input.value === 'Invoke-VPASMetricsCPM') {divInvokeVPASMetricsCPM.style.display = 'block'; divoptionalInvokeVPASMetricsCPM.style.display = 'block';}
+					else if (input.value === 'Invoke-VPASMetricsPlatforms') {divInvokeVPASMetricsPlatforms.style.display = 'block'; divoptionalInvokeVPASMetricsPlatforms.style.display = 'block';}
+					else if (input.value === 'Invoke-VPASMetricsProviders') {divInvokeVPASMetricsProviders.style.display = 'block'; divoptionalInvokeVPASMetricsProviders.style.display = 'block';}
 					else if (input.value === 'Invoke-VPASMetricsPSM') {divInvokeVPASMetricsPSM.style.display = 'block'; divoptionalInvokeVPASMetricsPSM.style.display = 'block';}
 					else if (input.value === 'Invoke-VPASQuery') {divInvokeVPASQuery.style.display = 'block'; divoptionalInvokeVPASQuery.style.display = 'block';}
 					else if (input.value === 'Invoke-VPASReporting') {divInvokeVPASReporting.style.display = 'block'; divoptionalInvokeVPASReporting.style.display = 'block';}
@@ -2024,6 +2033,9 @@
 				else if(selectedCommand === "Get-VPASAllDirectories"){
 				}
 
+				else if(selectedCommand === "Get-VPASAllDiscoveredAccounts"){
+				}
+
 				else if(selectedCommand === "Get-VPASAllEPVGroups"){
 					param = document.getElementById(selectedCommand + '-OptionalParam-IncludeMembers');
 					label = (document.getElementById(selectedCommand + '-OptionalLabel-IncludeMembers').textContent).slice(0, -1);
@@ -2706,6 +2718,44 @@
 				}
 
 				else if(selectedCommand === "Invoke-VPASMetricsCPM"){
+					param = document.getElementById(selectedCommand + '-RequiredParam-TargetMetric').value;
+					label = (document.getElementById(selectedCommand + '-RequiredLabel-TargetMetric').textContent).slice(0, -1);
+					LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					param = document.getElementById(selectedCommand + '-RequiredParam-MetricFormat').value;
+					label = (document.getElementById(selectedCommand + '-RequiredLabel-MetricFormat').textContent).slice(0, -1);
+					LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					param = document.getElementById(selectedCommand + '-OptionalParam-OutputDirectory').value;
+					label = (document.getElementById(selectedCommand + '-OptionalLabel-OutputDirectory').textContent).slice(0, -1);
+					if(param.length != 0 && param != "Select value..."){
+						LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					}
+					param = document.getElementById(selectedCommand + '-OptionalParam-HTMLChart').value;
+					label = (document.getElementById(selectedCommand + '-OptionalLabel-HTMLChart').textContent).slice(0, -1);
+					if(param.length != 0 && param != "Select value..."){
+						LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					}
+				}
+
+				else if(selectedCommand === "Invoke-VPASMetricsPlatforms"){
+					param = document.getElementById(selectedCommand + '-RequiredParam-TargetMetric').value;
+					label = (document.getElementById(selectedCommand + '-RequiredLabel-TargetMetric').textContent).slice(0, -1);
+					LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					param = document.getElementById(selectedCommand + '-RequiredParam-MetricFormat').value;
+					label = (document.getElementById(selectedCommand + '-RequiredLabel-MetricFormat').textContent).slice(0, -1);
+					LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					param = document.getElementById(selectedCommand + '-OptionalParam-OutputDirectory').value;
+					label = (document.getElementById(selectedCommand + '-OptionalLabel-OutputDirectory').textContent).slice(0, -1);
+					if(param.length != 0 && param != "Select value..."){
+						LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					}
+					param = document.getElementById(selectedCommand + '-OptionalParam-HTMLChart').value;
+					label = (document.getElementById(selectedCommand + '-OptionalLabel-HTMLChart').textContent).slice(0, -1);
+					if(param.length != 0 && param != "Select value..."){
+						LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
+					}
+				}
+
+				else if(selectedCommand === "Invoke-VPASMetricsProviders"){
 					param = document.getElementById(selectedCommand + '-RequiredParam-TargetMetric').value;
 					label = (document.getElementById(selectedCommand + '-RequiredLabel-TargetMetric').textContent).slice(0, -1);
 					LoginCommand = LoginCommand + ' -' + label + ' "' + param + '"'
@@ -4481,6 +4531,7 @@
 																		<div data-value="Get-VPASAllApplications">Get-VPASAllApplications</div>
 																		<div data-value="Get-VPASAllConnectionComponents">Get-VPASAllConnectionComponents</div>
 																		<div data-value="Get-VPASAllDirectories">Get-VPASAllDirectories</div>
+																		<div data-value="Get-VPASAllDiscoveredAccounts">Get-VPASAllDiscoveredAccounts</div>
 																		<div data-value="Get-VPASAllEPVGroups">Get-VPASAllEPVGroups</div>
 																		<div data-value="Get-VPASAllEPVUsers">Get-VPASAllEPVUsers</div>
 																		<div data-value="Get-VPASAllGroupPlatforms">Get-VPASAllGroupPlatforms</div>
@@ -4552,6 +4603,8 @@
 																		<div data-value="Invoke-VPASAuditSafeTest">Invoke-VPASAuditSafeTest</div>
 																		<div data-value="Invoke-VPASMetricsAccounts">Invoke-VPASMetricsAccounts</div>
 																		<div data-value="Invoke-VPASMetricsCPM">Invoke-VPASMetricsCPM</div>
+																		<div data-value="Invoke-VPASMetricsPlatforms">Invoke-VPASMetricsPlatforms</div>
+																		<div data-value="Invoke-VPASMetricsProviders">Invoke-VPASMetricsProviders</div>
 																		<div data-value="Invoke-VPASMetricsPSM">Invoke-VPASMetricsPSM</div>
 																		<div data-value="Invoke-VPASQuery">Invoke-VPASQuery</div>
 																		<div data-value="Invoke-VPASReporting">Invoke-VPASReporting</div>
@@ -5395,6 +5448,20 @@
 																					<div style="display: flex; margin-bottom: 5px;">
 																						<label id="Get-VPASAllDirectories-RequiredLabel-NA" style="align-items: center; margin-top: 10px; margin-right: 5px; display: none;" for="Get-VPASAllDirectories-RequiredParam-NA">:</label>
 																						<div class="requiredtooltip" style="width: 700px;"><label for="Get-VPASAllDirectories-RequiredParam-NA"><input readonly style="font-size: 12px; background-color: #4C5C96;" type="text" id="Get-VPASAllDirectories-RequiredParam-NA" name="Get-VPASAllDirectories-RequiredParam-NA" placeholder="NO REQUIRED PARAMETERS"></label><br><span class="requiredtooltiptext">This command has NO required parameters</span></div>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div id="divGet-VPASAllDiscoveredAccounts" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px;">
+																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
+																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Get-VPASAllDiscoveredAccounts : Required Parameters</b></p></div>
+																			<div class="metrics-container" style="width: 100%;">
+																				<form>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Get-VPASAllDiscoveredAccounts-RequiredLabel-NA" style="align-items: center; margin-top: 10px; margin-right: 5px; display: none;" for="Get-VPASAllDiscoveredAccounts-RequiredParam-NA">:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Get-VPASAllDiscoveredAccounts-RequiredParam-NA"><input readonly style="font-size: 12px; background-color: #4C5C96;" type="text" id="Get-VPASAllDiscoveredAccounts-RequiredParam-NA" name="Get-VPASAllDiscoveredAccounts-RequiredParam-NA" placeholder="NO REQUIRED PARAMETERS"></label><br><span class="requiredtooltiptext">This command has NO required parameters</span></div>
 																					</div>
 																				</form>
 																			</div>
@@ -6411,6 +6478,42 @@
 																		</div>
 																	</div>
 
+																	<div id="divInvoke-VPASMetricsPlatforms" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px;">
+																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
+																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Invoke-VPASMetricsPlatforms : Required Parameters</b></p></div>
+																			<div class="metrics-container" style="width: 100%;">
+																				<form>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsPlatforms-RequiredLabel-TargetMetric" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsPlatforms-RequiredParam-TargetMetric">TargetMetric:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsPlatforms-RequiredParam-TargetMetric"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASMetricsPlatforms-RequiredParam-TargetMetric" name="Invoke-VPASMetricsPlatforms-RequiredParam-TargetMetric"><option value="AccountsAssignedToPlatforms">AccountsAssignedToPlatforms</option><option value="AutomaticVsManualRotation">AutomaticVsManualRotation</option><option value="AutomaticVsManualVerification">AutomaticVsManualVerification</option></select></label><br><span class="requiredtooltiptext">Specify which report will be run - Possible values: AccountsAssignedToPlatforms, AutomaticVsManualRotation, AutomaticVsManualVerification</span></div>
+																					</div>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsPlatforms-RequiredLabel-MetricFormat" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsPlatforms-RequiredParam-MetricFormat">MetricFormat:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsPlatforms-RequiredParam-MetricFormat"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASMetricsPlatforms-RequiredParam-MetricFormat" name="Invoke-VPASMetricsPlatforms-RequiredParam-MetricFormat"><option value="JSON">JSON</option><option value="HTML">HTML</option><option value="ALL">ALL</option><option value="NONE">NONE</option></select></label><br><span class="requiredtooltiptext">Specify the report output format - NONE will return the generated hashtable of data that can be assigned to a variable - Possible values: JSON, HTML, ALL, NONE</span></div>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div id="divInvoke-VPASMetricsProviders" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px;">
+																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
+																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Invoke-VPASMetricsProviders : Required Parameters</b></p></div>
+																			<div class="metrics-container" style="width: 100%;">
+																				<form>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsProviders-RequiredLabel-TargetMetric" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsProviders-RequiredParam-TargetMetric">TargetMetric:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsProviders-RequiredParam-TargetMetric"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASMetricsProviders-RequiredParam-TargetMetric" name="Invoke-VPASMetricsProviders-RequiredParam-TargetMetric"><option value="ApplicationIDsOnSafes">ApplicationIDsOnSafes</option><option value="AccountsPulledViaApplicationID">AccountsPulledViaApplicationID</option></select></label><br><span class="requiredtooltiptext">Specify which report will be run - Possible values: ApplicationIDsOnSafes, AccountsPulledViaApplicationID</span></div>
+																					</div>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsProviders-RequiredLabel-MetricFormat" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsProviders-RequiredParam-MetricFormat">MetricFormat:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsProviders-RequiredParam-MetricFormat"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASMetricsProviders-RequiredParam-MetricFormat" name="Invoke-VPASMetricsProviders-RequiredParam-MetricFormat"><option value="JSON">JSON</option><option value="HTML">HTML</option><option value="ALL">ALL</option><option value="NONE">NONE</option></select></label><br><span class="requiredtooltiptext">Specify the report output format - NONE will return the generated hashtable of data that can be assigned to a variable - Possible values: JSON, HTML, ALL, NONE</span></div>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+																	</div>
+
 																	<div id="divInvoke-VPASMetricsPSM" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px;">
 																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
 																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Invoke-VPASMetricsPSM : Required Parameters</b></p></div>
@@ -6454,7 +6557,7 @@
 																				<form>
 																					<div style="display: flex; margin-bottom: 5px;">
 																						<label id="Invoke-VPASReporting-RequiredLabel-ReportType" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASReporting-RequiredParam-ReportType">ReportType:</label>
-																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASReporting-RequiredParam-ReportType"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASReporting-RequiredParam-ReportType" name="Invoke-VPASReporting-RequiredParam-ReportType"><option value="SafeContent">SafeContent</option><option value="SafeMembers">SafeMembers</option><option value="PlatformDetails">PlatformDetails</option><option value="EPVUsers">EPVUsers</option></select></label><br><span class="requiredtooltiptext">Specify which report will be run - Possible values: SafeContent, SafeMembers, PlatformDetails, EPVUsers</span></div>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASReporting-RequiredParam-ReportType"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASReporting-RequiredParam-ReportType" name="Invoke-VPASReporting-RequiredParam-ReportType"><option value="SafeContent">SafeContent</option><option value="SafeMembers">SafeMembers</option><option value="PlatformDetails">PlatformDetails</option><option value="EPVUsers">EPVUsers</option><option value="ApplicationIDAuthentications">ApplicationIDAuthentications</option><option value="PlatformLinkedAccounts">PlatformLinkedAccounts</option></select></label><br><span class="requiredtooltiptext">Specify which report will be run - Possible values: SafeContent, SafeMembers, PlatformDetails, EPVUsers, PlatformLinkedAccounts, ApplicationIDAuthentications</span></div>
 																					</div>
 																					<div style="display: flex; margin-bottom: 5px;">
 																						<label id="Invoke-VPASReporting-RequiredLabel-ReportFormat" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASReporting-RequiredParam-ReportFormat">ReportFormat:</label>
@@ -8524,6 +8627,19 @@
 																		</div>
 																	</div>
 
+																	<div id="divoptionalGet-VPASAllDiscoveredAccounts" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px; padding-top: 10px;">
+																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
+																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Get-VPASAllDiscoveredAccounts : Optional Parameters</b></p></div>
+																			<div class="metrics-container" style="width: 100%;">
+																				<form>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<div class="requiredtooltip" style="width: 700px;"><label id="Get-VPASAllDiscoveredAccounts-OptionalLabel-NA" for="Get-VPASAllDiscoveredAccounts-OptionalParam-NA"><input readonly style="font-size: 12px; background-color: #4C5C96;" type="text" id="Get-VPASAllDiscoveredAccounts-OptionalParam-NA" name="Get-VPASAllDiscoveredAccounts-OptionalParam-NA" placeholder="NO OPTIONAL PARAMETERS"></label><br><span class="requiredtooltiptext">This command has NO optional parameters</span></div>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+																	</div>
+
 																	<div id="divoptionalGet-VPASAllEPVGroups" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px; padding-top: 10px;">
 																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
 																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Get-VPASAllEPVGroups : Optional Parameters</b></p></div>
@@ -9671,6 +9787,42 @@
 																					<div style="display: flex; margin-bottom: 5px;">
 																						<label id="Invoke-VPASMetricsCPM-OptionalLabel-HTMLChart" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsCPM-OptionalParam-HTMLChart">HTMLChart:</label>
 																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsCPM-OptionalParam-HTMLChart"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASMetricsCPM-OptionalParam-HTMLChart" name="Invoke-VPASMetricsCPM-OptionalParam-HTMLChart"><option value="Select value...">Select value...</option><option value="BarGraph">BarGraph</option><option value="LineGraph">LineGraph</option><option value="PieChart">PieChart</option><option value="ALL">ALL</option></select></label><br><span class="requiredtooltiptext">Specify the HTML report type - Possible values: BarGraph, LineGraph, PieChart, ALL</span></div>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div id="divoptionalInvoke-VPASMetricsPlatforms" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px; padding-top: 10px;">
+																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
+																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Invoke-VPASMetricsPlatforms : Optional Parameters</b></p></div>
+																			<div class="metrics-container" style="width: 100%;">
+																				<form>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsPlatforms-OptionalLabel-OutputDirectory" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsPlatforms-OptionalParam-OutputDirectory">OutputDirectory:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsPlatforms-OptionalParam-OutputDirectory"><input style="font-size: 12px; background-color: #4C5C96;" type="text" id="Invoke-VPASMetricsPlatforms-OptionalParam-OutputDirectory" name="Invoke-VPASMetricsPlatforms-OptionalParam-OutputDirectory" placeholder="Enter OutputDirectory Value Here..."></label><br><span class="requiredtooltiptext">Specify where the location for report output to be saved</span></div>
+																					</div>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsPlatforms-OptionalLabel-HTMLChart" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsPlatforms-OptionalParam-HTMLChart">HTMLChart:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsPlatforms-OptionalParam-HTMLChart"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASMetricsPlatforms-OptionalParam-HTMLChart" name="Invoke-VPASMetricsPlatforms-OptionalParam-HTMLChart"><option value="Select value...">Select value...</option><option value="BarGraph">BarGraph</option><option value="LineGraph">LineGraph</option><option value="PieChart">PieChart</option><option value="ALL">ALL</option></select></label><br><span class="requiredtooltiptext">Specify the HTML report type - Possible values: BarGraph, LineGraph, PieChart, ALL</span></div>
+																					</div>
+																				</form>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div id="divoptionalInvoke-VPASMetricsProviders" class="divCommands" style="text-align: left; font-size: 12px; margin-left: 1%; display: none; width: 700px; padding-top: 10px;">
+																		<div class="metrics-container-reverse" style="width: 100%; padding-top: 0px;">
+																			<div class="metric-reverse"><p style="text-align: left; font-size: 14px; margin-bottom: 5px;"><b>Invoke-VPASMetricsProviders : Optional Parameters</b></p></div>
+																			<div class="metrics-container" style="width: 100%;">
+																				<form>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsProviders-OptionalLabel-OutputDirectory" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsProviders-OptionalParam-OutputDirectory">OutputDirectory:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsProviders-OptionalParam-OutputDirectory"><input style="font-size: 12px; background-color: #4C5C96;" type="text" id="Invoke-VPASMetricsProviders-OptionalParam-OutputDirectory" name="Invoke-VPASMetricsProviders-OptionalParam-OutputDirectory" placeholder="Enter OutputDirectory Value Here..."></label><br><span class="requiredtooltiptext">Specify where the location for report output to be saved</span></div>
+																					</div>
+																					<div style="display: flex; margin-bottom: 5px;">
+																						<label id="Invoke-VPASMetricsProviders-OptionalLabel-HTMLChart" style="align-items: center; margin-top: 10px; margin-right: 5px;" for="Invoke-VPASMetricsProviders-OptionalParam-HTMLChart">HTMLChart:</label>
+																						<div class="requiredtooltip" style="width: 700px;"><label for="Invoke-VPASMetricsProviders-OptionalParam-HTMLChart"><select style="font-size: 12px; background-color: #4C5C96; background-size: 2rem;" id="Invoke-VPASMetricsProviders-OptionalParam-HTMLChart" name="Invoke-VPASMetricsProviders-OptionalParam-HTMLChart"><option value="Select value...">Select value...</option><option value="BarGraph">BarGraph</option><option value="LineGraph">LineGraph</option><option value="PieChart">PieChart</option><option value="ALL">ALL</option></select></label><br><span class="requiredtooltiptext">Specify the HTML report type - Possible values: BarGraph, LineGraph, PieChart, ALL</span></div>
 																					</div>
 																				</form>
 																			</div>

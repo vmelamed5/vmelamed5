@@ -50,6 +50,7 @@ Get-VPASAllActiveSessions,TRUE,TRUE,TRUE
 Get-VPASAllApplications,TRUE,TRUE,TRUE
 Get-VPASAllConnectionComponents,TRUE,TRUE,TRUE
 Get-VPASAllDirectories,TRUE,FALSE,TRUE
+Get-VPASAllDiscoveredAccounts,TRUE,TRUE,TRUE
 Get-VPASAllEPVGroups,TRUE,TRUE,TRUE
 Get-VPASAllEPVUsers,TRUE,TRUE,TRUE
 Get-VPASAllGroupPlatforms,TRUE,TRUE,TRUE
@@ -67,7 +68,7 @@ Get-VPASApplicationAuthentications,TRUE,TRUE,TRUE
 Get-VPASApplicationDetails,TRUE,TRUE,TRUE
 Get-VPASAuthenticationMethods,TRUE,TRUE,TRUE
 Get-VPASBulkTemplateFiles,TRUE,TRUE,TRUE
-Get-VPASCurrentEPVUserDetails,TRUE,FALSE,TRUE
+Get-VPASCurrentEPVUserDetails,TRUE,FALSE,FALSE
 Get-VPASDirectoryDetails,TRUE,FALSE,TRUE
 Get-VPASDirectoryMappingDetails,TRUE,FALSE,TRUE
 Get-VPASDirectoryMappings,TRUE,FALSE,TRUE
@@ -122,6 +123,8 @@ Invoke-VPASAuditSafeTest,TRUE,TRUE,TRUE
 Invoke-VPASMetricsAccounts,TRUE,TRUE,TRUE
 Invoke-VPASMetricsCPM,TRUE,TRUE,TRUE
 Invoke-VPASMetricsPSM,TRUE,TRUE,TRUE
+Invoke-VPASMetricsPlatforms,TRUE,TRUE,TRUE
+Invoke-VPASMetricsProviders,TRUE,TRUE,TRUE
 Invoke-VPASQuery,TRUE,TRUE,TRUE
 Invoke-VPASReporting,TRUE,TRUE,TRUE
 Invoke-VPASUserLicenseReport,FALSE,TRUE,TRUE

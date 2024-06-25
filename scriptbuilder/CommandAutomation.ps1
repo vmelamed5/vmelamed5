@@ -1,10 +1,10 @@
 ﻿#COMMAND AUTOMATION
 <#
-    Right now this is just writing host...need to remake the template-page for automation
-    ...will do that after cosmetic changes are done to template-page
+    - Should automate from the Template-Page.html in the same directory as this script!!!
+    - dont forget to import the latest and greatest version
 #>
 
-import-module vpasmodule -RequiredVersion 14.1.0 -Force
+import-module vpasmodule -RequiredVersion 14.2.0 -Force
 
 function LogFile{
     param($fileName, $str)
