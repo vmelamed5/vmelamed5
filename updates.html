@@ -104,7 +104,8 @@
 										<li>Invoke-VPASReporting: Build upon this command to add more reporting capabilities such as Discovered Accounts, Account Compliance, etc.</li>
 										<li>Metrics (general): expand the metric capabilities to other fields of CyberArk (other components, other requests, etc), as well as enhancing the visual outputs
 										<li>Expand further into CyberArk's Identity APIs</li>
-										<li>Expand further into CyberArk's EPM APIs</li>
+										<li>Expand further into CyberArk's ConnectorManagement APIs</li>
+										<li>Expand further into CyberArk's DPA APIs</li>
 										<li>Expand further into -WhatIf parameter and build upon the implications of -WhatIf parameter</li>
 										<li>Standardize the LOG file created by the -APITextRecording parameter</li>
 										<li>Better optimize current commands for a more seamless experience</li>
@@ -119,8 +120,46 @@
 											<br>
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
+												<!--v14.2.1-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.1 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
+														<li>July 17th 2024</li>
+													<br>
+													<p class="UpdateTags"><b><u>Important Notes:</u></b></p>
+														<li class="UpdateList"><b>BugFixes:</b> N/A</li>
+														<li class="UpdateList"><b>-HideRawData:</b> Parameter added to hide raw data from the metric outputs, helpful when exporting the output as a pdf or document (Invoke-VPASMetricsAccounts; Invoke-VPASMetricsCPM; Invoke-VPASMetricsPlatforms; Invoke-VPASMetricsProviders; Invoke-VPASMetricsPSM)</li>
+													<br>
+													<p class="UpdateTags"><b><u>New Commands:</u></b></p>
+														<li class="UpdateList"><b>New-VPASDPASetupScript:</b> Generate an installation script that will deploy a DPA connector</li>
+														<li class="UpdateList"><b>Get-VPASDPAPolicies:</b> Retrieve details for policies in DPA via search query</li>
+														<li class="UpdateList"><b>Get-VPASDPAAllPolicies:</b> Retrieve details for all policies in DPA</li>
+														<li class="UpdateList"><b>Get-VPASDPAPolicyDetails:</b> Retrieve details for a specific policy in DPA</li>
+														<li class="UpdateList"><b>Remove-VPASDPAPolicy:</b> Delete a policy from DPA</li>
+														<li class="UpdateList"><b>Get-VPASDPASettings:</b> Retrieve DPA configurations and settings</li>
+														<li class="UpdateList"><b>Get-VPASDPAAllStrongAccountSets:</b> Retrieve all strong account sets from DPA</li>
+														<li class="UpdateList"><b>Get-VPASDPAAllStrongAccounts:</b> Retrieve details for all strong accounts from DPA</li>
+														<li class="UpdateList"><b>Get-VPASDPAStrongAccounts:</b> Retrieve details for strong accounts from DPA via search query</li>
+														<li class="UpdateList"><b>Get-VPASDPAStrongAccountDetails:</b> Retrieve details for a specific strong account from DPA</li>
+														<li class="UpdateList"><b>Remove-VPASDPAStrongAccount:</b> Delete a strong account from DPA</li>
+														<br>
+														<li class="UpdateList"><b>Get-VPASCMAllComponents:</b> Retrieve details for all components from ConnectorManagement</li>
+														<li class="UpdateList"><b>Get-VPASCMAllConnectors:</b> Retrieve details for all connectors from ConnectorManagement</li>
+														<li class="UpdateList"><b>Get-VPASCMConnectorDetails:</b> Retrieve details for a specific ConnectorManagement connector</li>
+														<li class="UpdateList"><b>Get-VPASCMConnectors:</b> Retrieve details for ConnectorManagement connectors via search query</li>
+														<li class="UpdateList"><b>Get-VPASCMAllConnectorComponents:</b> Retrieve details for all components in a specific ConnectorManagement connector</li>
+														<li class="UpdateList"><b>Get-VPASCMConnectorComponentDetails:</b> Retrieve details for a component in a specific ConnectorManagement connector via search query</li>
+														<li class="UpdateList"><b>Get-VPASCMComponentLogList:</b> Retrieve available log list for a component in a ConnectorManagement connector</li>
+														<li class="UpdateList"><b>Get-VPASCMComponentLogs:</b> Retrieve logs for a component in a ConnectorManagement connector</li>
+														<li class="UpdateList"><b>Get-VPASCMAllConnectorPools:</b> Retrieve details for all available pools from ConnectorManagement</li>
+														<li class="UpdateList"><b>Get-VPASCMConnectorPoolDetails:</b> Retrieve details of a pool assigned to a ConnectorManagement connector</li>
+														<br>
+														<li class="UpdateList"><b>Invoke-VPASCentralCredentialProvider:</b> Pull password for an account object via Central Credential Provider (CCP)</li>
+														<li class="UpdateList"><b>Invoke-VPASCredentialProvider:</b> Pull password for an account object via Credential Provider (CP)</li>
+												</div>
+												
 												<!--v14.2.0-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.0 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.0</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
 														<li>June 20th 2024</li>
