@@ -4,7 +4,7 @@
     - dont forget to import the latest and greatest version
 #>
 
-import-module vpasmodule -RequiredVersion 14.2.0 -Force
+import-module vpasmodule -RequiredVersion 14.2.1 -Force
 
 function LogFile{
     param($fileName, $str)
