@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Update-VPASSafeMember</title>
+		<title>Remove-VPASDPAStrongAccount</title>
 		<link rel="icon" type="image/x-icon" href="images\favicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -365,7 +365,7 @@
 								<div class="inner">
 									<div class="content" style="width: 100%; margin-right: 0%">
 										<div id="CommandTitleAnchor">
-											<h1 style="text-align: center; text-transform: none;"><b>Update-VPASSafeMember</b></h1>
+											<h1 style="text-align: center; text-transform: none;"><b>Remove-VPASDPAStrongAccount</b></h1>
 											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
 											<br>
 											
@@ -406,7 +406,7 @@
 											<br>
 											<h1 style="text-align: left;">Synopsis:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>UPDATE SAFE MEMBER</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>DELETE DPA STRONG ACCOUNT</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -415,7 +415,7 @@
 											<br>
 											<h1 style="text-align: left;">Description:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO UPDATE A SAFE MEMBER OF A SAFE IN CYBERARK</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO DELETE A STRONG ACCOUNT FROM DPA</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -424,7 +424,7 @@
 											<br>
 											<h1 style="text-align: left;">Syntax:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Update-VPASSafeMember [-member] &lt;String&gt; [-safe] &lt;String&gt; [[-AllPerms]] [[-AllAccess]] [[-AllAccountManagement]] [[-AllMonitor]] [[-AllSafeManagement]] [[-AllWorkflow]] [[-AllAdvanced]] [[-UseAccounts]] [[-RetrieveAccounts]] [[-ListAccounts]] [[-AddAccounts]] [[-UpdateAccountContent]] [[-UpdateAccountProperties]] [[-InitiateCPMAccountManagementOperations]] [[-SpecifyNextAccountContent]] [[-RenameAccounts]] [[-DeleteAccounts]] [[-UnlockAccounts]] [[-ManageSafe]] [[-ManageSafeMembers]] [[-BackupSafe]] [[-ViewAuditLog]] [[-ViewSafeMembers]] [[-AccessWithoutConfirmation]] [[-CreateFolders]] [[-DeleteFolders]] [[-MoveAccountsAndFolders]] [[-RequestsAuthorizationLevel1]] [[-RequestsAuthorizationLevel2]] [[-SafePermissionHashTable] &lt;Hashtable&gt;] [[-token] &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Remove-VPASDPAStrongAccount [[-StrongAccountID] &lt;String&gt;] [[-StrongAccountName] &lt;String&gt;] [[-WhatIf]] [[-HideWhatIfOutput]] [[-token] &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -433,39 +433,11 @@
 											<br>
 											<h1 style="text-align: left;">Parameters:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-member &lt;String&gt;<br>Target unique safe member name<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-safe &lt;String&gt;<br>Target unique safe name<br><br>Required: true<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AllPerms [&lt;SwitchParameter&gt;]<br>Enables all safe permissions<br><br>Required: false<br>Position: 3<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AllAccess [&lt;SwitchParameter&gt;]<br>Enables all Access safe permissions (UseAccounts, RetrieveAccounts, ListAccounts)<br><br>Required: false<br>Position: 4<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AllAccountManagement [&lt;SwitchParameter&gt;]<br>Enables all AccountManagement safe permissions (AddAccounts, UpdateAccountContent, UpdateAccountProperties, InitiateCPMAccountManagementOperations, SpecifyNextAccountContent, RenameAccounts, DeleteAccounts, UnlockAccounts)<br><br>Required: false<br>Position: 5<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AllMonitor [&lt;SwitchParameter&gt;]<br>Enables all Monitor safe permissions (ViewAuditLog, ViewSafeMembers)<br><br>Required: false<br>Position: 6<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AllSafeManagement [&lt;SwitchParameter&gt;]<br>Enables all SafeManagement safe permissions (ManageSafe, ManageSafeMembers, BackupSafe)<br><br>Required: false<br>Position: 7<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AllWorkflow [&lt;SwitchParameter&gt;]<br>Enables all Workflow safe permissions (RequestsAuthorizationLevel(1), AccessWithoutConfirmation)<br><br>Required: false<br>Position: 8<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AllAdvanced [&lt;SwitchParameter&gt;]<br>Enables all Advanced safe permissions (CreateFolders, DeleteFolders, MoveAccountsAndFolders)<br><br>Required: false<br>Position: 9<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-UseAccounts [&lt;SwitchParameter&gt;]<br>Gives the ability use accounts in a safe (click the connect button)<br><br>Required: false<br>Position: 10<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RetrieveAccounts [&lt;SwitchParameter&gt;]<br>Gives the ability to pull accounts credentials in a safe (click the Show/Copy buttons)<br><br>Required: false<br>Position: 11<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ListAccounts [&lt;SwitchParameter&gt;]<br>Gives the ability to view accounts in a safe<br><br>Required: false<br>Position: 12<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AddAccounts [&lt;SwitchParameter&gt;]<br>Gives the ability to add accounts in a safe<br><br>Required: false<br>Position: 13<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-UpdateAccountContent [&lt;SwitchParameter&gt;]<br>Gives the ability to manually update accounts secrets in a safe<br><br>Required: false<br>Position: 14<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-UpdateAccountProperties [&lt;SwitchParameter&gt;]<br>Gives the ability to update account properties in a safe (username field, address field, etc)<br><br>Required: false<br>Position: 15<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-InitiateCPMAccountManagementOperations [&lt;SwitchParameter&gt;]<br>Gives the ability to trigger the CPM to run a change, verify, or reconcile on accounts in a safe<br><br>Required: false<br>Position: 16<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-SpecifyNextAccountContent [&lt;SwitchParameter&gt;]<br>Gives the ability to specify what the next password the CPM will push to accounts in a safe<br><br>Required: false<br>Position: 17<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RenameAccounts [&lt;SwitchParameter&gt;]<br>Gives the ability to modify the ObjectName of accounts in a safe<br><br>Required: false<br>Position: 18<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-DeleteAccounts [&lt;SwitchParameter&gt;]<br>Gives the ability to delete accounts from a safe<br><br>Required: false<br>Position: 19<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-UnlockAccounts [&lt;SwitchParameter&gt;]<br>Gives the ability to unlock or check-in locked account on someone else's behalf in a safe<br><br>Required: false<br>Position: 20<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ManageSafe [&lt;SwitchParameter&gt;]<br>Gives the ability to modify safe details (DaysRetention, VersionRetention, Description, etc)<br><br>Required: false<br>Position: 21<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ManageSafeMembers [&lt;SwitchParameter&gt;]<br>Gives the ability to add, remove, modify safe members on a safe<br><br>Required: false<br>Position: 22<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-BackupSafe [&lt;SwitchParameter&gt;]<br>Gives the ability to backup a safe<br><br>Required: false<br>Position: 23<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ViewAuditLog [&lt;SwitchParameter&gt;]<br>Gives the ability to view the activities performed on accounts in a safe<br><br>Required: false<br>Position: 24<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ViewSafeMembers [&lt;SwitchParameter&gt;]<br>Gives the ability to view safe members on a safe<br><br>Required: false<br>Position: 25<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AccessWithoutConfirmation [&lt;SwitchParameter&gt;]<br>Gives the ability to access the safe without needing confirmation from an approver<br><br>Required: false<br>Position: 26<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-CreateFolders [&lt;SwitchParameter&gt;]<br>Gives the ability to create folders in a safe<br><br>Required: false<br>Position: 27<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-DeleteFolders [&lt;SwitchParameter&gt;]<br>Gives the ability to delete folders from a safe<br><br>Required: false<br>Position: 28<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-MoveAccountsAndFolders [&lt;SwitchParameter&gt;]<br>Gives the ability to move accounts and folders from one safe to another<br><br>Required: false<br>Position: 29<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestsAuthorizationLevel1 [&lt;SwitchParameter&gt;]<br>Gives the ability to approve or deny users from using an account (Level1) in a safe<br><br>Required: false<br>Position: 30<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-RequestsAuthorizationLevel2 [&lt;SwitchParameter&gt;]<br>Gives the ability to approve or deny users from using an account (Level2) in a safe<br><br>Required: false<br>Position: 31<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-SafePermissionHashTable &lt;Hashtable&gt;<br>Hashtable that contains the set of safe permissions to be applied to a specific safe member.<br>Hashtable has priority over the safe permission flags that are passed<br><br>Required: false<br>Position: 32<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: 33<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-StrongAccountID &lt;String&gt;<br>UniqueID of the target strong account in DPA<br><br>Required: false<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-StrongAccountName &lt;String&gt;<br>Unique name of the target strong account in DPA<br><br>Required: false<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-WhatIf [&lt;SwitchParameter&gt;]<br>Run code simulation to see what is affected by running the command as well as any possible implications<br>This is a code simulation flag, meaning the command will NOT actually run<br><br>Required: false<br>Position: 3<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-HideWhatIfOutput [&lt;SwitchParameter&gt;]<br>Suppress any code simulation output from the console<br><br>Required: false<br>Position: 4<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: 5<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
 											</table>
 											</div>
@@ -475,9 +447,8 @@
 											<br>
 											<h1 style="text-align: left;">Examples:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$UpdateSafeMemberJSON = Update-VPASSafeMember -member {MEMBER VALUE} -safe {SAFE VALUE} -AllPerms</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$UpdateSafeMemberJSON = Update-VPASSafeMember -member {MEMBER VALUE} -safe {SAFE VALUE} -AllAccess -AllMonitor</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$UpdateSafeMemberJSON = Update-VPASSafeMember -member {MEMBER VALUE} -safe {SAFE VALUE} -UseAccounts -RetrieveAccounts -AllMonitor</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$DeleteStrongAccount = Remove-VPASDPAStrongAccount -StrongAccountID {STRONG ACCOUNT ID VALUE}</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$DeleteStrongAccount = Remove-VPASDPAStrongAccount -StrongAccountName {STRONG ACCOUNT NAME VALUE} -WhatIf</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -486,7 +457,7 @@
 											<br>
 											<h1 style="text-align: left;">Outputs:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>JSON Object (SafeMemberDetails) if successful</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$true if successful</b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$false if failed</b></p></td></tr>
 											</table>
 											</div>
@@ -524,9 +495,9 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script>
-				setLightStatus('lightSelfHosted', true);
+				setLightStatus('lightSelfHosted', false);
 				setLightStatus('lightSharedServices', true);
-				setLightStatus('lightPCloudStandard', true);
+				setLightStatus('lightPCloudStandard', false);
 			</script>
 			
 
