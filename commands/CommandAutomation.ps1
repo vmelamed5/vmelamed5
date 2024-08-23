@@ -1,5 +1,5 @@
 ﻿#COMMAND AUTOMATION
-import-module vpasmodule -RequiredVersion 14.2.1 -Force
+import-module vpasmodule -RequiredVersion 14.2.2 -Force
 
 <#
     Vadim Notes:
@@ -38,7 +38,7 @@ foreach($rec in $inputCommandMatrix){
 }
 
 $AllCommands = Get-Command -Module vpasmodule
-#$AllCommands = @{Name="New-VPASToken"} #<-- TESTING
+#$AllCommands = @{Name="Add-VPASAccountRequest"} #<-- TESTING
 
 $inputData = Get-Content -Path "Template-Page.html"
 
@@ -117,11 +117,42 @@ foreach($recCommand in $AllCommands.Name){
 
     #PARSE OUTPUTS
     $AllOutputs = $CommandHelp.returnValues.returnValue.type.name
-    $splittxt = $AllOutputs.split("`r`n")
+    $splittxt = $AllOutputs -split "---"
     $CommandOutputsArray = @()
-    foreach($txt in $splittxt){
-        $CommandOutputsArray += $txt
+    
+    #SUCCES
+    $ministr = ""
+    $curlycount = 0
+    $minitext = $splittxt[0].split("`r`n")
+    foreach($txt2 in $minitext){
+        if($txt2 -match "}"){
+            $curlycount -= 1
+        }
+        if($txt2 -match "\]"){
+            $curlycount -= 1
+        }
+
+        $i = 0
+        while($i -lt ($curlycount * 8)){
+            $ministr += "&nbsp;"
+            $i += 1
+        }
+        $ministr += $txt2
+        $ministr += "<br>"
+            
+        if($txt2 -match "{"){
+            $curlycount += 1
+        }
+        if($txt2 -match "\["){
+            $curlycount += 1
+        }
     }
+    $ministr = $ministr.Substring(0,($ministr.Length-4))
+    $CommandOutputsArray += $ministr
+
+    #FAILS
+    $CommandOutputsArray += $splittxt[1]
+
 
 
 
