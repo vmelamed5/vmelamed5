@@ -120,8 +120,41 @@
 											<br>
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
+												<!--v14.2.2-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.2 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
+														<li>August 22nd 2024</li>
+													<br>
+													<p class="UpdateTags"><b><u>Important Notes:</u></b></p>
+														<li class="UpdateList"><b>Add-VPASBulkSafeMembers:</b> Added logic to auto include "InitiateCPMAccountManagementOperations" permission if "SpecifyNextAccountContent" permission is being added</li>
+														<li class="UpdateList"><b>Update-VPASSafeMember:</b> Added logic to auto include "InitiateCPMAccountManagementOperations" permission if "SpecifyNextAccountContent" permission is being added</li>
+														<li class="UpdateList"><b>Add-VPASSafeMember:</b> Added logic to auto include "InitiateCPMAccountManagementOperations" permission if "SpecifyNextAccountContent" permission is being added</li>
+														<li class="UpdateList"><b>Watch-VPASActivePSMSession:</b> Fixed file path issue preventing saving and opening generated RDPFiles</li>
+														<li class="UpdateList"><b>New-VPASPSMSession:</b> Fixed file path issue preventing saving and opening generated RDPFiles</li>
+														<li class="UpdateList"><b>Get-VPASPSMSessions:</b> Fixed issue where api call would only return the first 1,000 PSMSessions, command will now loop until all sessions are captured that fit the search criteria</li>
+														<li class="UpdateList"><b>Get-VPASAllPSMSessions:</b> Fixed issue where api call would only return the first 1,000 PSMSessions, command will now loop until all sessions are captured</li>
+														<li class="UpdateList"><b>Get-VPASAllPSMSessions:</b> -Confirm parameter added to confirm running the command as it WILL take some time to query all PSMSessions depending on retention period and size of the environment</li>
+														<li class="UpdateList"><b>Invoke-VPASReporting:</b> REMOVED -limit parameter, command will now loop until all results are retrieved instead of guessing an upper limit of safes</li>
+														<li class="UpdateList"><b>Get-VPASSafes:</b> REMOVED -limit and -offset parameters, command will now loop until all results are retrieved instead of guessing an upper limit of safes</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsCPM:</b> -SafeSearchQuery parameter added to limit the metric output to a certain set of safes</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsCPM:</b> -IgnoreSafes parameter added to ignore those values from displaying in the metric output</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsAccounts:</b> -IgnoreSafes, -IgnorePlatforms, -IgnoreUsernames parameters added to ignore those values from displaying in the metric output</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsAccounts:</b> -SafeSearchQuery, PlatformSearchQuery, UsernameSearchQuery parameters added to limit the metric output to a certain set of safes, platforms, or account usernames</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsPlatforms:</b> -IgnoreSafes, -IgnorePlatforms, -IgnoreUsernames parameters added to ignore those values from displaying in the metric output</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsPlatforms:</b> -SafeSearchQuery, PlatformSearchQuery, UsernameSearchQuery parameters added to limit the metric output to a certain set of safes, platforms, or account usernames</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsProviders:</b> fixed bug on reporting "A null key is not allowed in a hash literal"</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsProviders:</b> -IgnoreSafes, -IgnorePlatforms, -IgnoreUsernames parameters added to ignore those values from displaying in the metric output</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsProviders:</b> -SafeSearchQuery, PlatformSearchQuery, UsernameSearchQuery parameters added to limit the metric output to a certain set of safes, platforms, or account usernames</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsPSM:</b> PlatformSearchQuery, UsernameSearchQuery parameters added to limit the metric output to a certain set of platforms or account usernames</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsPSM:</b> -IgnorePlatforms, -IgnoreUsernames parameters added to ignore those values from displaying in the metric output</li>
+													<br>
+													<p class="UpdateTags"><b><u>New Commands:</u></b></p>
+														<li class="UpdateList"><b>None</b> </li>
+												</div>
+											
 												<!--v14.2.1-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.1 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.1</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
 														<li>July 17th 2024</li>
