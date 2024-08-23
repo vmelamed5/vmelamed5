@@ -406,7 +406,7 @@
 											<br>
 											<h1 style="text-align: left;">Synopsis:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>GET ACTIVE SESSIONS</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>GENERATE USER LICENSE REPORT</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -415,7 +415,7 @@
 											<br>
 											<h1 style="text-align: left;">Description:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO GET ACTIVE PSM SESSIONS</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO GENERATE A USER LICENSE REPORT</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -443,7 +443,7 @@
 											<br>
 											<h1 style="text-align: left;">Examples:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$GetActiveSessionsJSON = Get-VPASActiveSessions -SearchQuery {SEARCHQUERY VALUE}</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$UserLicenseReport = Invoke-VPASUserLicenseReport</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -452,8 +452,9 @@
 											<br>
 											<h1 style="text-align: left;">Outputs:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>JSON Object (ActiveSessions) if successful</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$false if failed</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>If successful:<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "componentName":  "Privilege Cloud",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "optionalSummary":  {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                             "name":  "License consumption",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                             "used":  "8",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                             "total":  "25"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                         },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "licensesData":  [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                          {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              "licencesElements":  "    ",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              "licenseSubCategory":  "User Types"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                          }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                      ]<br>}<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>
+$false if failed</b></p></td></tr>
 											</table>
 											</div>
 											
