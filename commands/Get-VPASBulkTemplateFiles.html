@@ -424,7 +424,7 @@
 											<br>
 											<h1 style="text-align: left;">Syntax:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASBulkTemplateFiles [-BulkTemplate] &lt;String&gt; [[-OutputDirectory] &lt;String&gt;] [[-ISPSS]] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASBulkTemplateFiles -BulkTemplate &lt;String&gt; [-OutputDirectory &lt;String&gt;] [-ISPSS] [&lt;CommonParameters&gt;]</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -433,9 +433,9 @@
 											<br>
 											<h1 style="text-align: left;">Parameters:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-BulkTemplate &lt;String&gt;<br>Specific bulk operation to generate a CSVFile for<br>Possible values: BulkSafeCreation, BulkAccountCreation, BulkSafeMembers<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-OutputDirectory &lt;String&gt;<br>Where to place the newly generated CSV template file<br><br>Required: false<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ISPSS [&lt;SwitchParameter&gt;]<br>For saas environments<br>The APIs for adding safe members introduced a new parameter for saas environments. Enable this flag for saas environments<br><br>Required: false<br>Position: 3<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-BulkTemplate &lt;String&gt;<br>Specific bulk operation to generate a CSVFile for<br>Possible values: BulkSafeCreation, BulkAccountCreation, BulkSafeMembers<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-OutputDirectory &lt;String&gt;<br>Where to place the newly generated CSV template file<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ISPSS [&lt;SwitchParameter&gt;]<br>For saas environments<br>The APIs for adding safe members introduced a new parameter for saas environments. Enable this flag for saas environments<br><br>Required: false<br>Position: named<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
 											</table>
 											</div>

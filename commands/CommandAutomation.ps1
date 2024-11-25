@@ -1,5 +1,5 @@
 ﻿#COMMAND AUTOMATION
-import-module vpasmodule -RequiredVersion 14.2.2 -Force
+import-module vpasmodule -RequiredVersion 14.3.0 -Force
 
 <#
     Vadim Notes:
@@ -11,7 +11,7 @@ import-module vpasmodule -RequiredVersion 14.2.2 -Force
             ...
             NEW-COMMAND,TRUE,FALSE,FALSE
             ...
-        - Fun fact - because im lazy, run this from the directory templatePage is in otherwise it will create in System32
+        - Fun fact - because im lazy, run this from the directory templatePage is in otherwise it will create in System32 (C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\commands)
         - Dont forget to import the newest module version
 #>
 
@@ -38,7 +38,7 @@ foreach($rec in $inputCommandMatrix){
 }
 
 $AllCommands = Get-Command -Module vpasmodule
-#$AllCommands = @{Name="Add-VPASAccountRequest"} #<-- TESTING
+#$AllCommands = @{Name="Add-VPASSafe"} #<-- TESTING
 
 $inputData = Get-Content -Path "Template-Page.html"
 
@@ -55,12 +55,19 @@ foreach($recCommand in $AllCommands.Name){
 
     #PARSE DESCRIPTION
     $CommandDescription = $CommandHelp.description.text
-
-    #PARSE SYNTAX
+   
+    #PARSE SYNTAX v2
+    $CommandSyntaxArray = @()
     $tempSyntax = $CommandHelp.syntax | Out-String
-    $CommandSyntax = $tempSyntax -replace "`r`n",""
-    $CommandSyntax = $CommandSyntax -replace "<","&lt;"
-    $CommandSyntax = $CommandSyntax -replace ">","&gt;"
+    $tempSyntaxArr = $tempSyntax.Split("`r`n")
+    foreach($temprec in $tempSyntaxArr){
+        if($temprec.Length -ne 0){
+            $temprec = $temprec -replace "<","&lt;"
+            $temprec = $temprec -replace ">","&gt;"
+            $CommandSyntaxArray += $temprec
+        }
+    }
+
 
     #PARSE PARAMETERS
     $AllParameters = $CommandHelp.parameters.parameter
@@ -109,11 +116,52 @@ foreach($recCommand in $AllCommands.Name){
     $CommandParameterArray += $CommandParameterString
 
     #PARSE EXAMPLES
-    $AllExamples = $CommandHelp.examples.example.code
-    $CommandExamplesArray = @()
-    foreach($txt in $AllExamples){
-        $CommandExamplesArray += $txt
+    #$AllExamples = $CommandHelp.examples.example.code
+    #$CommandExamplesArray = @()
+    #foreach($txt in $AllExamples){
+    #    $CommandExamplesArray += $txt
+    #}
+
+    #PARSE EXAMPLES v2
+    $CommandExampleArray = @()
+    $AllExamples = $CommandHelp.examples.example
+    foreach($ExampleRec in $AllExamples){
+        $str1 = $ExampleRec.code | Out-String
+        $str2 = $ExampleRec.remarks | Out-String
+        $ministr = "$str1`n$str2"
+        $curlycount = 0
+        $outputstr = ""
+
+        $ministrsplit = $ministr.Split("`r`n")
+        foreach($txt2 in $ministrsplit){
+            if($txt2.length -ne 0){
+                if($txt2 -match "}"){
+                    $curlycount -= 1
+                }
+                if($txt2 -match "\]"){
+                    $curlycount -= 1
+                }
+
+                $i = 0
+                while($i -lt ($curlycount * 8)){
+                    $outputstr += "&nbsp;"
+                    $i += 1
+                }
+                $outputstr += $txt2
+                $outputstr += "<br>"
+            
+                if($txt2 -match "{"){
+                    $curlycount += 1
+                }
+                if($txt2 -match "\["){
+                    $curlycount += 1
+                }
+            }
+        }
+        $outputstr = $outputstr.Substring(0,($outputstr.Length-4))
+        $CommandExampleArray += $outputstr
     }
+
 
     #PARSE OUTPUTS
     $AllOutputs = $CommandHelp.returnValues.returnValue.type.name
@@ -175,8 +223,10 @@ foreach($recCommand in $AllCommands.Name){
         }
         elseif($recline -match "ENTER_SYNTAX_HERE"){
             #REPLACE TEXT WITH SYNTAX
-            $recnewline = $recline -replace "ENTER_SYNTAX_HERE",$CommandSyntax
-            LogFile -fileName $fileName -str $recnewline
+            foreach($recEntry in $CommandSyntaxArray){
+                $recnewline = $recline -replace "ENTER_SYNTAX_HERE",$recEntry
+                LogFile -fileName $fileName -str $recnewline
+            }
         }
         elseif($recline -match "ENTER_PARAMETERS_HERE"){
             #REPLACE TEXT WITH PARAMETERS
@@ -187,7 +237,7 @@ foreach($recCommand in $AllCommands.Name){
         }
         elseif($recline -match "ENTER_EXAMPLES_HERE"){
             #REPLACE TEXT WITH EXAMPLES
-            foreach($recEntry in $CommandExamplesArray){
+            foreach($recEntry in $CommandExampleArray){
                 $recnewline = $recline -replace "ENTER_EXAMPLES_HERE",$recEntry
                 LogFile -fileName $fileName -str $recnewline
             }
