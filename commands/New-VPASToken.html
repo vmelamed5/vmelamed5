@@ -415,7 +415,7 @@
 											<br>
 											<h1 style="text-align: left;">Description:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO AUTHENTICATE INTO CYBERARK VIA ONPREM (RADIUS, CYBERARK, WINDOWS, SAML, LDAP) OR ISPSS (CYBERARK, OAUTH)</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO AUTHENTICATE INTO CYBERARK VIA ONPREM/PCLOUD STANDARD (RADIUS, CYBERARK, WINDOWS, SAML, LDAP, AUTHTOKEN) OR ISPSS (CYBERARK, OAUTH, AUTHTOKEN)</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -424,7 +424,7 @@
 											<br>
 											<h1 style="text-align: left;">Syntax:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>New-VPASToken [-PVWA] &lt;String&gt; [-AuthType] &lt;String&gt; [[-creds] &lt;PSCredential&gt;] [[-HideAscii]] [[-NoSSL]] [[-InitiateCookie]] [[-IDPLogin] &lt;String&gt;] [[-IdentityURL] &lt;String&gt;] [[-EnableTextRecorder]] [[-HideWarnings]] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>New-VPASToken [-PVWA] &lt;String&gt; [-AuthType] &lt;String&gt; [[-creds] &lt;PSCredential&gt;] [[-HideAscii]] [[-NoSSL]] [[-InitiateCookie]] [[-IDPLogin] &lt;String&gt;] [[-IdentityURL] &lt;String&gt;] [[-AuthToken] &lt;String&gt;] [[-EnableTextRecorder]] [[-HideWarnings]] [[-IdentityOnly]] [&lt;CommonParameters&gt;]</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -434,15 +434,17 @@
 											<h1 style="text-align: left;">Parameters:</h1>
 											<table style="background: #2e3141">
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-PVWA &lt;String&gt;<br>The fully qualified domain name of the PVWA server for SelfHosted environments: server1.vman.com<br>The baseURL for saas environments: MyCompany.privilegecloud.cyberark.cloud<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AuthType &lt;String&gt;<br>What method of authentication will be used<br>For saas environments, select the ispss options<br>Possible values: cyberark, radius, windows, ldap, saml, ispss_oauth, ispss_cyberark<br><br>Required: true<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AuthType &lt;String&gt;<br>What method of authentication will be used<br>For saas environments, select the ispss options<br>Possible values: cyberark, radius, windows, ldap, saml, authtoken, ispss_oauth, ispss_cyberark, ispss_authtoken<br><br>Required: true<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-creds &lt;PSCredential&gt;<br>A credential object containing username and password<br><br>Required: false<br>Position: 3<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-HideAscii [&lt;SwitchParameter&gt;]<br>To remove the VPasModule logo from appearing in the console<br><br>Required: false<br>Position: 4<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-NoSSL [&lt;SwitchParameter&gt;]<br>If the environment is not set up for SSL, API calls will be made via HTTP not HTTPS (Not Recommended!)<br><br>Required: false<br>Position: 5<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-InitiateCookie [&lt;SwitchParameter&gt;]<br>Initiate a cookie variable that will be included in the header from call to call<br>Very useful in situations where stickiness or persistency is not enabled on PVWA loadbalancer<br><br>Required: false<br>Position: 6<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-IDPLogin &lt;String&gt;<br>For SAML authentication, the URL of the external IDP users get routed to to complete the SAML authentication challenges<br><br>Required: false<br>Position: 7<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-IdentityURL &lt;String&gt;<br>For saas environments, the tenant URL of Identity<br><br>Required: false<br>Position: 8<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-EnableTextRecorder [&lt;SwitchParameter&gt;]<br>Enable Text Recording feature which will log out every API command, return value, and general information that is generated during the token session<br>The log file will be located in the current users AppData folder: C:\Users\{current_user}\AppData\Local\VPASModuleOutputs\APITextRecorder<br><br>Required: false<br>Position: 9<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-HideWarnings [&lt;SwitchParameter&gt;]<br>Hide any warning outputs from the console during the API session<br><br>Required: false<br>Position: 10<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AuthToken &lt;String&gt;<br>Provide login token generated externally<br><br>Required: false<br>Position: 9<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-EnableTextRecorder [&lt;SwitchParameter&gt;]<br>Enable Text Recording feature which will log out every API command, return value, and general information that is generated during the token session<br>The log file will be located in the current users AppData folder: C:\Users\{current_user}\AppData\Local\VPASModuleOutputs\APITextRecorder<br><br>Required: false<br>Position: 10<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-HideWarnings [&lt;SwitchParameter&gt;]<br>Hide any warning outputs from the console during the API session<br><br>Required: false<br>Position: 11<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-IdentityOnly [&lt;SwitchParameter&gt;]<br>Authenticate into Identity only<br>Useful when the account only has rights in Identity and NOT in PrivilegeCloud<br><br>Required: false<br>Position: 12<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
 											</table>
 											</div>
@@ -456,10 +458,12 @@
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType cyberark</b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType windows</b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType ldap</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType authtoken -AuthToken {AuthToken VALUE}</b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType saml -IDPLogin {IDPLogin URL}</b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType ispss_oauth -IdentityURL {IdentityURL URL}</b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType ispss_cyberark -IdentityURL {IdentityURL URL}</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType ispss_cyberark -IdentityURL {IdentityURL URL} -EnableTextRecorder</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType ispss_cyberark -IdentityURL {IdentityURL URL} -EnableTextRecorder -IdentityOnly</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$token = New-VPASToken -PVWA {PVWA VALUE} -AuthType ispss_authtoken -IdentityURL {IdentityURL URL} -AuthToken {AuthToken VALUE}</b></p></td></tr>
 											</table>
 											</div>
 											
