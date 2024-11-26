@@ -105,8 +105,9 @@
 										<li>Metrics (general): expand the metric capabilities to other fields of CyberArk (other components, other requests, etc), as well as enhancing the visual outputs
 										<li>Expand further into CyberArk's Identity APIs</li>
 										<li>Expand further into CyberArk's ConnectorManagement APIs</li>
-										<li>Expand further into CyberArk's DPA APIs</li>
+										<li>Expand further into CyberArk's DPA/SIA APIs</li>
 										<li>Expand further into -WhatIf parameter and build upon the implications of -WhatIf parameter</li>
+										<li>Introduce -EnableTroubleshooting flag to self diagnose failed api calls and provide reasons as to why</li>
 										<li>Standardize the LOG file created by the -APITextRecording parameter</li>
 										<li>Better optimize current commands for a more seamless experience</li>
 									</div>
@@ -120,8 +121,59 @@
 											<br>
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
+												<!--v14.3.0-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.3.0 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
+														<li>November 20th 2024</li>
+													<br>
+													<p style="padding: 0; margin: 0;"><b><u>***Potential Script Breakers***</u></b></p> 
+														<li class="UpdateList"><b>REMOVED</b> flags -LookupBy + -LookupVal and replaced with -EPVUsername + -EPVUserID</li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- For any scripts using the commands below remove:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>"-LookupBy Username -LookupVal TargetUsername" with "-EPVUsername TargetUsername"</i></ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- For any scripts using the commands below remove:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>"-LookupBy UserID -LookupVal 55" with "-EPVUserID 55"</i></ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;"><b>- Affected Commands</b>:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Enable-VPASEPVUser</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Disable-VPASEPVUser</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Get-VPASEPVUserDetails</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Reset-VPASEPVUserPassword</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Remove-VPASEPVUser</i></ul>
+														<ul class="UpdateListIndent2"><i>- Update-VPASEPVUser</i></ul>
+														
+														<li class="UpdateList"><b>REMOVED</b> flags -GroupLookupBy + -GroupLookupVal and replaced with -GroupName + -GroupID</li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- For any scripts using the commands below remove:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>"-GroupLookupBy GroupName -GroupLookupVal TargetGroupName" with "-GroupName TargetGroupName"</i></ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- For any scripts using the commands below remove:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>"-GroupLookupBy GroupID -GroupLookupVal 22" with "-GroupID 22"</i></ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;"><b>- Affected Commands</b>:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Add-VPASMemberEPVGroup</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Remove-VPASEPVGroup</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Update-VPASEPVGroup</i></ul>
+														<ul class="UpdateListIndent2"><i>- Remove-VPASMemberEPVGroup</i></ul>
+													<br>
+													
+													<p class="UpdateTags"><b><u>Important Notes:</u></b></p>
+														<li class="UpdateList"><b>***BIG CHANGE:</b> Added ParameterSets to every command to help avoid adding unnecessary parameters to an API call</li>
+														<ul class="UpdateListIndent"><i>*Should NOT effect any current functionality, but please test</i></ul>
+														<li class="UpdateList"><b>***BIG CHANGE:</b> Added -InputParameters flag to every command to support passing an object directly to the API call containing required parameters</li>
+														<ul class="UpdateListIndent"><i>*No effect on current functionality</i></ul>
+														
+														<li class="UpdateList"><b>Update-VPASSafe:</b> Removed OLACEnabled as an editable field, this field can not be updated and should not have been functioning to begin with</li><br>
+														<li class="UpdateList"><b>New-VPASToken:</b> Added new AuthTypes (Added new flag -AuthToken to support two new AuthTypes):</li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;"><i>- <b>ispss_AuthToken</b>: support the ability to provide an Identity login token generated externally</i></ul>
+														<ul class="UpdateListIndent"><i>- <b>AuthToken</b>: support the ability to provide a token generated externally</i></ul>
+														<li class="UpdateList"><b>Update-VPASAccountFields:</b> Added AutomaticManagementEnabled and ManualManagementReason as editable fields (same fields as Status and StatusReason)</li>
+														<ul class="UpdateListIndent"><i>*Status and StatusReason will still work, but recommended to switch to AutomaticManagementEnabled (status) and ManualManagementReason (StatusReason) sooner rather then later</i></ul>
+														<li class="UpdateList"><b>Add-VPASSafeMember:</b> -MemberType parameter flipped to MANDATORY to reflect the change in the API call</li>
+														<ul class="UpdateListIndent"><i>*Add -MemberType and a value to any script using Add-VPASSafeMember</i></ul>
+													<br>
+													<p class="UpdateTags"><b><u>New Commands:</u></b></p>
+														<li class="UpdateList"><b>None</b> </li>
+												</div>
+												
 												<!--v14.2.2-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.2 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.2.2</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
 														<li>August 22nd 2024</li>
