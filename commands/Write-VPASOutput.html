@@ -424,7 +424,7 @@
 											<br>
 											<h1 style="text-align: left;">Syntax:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Write-VPASOutput [-str] &lt;String&gt; [-type] &lt;String&gt; [[-Initialized]] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Write-VPASOutput -str &lt;String&gt; -type &lt;String&gt; [-Initialized] [&lt;CommonParameters&gt;]</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -433,9 +433,9 @@
 											<br>
 											<h1 style="text-align: left;">Parameters:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-str &lt;String&gt;<br>Target string that will be displayed<br><br>Required: true<br>Position: 1<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-type &lt;String&gt;<br>The type of the message (Red for errors, Yellow for user input, Magenta for extra information, etc.)<br>Possible values: C, G, M, E, Y, S<br><br>Required: true<br>Position: 2<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-Initialized [&lt;SwitchParameter&gt;]<br>Backend flag to not parse New-VPASToken variables<br><br>Required: false<br>Position: 3<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-str &lt;String&gt;<br>Target string that will be displayed<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-type &lt;String&gt;<br>The type of the message (Red for errors, Yellow for user input, Magenta for extra information, etc.)<br>Possible values: C, G, M, E, Y, S<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-Initialized [&lt;SwitchParameter&gt;]<br>Backend flag to not parse New-VPASToken variables<br><br>Required: false<br>Position: named<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
 											</table>
 											</div>
