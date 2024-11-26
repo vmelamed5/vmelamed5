@@ -4199,6 +4199,12 @@ input, select, textarea {
 .UpdateList{
 	
 }
+.UpdateListIndent{
+  text-indent: 25px;
+}
+.UpdateListIndent2{
+  text-indent: 50px;
+}
 
 /*INSTALL VADIM EDITS*/
 .sidenav {
