@@ -1,15 +1,11 @@
 ﻿#COMMAND AUTOMATION
-import-module vpasmodule -RequiredVersion 14.3.0 -Force
-
+import-module vpasmodule -RequiredVersion 14.4.0 -Force
+cd C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\commands
 <#
     Vadim Notes:
         - For new commands, add command in Template-Page sidebar section (lines 127ish - 315ish):
             ...
             <li class="nospacelist"><a href="./NEW-COMMAND.html" style="font-size: 14px; color: #f5f5f5;">&#8226; NEW-COMMAND</a></li>
-            ...
-        - For new commands, add to CSV file (CommandMatrix.csv)
-            ...
-            NEW-COMMAND,TRUE,FALSE,FALSE
             ...
         - Fun fact - because im lazy, run this from the directory templatePage is in otherwise it will create in System32 (C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\commands)
         - Dont forget to import the newest module version
@@ -22,23 +18,9 @@ function LogFile{
 }
 
 $CommandMatrix = @{}
-$inputCommandMatrix = Import-Csv -Path "CommandMatrix.csv"
-foreach($rec in $inputCommandMatrix){
-    $commandName = $rec.CommandName
-    $SelfHostedStatus = $rec.SelfHosted
-    $SharedServicesStatus = $rec.SharedServices
-    $PCloudStandardStatus = $rec.PCloudStandard
-    $CommandMatrix += @{
-        $commandName = @{
-            SelfHosted = $SelfHostedStatus
-            SharedServices = $SharedServicesStatus
-            PCloudStandard = $PCloudStandardStatus
-        }
-    }
-}
 
 $AllCommands = Get-Command -Module vpasmodule
-#$AllCommands = @{Name="Add-VPASSafe"} #<-- TESTING
+#$AllCommands = @{Name="Update-VPASIdentityRole"} #<-- TESTING
 
 $inputData = Get-Content -Path "Template-Page.html"
 
@@ -47,6 +29,13 @@ foreach($recCommand in $AllCommands.Name){
     Write-Host "BUILDING FILE: `t$fileName" -ForegroundColor Cyan
     Write-Output "<!-- MADE BY VADIM MELAMED -->" | Set-Content $fileName
     $CommandHelp = Get-help $recCommand -Full
+
+    #PARSE ENVIRONMENT TYPES
+    $EnvStatus = $CommandHelp.alertSet.alert.text
+    $EnvStatusSplit = $EnvStatus -Split "`n"
+    $SelfHostedStatus = $EnvStatusSplit[0] -replace "SelfHosted: ",""
+    $PCloudStandardStatus = $EnvStatusSplit[1] -replace "PrivCloudStandard: ",""
+    $SharedServicesStatus = $EnvStatusSplit[2] -replace "SharedServices: ",""
 
     #PARSE SYNOPSIS
     $CommandSynopsis = $CommandHelp.Synopsis
@@ -114,13 +103,6 @@ foreach($recCommand in $AllCommands.Name){
     $CommandParameterString += "OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>"
     $CommandParameterString += "about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br>"
     $CommandParameterArray += $CommandParameterString
-
-    #PARSE EXAMPLES
-    #$AllExamples = $CommandHelp.examples.example.code
-    #$CommandExamplesArray = @()
-    #foreach($txt in $AllExamples){
-    #    $CommandExamplesArray += $txt
-    #}
 
     #PARSE EXAMPLES v2
     $CommandExampleArray = @()
@@ -202,8 +184,6 @@ foreach($recCommand in $AllCommands.Name){
     $CommandOutputsArray += $splittxt[1]
 
 
-
-
     foreach($recline in $inputData){
         
         if($recline -match "ENTER_COMMAND_HERE"){
@@ -250,17 +230,17 @@ foreach($recCommand in $AllCommands.Name){
             }
         }
         elseif($recline -match "SelfHostedFlag"){
-            $flagoutput = $CommandMatrix.$recCommand.SelfHosted.ToLower()
+            $flagoutput = $SelfHostedStatus.ToLower()
             $recnewline = $recline -replace "SelfHostedFlag",$flagoutput
             LogFile -fileName $fileName -str $recnewline
         }
         elseif($recline -match "SharedServicesFlag"){
-            $flagoutput = $CommandMatrix.$recCommand.SharedServices.ToLower()
+            $flagoutput = $SharedServicesStatus.ToLower()
             $recnewline = $recline -replace "SharedServicesFlag",$flagoutput
             LogFile -fileName $fileName -str $recnewline
         }
         elseif($recline -match "PCloudStandardFlag"){
-            $flagoutput = $CommandMatrix.$recCommand.PCloudStandard.ToLower()
+            $flagoutput = $PCloudStandardStatus.ToLower()
             $recnewline = $recline -replace "PCloudStandardFlag",$flagoutput
             LogFile -fileName $fileName -str $recnewline
         }
