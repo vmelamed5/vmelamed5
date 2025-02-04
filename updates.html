@@ -109,6 +109,7 @@
 										<li>Expand further into -WhatIf parameter and build upon the implications of -WhatIf parameter</li>
 										<li>Introduce -EnableTroubleshooting flag to self diagnose failed api calls and provide reasons as to why</li>
 										<li>Standardize the LOG file created by the -APITextRecording parameter</li>
+										<li>Invoke-VPASHealthCheck: dip into other various services (SIA, Identity, CM, etc.) and report on best practices</li>
 										<li>Better optimize current commands for a more seamless experience</li>
 									</div>
 								</div>
@@ -121,8 +122,178 @@
 											<br>
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
+												
+												<!--v14.4.0-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.4.0 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
+														<li>February 5th 2025</li>
+													<br>
+													<p class="UpdateTags"><b><u>New Commands:</u></b></p>
+														<li class="UpdateList"><b>Get-VPASSearchProperties:</b> retrieve the search properties that can be used to search for an account (SelfHosted only at this time)</li>
+														<li class="UpdateList"><b>Get-VPASEmptySafes:</b> returns a list of safes that do not have any accounts stored inside (based on safe permissions)</li>
+														<li class="UpdateList"><b>Get-VPASEmptyPlatforms:</b> returns a list of platforms that do not have any accounts attached to it</li>
+														<li class="UpdateList"><b>Get-VPASAccountDetailsExtended:</b> returns extended data for an account object such as compliance, dependencies, etc.</li>
+														<li class="UpdateList"><b>Get-VPASAccountCompliance:</b> returns the compliance status for accounts in cyberark based on a search query</li>
+														<li class="UpdateList"><b>Invoke-VPASHealthCheck:</b> runs several checks on an environment and prints out recommendations (READ ONLY, does not make any changes)</li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- currently set up to run the following checks:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Account Compliance: reports on accounts that are non compliant</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Component Status: reports on any disconnected components</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Empty Safes: reports on any safes that do not contain accounts</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Inactive Platforms: reports on accounts that are assigned to inactive platforms</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Inactive User: reports on any users that have not logged into the system in the last 365 days</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Application Authentications: reports on any appIDs that have been created with no authentication methods</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- reports on unused providers that have not been added to any safes</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- reports on unused appIDs that have been created but not assigned to any safes</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- reports on active platforms that have no accounts assigned to them</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- reports on active CPMs that are not assigned to any safe</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- reports on unused or unknown connection components (psm connectors)</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- reports on unused or unknown PSMServerIDs that have not been assigned to any platform</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Version Check: reports on components that do not match the vault version</i></ul>
+														<li class="UpdateList"><b>Find-VPASTargetValue:</b> queries the environment to find a target value</li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- currently set up to query the following:</ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Safes: name, description, and creator</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- SafeMembers: member name</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Accounts: name, address, username, required properties, optional properties</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Platforms: ID, name, description, required properties, optional properties</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- EPVUsers: username, firstname, lastname</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- EPVGroups: name, description</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- ApplicationIDs: ID, owner email, owner first name, owner last name</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- ApplicationID Authentications: auth value</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Roles: ID, name, description</i></ul>
+														<ul class="UpdateListIndent2" style="margin: 0 0 0 0;"><i>- Identities: display name, name, mail, description</i></ul>		
+														<li class="UpdateList"><b>Get-VPASAllCustomThemes:</b> retrieve all custom themes in the environment</li>
+														<li class="UpdateList"><b>Get-VPASCustomTheme:</b> retrieve details for a custom theme</li>
+														<li class="UpdateList"><b>Enable-VPASCustomTheme:</b> enable a custom theme</li>
+														<li class="UpdateList"><b>Disable-VPASCustomTheme:</b> disable custom theme and revert back to default theme</li>
+														<li class="UpdateList"><b>Get-VPASCurrentCustomTheme:</b> retrieve details for the currently enabled custom theme</li>
+														<li class="UpdateList"><b>Remove-VPASCustomTheme:</b> deletes a custom theme in the environment</li>
+														<li class="UpdateList"><b>Update-VPASCustomThemeDraft:</b> update a custom themes isDraft property</li>	
+													<br>
+													<p class="UpdateTags"><b><u>Important Notes:</u></b></p>
+														<li class="UpdateList"><b>New-VPASToken:</b> -HideWarnings parameter ADDED to supress any output to the console, for cosmetics</li>
+														<li class="UpdateList"><b>Add-VPASApplicationAuthentication:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Add-VPASSafe:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Get-VPASAccountDetails:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Get-VPASAccountDetails:</b> -ExactMatch parameter ADDED to return values with an exact match (not a wildcard search)</li>
+														<li class="UpdateList"><b>Get-VPASDiscoveredAccountsDependencies:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Invoke-VPASAccountPasswordAction:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Add-VPASApplication:</b> -HideWarnings parameter REMOVED, now handled as part of New-VPASToken</li>
+														<li class="UpdateList"><b>Get-VPASPSMSessions:</b> -FromTime and -ToTime parameters ADDED to filter search to a specified date range</li>
+														<li class="UpdateList"><b>Add-VPASAccount:</b> CHANGED -extraprops from a string to hashtable like so: @{PropertyName1 = "PropertyValue1"}</li>
+														<li class="UpdateList"><b>Get-VPASAllPlatforms:</b> If this API call fails, due to a failed platform import or a missing policy.ini file, api will run Get-VPASAllTargetPlatforms instead</li>
+														<li class="UpdateList"><b>Get-VPASPlatformDetailsSearch:</b> If query via Get-VPASAllPlatforms fails, due to a failed platform import or a missing policy.ini file, api will query via Get-VPASAllTargetPlatforms instead</li>
+														<li class="UpdateList"><b>Get-VPASSQLPlatforms:</b> If query via Get-VPASAllPlatforms fails, due to a failed platform import or a missing policy.ini file, api will query via Get-VPASAllTargetPlatforms instead</li>
+														<li class="UpdateList"><b>Get-VPASReporting:</b> Platform Details Report updated if query via Get-VPASAllPlatforms fails, due to a failed platform import or a missing policy.ini file, api will query via Get-VPASAllTargetPlatforms instead</li>
+														<li class="UpdateList"><b>Invoke-VPASMetricsAccounts:</b> reworked the logic for AccountCompliance metric to utilize Get-VPASAccountCompliance</li>
+														<li class="UpdateList"><b>Get-VPASIncomingRequestDetails:</b> changed return type from a hashtable to an array for consistency purposes</li>
+														<li class="UpdateList"><b>Get-VPASAccountRequestDetails:</b> changed return type from a hashtable to an array for consistency purposes</li>
+														<li class="UpdateList"><b>New flags added -ExportToCSV and -CSVDirectory to export the results to a csv file:</b></li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Disable-VPASCustomTheme</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Enable-VPASCustomTheme</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Find-VPASTargetValue</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAccountActivity</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAccountCompliance</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAccountDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAccountDetailsExtended</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAccountGroupMembers</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAccountGroups</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAccountRequestDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASActiveSessionActivities</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASActiveSessionProperties</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASActiveSessions</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllAccountRequests</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllAccounts</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllActiveSessions</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllApplications</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllConnectionComponents</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllCustomThemes</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllDirectories</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllEPVGroups</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllEPVUsers</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllGroupPlatforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllIncomingRequests</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllowedIPs</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllowedReferrer</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllPlatforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllPSMServers</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllPSMSessions</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllRotationalPlatforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllSafes</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllTargetPlatforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAllUsagePlatforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASApplicationAuthentications</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASApplicationDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASAuthenticationMethods</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMAllComponents</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMAllConnectorComponents</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMAllConnectorPools</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMAllConnectors</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMComponentLogList</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMConnectorComponentDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMConnectorDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMConnectorPoolDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCMConnectors</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCurrentCustomTheme</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCurrentEPVUserDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASCustomTheme</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDirectoryDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDirectoryMappingDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDirectoryMappings</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDPAAllPolicies</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDPAAllStrongAccounts</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDPAAllStrongAccountSets</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDPAPolicies</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDPASettings</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDPAStrongAccountDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASDPAStrongAccounts</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASEmptyPlatforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASEmptySafes</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASEPVGroupDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASEPVUserDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASEPVUserDetailsSearch</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASEPVUserTypes</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASGroupPlatformDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityAdminSecurityQuestion</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityAllAdminSecurityQuestions</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityAllRoles</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityAllUsers</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityCurrentUserDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityCurrentUserSecurityQuestions</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityRoleDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityRoles</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityTenantDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityUserDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIdentityUserSecurityQuestions</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASIncomingRequestDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPasswordHistory</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPlatformDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPlatformDetailsSearch</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPSMSessionActivities</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPSMSessionDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPSMSessionProperties</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPSMSessions</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASPSMSettingsByPlatformID</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASRotationalPlatformDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSafeDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSafeMembers</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSafeMemberSearch</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSafes</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSafesByPlatformID</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSearchProperties</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSpecificAuthenticationMethod</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSystemComponents</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASSystemHealth</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASUsagePlatformDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASVaultDetails</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Get-VPASVaultVersion</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Invoke-VPASHealthCheck</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Remove-VPASCustomTheme</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Update-VPASCustomThemeDraft</ul>
+												</div>
+												
 												<!--v14.3.0-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v14.3.0 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.3.0</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
 														<li>November 20th 2024</li>
