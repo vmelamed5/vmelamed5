@@ -4,7 +4,8 @@
     - dont forget to import the latest and greatest version
 #>
 
-import-module vpasmodule -RequiredVersion 14.2.1 -Force
+import-module vpasmodule -RequiredVersion 14.4.0 -Force
+cd C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\scriptbuilder
 
 function LogFile{
     param($fileName, $str)
