@@ -123,8 +123,60 @@
 											<h3 class="major">VpasModule Versions:</h3>
 											<div class="table-wrapper">
 												
+												<!--v14.6.0-->
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.6.0 (Current)</button>
+												<div class="contentUpdate" style="overflow-x: scroll;">
+													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
+														<li>July 20th 2025</li>
+													<br>
+													<p class="UpdateTags"><b><u>New Commands:</u></b></p>
+														<li class="UpdateList"><b>PAM:</b></li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>New-VPASMFACacheSSHKey:</b> Generate a new MFA Cache SSH Key for current user or on behalf of another user</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Remove-VPASMFACacheSSHKey:</b> Remove an MFA cache SSH Key for current user, on behalf of a user, or for all users</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASStoredPlatformDetails:</b> Retrieve details for a temporarily stored platform</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Remove-VPASStoredPlatform:</b> Delete a temporarily stored platform</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Set-VPASStoredPlatform:</b> Overwrites a platform with the temporarily stored platform</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Import-VPASStoredPlatform:</b> Import a stored platform with new values to clear platform conflict</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASMasterPolicySettings:</b> Retrieve Master Policy settings for a target platform</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Update-VPASMasterPolicySettings:</b> Update Master Policy setting for a target platform</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASAllMasterPolicySettings:</b> Retrieve Master Policy settings for all target platforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASAllDependentAccounts:</b> Retrieve all dependent accounts (usages) in the environment</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASDependentAccounts:</b> Retrieve dependent accounts (usages) attached to an account</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASDependentAccountDetails:</b> Retrieve details for a dependent account (usages)</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Add-VPASDependentAccount:</b> Add a dependent account (usage)</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Remove-VPASDependentAccount:</b> Remove a dependent account (usage)</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Resume-VPASDependentAccount:</b> Resume a dependent account (usage) that has been disabled by either CPM or user</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Push-VPASDependentAccountSecret:</b> Push or Sync a secret to a dependent account (usage)</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Update-VPASDependentAccount:</b> update a property for a dependent account (usage)</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Add-VPASOnboardingRule:</b> Add an onboarding rule for automatic onboarding</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASAllOnboardingRules:</b> Retrieve all onboarding rules for automatic onboarding in the environment</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASOnboardingRules:</b> Retrieve onboarding rules for automatic onboarding in the environment via search query</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Remove-VPASOnboardingRule:</b> delete an existing onboarding rule for automatic onboarding in the environment</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASAllReports:</b> Retrieve all reports available to the current user</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASAllTasks:</b> Retrieve all scheduled reports available to the current user</ul>
+														<li class="UpdateList"><b>Identity:</b></li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASIdentityAllApplicationTemplates:</b> Retrieve all application templates from Identity</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASIdentityApplicationTemplates:</b> Retrieve application templates from Identity based on a search query</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASIdentityApplicationDetails:</b> Retrieve details for an application in Identity</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASIdentityAllApplications:</b> Retrieve details for all applications in Identity</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Get-VPASIdentityApplications:</b> Retrieve details for an application in Identity based on a search query</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- <b>Test-VPASIdentityApplicationCatalog:</b> Tests to see if the application is still available in the application catalog</ul>
+													<br>
+													<p class="UpdateTags"><b><u>Important Notes:</u></b></p>
+														<li class="UpdateList"><b>Invoke-VPASCredentialProvider:</b> fixed bug if password being pulled contained a comma would return incorrect values</li>
+														<li class="UpdateList"><b>Update-VPASAccountFields:</b> fixed case sensitivity issue that prevented updating "RemoteMachinesAccess" parameter for an account</li>
+														<li class="UpdateList"><b>Updated the metrics output and graphs for the following commands:</b></li>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Invoke-VPASMetricsAccounts</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Invoke-VPASMetricsCPM</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Invoke-VPASMetricsPlatforms</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Invoke-VPASMetricsProviders</ul>
+														<ul class="UpdateListIndent" style="margin: 0 0 0 0;">- Invoke-VPASMetricsPSM</ul>
+														<li class="UpdateList"><b>Get-VPASAllPlatforms:</b> fixed bug where -ExportToCSV would display incorrect information if Get-VPASAllTargetPlatforms was run instead</li>
+														<li class="UpdateList"><b>Remove-VPASAuthenticationMethod:</b> fixed bug where -WhatIf did not function correctly if the target authentication method does not exist</li>
+												</div>
+												
 												<!--v14.4.1-->
-												<button type="button" class="collapsibleUpdate">&nbsp;v14.4.1 (Current)</button>
+												<button type="button" class="collapsibleUpdate">&nbsp;v14.4.1</button>
 												<div class="contentUpdate" style="overflow-x: scroll;">
 													<p style="padding: 0; margin: 0;"><b><u>Published Date:</u></b></p> 
 														<li>February 5th 2025</li>
