@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Add-VPASAuthenticationMethod</title>
+		<title>Get-VPASDependentAccountDetails</title>
 		<link rel="icon" type="image/x-icon" href="images\favicon.ico">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -408,7 +408,7 @@
 								<div class="inner">
 									<div class="content" style="width: 100%; margin-right: 0%">
 										<div id="CommandTitleAnchor">
-											<h1 style="text-align: center; text-transform: none;"><b>Add-VPASAuthenticationMethod</b></h1>
+											<h1 style="text-align: center; text-transform: none;"><b>Get-VPASDependentAccountDetails</b></h1>
 											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
 											<br>
 											
@@ -449,7 +449,7 @@
 											<br>
 											<h1 style="text-align: left;">Synopsis:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>ADD AUTHENTICATION METHOD</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>GET DEPENDENT ACCOUNT DETAILS</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -458,7 +458,7 @@
 											<br>
 											<h1 style="text-align: left;">Description:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO ADD AUTHENTICATION METHOD INTO CYBERARK</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO GET DETAILS OF A DEPENDENT ACCOUNT IN CYBERARK</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -467,9 +467,11 @@
 											<br>
 											<h1 style="text-align: left;">Syntax:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Add-VPASAuthenticationMethod -AuthenticationMethodID &lt;String&gt; [-DisplayName &lt;String&gt;] [-Enabled &lt;String&gt;] [-MobileEnabled &lt;String&gt;] [-LogoffURL &lt;String&gt;] [-SecondFactorAuth &lt;String&gt;] [-SignInLabel &lt;String&gt;] [-UsernameFieldLabel &lt;String&gt;] </b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>[-PasswordFieldLabel &lt;String&gt;] [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Add-VPASAuthenticationMethod -InputParameters &lt;Hashtable&gt; [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASDependentAccountDetails [-safe &lt;String&gt;] [-platform &lt;String&gt;] [-username &lt;String&gt;] [-address &lt;String&gt;] [-ExactMatch] -DependentSearchQuery &lt;String&gt; [-ExportToCSV] [-CSVDirectory &lt;String&gt;] [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASDependentAccountDetails [-safe &lt;String&gt;] [-platform &lt;String&gt;] [-username &lt;String&gt;] [-address &lt;String&gt;] [-ExactMatch] -DependentAcctID &lt;String&gt; [-ExportToCSV] [-CSVDirectory &lt;String&gt;] [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASDependentAccountDetails -AcctID &lt;String&gt; -DependentAcctID &lt;String&gt; [-ExportToCSV] [-CSVDirectory &lt;String&gt;] [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASDependentAccountDetails -AcctID &lt;String&gt; -DependentSearchQuery &lt;String&gt; [-ExportToCSV] [-CSVDirectory &lt;String&gt;] [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASDependentAccountDetails -InputParameters &lt;Hashtable&gt; [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -478,16 +480,17 @@
 											<br>
 											<h1 style="text-align: left;">Parameters:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AuthenticationMethodID &lt;String&gt;<br>Unique ID that will be used to map to this AuthenticationMethod<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-DisplayName &lt;String&gt;<br>Display value of the AuthenticationMethod<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-Enabled &lt;String&gt;<br>Specify if the AuthenticationMethod will be enabled<br>AuthenticationMethod will NOT appear if set to disabled<br>Possible values: TRUE, FALSE<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-MobileEnabled &lt;String&gt;<br>Allow the AuthenticationMethod to be visible on mobile<br>Possible values: TRUE, FALSE<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-LogoffURL &lt;String&gt;<br>Redirect link that EndUsers will funnel through on logoff<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-SecondFactorAuth &lt;String&gt;<br>Enable a second factor authentication<br>Possible values: cyberark, radius, ldap<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-SignInLabel &lt;String&gt;<br>Visual title of the AuthenticationMethod<br>This is what EndUsers will see<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-UsernameFieldLabel &lt;String&gt;<br>Visual tag for the Username box<br>This is what EndUsers will see<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-PasswordFieldLabel &lt;String&gt;<br>Visual tag for the Password box<br>This is what EndUsers will see<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-safe &lt;String&gt;<br>Safe name that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-platform &lt;String&gt;<br>PlatformID that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-username &lt;String&gt;<br>Username that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-address &lt;String&gt;<br>Address that will be used to query for the target account if no AcctID is passed<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-AcctID &lt;String&gt;<br>Unique ID that maps to a single account, passing this variable will skip any query functions<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ExactMatch [&lt;SwitchParameter&gt;]<br>Returns accounts that match search query exactly (not a wildcard search)<br><br>Required: false<br>Position: named<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-DependentSearchQuery &lt;String&gt;<br>Search string that will be used to query for the target dependent account if no DependentAcctID is passed<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-DependentAcctID &lt;String&gt;<br>Unique ID that maps to a single dependent account, passing this variable will skip any query functions<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-InputParameters &lt;Hashtable&gt;<br>HashTable of values containing the parameters required to make the API call<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ExportToCSV [&lt;SwitchParameter&gt;]<br>Output results to a CSV file found in AppData\Local\VPASModuleOutputs directory<br><br>Required: false<br>Position: named<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>-CSVDirectory &lt;String&gt;<br>Output directory where the exported CSV file will be saved to<br>Default value: C:\Users\{CurrentUser}\AppData\Local\VPASModuleOutputs\ExportedCSVs<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
 											</table>
@@ -498,8 +501,12 @@
 											<br>
 											<h1 style="text-align: left;">Examples:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$AddAuthenticationMethodJSON = Add-VPASAuthenticationMethod -AuthenticationMethodID (AUTHENTICATION METHOD IS VALUE}</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$InputParameters = @{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AuthenticationMethodID = "NewAuthMethod"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     DisplayName = "NewAuthMethod"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     Enabled = "TRUE"|"FALSE"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     MobileEnabled = "TRUE"|"FALSE"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     LogoffURL = "https://logoffURLHere.vman.com"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     SecondFactorAuth = "cyberark"|"radius"|"ldap"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     SignInLabel = "NewAuthMethod"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     UsernameFieldLabel = "UsernameFieldHere"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     PasswordFieldLabel = "PasswordFieldHere"<br>}<br>$AddAuthenticationMethodJSON = Add-VPASAuthenticationMethod -InputParameters $InputParameters</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$DependentAccountDetailsJSON = Get-VPASDependentAccountDetails -safe {SAFE VALUE} -username {USERNAME VALUE} -DependentSearchQuery {DEPENDENT SEARCH QUERY VALUE}</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$DependentAccountDetailsJSON = Get-VPASDependentAccountDetails -AcctID {ACCTID VALUE} -DependentAcctID {DEPENDENT ACCTID VALUE}</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$InputParameters = @{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AcctID = 3_12<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     DependentAcctID = 3_13<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ExportToCSV = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     CSVDirectory = "C:\Temp"<br>}<br>$DependentAccountDetailsJSON = Get-VPASDependentAccountDetails -InputParameters $InputParameters</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$InputParameters = @{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;safe = "TargetSafeName"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     platform = "TargetPlatformID"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     username = "TargetUsername"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     address = "TargetAddress"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ExactMatch = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     DependentAcctID = 3_13<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ExportToCSV = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     CSVDirectory = "C:\Temp"<br>}<br>$DependentAccountDetailsJSON = Get-VPASDependentAccountDetails -InputParameters $InputParameters</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$InputParameters = @{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AcctID = 3_12<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     DependentSearchQuery = "WinService01"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ExportToCSV = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     CSVDirectory = "C:\Temp"<br>}<br>$DependentAccountDetailsJSON = Get-VPASDependentAccountDetails -InputParameters $InputParameters</b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>$InputParameters = @{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;safe = "TargetSafeName"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     platform = "TargetPlatformID"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     username = "TargetUsername"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     address = "TargetAddress"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ExactMatch = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     DependentSearchQuery = "WinService01"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ExportToCSV = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     CSVDirectory = "C:\Temp"<br>}<br>$DependentAccountDetailsJSON = Get-VPASDependentAccountDetails -InputParameters $InputParameters</b></p></td></tr>
 											</table>
 											</div>
 											
@@ -508,7 +515,7 @@
 											<br>
 											<h1 style="text-align: left;">Outputs:</h1>
 											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>If successful:<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "id":  "radius",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "displayName":  "vpasradius",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "enabled":  false,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "logoffUrl":  "",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "secondFactorAuth":  null,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "signInLabel":  "",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "usernameFieldLabel":  "usernameHere",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "passwordFieldLabel":  "passwordHere"<br>}<br></b></p></td></tr>
+												<tr><td><p style="text-align: left; font-size: 14px;"><b>If successful:<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "safeName":  "TestSafe",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "folderName":  "Root",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "createdTime":  1751945098,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "categoryModificationTime":  1751945098,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "dependentAccountId":  "29_25",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "accountId":  "29_3",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "name":  "Operating System-WinLocalVman-server1.vman.com-LocalAdmin01-ComPlus-server5-comApp1",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "platformId":  "ComPlus",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "platformAccountProperties":  {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                       "ApplicationName":  "comApp1",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                       "Address":  "server5",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                       "Restart":  "Yes"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                   },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "secretManagement":  {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              "automaticManagementEnabled":  true,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                              "lastModifiedTime":  1751945098<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                          }<br>}<br></b></p></td></tr>
 												<tr><td><p style="text-align: left; font-size: 14px;"><b>
 $false if failed</b></p></td></tr>
 											</table>
@@ -548,8 +555,8 @@ $false if failed</b></p></td></tr>
 			<script src="assets/js/main.js"></script>
 			<script>
 				setLightStatus('lightSelfHosted', true);
-				setLightStatus('lightSharedServices', true);
-				setLightStatus('lightPCloudStandard', true);
+				setLightStatus('lightSharedServices', false);
+				setLightStatus('lightPCloudStandard', false);
 			</script>
 			
 

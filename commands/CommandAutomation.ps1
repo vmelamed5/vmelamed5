@@ -1,5 +1,5 @@
 ﻿#COMMAND AUTOMATION
-import-module vpasmodule -RequiredVersion 14.4.0 -Force
+import-module vpasmodule -RequiredVersion 14.6.0 -Force
 cd C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\commands
 <#
     Vadim Notes:
