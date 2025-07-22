@@ -279,7 +279,7 @@ function GetAllOptionalProps{
 function GenerateIfStatementsToGetParamLabelValues{
     param($fileName)
     
-    $skipparams = @("token","Verbose","Debug","ErrorAction","WarningAction","InformationAction","ErrorVariable","WarningVariable","InformationVariable","OutVariable","OutBuffer","PipelineVariable")
+    $skipparams = @("token","Verbose","Debug","ErrorAction","WarningAction","InformationAction","ErrorVariable","WarningVariable","InformationVariable","OutVariable","OutBuffer","PipelineVariable","InputParameters")
     $firstcommand = $true
 
     $AllCommands = Get-Command -Module vpasmodule
@@ -297,51 +297,56 @@ function GenerateIfStatementsToGetParamLabelValues{
             $param = $RequiredParam.name
             $paramtype = $RequiredParam.ParameterType.Name
             
-            if($paramtype -eq "String"){
-                $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
-                $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
-                $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' `"' + param + '`"'" -tabs 5
-            }
-            elseif($paramtype -eq "SwitchParameter"){
-                $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param');" -tabs 5
-                $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
-                $str += GenerateStr -str "if(param.checked){" -tabs 5
-                $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label" -tabs 6
-                $str += GenerateStr -str "}" -tabs 5
-            }
-            elseif($paramtype -eq "Int32"){
-                $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
-                $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
-                $str += GenerateStr -str "if(param.length != 0){" -tabs 5
-                $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' ' + param" -tabs 6
-                $str += GenerateStr -str "}" -tabs 5
-                $str += GenerateStr -str "else{" -tabs 5
-                $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' 0'" -tabs 6
-                $str += GenerateStr -str "}" -tabs 5
-            }
-            elseif($paramtype -eq "Hashtable"){
-                $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
-                $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
-                $str += GenerateStr -str "if(param.length != 0){" -tabs 5
-                $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' @{'" -tabs 6
-                $str += GenerateStr -str "let strsplit = param.split(',')" -tabs 6
-                $str += GenerateStr -str "let strcount = 0" -tabs 6
-                $str += GenerateStr -str "while (strcount < strsplit.length){" -tabs 6
-                $str += GenerateStr -str "let templabel = strsplit[strcount]" -tabs 7
-                $str += GenerateStr -str "strcount++" -tabs 7
-                $str += GenerateStr -str "let tempparam = strsplit[strcount]" -tabs 7
-                $str += GenerateStr -str "strcount++" -tabs 7
-                $str += GenerateStr -str "LoginCommand = LoginCommand + templabel + '=`"' + tempparam + '`";'" -tabs 7
-                $str += GenerateStr -str "}" -tabs 6
-                $str += GenerateStr -str "LoginCommand = LoginCommand + '}'" -tabs 6
-                $str += GenerateStr -str "}" -tabs 5
+            if($param -eq "InputParameters"){
+                #DO NOTHING
             }
             else{
-                $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
-                $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
-                $str += GenerateStr -str "if(param.length != 0){" -tabs 5
-                $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' `"' + param + '`"'" -tabs 6
-                $str += GenerateStr -str "}" -tabs 5
+                if($paramtype -eq "String"){
+                    $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
+                    $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' `"' + param + '`"'" -tabs 5
+                }
+                elseif($paramtype -eq "SwitchParameter"){
+                    $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param');" -tabs 5
+                    $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
+                    $str += GenerateStr -str "if(param.checked){" -tabs 5
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label" -tabs 6
+                    $str += GenerateStr -str "}" -tabs 5
+                }
+                elseif($paramtype -eq "Int32"){
+                    $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
+                    $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
+                    $str += GenerateStr -str "if(param.length != 0){" -tabs 5
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' ' + param" -tabs 6
+                    $str += GenerateStr -str "}" -tabs 5
+                    $str += GenerateStr -str "else{" -tabs 5
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' 0'" -tabs 6
+                    $str += GenerateStr -str "}" -tabs 5
+                }
+                elseif($paramtype -eq "Hashtable"){
+                    $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
+                    $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
+                    $str += GenerateStr -str "if(param.length != 0){" -tabs 5
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' @{'" -tabs 6
+                    $str += GenerateStr -str "let strsplit = param.split(',')" -tabs 6
+                    $str += GenerateStr -str "let strcount = 0" -tabs 6
+                    $str += GenerateStr -str "while (strcount < strsplit.length){" -tabs 6
+                    $str += GenerateStr -str "let templabel = strsplit[strcount]" -tabs 7
+                    $str += GenerateStr -str "strcount++" -tabs 7
+                    $str += GenerateStr -str "let tempparam = strsplit[strcount]" -tabs 7
+                    $str += GenerateStr -str "strcount++" -tabs 7
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + templabel + '=`"' + tempparam + '`";'" -tabs 7
+                    $str += GenerateStr -str "}" -tabs 6
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + '}'" -tabs 6
+                    $str += GenerateStr -str "}" -tabs 5
+                }
+                else{
+                    $str += GenerateStr -str "param = document.getElementById(selectedCommand + '-RequiredParam-$param').value;" -tabs 5
+                    $str += GenerateStr -str "label = (document.getElementById(selectedCommand + '-RequiredLabel-$param').textContent).slice(0, -1);" -tabs 5
+                    $str += GenerateStr -str "if(param.length != 0){" -tabs 5
+                    $str += GenerateStr -str "LoginCommand = LoginCommand + ' -' + label + ' `"' + param + '`"'" -tabs 6
+                    $str += GenerateStr -str "}" -tabs 5
+                }
             }
         }
 
