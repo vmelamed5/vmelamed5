@@ -4,7 +4,7 @@
     - dont forget to import the latest and greatest version
 #>
 
-import-module vpasmodule -RequiredVersion 14.4.0 -Force
+import-module vpasmodule -RequiredVersion 14.6.0 -Force
 cd C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\scriptbuilder
 
 function LogFile{
@@ -57,56 +57,68 @@ function GetAllRequiredProps{
                 $str += GenerateStr -str "</div>" -tabs 21
 
             }
+            elseif($AllRequiredParams.count -eq 1 -and $AllRequiredParams.name -eq "InputParameters"){
+                $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
+                $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-NA`" style=`"align-items: center; margin-top: 10px; margin-right: 5px; display: none;`" for=`"$rec-RequiredParam-NA`">:</label>" -tabs 22
+                $str += GenerateStr -str "<div class=`"requiredtooltip`" style=`"width: 700px;`"><label for=`"$rec-RequiredParam-NA`"><input readonly style=`"font-size: 12px; background-color: #4C5C96;`" type=`"text`" id=`"$rec-RequiredParam-NA`" name=`"$rec-RequiredParam-NA`" placeholder=`"NO REQUIRED PARAMETERS`"></label><br><span class=`"requiredtooltiptext`">This command has NO required parameters</span></div>" -tabs 22
+                $str += GenerateStr -str "</div>" -tabs 21
+            }
             else{
                 foreach($RequiredParam in $AllRequiredParams){
                     $param = $RequiredParam.Name
-                    $paramType = $RequiredParam.ParameterType.Name
-                    $paramValidValues = $RequiredParam.Attributes.validvalues
-                    $AllInfo = Get-Help -Name $rec
-                    $paramexplanation = "BLANK"
-
-                    foreach($tempparam in $AllInfo.parameters.parameter){
-                        $tempparamname = $tempparam.name
-                        $tempparamdescription = $tempparam.description.text
-
-                        if($tempparamname -eq $param){
-                            $paramexplanation = $tempparamdescription.replace("`n"," - ")
-                        }
+                    
+                    if($param -eq "InputParameters"){
+                        #DO NOTHING
                     }
+                    else{
+                        $paramType = $RequiredParam.ParameterType.Name
+                        $paramValidValues = $RequiredParam.Attributes.validvalues
+                        $AllInfo = Get-Help -Name $rec
+                        $paramexplanation = "BLANK"
 
-                    if($paramType -eq "String"){
-                        if($paramValidValues.count -eq 0){
+                        foreach($tempparam in $AllInfo.parameters.parameter){
+                            $tempparamname = $tempparam.name
+                            $tempparamdescription = $tempparam.description.text
+
+                            if($tempparamname -eq $param){
+                                $paramexplanation = $tempparamdescription.replace("`n"," - ")
+                            }
+                        }
+
+                        if($paramType -eq "String"){
+                            if($paramValidValues.count -eq 0){
+                                $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
+                                $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-$param`" style=`"align-items: center; margin-top: 10px; margin-right: 5px;`" for=`"$rec-RequiredParam-$param`">$param`:</label>" -tabs 22
+                                $str += GenerateStr -str "<div class=`"requiredtooltip`" style=`"width: 700px;`"><label for=`"$rec-RequiredParam-$param`"><input style=`"font-size: 12px; background-color: #4C5C96;`" type=`"text`" id=`"$rec-RequiredParam-$param`" name=`"$rec-RequiredParam-$param`" placeholder=`"Enter $param Value Here...`"></label><br><span class=`"requiredtooltiptext`">$paramexplanation</span></div>" -tabs 22
+                                $str += GenerateStr -str "</div>" -tabs 21
+                            }
+                            else{
+                                #MAKE A DROP DOWN
+                                $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
+                                $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-$param`" style=`"align-items: center; margin-top: 10px; margin-right: 5px;`" for=`"$rec-RequiredParam-$param`">$param`:</label>" -tabs 22
+                            
+                                $tempstr = "<div class=`"requiredtooltip`" style=`"width: 700px;`"><label for=`"$rec-RequiredParam-$param`"><select style=`"font-size: 12px; background-color: #4C5C96; background-size: 2rem;`" id=`"$rec-RequiredParam-$param`" name=`"$rec-RequiredParam-$param`">"
+                                foreach($validval in $paramValidValues){
+                                    $tempstr += "<option value=`"$validval`">$validval</option>"
+
+                                }
+                                $tempstr += "</select></label><br><span class=`"requiredtooltiptext`">$paramexplanation</span></div>"
+                                $str += GenerateStr -str $tempstr -tabs 22                           
+                                $str += GenerateStr -str "</div>" -tabs 21
+                            }
+                        }
+                        elseif($paramType -eq "SwitchParameter"){
+                            $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
+                            $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-$param`" style=`"align-items: center; margin-top: 10px; margin-right: 5px;`" for=`"$rec-RequiredParam-$param`">$param`:</label>" -tabs 22
+                            $str += GenerateStr -str "<div class=`"tooltip`" style=`"padding-bottom: 30px;`"><input type=`"checkbox`" id=`"$rec-RequiredParam-$param`" name=`"$rec-RequiredParam-$param`" value=`"true`"><label for=`"$rec-RequiredParam-$param`"></label><span class=`"tooltiptext`">$paramexplanation</span></div>" -tabs 22
+                            $str += GenerateStr -str "</div>" -tabs 21
+                        }
+                        else{
                             $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
                             $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-$param`" style=`"align-items: center; margin-top: 10px; margin-right: 5px;`" for=`"$rec-RequiredParam-$param`">$param`:</label>" -tabs 22
                             $str += GenerateStr -str "<div class=`"requiredtooltip`" style=`"width: 700px;`"><label for=`"$rec-RequiredParam-$param`"><input style=`"font-size: 12px; background-color: #4C5C96;`" type=`"text`" id=`"$rec-RequiredParam-$param`" name=`"$rec-RequiredParam-$param`" placeholder=`"Enter $param Value Here...`"></label><br><span class=`"requiredtooltiptext`">$paramexplanation</span></div>" -tabs 22
                             $str += GenerateStr -str "</div>" -tabs 21
                         }
-                        else{
-                            #MAKE A DROP DOWN
-                            $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
-                            $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-$param`" style=`"align-items: center; margin-top: 10px; margin-right: 5px;`" for=`"$rec-RequiredParam-$param`">$param`:</label>" -tabs 22
-                            
-                            $tempstr = "<div class=`"requiredtooltip`" style=`"width: 700px;`"><label for=`"$rec-RequiredParam-$param`"><select style=`"font-size: 12px; background-color: #4C5C96; background-size: 2rem;`" id=`"$rec-RequiredParam-$param`" name=`"$rec-RequiredParam-$param`">"
-                            foreach($validval in $paramValidValues){
-                                $tempstr += "<option value=`"$validval`">$validval</option>"
-
-                            }
-                            $tempstr += "</select></label><br><span class=`"requiredtooltiptext`">$paramexplanation</span></div>"
-                            $str += GenerateStr -str $tempstr -tabs 22                           
-                            $str += GenerateStr -str "</div>" -tabs 21
-                        }
-                    }
-                    elseif($paramType -eq "SwitchParameter"){
-                        $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
-                        $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-$param`" style=`"align-items: center; margin-top: 10px; margin-right: 5px;`" for=`"$rec-RequiredParam-$param`">$param`:</label>" -tabs 22
-                        $str += GenerateStr -str "<div class=`"tooltip`" style=`"padding-bottom: 30px;`"><input type=`"checkbox`" id=`"$rec-RequiredParam-$param`" name=`"$rec-RequiredParam-$param`" value=`"true`"><label for=`"$rec-RequiredParam-$param`"></label><span class=`"tooltiptext`">$paramexplanation</span></div>" -tabs 22
-                        $str += GenerateStr -str "</div>" -tabs 21
-                    }
-                    else{
-                        $str += GenerateStr -str "<div style=`"display: flex; margin-bottom: 5px;`">" -tabs 21
-                        $str += GenerateStr -str "<label id=`"$rec-RequiredLabel-$param`" style=`"align-items: center; margin-top: 10px; margin-right: 5px;`" for=`"$rec-RequiredParam-$param`">$param`:</label>" -tabs 22
-                        $str += GenerateStr -str "<div class=`"requiredtooltip`" style=`"width: 700px;`"><label for=`"$rec-RequiredParam-$param`"><input style=`"font-size: 12px; background-color: #4C5C96;`" type=`"text`" id=`"$rec-RequiredParam-$param`" name=`"$rec-RequiredParam-$param`" placeholder=`"Enter $param Value Here...`"></label><br><span class=`"requiredtooltiptext`">$paramexplanation</span></div>" -tabs 22
-                        $str += GenerateStr -str "</div>" -tabs 21
                     }
                 }
             }
