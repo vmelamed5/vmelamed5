@@ -176,6 +176,16 @@
 				LoginCommand = LoginCommand + '#NO COMMAND SELECTED...RUNNING LOG OFF COMMAND'
 			}
 			else{
+				let selectedSetNumber = "1"; // fallback default
+				const allRadioButtons = document.querySelectorAll(`input[name^="${selectedCommand}-ParameterSet"]`);
+				for (const radio of allRadioButtons) {
+					const style = window.getComputedStyle(radio.closest('.divCommands'));
+					if (style.display !== "none" && radio.checked) {
+						selectedSetNumber = radio.value.replace("set", "");
+						break;
+					}
+				}
+				
 				var param;
 				var label;
 				LoginCommand = LoginCommand + '$output = ' + selectedCommand
@@ -236,6 +246,22 @@
                        .replace("&quot;", '"')
                        .replace("&#039;", "'")
         }
+		
+		function toggleSetMode(commandName, setId) {
+
+			const requiredDivId = `div${commandName}-ParameterSet${setId}`;
+			const optionalDivId = `divoptional${commandName}-ParameterSet${setId}`;
+
+			const allDivs = document.querySelectorAll(`[id^="div${commandName}-ParameterSet"], [id^="divoptional${commandName}-ParameterSet"]`);
+			allDivs.forEach(div => {
+				div.style.display = 'none';
+			});
+
+			const showRequired = document.getElementById(requiredDivId);
+			const showOptional = document.getElementById(optionalDivId);
+			if (showRequired) showRequired.style.display = 'block';
+			if (showOptional) showOptional.style.display = 'block';
+		}
 	</script>
 	<body class="is-preload">
 
