@@ -2,548 +2,714 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Get-VPASSystemComponents</title>
-		<link rel="icon" type="image/x-icon" href="images\favicon.ico">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<title>Get-VPASSystemComponents</title>
+	<link href="images\favicon.ico" rel="icon" type="image/x-icon"/>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+	<link href="assets/css/main.css" rel="stylesheet">
+	<noscript><link href="assets/css/noscript.css" rel="stylesheet"/></noscript></link>
 	</head>
 	<script>
-			document.addEventListener("DOMContentLoaded", function() {
-				var button = document.getElementById("SideNavToggleIDHeader")
-				button.click();
-			});
-			function ToggleSideNavFunctionHeader() {
-				var x = document.getElementById("SideNavToggleIDHeader").textContent;
-				if(x === ">>"){
-					document.getElementById("SideNavToggleIDHeader").innerHTML = "<<";
-					openNavHeader();
-					document.getElementById("VpasModuleAnchorID").innerHTML = "";
+		document.addEventListener("DOMContentLoaded", function() {
+			var button = document.getElementById("SideNavToggleIDHeader");
+			button.click();
+			renderCommandList();
+		});
+		function ToggleSideNavFunctionHeader() {
+			var x = document.getElementById("SideNavToggleIDHeader").textContent;
+			if(x === ">>"){
+				document.getElementById("SideNavToggleIDHeader").innerHTML = "<<";
+				openNavHeader();
+				document.getElementById("VpasModuleAnchorID").innerHTML = "";
+			}
+			else{
+				document.getElementById("SideNavToggleIDHeader").innerHTML = ">>";
+				closeNavHeader();
+				document.getElementById("VpasModuleAnchorID").innerHTML = "&emsp;All Commands";
+			}
+		}			
+		function openNavHeader() {
+			document.getElementById("mySidebar").style.width = "350px";
+			document.getElementById("maintempHeader").style.marginLeft = "275px";
+		}
+
+		function closeNavHeader() {
+			document.getElementById("mySidebar").style.width = "0";
+			document.getElementById("maintempHeader").style.marginLeft= "0";
+		}
+			
+		function setLightStatus(lightId, isOn) {
+			const light = document.getElementById(lightId);
+			if (isOn) {
+				light.classList.remove('off');
+				light.classList.add('on');
+			} else {
+				light.classList.remove('on');
+				light.classList.add('off');
+			}
+		}
+
+		function filterResults() {
+			var input = document.getElementById('searchInput');
+			var filter = input.value.toUpperCase();
+			var ul = document.getElementById("mySidebar");
+			var li = ul.getElementsByTagName('li');
+
+			var filters = filter.split(' ');
+
+			for (var i = 0; i < li.length; i++) {
+				var txtValue = li[i].textContent || li[i].innerText;
+				var match = true;
+
+				for (var j = 0; j < filters.length; j++) {
+					if (txtValue.toUpperCase().indexOf(filters[j]) === -1) {
+						match = false;
+						break;
+					}
 				}
-				else{
+
+				if (match) {
+					li[i].style.display = "";
+				} else {
+					li[i].style.display = "none";
+				}
+			}
+		}
+	</script>
+		<body class="is-preload">
+		
+			<!-- Page Wrapper -->
+				<div id="page-wrapper">
+					<br/>
+					<!-- Header -->
+						<header class="inner" id="header">
+							<h1><div id="maintempHeader"><button class="openbtnHeader" id="SideNavToggleIDHeader" onclick="ToggleSideNavFunctionHeader()" style="width: 50px;"><b>&gt;&gt;</b></button><a id="VpasModuleAnchorID" style="width: 50%;">All Commands</a></div></h1>
+							<nav>
+								<a href="#menu">Menu</a>
+							</nav>
+						</header>
+						
+					<!-- Menu -->
+						<nav id="menu">
+							<div class="inner">
+								<h2>Menu</h2>
+								<ul class="links">
+									<li><a href="../index.html">Home</a></li>
+									<li><a href="../install.html">Install</a></li>
+									<li><a href="./New-VPASToken.html">Commands</a></li>
+									<li><a href="../scriptbuilder/ScriptBuilder.html">ScriptBuilder *Beta*</a></li>
+									<li><a href="../updates.html">Updates</a></li>
+									<li><a href="../about.html">About</a></li>
+									<li><a href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm" rel="noopener noreferrer" target="_blank">Docs</a></li>
+								</ul>
+								<a class="close" href="#">Close</a>
+							</div>
+						</nav>
+   
+					<!-- Banner -->
+					<center>
+						<section id="banner" style="margin-bottom: -5%; margin-top: -5%;">
+							<div class="inner">
+								<div class="logo"><span><a href="../index.html" style="text-decoration: none;"><img alt="VpasModuleLOGO" src="images\VpasModuleLOGO.png" style="width: 40%;"/></a></span></div>
+								
+								<p>Command Documentation</p>
+								<ul class="actions" style="display: inline-flex;">
+									<li><a class="button icon solid" href="../index.html" style="background-color: #2e3141;">Home</a></li>
+									<li><a class="button icon solid" href="../install.html" style="background-color: #2e3141;">Install</a></li>
+									<li><a class="button icon solid" href="./New-VPASToken.html" style="background-color: #2e3141;">Commands</a></li>
+									<li><a class="button icon solid" href="../scriptbuilder/ScriptBuilder.html" style="background-color: #2e3141;">ScriptBuilder<div style="margin: -36px; font-size: 8px;">*Beta*</div></a></li>
+									<li><a class="button icon solid" href="../updates.html" style="background-color: #2e3141;">Updates</a></li>
+									<li><a class="button icon solid" href="../about.html" style="background-color: #2e3141;">About</a></li>
+									<li><a class="button icon solid" href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm" rel="noopener noreferrer" style="background-color: #2e3141;" target="_blank">Docs</a></li>
+								</ul>
+							</div>
+						</section>
+					</center>
+					
+					<!-- SIDENAV -->
+						<div class="sidebar" id="mySidebar">
+							<input id="searchInput" oninput="filterDropdown()" placeholder="Search for commands..." type="text"/>
+							<ul id="searchDropdown" style="list-style-type: none; padding-left: 0; margin-top: 5px; background-color: #2e3141; max-height: 200px; overflow-y: auto;"></ul>
+							<ul id="commandList" style="list-style-type: none; padding-left: 0;"></ul>
+						</div>
+					<!-- END OF SIDENAV BAR -->
+					
+					
+					<!-- Wrapper -->
+						<section id="wrapper">
+							
+							<!-- One -->
+								<section class="wrapper spotlight style1" id="one">
+									<div class="inner">
+										<div class="content" style="width: 100%; margin-right: 0%">
+											<div id="CommandTitleAnchor">
+												<h1 style="text-align: center; text-transform: none;"><b>Get-VPASSystemComponents</b></h1>
+												<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
+												<br/>
+												
+												<!-- BUTTON NAVIGATION -->
+												<ul class="actions" style="">
+													<li><a class="button icon solid" href="#SynopsisAnchor">Synopsis</a></li>
+													<li><a class="button icon solid" href="#DescriptionAnchor">Description</a></li>
+													<li><a class="button icon solid" href="#SyntaxAnchor">Syntax</a></li>
+													<li><a class="button icon solid" href="#ParameterAnchor">Parameters</a></li>
+													<li><a class="button icon solid" href="#ExampleAnchor">Examples</a></li>
+													<li><a class="button icon solid" href="#OutputAnchor">Outputs</a></li>
+												</ul>
+        
+												<!-- ENVIRONMENT  -->
+												<div style="text-align: center;">
+												<div class="graphictag">Supported Environments:</div>
+												<div class="graphiccontainer">
+													<div style="display: flex; padding: 10px;">
+														<div class="graphiclight" id="lightSelfHosted"></div>
+														<div class="graphictag">SelfHosted</div>
+													</div>
+													<div style="display: flex; padding: 10px;">
+														<div class="graphiclight" id="lightSharedServices"></div>
+														<div class="graphictag">SharedServices</div>
+													</div>
+													<div style="display: flex; padding: 10px;">
+														<div class="graphiclight" id="lightPCloudStandard"></div>
+														<div class="graphictag">PCloudStandard</div>
+													</div>
+												</div>
+												</div>
+												<br/>
+												<div style="border-bottom: solid 2px rgba(255, 255, 255, 0.125);"></div>
+        
+												<!-- SYNOPSIS  -->
+												<div id="SynopsisAnchor" style="overflow-x: auto;">
+												<br/>
+												<h1 style="text-align: left;">Synopsis:</h1>
+												<table style="background: #2e3141">
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>GET CYBERARK SYSTEM COMPONENTS</b></p></td></tr>
+												</table>
+												</div>
+								
+												<!-- DESCRIPTION  -->
+												<div id="DescriptionAnchor" style="overflow-x: auto;">
+												<br/>
+												<h1 style="text-align: left;">Description:</h1>
+												<table style="background: #2e3141">
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO GET SYSTEMHEALTH INFORMATION FROM CYBERARK</b></p></td></tr>
+												</table>
+												</div>
+												
+												<!-- SYNTAX  -->
+												<div id="SyntaxAnchor" style="overflow-x: auto;">
+												<br/>
+												<h1 style="text-align: left;">Syntax:</h1>
+												<table style="background: #2e3141">
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASSystemComponents [-ExportToCSV] [-CSVDirectory &lt;String&gt;] [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASSystemComponents -InputParameters &lt;Hashtable&gt; [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
+												</table>
+												</div>
+												
+												<!-- PARAMETERS  -->
+												<div id="ParameterAnchor" style="overflow-x: auto;">
+												<br/>
+												<h1 style="text-align: left;">Parameters:</h1>
+												<table style="background: #2e3141">
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>-ExportToCSV [&lt;SwitchParameter&gt;]<br>Output results to a CSV file found in AppData\Local\VPASModuleOutputs directory<br><br>Required: false<br>Position: named<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>-CSVDirectory &lt;String&gt;<br>Output directory where the exported CSV file will be saved to<br>Default value: C:\Users\{CurrentUser}\AppData\Local\VPASModuleOutputs\ExportedCSVs<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>-InputParameters &lt;Hashtable&gt;<br>HashTable of values containing the parameters required to make the API call<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
+												</table>
+												</div>
+												
+												<!-- EXAMPLE  -->
+												<div id="ExampleAnchor" style="overflow-x: auto;">
+												<br/>
+												<h1 style="text-align: left;">Examples:</h1>
+												<table style="background: #2e3141">
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>$SystemComponentsJSON = Get-VPASSystemComponents</b></p></td></tr>
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>$InputParameters = @{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExportToCSV = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     CSVDirectory = "C:\Temp"<br>}<br>$SystemComponentsJSON = Get-VPASSystemComponents -InputParameters $InputParameters</b></p></td></tr>
+												</table>
+												</div>
+												
+												<!-- OUTPUT  -->
+												<div id="OutputAnchor" style="overflow-x: auto;">
+												<br/>
+												<h1 style="text-align: left;">Outputs:</h1>
+												<table style="background: #2e3141">
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>If successful:<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "Components":  [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "PVWA",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "PVWA",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Active Users",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "CPM",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "CPM",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Managed Accounts",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  5,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  24<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "SessionManagement",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "PSM/PSMP",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Concurrent Sessions",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  7,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "AIM",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "AAM Credential Provider",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Applications",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    ],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "Vaults":  [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        "IP":  "vault-vman.pcloudprod.cyberarkinternal.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        "Role":  "Primary",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        "IsLoggedOn":  true<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                ]<br>}<br></b></p></td></tr>
+													<tr><td><p style="text-align: left; font-size: 14px;"><b>
+$false if failed</b></p></td></tr>
+												</table>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+								</section>
+						</section>
+						   
+					<!-- Footer -->
+						<section id="footer">
+							<div class="inner">
+								<center>
+								<ul class="actions" style="margin-left: auto; margin-right: auto;">
+									<li><a class="icon solid" href="https://www.buymeacoffee.com/vmelamed5" rel="noopener noreferrer" target="_blank"><img src="../images/BuyMeACoffee.png"/></a></li>
+									<li><a class="icon solid" href="https://github.com/sponsors/vmelamed5" rel="noopener noreferrer" target="_blank"><img src="../images/GithubSponsor.png"/></a></li>
+									<li><a class="icon solid" href="https://venmo.com/u/Vadim-Melamed" rel="noopener noreferrer" target="_blank"><img src="../images/Venmo.png"/></a></li>
+									<li><a class="icon solid" href="https://www.paypal.com/paypalme/vmelamed5" rel="noopener noreferrer" target="_blank"><img src="../images/Paypal.png"/></a></li>
+								</ul>
+								</center>
+								<ul class="copyright" style="margin-top: -1%;">
+									<center><li>© 2021 Vadim Melamed. All rights reserved.</li></center>
+								</ul>
+							</div>
+						</section>
+					</div>
+					
+					<!-- Scripts -->
+						<script src="assets/js/jquery.min.js"></script>
+						<script src="assets/js/jquery.scrollex.min.js"></script>
+  						<script src="assets/js/browser.min.js"></script>
+  						<script src="assets/js/breakpoints.min.js"></script>
+  						<script src="assets/js/util.js"></script>
+  						<script src="assets/js/main.js"></script>
+						<script>
+							setLightStatus('lightSelfHosted', true);
+							setLightStatus('lightSharedServices', true);
+							setLightStatus('lightPCloudStandard', true);
+						</script>
+						
+		<script>
+			const commandData = {
+				"PAM": {
+					"Authentication": {
+						"New-VPASToken": "./New-VPASToken.html",
+						"Remove-VPASToken": "./Remove-VPASToken.html"
+					},
+					"Authentication Methods": {
+						"Add-VPASAuthenticationMethod": "./Add-VPASAuthenticationMethod.html",
+						"Update-VPASAuthenticationMethod": "./Update-VPASAuthenticationMethod.html",
+						"Remove-VPASAuthenticationMethod": "./Remove-VPASAuthenticationMethod.html",
+						"Get-VPASAuthenticationMethods": "./Get-VPASAuthenticationMethods.html",
+						"Get-VPASSpecificAuthenticationMethod": "./Get-VPASSpecificAuthenticationMethod.html"
+					},
+					"Accounts": {
+						"Add-VPASAccount": "./Add-VPASAccount.html",
+						"Update-VPASAccountFields": "./Update-VPASAccountFields.html",
+						"Remove-VPASAccount": "./Remove-VPASAccount.html",
+						"Invoke-VPASAccountPasswordAction": "./Invoke-VPASAccountPasswordAction.html",
+						"Get-VPASAllAccounts": "./Get-VPASAllAccounts.html",
+						"Get-VPASAccountDetails": "./Get-VPASAccountDetails.html",
+						"Get-VPASAccountDetailsExtended": "./Get-VPASAccountDetailsExtended.html",
+						"Get-VPASAccountCompliance": "./Get-VPASAccountCompliance.html",
+						"Get-VPASAccountActivity": "./Get-VPASAccountActivity.html",
+						"Get-VPASPasswordHistory": "./Get-VPASPasswordHistory.html",
+						"Get-VPASPasswordValue": "./Get-VPASPasswordValue.html",
+						"Get-VPASAccountPrivateSSHKey": "./Get-VPASAccountPrivateSSHKey.html",
+						"Unlock-VPASExclusiveAccount": "./Unlock-VPASExclusiveAccount.html",
+						"Set-VPASLinkedAccount": "./Set-VPASLinkedAccount.html",
+						"Remove-VPASLinkedAccount": "./Remove-VPASLinkedAccount.html"
+					},
+					"Account Groups": {
+						"Add-VPASAccountGroup": "./Add-VPASAccountGroup.html",
+						"Get-VPASAccountGroups": "./Get-VPASAccountGroups.html",
+						"Add-VPASAccountToAccountGroup": "./Add-VPASAccountToAccountGroup.html",
+						"Remove-VPASAccountFromAccountGroup": "./Remove-VPASAccountFromAccountGroup.html",
+						"Get-VPASAccountGroupMembers": "./Get-VPASAccountGroupMembers.html"
+					},
+					"Discovered Accounts": {
+						"Remove-VPASAllDiscoveredAccounts": "./Remove-VPASAllDiscoveredAccounts.html",
+						"Get-VPASDiscoveredAccounts": "./Get-VPASDiscoveredAccounts.html",
+						"Get-VPASAllDiscoveredAccounts": "./Get-VPASAllDiscoveredAccounts.html"
+					},
+					"Dependent Accounts": {
+						"Add-VPASDependentAccount": "./Add-VPASDependentAccount.html",
+						"Update-VPASDependentAccount": "./Update-VPASDependentAccount.html",
+						"Remove-VPASDependentAccount": "./Remove-VPASDependentAccount.html",
+						"Get-VPASAllDependentAccounts": "./Get-VPASAllDependentAccounts.html",
+						"Get-VPASDependentAccounts": "./Get-VPASDependentAccounts.html",
+						"Get-VPASDependentAccountDetails": "./Get-VPASDependentAccountDetails.html",
+						"Push-VPASDependentAccountSecret": "./Push-VPASDependentAccountSecret.html",
+						"Resume-VPASDependentAccount": "./Resume-VPASDependentAccount.html"
+					},
+					"Onboarding Rules": {
+						"Add-VPASOnboardingRule": "./Add-VPASOnboardingRule.html",
+						"Remove-VPASOnboardingRule": "./Remove-VPASOnboardingRule.html",
+						"Get-VPASAllOnboardingRules": "./Get-VPASAllOnboardingRules.html",
+						"Get-VPASOnboardingRules": "./Get-VPASOnboardingRules.html"
+					},
+					"Account Requests": {
+						"Add-VPASAccountRequest": "./Add-VPASAccountRequest.html",
+						"Remove-VPASAccountRequest": "./Remove-VPASAccountRequest.html",
+						"Get-VPASAllAccountRequests": "./Get-VPASAllAccountRequests.html",
+						"Get-VPASAccountRequestDetails": "./Get-VPASAccountRequestDetails.html",
+						"Get-VPASAllIncomingRequests": "./Get-VPASAllIncomingRequests.html",
+						"Get-VPASIncomingRequestDetails": "./Get-VPASIncomingRequestDetails.html",
+						"Approve-VPASIncomingRequest": "./Approve-VPASIncomingRequest.html",
+						"Deny-VPASIncomingRequest": "./Deny-VPASIncomingRequest.html"
+					},
+					"Applications": {
+						"Add-VPASApplication": "./Add-VPASApplication.html",
+						"Remove-VPASApplication": "./Remove-VPASApplication.html",
+						"Get-VPASAllApplications": "./Get-VPASAllApplications.html",
+						"Get-VPASApplicationDetails": "./Get-VPASApplicationDetails.html",
+						"Add-VPASApplicationAuthentication": "./Add-VPASApplicationAuthentication.html",
+						"Remove-VPASApplicationAuthentication": "./Remove-VPASApplicationAuthentication.html",
+						"Get-VPASApplicationAuthentications": "./Get-VPASApplicationAuthentications.html",
+						"Invoke-VPASCentralCredentialProvider": "./Invoke-VPASCentralCredentialProvider.html",
+						"Invoke-VPASCredentialProvider": "./Invoke-VPASCredentialProvider.html"
+					},
+					"Safe": {
+						"Add-VPASSafe": "./Add-VPASSafe.html",
+						"Remove-VPASSafe": "./Remove-VPASSafe.html",
+						"Update-VPASSafe": "./Update-VPASSafe.html",
+						"Get-VPASSafes": "./Get-VPASSafes.html",
+						"Get-VPASSafeDetails": "./Get-VPASSafeDetails.html",
+						"Get-VPASSafesByPlatformID": "./Get-VPASSafesByPlatformID.html",
+						"Get-VPASAllSafes": "./Get-VPASAllSafes.html",
+						"Get-VPASEmptySafes": "./Get-VPASEmptySafes.html"
+					},
+					"Safe Members": {
+						"Add-VPASSafeMember": "./Add-VPASSafeMember.html",
+						"Remove-VPASSafeMember": "./Remove-VPASSafeMember.html",
+						"Update-VPASSafeMember": "./Update-VPASSafeMember.html",
+						"Get-VPASSafeMembers": "./Get-VPASSafeMembers.html",
+						"Get-VPASSafeMemberSearch": "./Get-VPASSafeMemberSearch.html"
+					},
+					"Platforms": {
+						"Remove-VPASPlatform": "./Remove-VPASPlatform.html",
+						"Get-VPASAllPlatforms": "./Get-VPASAllPlatforms.html",
+						"Get-VPASPlatformDetails": "./Get-VPASPlatformDetails.html",
+						"Get-VPASPlatformDetailsSearch": "./Get-VPASPlatformDetailsSearch.html",
+						"Get-VPASEmptyPlatforms": "./Get-VPASEmptyPlatforms.html",
+						"Get-VPASAllTargetPlatforms": "./Get-VPASAllTargetPlatforms.html",
+						"Export-VPASPlatform": "./Export-VPASPlatform.html",
+						"Import-VPASPlatform": "./Import-VPASPlatform.html",
+						"Enable-VPASPlatform": "./Enable-VPASPlatform.html",
+						"Disable-VPASPlatform": "./Disable-VPASPlatform.html",
+						"Copy-VPASPlatform": "./Copy-VPASPlatform.html"
+					},
+					"Group Platforms": {
+						"Remove-VPASGroupPlatform": "./Remove-VPASGroupPlatform.html",
+						"Get-VPASAllGroupPlatforms": "./Get-VPASAllGroupPlatforms.html",
+						"Get-VPASGroupPlatformDetails": "./Get-VPASGroupPlatformDetails.html",
+						"Enable-VPASGroupPlatform": "./Enable-VPASGroupPlatform.html",
+						"Disable-VPASGroupPlatform": "./Disable-VPASGroupPlatform.html",
+						"Copy-VPASGroupPlatform": "./Copy-VPASGroupPlatform.html"
+					},
+					"Usage Platforms": {
+						"Remove-VPASUsagePlatform": "./Remove-VPASUsagePlatform.html",
+						"Get-VPASAllUsagePlatforms": "./Get-VPASAllUsagePlatforms.html",
+						"Get-VPASUsagePlatformDetails": "./Get-VPASUsagePlatformDetails.html",
+						"Copy-VPASUsagePlatform": "./Copy-VPASUsagePlatform.html"
+					},
+					"Rotational Platforms": {
+						"Remove-VPASRotationalPlatform": "./Remove-VPASRotationalPlatform.html",
+						"Get-VPASAllRotationalPlatforms": "./Get-VPASAllRotationalPlatforms.html",
+						"Get-VPASRotationalPlatformDetails": "./Get-VPASRotationalPlatformDetails.html",
+						"Enable-VPASRotationalPlatform": "./Enable-VPASRotationalPlatform.html",
+						"Disable-VPASRotationalPlatform": "./Disable-VPASRotationalPlatform.html",
+						"Copy-VPASRotationalPlatform": "./Copy-VPASRotationalPlatform.html"
+					},
+					"Stored Platforms": {
+						"Remove-VPASStoredPlatform": "./Remove-VPASStoredPlatform.html",
+						"Get-VPASStoredPlatformDetails": "./Get-VPASStoredPlatformDetails.html",
+						"Set-VPASStoredPlatform": "./Set-VPASStoredPlatform.html",
+						"Import-VPASStoredPlatform": "./Import-VPASStoredPlatform.html"
+					},
+					"Master Policy": {
+						"Update-VPASMasterPolicySettings": "./Update-VPASMasterPolicySettings.html",
+						"Get-VPASMasterPolicySettings": "./Get-VPASMasterPolicySettings.html",
+						"Get-VPASAllMasterPolicySettings": "./Get-VPASAllMasterPolicySettings.html"
+					},
+					"PSM Settings": {
+						"New-VPASPSMSession": "./New-VPASPSMSession.html",
+						"Get-VPASAllConnectionComponents": "./Get-VPASAllConnectionComponents.html",
+						"Get-VPASAllPSMServers": "./Get-VPASAllPSMServers.html",
+						"Get-VPASPSMSettingsByPlatformID": "./Get-VPASPSMSettingsByPlatformID.html",
+						"Import-VPASConnectionComponent": "./Import-VPASConnectionComponent.html",
+						"Update-VPASPSMSettingsByPlatformID": "./Update-VPASPSMSettingsByPlatformID.html"
+					},
+					"Active PSM Sessions": {
+						"Get-VPASAllActiveSessions": "./Get-VPASAllActiveSessions.html",
+						"Get-VPASActiveSessionActivities": "./Get-VPASActiveSessionActivities.html",
+						"Get-VPASActiveSessionProperties": "./Get-VPASActiveSessionProperties.html",
+						"Get-VPASActiveSessions": "./Get-VPASActiveSessions.html",
+						"Invoke-VPASActivePSMSessionAction": "./Invoke-VPASActivePSMSessionAction.html",
+						"Watch-VPASActivePSMSession": "./Watch-VPASActivePSMSession.html"
+					},
+					"PSM Recordings": {
+						"Get-VPASAllPSMSessions": "./Get-VPASAllPSMSessions.html",
+						"Get-VPASPSMSessionActivities": "./Get-VPASPSMSessionActivities.html",
+						"Get-VPASPSMSessionDetails": "./Get-VPASPSMSessionDetails.html",
+						"Get-VPASPSMSessionProperties": "./Get-VPASPSMSessionProperties.html",
+						"Get-VPASPSMSessions": "./Get-VPASPSMSessions.html"
+					},
+					"EPV Users": {
+						"Add-VPASEPVUser": "./Add-VPASEPVUser.html",
+						"Remove-VPASEPVUser": "./Remove-VPASEPVUser.html",
+						"Disable-VPASEPVUser": "./Disable-VPASEPVUser.html",
+						"Enable-VPASEPVUser": "./Enable-VPASEPVUser.html",
+						"Get-VPASAllEPVUsers": "./Get-VPASAllEPVUsers.html",
+						"Get-VPASEPVUserDetails": "./Get-VPASEPVUserDetails.html",
+						"Get-VPASEPVUserTypes": "./Get-VPASEPVUserTypes.html",
+						"Get-VPASEPVUserDetailsSearch": "./Get-VPASEPVUserDetailsSearch.html",
+						"Get-VPASCurrentEPVUserDetails": "./Get-VPASCurrentEPVUserDetails.html",
+						"Update-VPASEPVUser": "./Update-VPASEPVUser.html",
+						"Reset-VPASEPVUserPassword": "./Reset-VPASEPVUserPassword.html"
+					},
+					"EPV Groups": {
+						"Add-VPASEPVGroup": "./Add-VPASEPVGroup.html",
+						"Remove-VPASEPVGroup": "./Remove-VPASEPVGroup.html",
+						"Get-VPASEPVGroupDetails": "./Get-VPASEPVGroupDetails.html",
+						"Get-VPASAllEPVGroups": "./Get-VPASAllEPVGroups.html",
+						"Update-VPASEPVGroup": "./Update-VPASEPVGroup.html",
+						"Add-VPASMemberEPVGroup": "./Add-VPASMemberEPVGroup.html",
+						"Remove-VPASMemberEPVGroup": "./Remove-VPASMemberEPVGroup.html"
+					},
+					"Directories": {
+						"Remove-VPASDirectory": "./Remove-VPASDirectory.html",
+						"Get-VPASAllDirectories": "./Get-VPASAllDirectories.html",
+						"Get-VPASDirectoryDetails": "./Get-VPASDirectoryDetails.html",
+						"Get-VPASDirectoryMappings": "./Get-VPASDirectoryMappings.html",
+						"Get-VPASDirectoryMappingDetails": "./Get-VPASDirectoryMappingDetails.html"
+					},
+					"Internal": {
+						"Add-VPASAllowedIPs": "./Add-VPASAllowedIPs.html",
+						"Get-VPASAllowedIPs": "./Get-VPASAllowedIPs.html",
+						"Add-VPASAllowedReferrer": "./Add-VPASAllowedReferrer.html",
+						"Get-VPASAllowedReferrer": "./Get-VPASAllowedReferrer.html",
+						"Get-VPASSystemComponents": "./Get-VPASSystemComponents.html",
+						"Get-VPASSystemHealth": "./Get-VPASSystemHealth.html",
+						"Get-VPASVaultDetails": "./Get-VPASVaultDetails.html",
+						"Get-VPASVaultVersion": "./Get-VPASVaultVersion.html",
+						"Get-VPASSearchProperties": "./Get-VPASSearchProperties.html",
+						"Get-VPASAllReports": "./Get-VPASAllReports.html",
+						"Get-VPASAllTasks": "./Get-VPASAllTasks.html"
+					},
+					"Bulk Actions": {
+						"Add-VPASBulkAccounts": "./Add-VPASBulkAccounts.html",
+						"Add-VPASBulkSafeMembers": "./Add-VPASBulkSafeMembers.html",
+						"Add-VPASBulkSafes": "./Add-VPASBulkSafes.html",
+						"Get-VPASBulkTemplateFiles": "./Get-VPASBulkTemplateFiles.html",
+						"Confirm-VPASBulkFile": "./Confirm-VPASBulkFile.html"
+					},
+					"Safe Audit": {
+						"Set-VPASAuditSafeTest": "./Set-VPASAuditSafeTest.html",
+						"Invoke-VPASAuditSafeTest": "./Invoke-VPASAuditSafeTest.html"
+					},
+					"Metrics": {
+						"Invoke-VPASReporting": "./Invoke-VPASReporting.html",
+						"Invoke-VPASMetricsPSM": "./Invoke-VPASMetricsPSM.html",
+						"Invoke-VPASMetricsCPM": "./Invoke-VPASMetricsCPM.html",
+						"Invoke-VPASMetricsAccounts": "./Invoke-VPASMetricsAccounts.html",
+						"Invoke-VPASMetricsPlatforms": "./Invoke-VPASMetricsPlatforms.html",
+						"Invoke-VPASMetricsProviders": "./Invoke-VPASMetricsProviders.html",
+						"Invoke-VPASUserLicenseReport": "./Invoke-VPASUserLicenseReport.html",
+						"Invoke-VPASHealthCheck": "./Invoke-VPASHealthCheck.html",
+						"Find-VPASTargetValue": "./Find-VPASTargetValue.html"
+					},
+					"Color Themes": {
+						"Enable-VPASCustomTheme": "./Enable-VPASCustomTheme.html",
+						"Disable-VPASCustomTheme": "./Disable-VPASCustomTheme.html",
+						"Get-VPASAllCustomThemes": "./Get-VPASAllCustomThemes.html",
+						"Get-VPASCustomTheme": "./Get-VPASCustomTheme.html",
+						"Get-VPASCurrentCustomTheme": "./Get-VPASCurrentCustomTheme.html",
+						"Remove-VPASCustomTheme": "./Remove-VPASCustomTheme.html",
+						"Update-VPASCustomThemeDraft": "./Update-VPASCustomThemeDraft.html"
+					},
+					"SQL Exports": {
+						"Set-VPASSQLConnectionDetails": "./Set-VPASSQLConnectionDetails.html",
+						"Test-VPASSQLConnectionDetails": "./Test-VPASSQLConnectionDetails.html",
+						"Get-VPASSQLAccounts": "./Get-VPASSQLAccounts.html",
+						"Get-VPASSQLPlatforms": "./Get-VPASSQLPlatforms.html",
+						"Get-VPASSQLSafes": "./Get-VPASSQLSafes.html",
+						"Invoke-VPASQuery": "./Invoke-VPASQuery.html"
+					}
+				},
+				"Identity": {
+					"Roles": {
+						"Add-VPASIdentityRole": "./Add-VPASIdentityRole.html",
+						"Remove-VPASIdentityRole": "./Remove-VPASIdentityRole.html",
+						"Update-VPASIdentityRole": "./Update-VPASIdentityRole.html",
+						"Get-VPASIdentityRoleDetails": "./Get-VPASIdentityRoleDetails.html",
+						"Get-VPASIdentityRoles": "./Get-VPASIdentityRoles.html",
+						"Get-VPASIdentityAllRoles": "./Get-VPASIdentityAllRoles.html"
+					},
+					"Security Questions": {
+						"Add-VPASIdentitySecurityQuestionAdmin": "./Add-VPASIdentitySecurityQuestionAdmin.html",
+						"Remove-VPASIdentityAdminSecurityQuestion": "./Remove-VPASIdentityAdminSecurityQuestion.html",
+						"Get-VPASIdentityAdminSecurityQuestion": "./Get-VPASIdentityAdminSecurityQuestion.html",
+						"Get-VPASIdentityAllAdminSecurityQuestions": "./Get-VPASIdentityAllAdminSecurityQuestions.html",
+						"Get-VPASIdentityCurrentUserSecurityQuestions": "./Get-VPASIdentityCurrentUserSecurityQuestions.html",
+						"Add-VPASIdentityUserSecurityQuestions": "./Add-VPASIdentityUserSecurityQuestions.html",
+						"Get-VPASIdentityUserSecurityQuestions": "./Get-VPASIdentityUserSecurityQuestions.html",
+						"Reset-VPASIdentityUserSecurityQuestions": "./Reset-VPASIdentityUserSecurityQuestions.html"
+					},
+					"Users": {
+						"Get-VPASIdentityAllUsers": "./Get-VPASIdentityAllUsers.html",
+						"Get-VPASIdentityUserDetails": "./Get-VPASIdentityUserDetails.html",
+						"Get-VPASIdentityCurrentUserDetails": "./Get-VPASIdentityCurrentUserDetails.html",
+						"Set-VPASIdentityUserState": "./Set-VPASIdentityUserState.html",
+						"Set-VPASIdentityUserStatus": "./Set-VPASIdentityUserStatus.html",
+						"Test-VPASIdentityUserLocked": "./Test-VPASIdentityUserLocked.html",
+						"New-VPASIdentityGenerateUserPassword": "./New-VPASIdentityGenerateUserPassword.html",
+						"Update-VPASIdentityCurrentUserPassword": "./Update-VPASIdentityCurrentUserPassword.html"
+					},
+					"Web Apps": {
+						"Get-VPASIdentityAllApplicationTemplates": "./Get-VPASIdentityAllApplicationTemplates.html",
+						"Get-VPASIdentityApplicationTemplates": "./Get-VPASIdentityApplicationTemplates.html",
+						"Get-VPASIdentityApplicationDetails": "./Get-VPASIdentityApplicationDetails.html",
+						"Get-VPASIdentityAllApplications": "./Get-VPASIdentityAllApplications.html",
+						"Get-VPASIdentityApplications": "./Get-VPASIdentityApplications.html",
+						"Test-VPASIdentityApplicationCatalog": "./Test-VPASIdentityApplicationCatalog.html"
+					},
+					"Internal": {
+						"Get-VPASIdentityTenantDetails": "./Get-VPASIdentityTenantDetails.html"
+					}
+				},
+				"SIA/DPA": {
+					"Policies": {
+						"Get-VPASDPAPolicies": "./Get-VPASDPAPolicies.html",
+						"Get-VPASDPAAllPolicies": "./Get-VPASDPAAllPolicies.html",
+						"Get-VPASDPAPolicyDetails": "./Get-VPASDPAPolicyDetails.html",
+						"Remove-VPASDPAPolicy": "./Remove-VPASDPAPolicy.html"
+					},
+					"Internal": {
+						"New-VPASDPASetupScript": "./New-VPASDPASetupScript.html",
+						"Get-VPASDPASettings": "./Get-VPASDPASettings.html"
+					},
+					"Strong Accounts": {
+						"Get-VPASDPAAllStrongAccountSets": "./Get-VPASDPAAllStrongAccountSets.html",
+						"Get-VPASDPAAllStrongAccounts": "./Get-VPASDPAAllStrongAccounts.html",
+						"Get-VPASDPAStrongAccounts": "./Get-VPASDPAStrongAccounts.html",
+						"Get-VPASDPAStrongAccountDetails": "./Get-VPASDPAStrongAccountDetails.html",
+						"Remove-VPASDPAStrongAccount": "./Remove-VPASDPAStrongAccount.html"
+					}
+				},
+				"Connector Management": {
+					"Connectors": {
+						"Get-VPASCMAllConnectors": "./Get-VPASCMAllConnectors.html",
+						"Get-VPASCMConnectorDetails": "./Get-VPASCMConnectorDetails.html",
+						"Get-VPASCMConnectors": "./Get-VPASCMConnectors.html"
+					},
+					"Components": {
+						"Get-VPASCMAllComponents": "./Get-VPASCMAllComponents.html",
+						"Get-VPASCMAllConnectorComponents": "./Get-VPASCMAllConnectorComponents.html",
+						"Get-VPASCMConnectorComponentDetails": "./Get-VPASCMConnectorComponentDetails.html"
+					},
+					"Logs": {
+						"Get-VPASCMComponentLogList": "./Get-VPASCMComponentLogList.html",
+						"Get-VPASCMComponentLogs": "./Get-VPASCMComponentLogs.html"
+					},
+					"Pools": {
+						"Get-VPASCMAllConnectorPools": "./Get-VPASCMAllConnectorPools.html",
+						"Get-VPASCMConnectorPoolDetails": "./Get-VPASCMConnectorPoolDetails.html"
+					}
+				}
+			};
+
+			function renderCommandList() {
+				const list = document.getElementById('commandList');
+				list.innerHTML = '';
+
+				function createNestedList(data, parentUl) {
+					for (const key in data) {
+						const li = document.createElement('li');
+						const value = data[key];
+
+						if (typeof value === 'string') {
+							li.innerHTML = `<a href="${value}" style="color: #f5f5f5; font-size: 14px;">• ${key}</a>`;
+							li.style.backgroundColor = '#333645';
+						} else {
+							// It's a nested category
+							const details = document.createElement('details');
+							const summary = document.createElement('summary');
+							summary.textContent = key;
+							summary.style.color = '#ffffff';
+							summary.style.cursor = 'pointer';
+							summary.style.fontSize = '14px';
+
+							const nestedUl = document.createElement('ul');
+							nestedUl.style.listStyleType = 'none';
+							nestedUl.style.paddingLeft = '1px';
+
+							createNestedList(value, nestedUl);
+
+							details.appendChild(summary);
+							details.appendChild(nestedUl);
+							li.appendChild(details);
+						}
+						parentUl.appendChild(li);
+					}
+				}
+
+				createNestedList(commandData, list);
+			}
+
+			function flattenCommandData(data) {
+				let results = [];
+				for (const category in data) {
+					const subcategories = data[category];
+					for (const sub in subcategories) {
+						const commands = subcategories[sub];
+						for (const cmd in commands) {
+							results.push({ name: cmd, url: commands[cmd] });
+						}
+					}
+				}
+				return results;
+			}
+
+			function filterDropdown() {
+				const input = document.getElementById('searchInput').value.toLowerCase();
+				const dropdown = document.getElementById('searchDropdown');
+				dropdown.innerHTML = '';
+
+				if (input === '') return;
+
+				const flattened = flattenCommandData(commandData);
+				const matches = flattened.filter(cmd => cmd.name.toLowerCase().includes(input));
+
+				matches.forEach(cmd => {
+					const li = document.createElement('li');
+					const a = document.createElement('a');
+					a.href = cmd.url;
+					a.textContent = cmd.name;
+					a.style.color = '#f5f5f5';
+					a.style.display = 'block';
+					a.style.padding = '4px 8px';
+					a.style.fontSize = '14px';
+					a.style.textDecoration = 'none';
+					a.onmouseover = () => a.style.backgroundColor = '#444';
+					a.onmouseout = () => a.style.backgroundColor = '';
+					li.appendChild(a);
+					dropdown.appendChild(li);
+				});
+			}
+			
+			document.addEventListener('click', function(event) {
+				const searchBox = document.getElementById('searchInput');
+				const dropdown = document.getElementById('searchDropdown');
+				if (!searchBox.contains(event.target) && !dropdown.contains(event.target)) {
+					dropdown.innerHTML = '';
+				}
+			});
+		</script>
+		<script>
+			document.addEventListener('click', function(event) {
+				const sidebar = document.getElementById('mySidebar');
+				const toggleButton = document.getElementById('SideNavToggleIDHeader');
+
+				// If the sidebar is open and the click is outside of it AND not on the toggle button
+				if (sidebar.style.width !== '0' &&
+					!sidebar.contains(event.target) &&
+					!toggleButton.contains(event.target)) {
+						
+					// Close sidebar
 					document.getElementById("SideNavToggleIDHeader").innerHTML = ">>";
 					closeNavHeader();
 					document.getElementById("VpasModuleAnchorID").innerHTML = "&emsp;All Commands";
 				}
-			}			
-			function openNavHeader() {
-				document.getElementById("mySidebar").style.width = "275px";
-				document.getElementById("maintempHeader").style.marginLeft = "275px";
-			}
-
-			function closeNavHeader() {
-			  document.getElementById("mySidebar").style.width = "0";
-			  document.getElementById("maintempHeader").style.marginLeft= "0";
-			}
-			
-			function setLightStatus(lightId, isOn) {
-				const light = document.getElementById(lightId);
-				if (isOn) {
-					light.classList.remove('off');
-					light.classList.add('on');
-				} else {
-					light.classList.remove('on');
-					light.classList.add('off');
-				}
-			}
-
-			function filterResults() {
-				var input = document.getElementById('searchInput');
-				var filter = input.value.toUpperCase();
-				var ul = document.getElementById("mySidebar");
-				var li = ul.getElementsByTagName('li');
-
-				// Split the filter text by spaces to allow for wildcard searches
-				var filters = filter.split(' ');
-
-				for (var i = 0; i < li.length; i++) {
-					var txtValue = li[i].textContent || li[i].innerText;
-					var match = true;
-
-					// Check if all filter words are present in the text
-					for (var j = 0; j < filters.length; j++) {
-						if (txtValue.toUpperCase().indexOf(filters[j]) === -1) {
-							match = false;
-							break;
-						}
-					}
-
-					if (match) {
-						li[i].style.display = "";
-					} else {
-						li[i].style.display = "none";
-					}
-				}
-			}
-	</script>
-	<body class="is-preload">
-
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
-				<br>
-				<!-- Header -->
-					<header id="header" class="inner">
-						<h1><div id="maintempHeader"><button style="width: 50px;" id="SideNavToggleIDHeader" class="openbtnHeader" onclick="ToggleSideNavFunctionHeader()"><b>>></b></button><a id="VpasModuleAnchorID" style="width: 50%;">&emsp;All Commands</a></div></h1>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
-
-				<!-- Menu -->
-					<nav id="menu">
-						<div class="inner">
-							<h2>Menu</h2>
-							<ul class="links">
-								<li><a href="../index.html">Home</a></li>
-								<li><a href="../install.html">Install</a></li>
-								<li><a href="./New-VPASToken.html">Commands</a></li>
-								<li><a href="../scriptbuilder/ScriptBuilder.html">ScriptBuilder *Beta*</a></li>
-								<li><a href="../updates.html">Updates</a></li>
-								<li><a href="../about.html">About</a></li>
-								<li><a target="_blank" rel="noopener noreferrer" href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm">Docs</a></li>
-							</ul>
-							<a href="#" class="close">Close</a>
-						</div>
-					</nav>
-
-				<!-- Banner -->
-				<center>
-					<section id="banner" style="margin-bottom: -5%; margin-top: -5%;">
-						<div class="inner">
-							<div class="logo"><span><a style="text-decoration: none;" href="../index.html"><img style="width: 40%;" src="images\VpasModuleLOGO.png" alt="VpasModuleLOGO"></a></span></div>
-
-							<p>Command Documentation</p>
-							<ul class="actions" style="display: inline-flex;">
-								<li><a href="../index.html" class="button icon solid" style="background-color: #2e3141;">Home</a></li>
-								<li><a href="../install.html" class="button icon solid" style="background-color: #2e3141;">Install</a></li>
-								<li><a href="./New-VPASToken.html" class="button icon solid" style="background-color: #2e3141;">Commands</a></li>
-								<li><a href="../scriptbuilder/ScriptBuilder.html" class="button icon solid" style="background-color: #2e3141;">ScriptBuilder<div style="margin: -36px; font-size: 8px;">*Beta*</div></a></li>
-								<li><a href="../updates.html" class="button icon solid" style="background-color: #2e3141;">Updates</a></li>
-								<li><a href="../about.html" class="button icon solid" style="background-color: #2e3141;">About</a></li>
-								<li><a target="_blank" rel="noopener noreferrer" href="https://docs.cyberark.com/Portal/Content/Resources/_TopNav/cc_Portal.htm" class="button icon solid" style="background-color: #2e3141;">Docs</a></li>
-							</ul>
-						</div>
-					</section>
-				</center>
-
-				<!-- SIDENAV -->
-					<div class="sidebar" id="mySidebar">
-						<input type="text" id="searchInput" onkeyup="filterResults()" placeholder="Search for commands...">
-						<ul style="list-style-type: none; margin: 0; padding: 0;" id="TableOfCommands">
-							<li class="nospacelist"><a><b>Authentication (PAM)</b></a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./New-VPASToken.html" style="font-size: 14px; color: #f5f5f5;">&#8226; New-VPASToken</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASToken.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASToken</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASAuthenticationMethod.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASAuthenticationMethod</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAuthenticationMethods.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAuthenticationMethods</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSpecificAuthenticationMethod.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSpecificAuthenticationMethod</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASAuthenticationMethod.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASAuthenticationMethod</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASAuthenticationMethod.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASAuthenticationMethod</a></li>
-							<li class="nospacelist"><a><b>Accounts (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASAccountFields.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASAccountFields</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountDetailsExtended.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountDetailsExtended</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountCompliance.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountCompliance</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountActivity.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountActivity</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPasswordHistory.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPasswordHistory</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPasswordValue.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPasswordValue</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Unlock-VPASExclusiveAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Unlock-VPASExclusiveAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASAccountPasswordAction.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASAccountPasswordAction</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASAccountGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASAccountGroup</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountGroups.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountGroups</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASAccountToAccountGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASAccountToAccountGroup</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountGroupMembers.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountGroupMembers</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASAccountFromAccountGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASAccountFromAccountGroup</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDiscoveredAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDiscoveredAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllDiscoveredAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllDiscoveredAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASAllDiscoveredAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASAllDiscoveredAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Set-VPASLinkedAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Set-VPASLinkedAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASLinkedAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASLinkedAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountPrivateSSHKey.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountPrivateSSHKey</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllDependentAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllDependentAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDependentAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDependentAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDependentAccountDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDependentAccountDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASDependentAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASDependentAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASDependentAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASDependentAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Resume-VPASDependentAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Resume-VPASDependentAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASDependentAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASDependentAccount</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Push-VPASDependentAccountSecret.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Push-VPASDependentAccountSecret</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASOnboardingRule.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASOnboardingRule</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllOnboardingRules.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllOnboardingRules</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASOnboardingRules.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASOnboardingRules</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASOnboardingRule.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASOnboardingRule</a></li>
-							<li class="nospacelist"><a><b>Account Requests (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASAccountRequest.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASAccountRequest</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASAccountRequest.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASAccountRequest</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllAccountRequests.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllAccountRequests</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAccountRequestDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAccountRequestDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllIncomingRequests.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllIncomingRequests</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIncomingRequestDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIncomingRequestDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Approve-VPASIncomingRequest.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Approve-VPASIncomingRequest</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Deny-VPASIncomingRequest.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Deny-VPASIncomingRequest</a></li>
-							<li class="nospacelist"><a><b>Applications (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASApplication.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASApplication</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASApplication.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASApplication</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllApplications.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllApplications</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASApplicationDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASApplicationDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASApplicationAuthentication.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASApplicationAuthentication</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASApplicationAuthentication.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASApplicationAuthentication</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASApplicationAuthentications.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASApplicationAuthentications</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASCentralCredentialProvider.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASCentralCredentialProvider</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASCredentialProvider.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASCredentialProvider</a></li>
-							<li class="nospacelist"><a><b>Safe (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASSafe.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASSafe</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASSafe.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASSafe</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASSafe.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASSafe</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSafes.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSafes</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSafeDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSafeDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSafesByPlatformID.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSafesByPlatformID</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllSafes.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllSafes</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASEmptySafes.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASEmptySafes</a></li>
-							<li class="nospacelist"><a><b>Safe Members (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASSafeMember.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASSafeMember</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASSafeMember.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASSafeMember</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASSafeMember.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASSafeMember</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSafeMembers.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSafeMembers</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSafeMemberSearch.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSafeMemberSearch</a></li>
-							<li class="nospacelist"><a><b>Platforms (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllPlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllPlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Copy-VPASPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Copy-VPASPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Export-VPASPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Export-VPASPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Import-VPASPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Import-VPASPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Enable-VPASPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Enable-VPASPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Disable-VPASPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Disable-VPASPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPlatformDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPlatformDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPlatformDetailsSearch.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPlatformDetailsSearch</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllTargetPlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllTargetPlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Copy-VPASGroupPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Copy-VPASGroupPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASGroupPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASGroupPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Disable-VPASGroupPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Disable-VPASGroupPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Enable-VPASGroupPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Enable-VPASGroupPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllGroupPlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllGroupPlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASGroupPlatformDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASGroupPlatformDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Copy-VPASUsagePlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Copy-VPASUsagePlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASUsagePlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASUsagePlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllUsagePlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllUsagePlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASUsagePlatformDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASUsagePlatformDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Copy-VPASRotationalPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Copy-VPASRotationalPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASRotationalPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASRotationalPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Disable-VPASRotationalPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Disable-VPASRotationalPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Enable-VPASRotationalPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Enable-VPASRotationalPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllRotationalPlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllRotationalPlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASRotationalPlatformDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASRotationalPlatformDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASEmptyPlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASEmptyPlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASStoredPlatformDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASStoredPlatformDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASStoredPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASStoredPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Set-VPASStoredPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Set-VPASStoredPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Import-VPASStoredPlatform.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Import-VPASStoredPlatform</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASMasterPolicySettings.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASMasterPolicySettings</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllMasterPolicySettings.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllMasterPolicySettings</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASMasterPolicySettings.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASMasterPolicySettings</a></li>
-							<li class="nospacelist"><a><b>Internal (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASAllowedReferrer.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASAllowedReferrer</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllowedReferrer.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllowedReferrer</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASVaultDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASVaultDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASVaultVersion.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASVaultVersion</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSystemComponents.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSystemComponents</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSystemHealth.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSystemHealth</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASDirectory.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASDirectory</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllDirectories.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllDirectories</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDirectoryDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDirectoryDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDirectoryMappings.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDirectoryMappings</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDirectoryMappingDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDirectoryMappingDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASAllowedIPs.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASAllowedIPs</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllowedIPs.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllowedIPs</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSearchProperties.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSearchProperties</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllReports.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllReports</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllTasks.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllTasks</a></li>
-							<li class="nospacelist"><a><b>PSM (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./New-VPASPSMSession.html" style="font-size: 14px; color: #f5f5f5;">&#8226; New-VPASPSMSession</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllConnectionComponents.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllConnectionComponents</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllPSMServers.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllPSMServers</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPSMSettingsByPlatformID.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPSMSettingsByPlatformID</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASPSMSettingsByPlatformID.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASPSMSettingsByPlatformID</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllActiveSessions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllActiveSessions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASActiveSessionActivities.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASActiveSessionActivities</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASActiveSessionProperties.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASActiveSessionProperties</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASActiveSessions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASActiveSessions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASActivePSMSessionAction.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASActivePSMSessionAction</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Watch-VPASActivePSMSession.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Watch-VPASActivePSMSession</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllPSMSessions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllPSMSessions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPSMSessionActivities.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPSMSessionActivities</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPSMSessionDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPSMSessionDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPSMSessionProperties.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPSMSessionProperties</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASPSMSessions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASPSMSessions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Import-VPASConnectionComponent.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Import-VPASConnectionComponent</a></li>
-							<li class="nospacelist"><a><b>EPV Users (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASEPVUser.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASEPVUser</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASEPVUser.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASEPVUser</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Disable-.VPASEPVUserhtml" style="font-size: 14px; color: #f5f5f5;">&#8226; Disable-VPASEPVUser</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Enable-VPASEPVUser.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Enable-VPASEPVUser</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllEPVUsers.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllEPVUsers</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASEPVUserDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASEPVUserDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASEPVUserTypes.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASEPVUserTypes</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASEPVUserDetailsSearch.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASEPVUserDetailsSearch</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCurrentEPVUserDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCurrentEPVUserDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASEPVUser.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASEPVUser</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Reset-VPASEPVUserPassword.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Reset-VPASEPVUserPassword</a></li>
-							<li class="nospacelist"><a><b>EPV Group (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASEPVGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASEPVGroup</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASEPVGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASEPVGroup</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASEPVGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASEPVGroup</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASEPVGroupDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASEPVGroupDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllEPVGroups.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllEPVGroups</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASMemberEPVGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASMemberEPVGroup</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASMemberEPVGroup.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASMemberEPVGroup</a></li>
-							<li class="nospacelist"><a><b>Bulk Actions (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASBulkAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASBulkAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASBulkSafeMembers.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASBulkSafeMembers</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASBulkSafes.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASBulkSafes</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASBulkTemplateFiles.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASBulkTemplateFiles</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Confirm-VPASBulkFile.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Confirm-VPASBulkFile</a></li>
-							<li class="nospacelist"><a><b>Safe Audit (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Set-VPASAuditSafeTest.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Set-VPASAuditSafeTest</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASAuditSafeTest.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASAuditSafeTest</a></li>
-							<li class="nospacelist"><a><b>Metrics (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASReporting.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASReporting</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASMetricsPSM.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASMetricsPSM</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASMetricsCPM.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASMetricsCPM</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASMetricsAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASMetricsAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASMetricsPlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASMetricsPlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASMetricsProviders.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASMetricsProviders</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASUserLicenseReport.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASUserLicenseReport</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASHealthCheck.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASHealthCheck</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Find-VPASTargetValue.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Find-VPASTargetValue</a></li>
-							<li class="nospacelist"><a><b>SQL (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Set-VPASSQLConnectionDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Set-VPASSQLConnectionDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Test-VPASSQLConnectionDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Test-VPASSQLConnectionDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSQLAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSQLAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSQLPlatforms.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSQLPlatforms</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASSQLSafes.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASSQLSafes</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Invoke-VPASQuery.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Invoke-VPASQuery</a></li>
-							<li class="nospacelist"><a><b>Color Themes (PAM)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASAllCustomThemes.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASAllCustomThemes</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCustomTheme.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCustomTheme</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Enable-VPASCustomTheme.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Enable-VPASCustomTheme</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Disable-VPASCustomTheme.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Disable-VPASCustomTheme</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCurrentCustomTheme.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCurrentCustomTheme</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASCustomTheme.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASCustomTheme</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASCustomThemeDraft.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASCustomThemeDraft</a></li>
-							<li class="nospacelist"><a><b>Roles (Identity)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASIdentityRole.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASIdentityRole</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASIdentityRole.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASIdentityRole</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASIdentityRole.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASIdentityRole</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityRoleDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityRoleDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityRoles.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityRoles</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityAllRoles.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityAllRoles</a></li>
-							<li class="nospacelist"><a><b>Security Questions (Identity)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASIdentitySecurityQuestionAdmin.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASIdentitySecurityQuestionAdmin</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASIdentityAdminSecurityQuestion.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASIdentityAdminSecurityQuestion</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityAdminSecurityQuestion.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityAdminSecurityQuestion</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityAllAdminSecurityQuestions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityAllAdminSecurityQuestions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityCurrentUserSecurityQuestions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityCurrentUserSecurityQuestions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Add-VPASIdentityUserSecurityQuestions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Add-VPASIdentityUserSecurityQuestions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityUserSecurityQuestions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityUserSecurityQuestions</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Reset-VPASIdentityUserSecurityQuestions.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Reset-VPASIdentityUserSecurityQuestions</a></li>
-							<li class="nospacelist"><a><b>Users (Identity)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityAllUsers.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityAllUsers</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityUserDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityUserDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityCurrentUserDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityCurrentUserDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Set-VPASIdentityUserState.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Set-VPASIdentityUserState</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Set-VPASIdentityUserStatus.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Set-VPASIdentityUserStatus</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Test-VPASIdentityUserLocked.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Test-VPASIdentityUserLocked</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./New-VPASIdentityGenerateUserPassword.html" style="font-size: 14px; color: #f5f5f5;">&#8226; New-VPASIdentityGenerateUserPassword</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Update-VPASIdentityCurrentUserPassword.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Update-VPASIdentityCurrentUserPassword</a></li>
-							<li class="nospacelist"><a><b>Web Apps (Identity)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityAllApplicationTemplates.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityAllApplicationTemplates</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityApplicationTemplates.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityApplicationTemplates</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityApplicationDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityApplicationDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityAllApplications.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityAllApplications</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityApplications.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityApplications</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Test-VPASIdentityApplicationCatalog.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Test-VPASIdentityApplicationCatalog</a></li>
-							<li class="nospacelist"><a><b>Internal (Identity)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASIdentityTenantDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASIdentityTenantDetails</a></li>
-							<li class="nospacelist"><a><b>Policies (DPA)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPAPolicies.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPAPolicies</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPAAllPolicies.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPAAllPolicies</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPAPolicyDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPAPolicyDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASDPAPolicy.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASDPAPolicy</a></li>
-							<li class="nospacelist"><a><b>Internal (DPA)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./New-VPASDPASetupScript.html" style="font-size: 14px; color: #f5f5f5;">&#8226; New-VPASDPASetupScript</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPASettings.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPASettings</a></li>
-							<li class="nospacelist"><a><b>Strong Accounts (DPA)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPAAllStrongAccountSets.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPAAllStrongAccountSets</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPAAllStrongAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPAAllStrongAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPAStrongAccounts.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPAStrongAccounts</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASDPAStrongAccountDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASDPAStrongAccountDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Remove-VPASDPAStrongAccount.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Remove-VPASDPAStrongAccount</a></li>
-							<li class="nospacelist"><a><b>Connectors (ConnectorManagement)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMAllConnectors.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMAllConnectors</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMConnectorDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMConnectorDetails</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMConnectors.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMConnectors</a></li>
-							<li class="nospacelist"><a><b>Components (ConnectorManagement)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMAllComponents.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMAllComponents</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMAllConnectorComponents.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMAllConnectorComponents</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMConnectorComponentDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMConnectorComponentDetails</a></li>
-							<li class="nospacelist"><a><b>Logs (ConnectorManagement)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMComponentLogList.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMComponentLogList</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMComponentLogs.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMComponentLogs</a></li>
-							<li class="nospacelist"><a><b>Pools (ConnectorManagement)</a></b></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMAllConnectorPools.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMAllConnectorPools</a></li>
-							<li style="background-color: #333645;" class="nospacelist"><a href="./Get-VPASCMConnectorPoolDetails.html" style="font-size: 14px; color: #f5f5f5;">&#8226; Get-VPASCMConnectorPoolDetails</a></li>
-						</ul>					
-					</div>
-				<!-- END OF SIDENAV BAR -->
-				
-
-				<!-- Wrapper -->
-					<section id="wrapper">
-
-						<!-- One -->
-							<section id="one" class="wrapper spotlight style1">
-								<div class="inner">
-									<div class="content" style="width: 100%; margin-right: 0%">
-										<div id="CommandTitleAnchor">
-											<h1 style="text-align: center; text-transform: none;"><b>Get-VPASSystemComponents</b></h1>
-											<div style="border-top: solid 2px rgba(255, 255, 255, 0.125);"></div>
-											<br>
-											
-											<!-- BUTTON NAVIGATION -->
-											<ul class="actions" style="">
-												<li><a href="#SynopsisAnchor" class="button icon solid">Synopsis</a></li>
-												<li><a href="#DescriptionAnchor" class="button icon solid">Description</a></li>
-												<li><a href="#SyntaxAnchor" class="button icon solid">Syntax</a></li>
-												<li><a href="#ParameterAnchor" class="button icon solid">Parameters</a></li>
-												<li><a href="#ExampleAnchor" class="button icon solid">Examples</a></li>
-												<li><a href="#OutputAnchor" class="button icon solid">Outputs</a></li>
-											</ul>
-											
-											<!-- ENVIRONMENT  -->
-											<div style="text-align: center;">
-											<div class="graphictag">Supported Environments:</div>
-											<div class="graphiccontainer">
-												<div Style="display: flex; padding: 10px;">
-													<div class="graphiclight" id="lightSelfHosted"></div>
-													<div class="graphictag">SelfHosted</div>
-												</div>
-												<div Style="display: flex; padding: 10px;">
-													<div class="graphiclight" id="lightSharedServices"></div>
-													<div class="graphictag">SharedServices</div>
-												</div>
-												<div Style="display: flex; padding: 10px;">
-													<div class="graphiclight" id="lightPCloudStandard"></div>
-													<div class="graphictag">PCloudStandard</div>
-												</div>
-											</div>
-											</div>
-											<br>
-											<div style="border-bottom: solid 2px rgba(255, 255, 255, 0.125);"></div>
-											
-											
-											<!-- SYNOPSIS  -->
-											<div id="SynopsisAnchor" style="overflow-x: auto;">
-											<br>
-											<h1 style="text-align: left;">Synopsis:</h1>
-											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>GET CYBERARK SYSTEM COMPONENTS</b></p></td></tr>
-											</table>
-											</div>
-											
-											<!-- DESCRIPTION  -->
-											<div id="DescriptionAnchor" style="overflow-x: auto;">
-											<br>
-											<h1 style="text-align: left;">Description:</h1>
-											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>USE THIS FUNCTION TO GET SYSTEMHEALTH INFORMATION FROM CYBERARK</b></p></td></tr>
-											</table>
-											</div>
-											
-											<!-- SYNTAX  -->
-											<div id="SyntaxAnchor" style="overflow-x: auto;">
-											<br>
-											<h1 style="text-align: left;">Syntax:</h1>
-											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASSystemComponents [-ExportToCSV] [-CSVDirectory &lt;String&gt;] [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>Get-VPASSystemComponents -InputParameters &lt;Hashtable&gt; [-token &lt;Hashtable&gt;] [&lt;CommonParameters&gt;]</b></p></td></tr>
-											</table>
-											</div>
-											
-											<!-- PARAMETERS  -->
-											<div id="ParameterAnchor" style="overflow-x: auto;">
-											<br>
-											<h1 style="text-align: left;">Parameters:</h1>
-											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-ExportToCSV [&lt;SwitchParameter&gt;]<br>Output results to a CSV file found in AppData\Local\VPASModuleOutputs directory<br><br>Required: false<br>Position: named<br>Default value: False<br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-CSVDirectory &lt;String&gt;<br>Output directory where the exported CSV file will be saved to<br>Default value: C:\Users\{CurrentUser}\AppData\Local\VPASModuleOutputs\ExportedCSVs<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-InputParameters &lt;Hashtable&gt;<br>HashTable of values containing the parameters required to make the API call<br><br>Required: true<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>-token &lt;Hashtable&gt;<br>HashTable of data containing various pieces of login information (PVWA, LoginToken, HeaderType, etc).<br>If -token is not passed, function will use last known hashtable generated by New-VPASToken<br><br>Required: false<br>Position: named<br>Default value: <br>Accept pipeline input: true (ByPropertyName)<br>Accept wildcard characters: false<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>&lt;CommonParameters&gt;<br>This cmdlet supports the common parameters: Verbose, Debug<br>ErrorAction, ErrorVariable, WarningAction, WarningVariable<br>OutBuffer, PipelineVariable, and OutVariable. For more information, see<br>about_CommonParameters (https:/go.microsoft.com/fwlink/?LinkID=113216)<br></b></p></td></tr>
-											</table>
-											</div>
-											
-											<!-- EXAMPLE  -->
-											<div id="ExampleAnchor" style="overflow-x: auto;">
-											<br>
-											<h1 style="text-align: left;">Examples:</h1>
-											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$SystemComponentsJSON = Get-VPASSystemComponents</b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>$InputParameters = @{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExportToCSV = $true|$false<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     CSVDirectory = "C:\Temp"<br>}<br>$SystemComponentsJSON = Get-VPASSystemComponents -InputParameters $InputParameters</b></p></td></tr>
-											</table>
-											</div>
-											
-											<!-- OUTPUT  -->
-											<div id="OutputAnchor" style="overflow-x: auto;">
-											<br>
-											<h1 style="text-align: left;">Outputs:</h1>
-											<table style="background: #2e3141">
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>If successful:<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "Components":  [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "PVWA",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "PVWA",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Active Users",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  1,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  1<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "CPM",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "CPM",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Managed Accounts",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  5,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  24<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "SessionManagement",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "PSM/PSMP",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Concurrent Sessions",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  7,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  0<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentID":  "AIM",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentName":  "AAM Credential Provider",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "Description":  "Applications",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ConnectedComponentCount":  0,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentTotalCount":  2,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                            "ComponentSpecificStat":  5<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    ],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     "Vaults":  [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        "IP":  "vault-vman.pcloudprod.cyberarkinternal.com",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        "Role":  "Primary",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        "IsLoggedOn":  true<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                    }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                ]<br>}<br></b></p></td></tr>
-												<tr><td><p style="text-align: left; font-size: 14px;"><b>
-$false if failed</b></p></td></tr>
-											</table>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-							</section>
-					</section>
-
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<center>
-							<ul class="actions" style="margin-left: auto; margin-right: auto;">
-								<li><a target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/vmelamed5" class="icon solid"><img src="../images/BuyMeACoffee.png"></a></li>
-								<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/vmelamed5" class="icon solid"><img src="../images/GithubSponsor.png"></a></li>
-								<li><a target="_blank" rel="noopener noreferrer" href="https://venmo.com/u/Vadim-Melamed" class="icon solid"><img src="../images/Venmo.png"></a></li>
-								<li><a target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/paypalme/vmelamed5" class="icon solid"><img src="../images/Paypal.png"></a></li>
-							</ul>
-							</center>
-							<ul class="copyright" style="margin-top: -1%;">
-								<center><li>&copy; 2021 Vadim Melamed. All rights reserved.</li></center>
-							</ul>
-						</div>
-					</section>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script>
-				setLightStatus('lightSelfHosted', true);
-				setLightStatus('lightSharedServices', true);
-				setLightStatus('lightPCloudStandard', true);
-			</script>
-			
-
+			});
+		</script>
 	</body>
 </html>
