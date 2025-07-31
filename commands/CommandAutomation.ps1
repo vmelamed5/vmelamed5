@@ -3,10 +3,7 @@ import-module vpasmodule -RequiredVersion 14.6.0 -Force
 cd C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\commands
 <#
     Vadim Notes:
-        - For new commands, add command in Template-Page sidebar section (lines 127ish - 315ish):
-            ...
-            <li class="nospacelist"><a href="./NEW-COMMAND.html" style="font-size: 14px; color: #f5f5f5;">&#8226; NEW-COMMAND</a></li>
-            ...
+        - For new commands, add command in Template-Page sidebar section (lines 275ish - 600ish):
         - Fun fact - because im lazy, run this from the directory templatePage is in otherwise it will create in System32 (C:\Users\Vman\Desktop\VRepo\VpasModule\NewVpasWebsite\commands)
         - Dont forget to import the newest module version
 #>
@@ -19,14 +16,17 @@ function LogFile{
 
 $CommandMatrix = @{}
 
+$commandcount = 0
 $AllCommands = Get-Command -Module vpasmodule
-#$AllCommands = @{Name="Update-VPASIdentityRole"} #<-- TESTING
+$maxcommandcount = $AllCommands.Count
+#$AllCommands = @{Name="Add-VPASAccount"} #<-- TESTING
 
 $inputData = Get-Content -Path "Template-Page.html"
 
 foreach($recCommand in $AllCommands.Name){
+    $commandcount += 1
     $fileName = "$recCommand" + ".html"
-    Write-Host "BUILDING FILE: `t$fileName" -ForegroundColor Cyan
+    Write-Host "$commandcount / $maxcommandcount) BUILDING FILE: `t$fileName" -ForegroundColor Cyan
     Write-Output "<!-- MADE BY VADIM MELAMED -->" | Set-Content $fileName
     $CommandHelp = Get-help $recCommand -Full
 
@@ -49,10 +49,22 @@ foreach($recCommand in $AllCommands.Name){
     $CommandSyntaxArray = @()
     $tempSyntax = $CommandHelp.syntax | Out-String
     $tempSyntaxArr = $tempSyntax.Split("`r`n")
+    $tempstr = ""
     foreach($temprec in $tempSyntaxArr){
         if($temprec.Length -ne 0){
             $temprec = $temprec -replace "<","&lt;"
             $temprec = $temprec -replace ">","&gt;"
+            if($temprec -match "^$recCommand"){
+                $tempstr += "@@@$temprec"
+            }
+            else{
+                $tempstr += $temprec
+            }
+        }
+    }
+    $tempstrbreak = $tempstr -split "@@@"
+    foreach($temprec in $tempstrbreak){
+        if($temprec.Length -ne 0){
             $CommandSyntaxArray += $temprec
         }
     }
