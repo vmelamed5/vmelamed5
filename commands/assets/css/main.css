@@ -4236,25 +4236,50 @@ input, select, textarea {
   padding-top: 60px;
 }
 
+.sidebar details summary {
+  padding: 10px;
+  background-color: #2e3141;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar details summary:hover {
+  background-color: #404457;
+}
+
 .sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 20px;
-  color: #818181;
   display: block;
-  transition: 0.3s;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
 .sidebar a:hover {
-  color: #f1f1f1;
+  background-color: #3f445c;
 }
 
-.sidebar .closebtn {
-  position: absolute;
-  top: 5%;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+.content table {
+  background: #2e3141;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.content h1 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.content p {
+  font-size: 15px;
+  color: #dddddd;
+  line-height: 1.6;
 }
 
 .openbtn {
