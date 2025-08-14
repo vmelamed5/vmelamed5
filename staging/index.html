@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VPASModule</title>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <div class="logo">VP</div>
+        <div>
+          <div class="name" style="font-weight:700">VPASModule</div>
+          <div class="muted" style="font-size:12px">PowerShell module for CyberArk APIs</div>
+        </div>
+      </a>
+      <nav class="navlinks">
+        <a href="#install">Install</a>
+        <a href="#commands">Commands</a>
+        <a href="#scriptbuilder">ScriptBuilder</a>
+        <a href="#common">Common Scripts</a>
+        <a href="#updates">Updates</a>
+		<a href="#updates">About</a>
+        <a href="#docs">Docs</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container grid grid-2" style="gap:22px">
+        <div>
+          <h1>Automate Cyberark tasks with <span class="gradient">VPASModule</span></h1>
+          <p class="muted" style="margin-top:10px">
+            A simplified PowerShell module to interact with CyberArk Web Services
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+            <a href="#install" class="btn btn-primary">Install & Get Started</a>
+            <a href="#scriptbuilder" class="btn btn-ghost">Try ScriptBuilder</a>
+          </div>
+          <p class="muted" style="margin-top:10px;font-size:12px">
+            Quick links: <a class="gradient" href="#common" style="text-decoration:underline">Common Scripts</a> • <a class="gradient" href="#commands" style="text-decoration:underline">Commands</a> • <a class="gradient" href="#docs" style="text-decoration:underline">Docs</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature cards -->
+    <section class="container section grid grid-3">
+      <article class="card card-body">
+        <h3>Install</h3>
+        <p class="muted">One-liner to install from PowerShell Gallery and verify the version.</p>
+        <a href="#install" class="btn btn-chip" style="margin-top:10px">View</a>
+      </article>
+      <article class="card card-body">
+        <h3>Commands</h3>
+        <p class="muted">Browse all cmdlets with examples and parameters.</p>
+        <a href="#commands" class="btn btn-chip" style="margin-top:10px">Browse</a>
+      </article>
+      <article class="card card-body">
+        <h3>ScriptBuilder (Beta)</h3>
+        <p class="muted">Generate script templates using a guided form.</p>
+        <a href="#scriptbuilder" class="btn btn-chip" style="margin-top:10px">Open</a>
+      </article>
+      <article id="common" class="card card-body" style="border-color:#3b3ee0;background:linear-gradient(135deg,rgba(20,30,60,.45),rgba(10,18,44,.45))">
+        <h3>Common Scripts</h3>
+        <p class="muted">Curated, copy‑ready scripts for frequent workflows.</p>
+        <a href="#common" class="btn btn-primary" style="margin-top:10px">Explore</a>
+      </article>
+      <article class="card card-body">
+        <h3>Updates & Changelog</h3>
+        <p class="muted">See what's new — version notes and breaking changes.</p>
+        <a href="#updates" class="btn btn-chip" style="margin-top:10px">View</a>
+      </article>
+      <article class="card card-body">
+        <h3>Documentation</h3>
+        <p class="muted">Full reference docs, examples, and troubleshooting.</p>
+        <a href="#docs" class="btn btn-chip" style="margin-top:10px">Open Docs</a>
+      </article>
+    </section>
+
+
+    <!-- Updates + Docs -->
+    <section class="section container grid grid-2">
+      <article id="updates" class="card card-body">
+        <h3>Latest Changelog</h3>
+        <ul style="margin:10px 0 0 16px">
+          <li><span class="badge">vX.Y.Z</span> Initial redesigned UI, new command palette & modals.</li>
+          <li style="margin-top:6px"><span class="badge">vX.Y-beta</span> ScriptBuilder with live parameter mapping.</li>
+        </ul>
+      </article>
+      <article id="docs" class="card card-body">
+        <h3>Documentation</h3>
+        <p class="muted">Link to your full docs site or open official docs.</p>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="https://docs.cyberark.com" target="_blank" rel="noopener">Open Official Docs</a>
+          <a class="btn btn-chip" href="#commands">API Reference</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div><strong>VPASModule</strong><div class="muted" style="margin-top:6px">© <span id="year"></span> Your Name • <a href="#">License</a></div></div>
+      <div style="display:flex;gap:8px">
+        <a class="btn btn-chip" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-chip" href="https://www.powershellgallery.com" target="_blank" rel="noopener">PowerShell Gallery</a>
+        <a class="btn btn-chip" href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Overlays -->
+  <div id="palette" class="dialog hidden" aria-hidden="true">
+    <div class="backdrop" data-close="palette"></div>
+    <div class="panel">
+      <h3 class="title">Command Palette <span class="muted" style="font-size:12px">(⌘/Ctrl+K)</span></h3>
+      <input id="paletteSearch" class="search" placeholder="Search commands, scripts, actions…"/>
+      <div id="paletteList" class="list" style="margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div id="cmdDialog" class="dialog hidden" aria-hidden="true">
+    <div class="backdrop" data-close="cmdDialog"></div>
+    <div class="panel">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <h3 id="cmdTitle" class="title" style="margin:0"></h3>
+        <button class="btn btn-chip btn-xs" data-close="cmdDialog">Close</button>
+      </div>
+      <div id="cmdBody"></div>
+    </div>
+  </div>
+
+  <script>
+
+    // ---------- Utilities ----------
+    const $ = (sel, ctx=document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+    function copyFrom(targetSel){
+      const el = document.querySelector(targetSel);
+      if(!el) return;
+      const text = el.innerText;
+      navigator.clipboard.writeText(text).then(()=>{
+        const btns = $$(`[data-copy-target="${targetSel}"]`);
+        btns.forEach(b => { b.classList.add('ok'); b.textContent = 'Copied!'; setTimeout(()=>{b.classList.remove('ok'); b.textContent='Copy';}, 1200); });
+      }).catch(()=>{});
+    }
+
+    // Click handlers (copy + close dialogs)
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.btn[data-copy-target]');
+      if(btn){ e.preventDefault(); copyFrom(btn.getAttribute('data-copy-target')); }
+      if(e.target.matches('[data-close]')){
+        const id = e.target.getAttribute('data-close');
+        document.getElementById(id)?.classList.add('hidden');
+      }
+      if(e.target.matches('.backdrop[data-close]')){
+        const id = e.target.getAttribute('data-close');
+        document.getElementById(id)?.classList.add('hidden');
+      }
+    });
+
+    // Footer year
+    const yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
+
+    // Minimal keyboard handling (Escape closes dialogs)
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        $('#palette')?.classList.add('hidden');
+        $('#cmdDialog')?.classList.add('hidden');
+      }
+    });
+
+    // Smooth scroll for anchors
+    document.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+
+</script>
+</body>
+</html>
