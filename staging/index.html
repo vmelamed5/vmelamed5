@@ -3,47 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VPASModule</title>
+  <title>VpasModule</title>
   <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="icon" type="image/x-icon" href="images/favicon_theme.ico">
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#top">
-        <div class="logo">VP</div>
-        <div>
-          <div class="name" style="font-weight:700">VPASModule</div>
-          <div class="muted" style="font-size:12px">PowerShell module for CyberArk APIs</div>
-        </div>
-      </a>
-      <nav class="navlinks">
-        <a href="#install">Install</a>
-        <a href="#commands">Commands</a>
-        <a href="#scriptbuilder">ScriptBuilder</a>
-        <a href="#common">Common Scripts</a>
-        <a href="#updates">Updates</a>
-		<a href="#updates">About</a>
-        <a href="#docs">Docs</a>
-      </nav>
-
-    </div>
-  </header>
+	<header style="background-color:#000;">
+	  <div class="container nav" style="align-items:center; padding:8px 0;">
+		<a class="brand" href="#top" style="display:flex;align-items:center;gap:50px;text-decoration:none;">
+		  <div class="logo" style="background:none;padding:0;">
+			<img src="images/VpasModuleLOGONoText_theme.png" alt="VPASModule logo" style="height:68px;display:block;">
+		  </div>
+		  <div style="margin-left:10px;">
+			<div class="name" style="font-weight:700;color:#fff;">VpasModule</div>
+			<div class="muted" style="font-size:12px;color:#ccc;">PowerShell module for CyberArk APIs</div>
+		  </div>
+		</a>
+		<nav class="navlinks">
+		  <a href="install.html">Install</a>
+		  <a href="commands.html">Commands</a>
+		  <a href="scriptbuilder.html">ScriptBuilder</a>
+		  <a href="common.html">Common Scripts</a>
+		  <a href="updates.html">Updates</a>
+		  <a href="about.html">About</a>
+		  <a href="https://docs.cyberark.com" target="_blank" rel="noopener">Docs</a>
+		</nav>
+	  </div>
+	</header>
 
   <main id="top">
     <!-- Hero -->
     <section class="hero">
       <div class="container grid grid-2" style="gap:22px">
         <div>
-          <h1>Automate Cyberark tasks with <span class="gradient">VPASModule</span></h1>
+          <h1>Automate Cyberark tasks with <span class="gradient">VpasModule</span></h1>
           <p class="muted" style="margin-top:10px">
             A simplified PowerShell module to interact with CyberArk Web Services
           </p>
           <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
-            <a href="#install" class="btn btn-primary">Install & Get Started</a>
-            <a href="#scriptbuilder" class="btn btn-ghost">Try ScriptBuilder</a>
+            <a href="install.html" class="btn btn-primary">Install & Get Started</a>
+            <a href="scriptbuilder.html" class="btn btn-ghost">Try ScriptBuilder (beta)</a>
           </div>
           <p class="muted" style="margin-top:10px;font-size:12px">
-            Quick links: <a class="gradient" href="#common" style="text-decoration:underline">Common Scripts</a> • <a class="gradient" href="#commands" style="text-decoration:underline">Commands</a> • <a class="gradient" href="#docs" style="text-decoration:underline">Docs</a>
+            Quick links: <a class="gradient" href="common.html" style="text-decoration:underline">Common Scripts</a> • <a class="gradient" href="commands.html" style="text-decoration:underline">Commands</a> • <a class="gradient" href="https://docs.cyberark.com" target="_blank" rel="noopener" style="text-decoration:underline">Official Cyberark Docs</a>
           </p>
         </div>
       </div>
@@ -53,7 +55,7 @@
     <section class="container section grid grid-3">
       <article class="card card-body">
         <h3>Install</h3>
-        <p class="muted">One-liner to install from PowerShell Gallery and verify the version.</p>
+        <p class="muted">Install VpasModule from PowerShell Gallery or GitHub and start automating.</p>
         <a href="#install" class="btn btn-chip" style="margin-top:10px">View</a>
       </article>
       <article class="card card-body">
