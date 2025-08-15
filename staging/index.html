@@ -55,55 +55,123 @@
     <section class="container section grid grid-3">
       <article class="card card-body">
         <h3>Install</h3>
-        <p class="muted">Install VpasModule from PowerShell Gallery or GitHub and start automating.</p>
-        <a href="#install" class="btn btn-chip" style="margin-top:10px">View</a>
+        <p class="muted">Install VpasModule from PowerShell Gallery or GitHub and start automating</p>
+        <a href="install.html" class="btn btn-chip" style="margin-top:10px">View</a>
       </article>
       <article class="card card-body">
         <h3>Commands</h3>
-        <p class="muted">Browse all cmdlets with examples and parameters.</p>
-        <a href="#commands" class="btn btn-chip" style="margin-top:10px">Browse</a>
+        <p class="muted">Full list of cmdlets, with syntax, examples, and parameter details</p>
+        <a href="commands.html" class="btn btn-chip" style="margin-top:10px">Browse</a>
       </article>
       <article class="card card-body">
         <h3>ScriptBuilder (Beta)</h3>
-        <p class="muted">Generate script templates using a guided form.</p>
-        <a href="#scriptbuilder" class="btn btn-chip" style="margin-top:10px">Open</a>
+        <p class="muted">Generate and copy a script with values provided by you</p>
+        <a href="scriptbuilder.html" class="btn btn-chip" style="margin-top:10px">Open</a>
       </article>
       <article id="common" class="card card-body" style="border-color:#3b3ee0;background:linear-gradient(135deg,rgba(20,30,60,.45),rgba(10,18,44,.45))">
         <h3>Common Scripts</h3>
-        <p class="muted">Curated, copy‑ready scripts for frequent workflows.</p>
-        <a href="#common" class="btn btn-primary" style="margin-top:10px">Explore</a>
+        <p class="muted">Curated, copy‑ready scripts for frequent use cases</p>
+        <a href="common.html" class="btn btn-primary" style="margin-top:10px">Explore</a>
       </article>
       <article class="card card-body">
         <h3>Updates & Changelog</h3>
-        <p class="muted">See what's new — version notes and breaking changes.</p>
-        <a href="#updates" class="btn btn-chip" style="margin-top:10px">View</a>
+        <p class="muted">See what's new - version notes and breaking changes</p>
+        <a href="updates.html" class="btn btn-chip" style="margin-top:10px">View</a>
+      </article>
+	  <article class="card card-body">
+        <h3>About</h3>
+        <p class="muted">How VpasModule came to be & contact information</p>
+        <a href="updates.html" class="btn btn-chip" style="margin-top:10px">View</a>
       </article>
       <article class="card card-body">
         <h3>Documentation</h3>
-        <p class="muted">Full reference docs, examples, and troubleshooting.</p>
-        <a href="#docs" class="btn btn-chip" style="margin-top:10px">Open Docs</a>
+        <p class="muted">Official CyberArk documentation</p>
+        <a href="https://docs.cyberark.com" target="_blank" rel="noopener" class="btn btn-chip" style="margin-top:10px">Open Docs</a>
       </article>
     </section>
 
 
     <!-- Updates + Docs -->
-    <section class="section container grid grid-2">
-      <article id="updates" class="card card-body">
-        <h3>Latest Changelog</h3>
-        <ul style="margin:10px 0 0 16px">
-          <li><span class="badge">vX.Y.Z</span> Initial redesigned UI, new command palette & modals.</li>
-          <li style="margin-top:6px"><span class="badge">vX.Y-beta</span> ScriptBuilder with live parameter mapping.</li>
-        </ul>
-      </article>
-      <article id="docs" class="card card-body">
-        <h3>Documentation</h3>
-        <p class="muted">Link to your full docs site or open official docs.</p>
-        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-          <a class="btn btn-primary" href="https://docs.cyberark.com" target="_blank" rel="noopener">Open Official Docs</a>
-          <a class="btn btn-chip" href="#commands">API Reference</a>
-        </div>
-      </article>
-    </section>
+    <section class="section container">
+	  <article id="updates" class="card card-body">
+		<h3 style="margin-bottom:16px;">
+		  Latest Changelog <span class="badge">v14.6.0</span>
+		</h3>
+		
+		<div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+		  
+		  <!-- Column 1 -->
+		  <div style="border-right:1px solid var(--border); padding-right:16px;">
+		  <h4 style="margin-top:0;">New Commands</h4>
+			<ul style="margin:0 0 0 16px; padding:0;">
+				<li style="margin-top:6px">PAM:</li>
+				<ul>
+					<li style="margin-top:6px">New-VPASMFACacheSSHKey: Generate a new MFA Cache SSH Key for current user or on behalf of another user</li>
+					<li style="margin-top:6px">Remove-VPASMFACacheSSHKey: Remove an MFA cache SSH Key for current user, on behalf of a user, or for all users</li>
+					<li style="margin-top:6px">Get-VPASStoredPlatformDetails: Retrieve details for a temporarily stored platform</li>
+					<li style="margin-top:6px">Remove-VPASStoredPlatform: Delete a temporarily stored platform</li>
+					<li style="margin-top:6px">Set-VPASStoredPlatform: Overwrites a platform with the temporarily stored platform</li>
+					<li style="margin-top:6px">Import-VPASStoredPlatform: Import a stored platform with new values to clear platform conflict</li>
+					<li style="margin-top:6px">Get-VPASMasterPolicySettings: Retrieve Master Policy settings for a target platform</li>
+					<li style="margin-top:6px">Update-VPASMasterPolicySettings: Update Master Policy setting for a target platform</li>
+					<li style="margin-top:6px">Get-VPASAllMasterPolicySettings: Retrieve Master Policy settings for all target platforms</li>
+					<li style="margin-top:6px">Get-VPASAllDependentAccounts: Retrieve all dependent accounts (usages) in the environment</li>
+					<li style="margin-top:6px">Get-VPASDependentAccounts: Retrieve dependent accounts (usages) attached to an account</li>
+					<li style="margin-top:6px">Get-VPASDependentAccountDetails: Retrieve details for a dependent account (usages)</li>
+					<li style="margin-top:6px">Add-VPASDependentAccount: Add a dependent account (usage)</li>
+					<li style="margin-top:6px">Remove-VPASDependentAccount: Remove a dependent account (usage)</li>
+					<li style="margin-top:6px">Resume-VPASDependentAccount: Resume a dependent account (usage) that has been disabled by either CPM or user</li>
+					<li style="margin-top:6px">Push-VPASDependentAccountSecret: Push or Sync a secret to a dependent account (usage)</li>
+					<li style="margin-top:6px">Update-VPASDependentAccount: update a property for a dependent account (usage)</li>
+					<li style="margin-top:6px">Add-VPASOnboardingRule: Add an onboarding rule for automatic onboarding</li>
+					<li style="margin-top:6px">Get-VPASAllOnboardingRules: Retrieve all onboarding rules for automatic onboarding in the environment</li>
+					<li style="margin-top:6px">Get-VPASOnboardingRules: Retrieve onboarding rules for automatic onboarding in the environment via search query</li>
+					<li style="margin-top:6px">Remove-VPASOnboardingRule: delete an existing onboarding rule for automatic onboarding in the environment</li>
+					<li style="margin-top:6px">Get-VPASAllReports: Retrieve all reports available to the current user</li>
+					<li style="margin-top:6px">Get-VPASAllTasks: Retrieve all scheduled reports available to the current user</li>
+				</ul>
+				<li style="margin-top:6px">Identity:</li>
+				<ul>
+					<li style="margin-top:6px">Get-VPASIdentityAllApplicationTemplates: Retrieve all application templates from Identity</li>
+					<li style="margin-top:6px">Get-VPASIdentityApplicationTemplates: Retrieve application templates from Identity based on a search query</li>
+					<li style="margin-top:6px">Get-VPASIdentityApplicationDetails: Retrieve details for an application in Identity</li>
+					<li style="margin-top:6px">Get-VPASIdentityAllApplications: Retrieve details for all applications in Identity</li>
+					<li style="margin-top:6px">Get-VPASIdentityApplications: Retrieve details for an application in Identity based on a search query</li>
+					<li style="margin-top:6px">Test-VPASIdentityApplicationCatalog: Tests to see if the application is still available in the application catalog</li>
+				</ul>
+			</ul>
+		  </div>
+		  
+		  <!-- Column 2 -->
+		  <div style="border-right:1px solid var(--border); padding:0 16px;">
+			<h4 style="margin-top:0;">Bug Fixes</h4>
+			<ul style="margin:0 0 0 16px; padding:0;">
+				<li style="margin-top:6px">Invoke-VPASCredentialProvider: fixed bug if password being pulled contained a comma would return incorrect values</li>
+				<li style="margin-top:6px">Update-VPASAccountFields: fixed case sensitivity issue that prevented updating "RemoteMachinesAccess" parameter for an account</li>
+				<li style="margin-top:6px">Updated the metrics output and graphs for the following commands:</li>
+					<ul>
+						<li style="margin-top:6px">Invoke-VPASMetricsAccounts</li>
+						<li style="margin-top:6px">Invoke-VPASMetricsCPM</li>
+						<li style="margin-top:6px">Invoke-VPASMetricsPlatforms</li>
+						<li style="margin-top:6px">Invoke-VPASMetricsProviders</li>
+						<li style="margin-top:6px">Invoke-VPASMetricsPSM</li>
+					</ul>
+				<li style="margin-top:6px">Get-VPASAllPlatforms: fixed bug where -ExportToCSV would display incorrect information if Get-VPASAllTargetPlatforms was run instead</li>
+				<li style="margin-top:6px">Remove-VPASAuthenticationMethod: fixed bug where -WhatIf did not function correctly if the target authentication method does not exist</li>
+			</ul>
+		  </div>
+		  
+		  <!-- Column 3 -->
+		  <div style="padding-left:16px;">
+			<h4 style="margin-top:0;">Script Breaking Changes</h4>
+			<ul style="margin:0 0 0 16px; padding:0;">
+				<li style="margin-top:6px">None</li>
+			</ul>
+		  </div>
+		  
+		</div>
+	  </article>
+	</section>
   </main>
 
   <footer>
