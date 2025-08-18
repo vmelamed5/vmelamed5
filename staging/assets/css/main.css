@@ -82,3 +82,26 @@
   @media(min-width:860px){.fields-3{grid-template-columns:repeat(3,1fr)}}
   .label{font-size:12px;color:#cbd5e1;margin-bottom:4px;display:block}
   .input{width:100%;padding:.6rem .7rem;border-radius:10px;border:1px solid var(--border);background:#0b1226;color:var(--text);outline:none}
+  
+  /* Changelog collapsibles */
+	details.chg {
+	  border:1px solid var(--border);
+	  border-radius:12px;
+	  margin:10px 0;
+	  background:#0b1226;
+	}
+	details.chg[open] { background:#0f172a; }
+	details.chg > summary {
+	  cursor:pointer;
+	  list-style:none;
+	  padding:10px 12px;
+	  font-weight:600;
+	}
+	details.chg > summary::-webkit-details-marker { display:none; }
+	details.chg > summary::after {
+	  content:"▸"; float:right; transition:transform .15s ease;
+	}
+	details.chg[open] > summary::after { transform:rotate(90deg); }
+	.chg-body { padding:10px 12px 12px; border-top:1px solid var(--border); }
+	ul.tight { margin:0; padding-left:18px; }
+	ul.tight > li { margin:4px 0; }
