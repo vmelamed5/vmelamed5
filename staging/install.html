@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VpasModule • Install</title>
+  <meta name="description" content="Install VpasModule from the PowerShell Gallery or GitHub." />
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <link rel="icon" type="image/x-icon" href="images/favicon_theme.ico">
+
+  <!-- Copy & Expand icon styles (safe to move to assets/css/main.css) -->
+  <style>
+    /* Code copy icon */
+    .code{ position:relative; padding-right:42px; }
+    .copy-icon{ position:absolute; top:8px; right:8px; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); background:#0f172a; color:var(--text); cursor:pointer; opacity:.9; z-index:2 }
+    .copy-icon:hover{ opacity:1; background:#121a2e }
+    .copy-icon svg{ width:16px; height:16px; display:block }
+    .copy-icon.copied{ box-shadow:0 0 0 2px rgba(99,102,241,.35) inset }
+    .code pre, .code code{ position:relative; z-index:1 }
+
+    /* GIF expand icon */
+    .gif-wrap{ position:relative }
+    .gif-wrap img{ display:block; width:100%; height:auto; border-radius:12px; border:1px solid var(--border); box-shadow:var(--shadow); margin-top:10px; position:relative; z-index:1 }
+    .gif-icon{ position:absolute; right:8px; bottom:8px; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); background:#0f172a; color:var(--text); cursor:pointer; opacity:.9; z-index:2 }
+    .gif-icon:hover{ opacity:1; background:#121a2e }
+    .gif-icon svg{ width:16px; height:16px; display:block }
+
+    /* Lightbox */
+    .lightbox{ position:fixed; inset:0; background:rgba(2,6,23,.92); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; z-index:1000 }
+    .lightbox.open{ display:flex }
+    .lightbox img{ max-width:min(96vw,1200px); max-height:90vh; border-radius:14px; border:1px solid var(--border); box-shadow:var(--shadow) }
+    .lightbox .close{ position:absolute; top:14px; right:14px }
+
+    /* Toast */
+    #toast{ position:fixed; right:20px; bottom:20px; background:#0f172a; color:var(--text); border:1px solid var(--border); border-radius:12px; padding:10px 12px; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:1100 }
+    #toast.show{ opacity:1; transform:translateY(0) }
+  </style>
+</head>
+<body>
+  <header style="background-color:#000;">
+	  <div class="container nav" style="align-items:center; padding:8px 0;">
+		<a class="brand" href="#top" style="display:flex;align-items:center;gap:50px;text-decoration:none;">
+		  <div class="logo" style="background:none;padding:0;">
+			<img src="images/VpasModuleLOGONoText_theme.png" alt="VPASModule logo" style="height:68px;display:block;">
+		  </div>
+		  <div style="margin-left:10px;">
+			<div class="name" style="font-weight:700;color:#fff;">VpasModule</div>
+			<div class="muted" style="font-size:12px;color:#ccc;">PowerShell module for CyberArk APIs</div>
+		  </div>
+		</a>
+		<nav class="navlinks">
+		  <a href="install.html">Install</a>
+		  <a href="commands.html">Commands</a>
+		  <a href="scriptbuilder.html">ScriptBuilder</a>
+		  <a href="common.html">Common Scripts</a>
+		  <a href="updates.html">Updates</a>
+		  <a href="about.html">About</a>
+		  <a href="https://docs.cyberark.com" target="_blank" rel="noopener">Docs</a>
+		</nav>
+	  </div>
+	</header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <h1 class="gradient">Install VpasModule</h1>
+        <p class="muted">Two quick ways to get started. Pick one.</p>
+        <div class="pills" style="margin-top:8px">
+          <a class="pill" href="#gallery">PowerShell Gallery</a>
+          <a class="pill" href="#github">Manual (GitHub)</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid-2">
+        <!-- Automatic -->
+        <article id="gallery" class="card">
+          <div class="card-body">
+            <h2>Automatic • PowerShell Gallery</h2>
+            <p class="muted">Recommended for most users (PowerShell 7+ or 5.1).</p>
+            <ol class="step">
+              <li class="install-step">
+                Open <strong>PowerShell</strong> (run as Administrator for system-wide install).
+                <img src="images/AutomaticInstall01.gif" alt="Automatic install step 1"/>
+              </li>
+              <li class="install-step">
+                Install the module
+                <div class="code">
+                  <button class="copy-icon" data-copy="c1" aria-label="Copy command" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7zm-3 3V6a3 3 0 0 1 3-3h7"/><rect x="3" y="10" width="11" height="11" rx="2" ry="2"/></svg>
+                  </button>
+                  <pre><code id="c1">Install-Module VpasModule</code></pre>
+                </div>
+                <div class="muted" style="margin-top:8px">No admin rights? Use CurrentUser scope:</div>
+                <div class="code">
+                  <button class="copy-icon" data-copy="c1s" aria-label="Copy command" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7zm-3 3V6a3 3 0 0 1 3-3h7"/><rect x="3" y="10" width="11" height="11" rx="2" ry="2"/></svg>
+                  </button>
+                  <pre><code id="c1s">Install-Module VpasModule -Scope CurrentUser</code></pre>
+                </div>
+                <img src="images/AutomaticInstall02.gif" alt="Automatic install step 2"/>
+              </li>
+              <li class="install-step">
+                Import and verify
+                <div class="code">
+                  <button class="copy-icon" data-copy="c2" aria-label="Copy command" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7zm-3 3V6a3 3 0 0 1 3-3h7"/><rect x="3" y="10" width="11" height="11" rx="2" ry="2"/></svg>
+                  </button>
+                  <pre><code id="c2">Import-Module VpasModule -Verbose</code></pre>
+                </div>
+                <div class="code" style="margin-top:8px">
+                  <button class="copy-icon" data-copy="c3" aria-label="Copy command" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7zm-3 3V6a3 3 0 0 1 3-3h7"/><rect x="3" y="10" width="11" height="11" rx="2" ry="2"/></svg>
+                  </button>
+                  <pre><code id="c3">Get-Module -ListAvailable -Name VpasModule</code></pre>
+                </div>
+                <img src="images/AutomaticInstall03.gif" alt="Automatic install step 3"/>
+              </li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- Manual -->
+        <article id="github" class="card">
+          <div class="card-body">
+            <h2>Manual • GitHub ZIP</h2>
+            <p class="muted">Useful for offline installs or testing specific commits.</p>
+            <ol class="step">
+              <li class="install-step">
+                Download the repo as ZIP
+                <div class="code"><pre><code>https://github.com/vmelamed5/VpasModule</code></pre></div>
+                <a class="btn btn-xs" href="https://github.com/vmelamed5/VpasModule" target="_blank" rel="noopener">Open GitHub</a>
+                <img src="images/ManualInstall01.gif" alt="Manual install step 1"/>
+              </li>
+              <li class="install-step">
+                Extract the ZIP and locate the <strong>VpasModule</strong> folder.
+                <img src="images/ManualInstall02.gif" alt="Manual install step 2"/>
+              </li>
+              <li class="install-step">
+                Move the folder into a PowerShell module path
+                <div class="code">
+                  <button class="copy-icon" data-copy="c4" aria-label="Copy command" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7zm-3 3V6a3 3 0 0 1 3-3h7"/><rect x="3" y="10" width="11" height="11" rx="2" ry="2"/></svg>
+                  </button>
+                  <pre><code id="c4">$env:PSModulePath -split ';'</code></pre>
+                </div>
+                <img src="images/ManualInstall03.gif" alt="Manual install step 3"/>
+              </li>
+              <li class="install-step">
+                Restart PowerShell, then import and verify
+                <div class="code">
+                  <button class="copy-icon" data-copy="c5" aria-label="Copy command" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7zm-3 3V6a3 3 0 0 1 3-3h7"/><rect x="3" y="10" width="11" height="11" rx="2" ry="2"/></svg>
+                  </button>
+                  <pre><code id="c5">Import-Module VpasModule -Verbose</code></pre>
+                </div>
+                <div class="code" style="margin-top:8px">
+                  <button class="copy-icon" data-copy="c6" aria-label="Copy command" title="Copy">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7zm-3 3V6a3 3 0 0 1 3-3h7"/><rect x="3" y="10" width="11" height="11" rx="2" ry="2"/></svg>
+                  </button>
+                  <pre><code id="c6">Get-Module -ListAvailable -Name VpasModule</code></pre>
+                </div>
+                <img src="images/ManualInstall04.gif" alt="Manual install step 4"/>
+              </li>
+            </ol>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <article class="card">
+          <div class="card-body">
+            <h2 style="margin-top:0">Troubleshooting</h2>
+            <p class="muted">If you hit an error, open an issue or check official docs.</p>
+            <div class="pills">
+              <a class="pill" href="https://github.com/vmelamed5/VpasModule/issues" target="_blank" rel="noopener">GitHub Issues</a>
+              <a class="pill" href="https://docs.cyberark.com/" target="_blank" rel="noopener">CyberArk Docs</a>
+              <a class="pill" href="https://www.powershellgallery.com/packages/VpasModule" target="_blank" rel="noopener">PowerShell Gallery</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox for GIF expand -->
+  <div id="gif-lightbox" class="lightbox" aria-hidden="true">
+    <button class="btn btn-xs close" aria-label="Close">Close</button>
+    <img alt="Expanded install step">
+  </div>
+
+  <!-- Toast for copy feedback -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <footer>
+    <div class="container">
+      <div class="row" style="grid-template-columns:1fr auto; align-items:center;">
+        <div>
+          <strong>VpasModule</strong>
+          <div class="muted">© <span id="year"></span> Vadim Melamed • <a href="https://github.com/vmelamed5/VpasModule/blob/VpasModule/LICENSE.md" target="_blank" rel="noopener">MIT License</a></div>
+        </div>
+        <div class="pills">
+          <a class="pill" href="https://github.com/vmelamed5/VpasModule" target="_blank" rel="noopener">GitHub</a>
+          <a class="pill" href="https://www.powershellgallery.com/packages/VpasModule/" target="_blank" rel="noopener">PS Gallery</a>
+          <a class="pill" href="about.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    const yr = document.querySelector('#year'); if (yr) yr.textContent = new Date().getFullYear();
+
+    // Toast helper
+    const toast = document.getElementById('toast');
+    function showToast(msg){ if(!toast) return; toast.textContent = msg; toast.classList.add('show'); clearTimeout(showToast._t); showToast._t = setTimeout(()=> toast.classList.remove('show'), 1200); }
+
+    // Unified copy handler for icons
+    function copyText(text){ if (!navigator.clipboard) { alert('Copy not supported in this browser'); return; } navigator.clipboard.writeText(text).then(()=>{}); }
+    document.addEventListener('click', (e)=>{
+      const icon = e.target.closest('.copy-icon');
+      if(!icon) return;
+      const id = icon.getAttribute('data-copy');
+      const el = id && document.getElementById(id);
+      if (el) {
+        copyText(el.textContent.trim());
+        icon.classList.add('copied');
+        showToast('Copied!');
+        setTimeout(()=>icon.classList.remove('copied'), 900);
+      }
+    });
+
+    // GIF Expand / Compress with icon
+    (function setupGifExpand(){
+      const imgs = document.querySelectorAll('.install-step img');
+      imgs.forEach((img)=>{
+        let wrap = img.closest('.gif-wrap');
+        if(!wrap){ wrap = document.createElement('div'); wrap.className = 'gif-wrap'; img.parentNode.insertBefore(wrap, img); wrap.appendChild(img); }
+        const btn = document.createElement('button');
+        btn.className = 'gif-icon'; btn.type = 'button'; btn.setAttribute('aria-label','Expand'); btn.title = 'Expand';
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+        wrap.appendChild(btn);
+      });
+
+      const lightbox = document.getElementById('gif-lightbox');
+      const lightImg  = lightbox?.querySelector('img');
+      function open(src, alt){ if(!lightbox || !lightImg) return; lightImg.src = src; lightImg.alt = alt || 'Expanded image'; lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden','false'); }
+      function close(){ if(!lightbox || !lightImg) return; lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); lightImg.src = ''; }
+
+      document.addEventListener('click', (e)=>{
+        const expand = e.target.closest('.gif-icon');
+        if(expand){ const img = expand.parentElement.querySelector('img'); if(img) open(img.src, img.alt); return; }
+        if(e.target === lightbox || e.target.closest('.close')){ close(); }
+      });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+    })();
+  </script>
+</body>
+</html>
