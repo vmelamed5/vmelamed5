@@ -21,7 +21,7 @@
 
     /* Click-to-expand images */
     .gif-wrap{ position:relative }
-    .gif-wrap img{ display:block; width:100%; height:auto; border-radius:12px; border:1px solid var(--border); box-shadow:var(--shadow); margin-top:10px; position:relative; z-index:1; cursor: zoom-in; }
+    .gif-wrap img{ display:block; max-width: 100%; height:auto; border-radius:12px; border:1px solid var(--border); box-shadow:var(--shadow); margin-top:10px; position:relative; z-index:1; cursor: zoom-in; }
 
     /* Lightbox */
     body.noscroll{ overflow:hidden }
@@ -72,7 +72,7 @@
 </div>
 </section>
 <section class="section">
-<div class="container grid grid-2"><article class="card" id="gallery" style="width:90%; margin: auto">
+<div class="container grid grid-2"><article class="card" id="gallery">
 <div class="card-body">
 <h2>Automatic • PowerShell Gallery</h2>
 <p class="muted">Recommended for most users (PowerShell 7+ or 5.1).</p>
@@ -118,7 +118,7 @@
 </li>
 </ol>
 </div>
-</article><article class="card" id="github" style="width:90%; margin: auto">
+</article><article class="card" id="github">
 <div class="card-body">
 <h2>Manual • GitHub ZIP</h2>
 <p class="muted">Useful for offline installs or testing specific commits.</p>
