@@ -235,11 +235,11 @@ body.noscroll{ overflow:hidden }
 /* === Mobile clamp: prevent #gallery and #github cards from overflowing === */
 @media (max-width: 860px){
   #gallery, #github{
-    width: 100%;
-    max-width: 100%;
+    width: 90%;
+    max-width: 90%;
     overflow: hidden;
   }
   #gallery *, #github *{
-    max-width: 100%;
+    max-width: 90%;
   }
 }
