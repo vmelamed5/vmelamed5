@@ -49,7 +49,7 @@
   .grid{display:grid;gap:16px}
   .grid-2{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
-  @media(min-width:860px){.grid-2{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:860px){.grid-2{grid-template-columns:1.1fr .9fr} .grid-3{grid-template-columns:repeat(3,1fr)}}
   h1{font-size:34px;line-height:1.1;margin:0}
   .gradient{background:linear-gradient(90deg,#9aa8ff,#a88bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 
@@ -117,128 +117,23 @@
 	  margin-top: 10px;
 	}
 
-/* ===== Consolidated from inline styles (index.html + install.html) ===== */
+/* === Install page: force single column on all screen sizes === */
+.install-page .grid-2{ grid-template-columns: 1fr; }
+.install-page .card{ width: 100%; }
 
-/* Header overrides used site‑wide */
-header{ background-color:#000; } /* solid header */
-header .container.nav{ align-items:center; padding:8px 0; }
-header .brand{ text-decoration:none; gap:50px; } /* widen brand spacing */
-header .logo{ background:none; padding:0; }
-header .logo img{ height:68px; display:block; }
-header .name{ font-weight:700; color:#fff; }
-header .muted{ font-size:12px; color:#ccc; }
+/* === Install page: smaller GIF presentation (keeps click-to-expand) === */
+.install-page{ --gif-max: 560px; } /* tweak this value to adjust size */
 
-/* Hero (index) */
-.hero .grid{ gap:22px; }
-.hero p.muted{ margin-top:10px; }
-.hero .container > div > div:nth-of-type(2){ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
-.hero .container > div > p:last-of-type{ margin-top:10px; font-size:12px; }
-.hero .container > div > p:last-of-type a{ text-decoration:underline; }
-
-/* Feature cards + common card special */
-.card h3{ margin:0 0 8px; }
-.card .muted{ margin:0 0 12px; }
-.card .btn{ margin-top:10px; }
-#common.card{ border-color:#3b3ee0; background:linear-gradient(135deg,rgba(20,30,60,.45),rgba(10,18,44,.45)); }
-
-/* Changelog tweaks */
-.card h4.muted{ margin:10px 0 6px; }
-
-/* Footer layout + icon spacing */
-footer .container{ display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-footer svg{ margin-right:6px; }
-
-/* Dialog overlay bits moved from inline */
-#palette .title .muted{ font-size:12px; }
-#palette .list{ margin-top:10px; }
-#cmdDialog .panel > div:first-child{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
-#cmdTitle{ margin:0; }
-
-/* Install page specific: spacing helpers that were inline */
-.pills{ margin-top:8px; }
-.install-step .muted{ margin-top:8px; }
-.install-step .code + .code{ margin-top:8px; }
-
-/* ========== From install.html <style> (relocated) ========== */
-
-/* Code copy icon */
-.code{ position:relative; padding-right:42px; }
-.copy-icon{ position:absolute; top:8px; right:8px; width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; border:1px solid var(--border); background:#0f172a; color:var(--text); cursor:pointer; opacity:.9; z-index:2 }
-.copy-icon:hover{ opacity:1; background:#121a2e }
-.copy-icon svg{ width:16px; height:16px; display:block }
-.copy-icon.copied{ box-shadow:0 0 0 2px rgba(99,102,241,.35) inset }
-.code pre, .code code{ position:relative; z-index:1 }
-
-/* Click-to-expand images */
-.gif-wrap{ position:relative }
-.gif-wrap img{ 
-  display:block; 
-  max-width:100%; 
-  height:auto; 
-  border-radius:12px; 
-  border:1px solid var(--border); 
-  box-shadow:var(--shadow); 
-  margin-top:10px; 
-  position:relative; 
-  z-index:1; 
-  cursor: zoom-in; 
+.install-page .install-step .gif-wrap{
+  max-width: var(--gif-max);
+  margin: 10px auto; /* center the container */
 }
 
-/* Lightbox */
-body.noscroll{ overflow:hidden }
-.lightbox:focus{ outline: none }
-.lightbox .close:focus-visible{ outline:2px solid #6366f1; outline-offset:3px }
-.lightbox{ position:fixed; inset:0; background:rgba(2,6,23,.92); backdrop-filter:blur(4px); display:none; align-items:center; justify-content:center; z-index:1000 }
-.lightbox.open{ display:flex }
-.lightbox img{ max-width:min(96vw,1200px); max-height:90vh; border-radius:14px; border:1px solid var(--border); box-shadow:var(--shadow) }
-.lightbox .close{ position:absolute; top:14px; right:14px }
-
-/* Toast */
-#toast{ position:fixed; right:20px; bottom:20px; background:#0f172a; color:var(--text); border:1px solid var(--border); border-radius:12px; padding:10px 12px; box-shadow:var(--shadow); opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:1100 }
-#toast.show{ opacity:1; transform:translateY(0) }
-
-/* ===== Equalize Automatic vs Manual install card rectangles ===== */
-.install-page .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
+.install-page .install-step img{
+  max-width: var(--gif-max); /* constrain images when no .gif-wrap wrapper */
   width: 100%;
-  border-radius: 16px; /* unify radius */
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  background: var(--card);
-}
-
-.install-page .card .card-body {
-  padding: 18px;
-}
-
-.install-page .card img {
-  display: block;
-  max-width: 100%;
   height: auto;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  margin-top: 10px;
-}
-
-/* Equal-width columns for install page */
-.install-page .grid-2{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-.install-page .card{ width:100%; }
-
-/* Mobile: enforce Automatic (gallery) first, Manual (github) second */
-@media(max-width:859.98px){
-  #gallery{ order:1; }
-  #github{ order:2; }
-}
-
-/* Mobile spacing tweaks for readability */
-@media(max-width:859.98px){
-  .card-body{ padding:14px; }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
