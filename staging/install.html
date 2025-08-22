@@ -251,8 +251,8 @@
 
 	  if (anchorEl && anchorEl.getBoundingClientRect) {
 		const r = anchorEl.getBoundingClientRect();
-		x = r.left + r.width / 2;
-		y = r.top - margin - TOAST_H; // show above the icon
+		x = r.left - TOAST_W;
+		y = r.top - margin; // show above the icon
 	  }
 
 	  // Clamp to viewport padding
