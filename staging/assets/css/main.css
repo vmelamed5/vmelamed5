@@ -216,7 +216,7 @@ body.noscroll{ overflow:hidden }
 
 .install-page .card img {
   display: block;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   border-radius: 12px;
   border: 1px solid var(--border);
@@ -235,11 +235,11 @@ body.noscroll{ overflow:hidden }
 /* === Mobile clamp: prevent #gallery and #github cards from overflowing === */
 @media (max-width: 860px){
   #gallery, #github{
-    width: 90%;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
     overflow: hidden;
   }
   #gallery *, #github *{
-    max-width: 90%;
+    max-width: 100%;
   }
 }
