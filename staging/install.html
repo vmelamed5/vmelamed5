@@ -234,7 +234,39 @@
 
     // Toast helper
     const toast = document.getElementById('toast');
-    function showToast(msg){ if(!toast) return; toast.textContent = msg; toast.classList.add('show'); clearTimeout(showToast._t); showToast._t = setTimeout(()=> toast.classList.remove('show'), 1200); }
+
+	function showToast(msg, anchorEl, opts = {}) {
+	  if (!toast) return;
+	  const { duration = 1200, margin = 8 } = opts;
+
+	  // STATIC size used in CSS
+	  const TOAST_W = 110;
+	  const TOAST_H = 32;
+
+	  toast.textContent = msg;
+
+	  // Default (top-center) if no anchor
+	  let x = window.innerWidth / 2;
+	  let y = 24;
+
+	  if (anchorEl && anchorEl.getBoundingClientRect) {
+		const r = anchorEl.getBoundingClientRect();
+		x = r.left + r.width / 2;
+		y = r.top - margin - TOAST_H; // show above the icon
+	  }
+
+	  // Clamp to viewport padding
+	  const pad = 12;
+	  x = Math.min(Math.max(x, pad), window.innerWidth - pad);
+	  y = Math.max(y, pad);
+
+	  toast.style.left = x + 'px';
+	  toast.style.top  = y + 'px';
+
+	  clearTimeout(toast._t);
+	  toast.classList.add('show');
+	  toast._t = setTimeout(() => toast.classList.remove('show'), duration);
+	}
 
     // Unified copy handler for icons
     function copyText(text){ if (!navigator.clipboard) { alert('Copy not supported in this browser'); return; } navigator.clipboard.writeText(text).then(()=>{}); }
@@ -246,7 +278,7 @@
       if (el) {
         copyText(el.textContent.trim());
         icon.classList.add('copied');
-        showToast('Copied!');
+        showToast('Copied!',icon);
         setTimeout(()=>icon.classList.remove('copied'), 900);
       }
     });
