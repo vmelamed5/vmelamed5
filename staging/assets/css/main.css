@@ -49,7 +49,7 @@
   .grid{display:grid;gap:16px}
   .grid-2{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
-  @media(min-width:860px){.grid-2{grid-template-columns:1.1fr .9fr} .grid-3{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:860px){.grid-2{grid-template-columns:repeat(2,1fr)} .grid-3{grid-template-columns:repeat(3,1fr)}}
   h1{font-size:34px;line-height:1.1;margin:0}
   .gradient{background:linear-gradient(90deg,#9aa8ff,#a88bff);-webkit-background-clip:text;background-clip:text;color:transparent}
 
@@ -231,3 +231,14 @@ body.noscroll{ overflow:hidden }
   gap: 24px;
 }
 .install-page .card{ width:100%; }
+
+/* Mobile: enforce Automatic (gallery) first, Manual (github) second */
+@media(max-width:859.98px){
+  #gallery{ order:1; }
+  #github{ order:2; }
+}
+
+/* Mobile spacing tweaks for readability */
+@media(max-width:859.98px){
+  .card-body{ padding:14px; }
+}
