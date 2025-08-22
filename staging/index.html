@@ -1,241 +1,228 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VpasModule</title>
-  <link rel="stylesheet" href="assets/css/main.css"/>
-  <link rel="icon" type="image/x-icon" href="images/favicon_theme.ico">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VpasModule</title>
+<link href="assets/css/main.css" rel="stylesheet"/>
+<link href="images/favicon_theme.ico" rel="icon" type="image/x-icon"/>
 </head>
 <body>
-	<header style="background-color:#000;">
-	  <div class="container nav" style="align-items:center; padding:8px 0;">
-		<a class="brand" href="#top" style="display:flex;align-items:center;gap:50px;text-decoration:none;">
-		  <div class="logo" style="background:none;padding:0;">
-			<img src="images/VpasModuleLOGONoText_theme.png" alt="VPASModule logo" style="height:68px;display:block;">
-		  </div>
-		  <div style="margin-left:10px;">
-			<div class="name" style="font-weight:700;color:#fff;">VpasModule</div>
-			<div class="muted" style="font-size:12px;color:#ccc;">PowerShell module for CyberArk APIs</div>
-		  </div>
-		</a>
-		<nav class="navlinks">
-		  <a href="install.html">Install</a>
-		  <a href="commands.html">Commands</a>
-		  <a href="scriptbuilder.html">ScriptBuilder</a>
-		  <a href="common.html">Common Scripts</a>
-		  <a href="updates.html">Updates</a>
-		  <a href="about.html">About</a>
-		  <a href="https://docs.cyberark.com" target="_blank" rel="noopener">Docs</a>
-		</nav>
-	  </div>
-	</header>
-
-  <main id="top">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container grid grid-2" style="gap:22px">
-        <div>
-          <h1>Automate Cyberark tasks with <span class="gradient">VpasModule</span></h1>
-          <p class="muted" style="margin-top:10px">
+<header>
+<div class="container nav">
+<a class="brand" href="#top">
+<div class="logo">
+<img alt="VPASModule logo" src="images/VpasModuleLOGONoText_theme.png"/>
+</div>
+<div>
+<div class="name">VpasModule</div>
+<div class="muted">PowerShell module for CyberArk APIs</div>
+</div>
+</a>
+<nav class="navlinks">
+<a href="install.html">Install</a>
+<a href="commands.html">Commands</a>
+<a href="scriptbuilder.html">ScriptBuilder</a>
+<a href="common.html">Common Scripts</a>
+<a href="updates.html">Updates</a>
+<a href="about.html">About</a>
+<a href="https://docs.cyberark.com" rel="noopener" target="_blank">Docs</a>
+</nav>
+</div>
+</header>
+<main id="top">
+<!-- Hero -->
+<section class="hero">
+<div class="container grid grid-2">
+<div>
+<h1>Automate Cyberark tasks with <span class="gradient">VpasModule</span></h1>
+<p class="muted">
             A simplified PowerShell module to interact with CyberArk Web Services
           </p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
-            <a href="install.html" class="btn btn-primary">Install & Get Started</a>
-            <a href="scriptbuilder.html" class="btn btn-ghost">Try ScriptBuilder (beta)</a>
-          </div>
-          <p class="muted" style="margin-top:10px;font-size:12px">
-            Quick links: <a class="gradient" href="common.html" style="text-decoration:underline">Common Scripts</a> • <a class="gradient" href="commands.html" style="text-decoration:underline">Commands</a> • <a class="gradient" href="https://docs.cyberark.com" target="_blank" rel="noopener" style="text-decoration:underline">Official Cyberark Docs</a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Feature cards -->
-    <section class="container section grid grid-3">
-      <article class="card card-body">
-        <h3>Install</h3>
-        <p class="muted">Install VpasModule from PowerShell Gallery or GitHub and start automating</p>
-        <a href="install.html" class="btn btn-chip" style="margin-top:10px">View</a>
-      </article>
-      <article class="card card-body">
-        <h3>Commands</h3>
-        <p class="muted">Full list of cmdlets, with syntax, examples, and parameter details</p>
-        <a href="commands.html" class="btn btn-chip" style="margin-top:10px">Browse</a>
-      </article>
-      <article class="card card-body">
-        <h3>ScriptBuilder (Beta)</h3>
-        <p class="muted">Generate and copy a script with values provided by you</p>
-        <a href="scriptbuilder.html" class="btn btn-chip" style="margin-top:10px">Open</a>
-      </article>
-      <article id="common" class="card card-body" style="border-color:#3b3ee0;background:linear-gradient(135deg,rgba(20,30,60,.45),rgba(10,18,44,.45))">
-        <h3>Common Scripts</h3>
-        <p class="muted">Curated, copy‑ready scripts for frequent use cases</p>
-        <a href="common.html" class="btn btn-primary" style="margin-top:10px">Explore</a>
-      </article>
-      <article class="card card-body">
-        <h3>Updates & Changelog</h3>
-        <p class="muted">See what's new - version notes and breaking changes</p>
-        <a href="updates.html" class="btn btn-chip" style="margin-top:10px">View</a>
-      </article>
-	  <article class="card card-body">
-        <h3>About</h3>
-        <p class="muted">How VpasModule came to be & contact information</p>
-        <a href="about.html" class="btn btn-chip" style="margin-top:10px">View</a>
-      </article>
-      <article class="card card-body">
-        <h3>Documentation</h3>
-        <p class="muted">Official CyberArk documentation</p>
-        <a href="https://docs.cyberark.com" target="_blank" rel="noopener" class="btn btn-chip" style="margin-top:10px">Open Docs</a>
-      </article>
-    </section>
-
-
-    <!-- Updates + Docs -->
-    <section class="section container">
-	  <article class="card card-body">
-		<h3 style="margin:0 0 8px">Latest Changelog <span class="badge">v14.6.0</span></h3>
-		<p class="muted" style="margin:0 0 12px">
+<div>
+<a class="btn btn-primary" href="install.html">Install &amp; Get Started</a>
+<a class="btn btn-ghost" href="scriptbuilder.html">Try ScriptBuilder (beta)</a>
+</div>
+<p class="muted">
+            Quick links: <a class="gradient" href="common.html">Common Scripts</a> • <a class="gradient" href="commands.html">Commands</a> • <a class="gradient" href="https://docs.cyberark.com" rel="noopener" target="_blank">Official Cyberark Docs</a>
+</p>
+</div>
+</div>
+</section>
+<!-- Feature cards -->
+<section class="container section grid grid-3">
+<article class="card card-body">
+<h3>Install</h3>
+<p class="muted">Install VpasModule from PowerShell Gallery or GitHub and start automating</p>
+<a class="btn btn-chip" href="install.html">View</a>
+</article>
+<article class="card card-body">
+<h3>Commands</h3>
+<p class="muted">Full list of cmdlets, with syntax, examples, and parameter details</p>
+<a class="btn btn-chip" href="commands.html">Browse</a>
+</article>
+<article class="card card-body">
+<h3>ScriptBuilder (Beta)</h3>
+<p class="muted">Generate and copy a script with values provided by you</p>
+<a class="btn btn-chip" href="scriptbuilder.html">Open</a>
+</article>
+<article class="card card-body" id="common">
+<h3>Common Scripts</h3>
+<p class="muted">Curated, copy‑ready scripts for frequent use cases</p>
+<a class="btn btn-primary" href="common.html">Explore</a>
+</article>
+<article class="card card-body">
+<h3>Updates &amp; Changelog</h3>
+<p class="muted">See what's new - version notes and breaking changes</p>
+<a class="btn btn-chip" href="updates.html">View</a>
+</article>
+<article class="card card-body">
+<h3>About</h3>
+<p class="muted">How VpasModule came to be &amp; contact information</p>
+<a class="btn btn-chip" href="about.html">View</a>
+</article>
+<article class="card card-body">
+<h3>Documentation</h3>
+<p class="muted">Official CyberArk documentation</p>
+<a class="btn btn-chip" href="https://docs.cyberark.com" rel="noopener" target="_blank">Open Docs</a>
+</article>
+</section>
+<!-- Updates + Docs -->
+<section class="section container">
+<article class="card card-body">
+<h3>Latest Changelog <span class="badge">v14.6.0</span></h3>
+<p class="muted">
 		  Highlights: PAM onboarding rules, Identity application templates, CSV/export fixes.
 		</p>
-
-		<!-- Collapsible: New Commands -->
-		<details class="chg">
-		  <summary>New Commands</summary>
-		  <div class="chg-body">
-			<h4 class="muted" style="margin:0 0 6px">PAM</h4>
-			<ul class="tight">
-			  <li>New-VPASMFACacheSSHKey: Generate a new MFA Cache SSH Key for current user or on behalf of another user</li>
-			  <li>Remove-VPASMFACacheSSHKey: Remove an MFA cache SSH Key for current user, on behalf of a user, or for all users</li>
-			  <li>Get-VPASStoredPlatformDetails: Retrieve details for a temporarily stored platform</li>
-			  <li>Remove-VPASStoredPlatform: Delete a temporarily stored platform</li>
-			  <li>Set-VPASStoredPlatform: Overwrites a platform with the temporarily stored platform</li>
-			  <li>Import-VPASStoredPlatform: Import a stored platform with new values to clear platform conflict</li>
-			  <li>Get-VPASMasterPolicySettings: Retrieve Master Policy settings for a target platform</li>
-			  <li>Update-VPASMasterPolicySettings: Update Master Policy setting for a target platform</li>
-			  <li>Get-VPASAllMasterPolicySettings: Retrieve Master Policy settings for all target platforms</li>
-			  <li>Get-VPASAllDependentAccounts: Retrieve all dependent accounts (usages) in the environment</li>
-			  <li>Get-VPASDependentAccounts: Retrieve dependent accounts (usages) attached to an account</li>
-			  <li>Get-VPASDependentAccountDetails: Retrieve details for a dependent account (usages)</li>
-			  <li>Add-VPASDependentAccount: Add a dependent account (usage)</li>
-			  <li>Remove-VPASDependentAccount: Remove a dependent account (usage)</li>
-			  <li>Resume-VPASDependentAccount: Resume a dependent account (usage) that has been disabled by either CPM or user</li>
-			  <li>Push-VPASDependentAccountSecret: Push or Sync a secret to a dependent account (usage)</li>
-			  <li>Update-VPASDependentAccount: update a property for a dependent account (usage)</li>
-			  <li>Add-VPASOnboardingRule: Add an onboarding rule for automatic onboarding</li>
-			  <li>Get-VPASAllOnboardingRules: Retrieve all onboarding rules for automatic onboarding in the environment</li>
-			  <li>Get-VPASOnboardingRules: Retrieve onboarding rules for automatic onboarding in the environment via search query</li>
-			  <li>Remove-VPASOnboardingRule: delete an existing onboarding rule for automatic onboarding in the environment</li>
-			  <li>Get-VPASAllReports: Retrieve all reports available to the current user</li>
-			  <li>Get-VPASAllTasks: Retrieve all scheduled reports available to the current user</li>
-			</ul>
-			<h4 class="muted" style="margin:10px 0 6px">Identity</h4>
-			<ul class="tight">
-			  <li>Get-VPASIdentityAllApplicationTemplates: Retrieve all application templates from Identity</li>
-			  <li>Get-VPASIdentityApplicationTemplates: Retrieve application templates from Identity based on a search query</li>
-			  <li>Get-VPASIdentityApplicationDetails: Retrieve details for an application in Identity</li>
-			  <li>Get-VPASIdentityAllApplications: Retrieve details for all applications in Identity</li>
-			  <li>Get-VPASIdentityApplications: Retrieve details for an application in Identity based on a search query</li>
-			  <li>Test-VPASIdentityApplicationCatalog: Tests to see if the application is still available in the application catalog</li>
-			</ul>
-		  </div>
-		</details>
-
-		<!-- Collapsible: Bug Fixes -->
-		<details class="chg">
-		  <summary>Bug Fixes</summary>
-		  <div class="chg-body">
-			<ul class="tight">
-			  <li>Invoke-VPASCredentialProvider: fixed bug if password being pulled contained a comma would return incorrect values</li>
-			  <li>Update-VPASAccountFields: fixed case sensitivity issue that prevented updating "RemoteMachinesAccess" parameter for an account</li>
-			  <li>Updated the metrics output and graphs for the following commands:</li>
-			  <ul>
-				<li>Invoke-VPASMetricsAccounts</li>
-				<li>Invoke-VPASMetricsCPM</li>
-				<li>Invoke-VPASMetricsPlatforms</li>
-				<li>Invoke-VPASMetricsProviders</li>
-				<li>Invoke-VPASMetricsPSM</li>
-			  </ul>
-			  <li>Get-VPASAllPlatforms: fixed bug where -ExportToCSV would display incorrect information if Get-VPASAllTargetPlatforms was run instead</li>
-			  <li>Remove-VPASAuthenticationMethod: fixed bug where -WhatIf did not function correctly if the target authentication method does not exist</li>
-			  <!-- … -->
-			</ul>
-		  </div>
-		</details>
-
-		<!-- Collapsible: Breaking Changes -->
-		<details class="chg">
-		  <summary>Breaking Changes</summary>
-		  <div class="chg-body muted">None - I actively try to keep it this way &#128526;</div>
-		</details>
-
-		<!-- Optional: Older releases -->
-		<div style="margin-top:12px">
-		  <a class="btn btn-chip" href="updates.html">View full changelog</a>
-		</div>
-	  </article>
-	</section>
-  </main>
-
-  <footer>
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-      <div><strong>VpasModule</strong><div class="muted" style="margin-top:6px">© <span id="year"></span> Vadim Melamed • <a href="https://github.com/vmelamed5/VpasModule/blob/VpasModule/LICENSE.md" target="_blank" rel="noopener">MIT License</a></div></div>
-      <div style="display:flex;gap:8px">
-        <!-- GitHub -->
-		<a class="btn btn-chip" href="https://github.com/vmelamed5/VpasModule" target="_blank" rel="noopener">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-right:6px" viewBox="0 0 24 24">
-				<path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.41 7.86 10.94.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.39-3.87-1.39-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.72 1.26 3.38.96.1-.76.41-1.26.74-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.3 1.19-3.12-.12-.29-.52-1.45.11-3.01 0 0 .97-.31 3.19 1.19a11.1 11.1 0 0 1 5.8 0c2.22-1.5 3.18-1.19 3.18-1.19.64 1.56.24 2.72.12 3.01.74.82 1.19 1.86 1.19 3.12 0 4.42-2.69 5.39-5.25 5.67.42.36.79 1.08.79 2.19v3.24c0 .31.21.68.8.56A10.96 10.96 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
-			</svg>
+<!-- Collapsible: New Commands -->
+<details class="chg">
+<summary>New Commands</summary>
+<div class="chg-body">
+<h4 class="muted">PAM</h4>
+<ul class="tight">
+<li>New-VPASMFACacheSSHKey: Generate a new MFA Cache SSH Key for current user or on behalf of another user</li>
+<li>Remove-VPASMFACacheSSHKey: Remove an MFA cache SSH Key for current user, on behalf of a user, or for all users</li>
+<li>Get-VPASStoredPlatformDetails: Retrieve details for a temporarily stored platform</li>
+<li>Remove-VPASStoredPlatform: Delete a temporarily stored platform</li>
+<li>Set-VPASStoredPlatform: Overwrites a platform with the temporarily stored platform</li>
+<li>Import-VPASStoredPlatform: Import a stored platform with new values to clear platform conflict</li>
+<li>Get-VPASMasterPolicySettings: Retrieve Master Policy settings for a target platform</li>
+<li>Update-VPASMasterPolicySettings: Update Master Policy setting for a target platform</li>
+<li>Get-VPASAllMasterPolicySettings: Retrieve Master Policy settings for all target platforms</li>
+<li>Get-VPASAllDependentAccounts: Retrieve all dependent accounts (usages) in the environment</li>
+<li>Get-VPASDependentAccounts: Retrieve dependent accounts (usages) attached to an account</li>
+<li>Get-VPASDependentAccountDetails: Retrieve details for a dependent account (usages)</li>
+<li>Add-VPASDependentAccount: Add a dependent account (usage)</li>
+<li>Remove-VPASDependentAccount: Remove a dependent account (usage)</li>
+<li>Resume-VPASDependentAccount: Resume a dependent account (usage) that has been disabled by either CPM or user</li>
+<li>Push-VPASDependentAccountSecret: Push or Sync a secret to a dependent account (usage)</li>
+<li>Update-VPASDependentAccount: update a property for a dependent account (usage)</li>
+<li>Add-VPASOnboardingRule: Add an onboarding rule for automatic onboarding</li>
+<li>Get-VPASAllOnboardingRules: Retrieve all onboarding rules for automatic onboarding in the environment</li>
+<li>Get-VPASOnboardingRules: Retrieve onboarding rules for automatic onboarding in the environment via search query</li>
+<li>Remove-VPASOnboardingRule: delete an existing onboarding rule for automatic onboarding in the environment</li>
+<li>Get-VPASAllReports: Retrieve all reports available to the current user</li>
+<li>Get-VPASAllTasks: Retrieve all scheduled reports available to the current user</li>
+</ul>
+<h4 class="muted">Identity</h4>
+<ul class="tight">
+<li>Get-VPASIdentityAllApplicationTemplates: Retrieve all application templates from Identity</li>
+<li>Get-VPASIdentityApplicationTemplates: Retrieve application templates from Identity based on a search query</li>
+<li>Get-VPASIdentityApplicationDetails: Retrieve details for an application in Identity</li>
+<li>Get-VPASIdentityAllApplications: Retrieve details for all applications in Identity</li>
+<li>Get-VPASIdentityApplications: Retrieve details for an application in Identity based on a search query</li>
+<li>Test-VPASIdentityApplicationCatalog: Tests to see if the application is still available in the application catalog</li>
+</ul>
+</div>
+</details>
+<!-- Collapsible: Bug Fixes -->
+<details class="chg">
+<summary>Bug Fixes</summary>
+<div class="chg-body">
+<ul class="tight">
+<li>Invoke-VPASCredentialProvider: fixed bug if password being pulled contained a comma would return incorrect values</li>
+<li>Update-VPASAccountFields: fixed case sensitivity issue that prevented updating "RemoteMachinesAccess" parameter for an account</li>
+<li>Updated the metrics output and graphs for the following commands:</li>
+<ul>
+<li>Invoke-VPASMetricsAccounts</li>
+<li>Invoke-VPASMetricsCPM</li>
+<li>Invoke-VPASMetricsPlatforms</li>
+<li>Invoke-VPASMetricsProviders</li>
+<li>Invoke-VPASMetricsPSM</li>
+</ul>
+<li>Get-VPASAllPlatforms: fixed bug where -ExportToCSV would display incorrect information if Get-VPASAllTargetPlatforms was run instead</li>
+<li>Remove-VPASAuthenticationMethod: fixed bug where -WhatIf did not function correctly if the target authentication method does not exist</li>
+<!-- … -->
+</ul>
+</div>
+</details>
+<!-- Collapsible: Breaking Changes -->
+<details class="chg">
+<summary>Breaking Changes</summary>
+<div class="chg-body muted">None - I actively try to keep it this way 😎</div>
+</details>
+<!-- Optional: Older releases -->
+<div>
+<a class="btn btn-chip" href="updates.html">View full changelog</a>
+</div>
+</article>
+</section>
+</main>
+<footer>
+<div class="container">
+<div><strong>VpasModule</strong><div class="muted">© <span id="year"></span> Vadim Melamed • <a href="https://github.com/vmelamed5/VpasModule/blob/VpasModule/LICENSE.md" rel="noopener" target="_blank">MIT License</a></div></div>
+<div>
+<!-- GitHub -->
+<a class="btn btn-chip" href="https://github.com/vmelamed5/VpasModule" rel="noopener" target="_blank">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.41 7.86 10.94.58.11.79-.25.79-.56v-2.02c-3.2.7-3.87-1.39-3.87-1.39-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.72 1.26 3.38.96.1-.76.41-1.26.74-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.3 1.19-3.12-.12-.29-.52-1.45.11-3.01 0 0 .97-.31 3.19 1.19a11.1 11.1 0 0 1 5.8 0c2.22-1.5 3.18-1.19 3.18-1.19.64 1.56.24 2.72.12 3.01.74.82 1.19 1.86 1.19 3.12 0 4.42-2.69 5.39-5.25 5.67.42.36.79 1.08.79 2.19v3.24c0 .31.21.68.8.56A10.96 10.96 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"></path>
+</svg>
 			GitHub
 		</a>
-		
-        <!-- PowerShell Gallery -->
-			<a class="btn btn-chip" href="https://www.powershellgallery.com/packages/VpasModule/" target="_blank" rel="noopener">
-			  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32" style="margin-right:6px">
-				<rect width="32" height="32" rx="4" fill="#0273B3"/>
-				<path d="M7 23l7-14c.3-.7 1.1-1 1.8-.7.7.3 1 1.1.7 1.8l-7 14c-.3.7-1.1 1-1.8.7-.7-.3-1-1.1-.7-1.8Zm6 2h10c.6 0 1-.4 1-1s-.4-1-1-1H13c-.6 0-1 .4-1 1s.4 1 1 1Z" fill="#fff"/>
-			  </svg>
+<!-- PowerShell Gallery -->
+<a class="btn btn-chip" href="https://www.powershellgallery.com/packages/VpasModule/" rel="noopener" target="_blank">
+<svg height="18" viewbox="0 0 32 32" width="18" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#0273B3" height="32" rx="4" width="32"></rect>
+<path d="M7 23l7-14c.3-.7 1.1-1 1.8-.7.7.3 1 1.1.7 1.8l-7 14c-.3.7-1.1 1-1.8.7-.7-.3-1-1.1-.7-1.8Zm6 2h10c.6 0 1-.4 1-1s-.4-1-1-1H13c-.6 0-1 .4-1 1s.4 1 1 1Z" fill="#fff"></path>
+</svg>
 			  PS Gallery
 			</a>
-		  
-        <!-- Support -->
-		  <a class="btn btn-chip" href="about.html">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" style="margin-right:6px" viewBox="0 0 24 24">
-			  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 
+<!-- Support -->
+<a class="btn btn-chip" href="about.html">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6 
 					   3.99 4 6.5 4c1.74 0 3.41 1.01 
 					   4.13 2.44h1.74C14.09 5.01 15.76 4 
 					   17.5 4 20.01 4 22 6 22 8.5c0 
 					   3.78-3.4 6.86-8.55 11.54L12 
-					   21.35z"/>
-			</svg>
+					   21.35z"></path>
+</svg>
 			Support
 		  </a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Overlays -->
-  <div id="palette" class="dialog hidden" aria-hidden="true">
-    <div class="backdrop" data-close="palette"></div>
-    <div class="panel">
-      <h3 class="title">Command Palette <span class="muted" style="font-size:12px">(⌘/Ctrl+K)</span></h3>
-      <input id="paletteSearch" class="search" placeholder="Search commands, scripts, actions…"/>
-      <div id="paletteList" class="list" style="margin-top:10px"></div>
-    </div>
-  </div>
-
-  <div id="cmdDialog" class="dialog hidden" aria-hidden="true">
-    <div class="backdrop" data-close="cmdDialog"></div>
-    <div class="panel">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-        <h3 id="cmdTitle" class="title" style="margin:0"></h3>
-        <button class="btn btn-chip btn-xs" data-close="cmdDialog">Close</button>
-      </div>
-      <div id="cmdBody"></div>
-    </div>
-  </div>
-
-  <script>
+</div>
+</div>
+</footer>
+<!-- Overlays -->
+<div aria-hidden="true" class="dialog hidden" id="palette">
+<div class="backdrop" data-close="palette"></div>
+<div class="panel">
+<h3 class="title">Command Palette <span class="muted">(⌘/Ctrl+K)</span></h3>
+<input class="search" id="paletteSearch" placeholder="Search commands, scripts, actions…"/>
+<div class="list" id="paletteList"></div>
+</div>
+</div>
+<div aria-hidden="true" class="dialog hidden" id="cmdDialog">
+<div class="backdrop" data-close="cmdDialog"></div>
+<div class="panel">
+<div>
+<h3 class="title" id="cmdTitle"></h3>
+<button class="btn btn-chip btn-xs" data-close="cmdDialog">Close</button>
+</div>
+<div id="cmdBody"></div>
+</div>
+</div>
+<script>
 
     // ---------- Utilities ----------
     const $ = (sel, ctx=document) => ctx.querySelector(sel);
