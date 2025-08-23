@@ -254,3 +254,25 @@ body.noscroll{ overflow:hidden }
     max-width: 100%;
   }
 }
+
+
+/* Troubleshooting FAQ collapsibles */
+details.faq {
+  border:1px solid var(--border);
+  border-radius:12px;
+  margin:10px 0;
+  background:#0b1226;
+}
+details.faq[open] { background:#0f172a; }
+details.faq > summary {
+  cursor:pointer;
+  list-style:none;
+  padding:10px 12px;
+  font-weight:600;
+}
+details.faq > summary::-webkit-details-marker { display:none; }
+details.faq > summary::after {
+  content:"▸"; float:right; transition:transform .15s ease;
+}
+details.faq[open] > summary::after { transform:rotate(90deg); }
+.faq-body { padding:10px 12px 12px; border-top:1px solid var(--border); }
