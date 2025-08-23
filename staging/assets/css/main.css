@@ -1,3 +1,5 @@
+html { scroll-behavior: smooth; }
+
 :root{
     --bg:#0a0f1a;
     --slate-900:#0b1226;
