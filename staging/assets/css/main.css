@@ -278,3 +278,35 @@ details.faq > summary::after {
 }
 details.faq[open] > summary::after { transform:rotate(90deg); }
 .faq-body { padding:10px 12px 12px; border-top:1px solid var(--border); }
+
+
+
+/* === Mobile menu (hamburger) === */
+.menu-toggle{
+  display:flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:10px;
+  border:1px solid var(--border); background:#0f172a; color:var(--text);
+  cursor:pointer; padding:0; margin-left:10px;
+}
+.menu-toggle:hover{ background:#121a2e }
+.menu-toggle svg{ width:20px; height:20px; display:block }
+@media(min-width:900px){ .menu-toggle{ display:none } }
+
+/* Panel */
+.mobilemenu{
+  position:fixed; left:0; right:0; top:64px;
+  background:#0b1226; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  box-shadow: var(--shadow);
+  display:none; z-index:55;
+}
+body.menu-open .mobilemenu{ display:block }
+.mobilemenu .panel{ padding:12px }
+.mobilemenu a{
+  display:block; padding:12px; border-radius:10px; border:1px solid transparent;
+}
+.mobilemenu a:hover{ background:#121a2e; border-color:var(--border) }
+.mobilemenu .row{ display:grid; grid-template-columns:1fr 1fr; gap:8px }
+@media(max-width:520px){ .mobilemenu .row{ grid-template-columns:1fr } }
+
+/* Prevent body scroll when menu is open (optional) */
+body.menu-open{ overflow:hidden }
