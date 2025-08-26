@@ -49,6 +49,7 @@
 <div class="muted" style="font-size:12px;color:#ccc;">PowerShell module for CyberArk APIs</div>
 </div>
 </a>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobilemenu"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 7h16v2H4V7zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg></button>
 <nav class="navlinks">
 <a href="install.html">Install</a>
 <a href="commands.html">Commands</a>
@@ -60,6 +61,19 @@
 </nav>
 </div>
 </header>
+<nav id="mobilemenu" class="mobilemenu" role="navigation" aria-label="Mobile menu">
+  <div class="container panel">
+    <div class="row">
+      <a href="install.html">Install</a>
+      <a href="commands.html">Commands</a>
+      <a href="scriptbuilder.html">ScriptBuilder</a>
+      <a href="common.html">Common Scripts</a>
+      <a href="updates.html">Updates</a>
+      <a href="about.html">About</a>
+      <a href="https://docs.cyberark.com" target="_blank" rel="noopener">Docs</a>
+    </div>
+  </div>
+</nav>
 <main id="top">
 <section class="hero">
 <div class="container">
@@ -440,5 +454,20 @@
       });
     })();
   </script>
+  <script>
+  (function(){
+    var btn = document.querySelector('.menu-toggle');
+    var mm = document.getElementById('mobilemenu');
+    if(!btn || !mm) return;
+    function closeMenu(){ document.body.classList.remove('menu-open'); btn.setAttribute('aria-expanded','false'); }
+    function openMenu(){ document.body.classList.add('menu-open'); btn.setAttribute('aria-expanded','true'); }
+    btn.addEventListener('click', function(){
+      var open = document.body.classList.contains('menu-open');
+      open ? closeMenu() : openMenu();
+    });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeMenu(); }});
+    mm.addEventListener('click', function(e){ if(e.target.tagName==='A'){ closeMenu(); }});
+  })();
+</script>
 </body>
 </html>
