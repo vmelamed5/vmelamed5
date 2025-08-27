@@ -46,6 +46,22 @@ html { scroll-behavior: smooth; }
   .btn-chip{background:#0f172a;border-color:#2a3550}
   .btn-xs{padding:.35rem .55rem;font-size:12px;border-radius:9px}
 
+  .donation-row, .donate-row{
+	  display: flex;
+	  justify-content: center;  /* centers items horizontally */
+	  align-items: center;       /* vertically aligns icons to the middle */
+
+	  flex-wrap: wrap;           /* wrap on small screens */
+	}
+
+  @media (max-width: 860px){
+	  .about-page .kudos,
+	  .about-page .socials{
+		justify-content: center;
+		text-align: center;
+	  }
+	}
+
   /* Layout pieces */
   .hero{padding:64px 0 16px}
   .grid{display:grid;gap:16px}
