@@ -61,6 +61,7 @@ html { scroll-behavior: smooth; }
 		text-align: center;
 	  }
 	}
+  
 
   /* Layout pieces */
   .hero{padding:64px 0 16px}
@@ -326,3 +327,105 @@ body.menu-open .mobilemenu{ display:block }
 
 /* Prevent body scroll when menu is open (optional) */
 body.menu-open{ overflow:hidden }
+
+
+/* ===== Commands page (moved from commands.html) ===== */
+.commands-page #setTabs .btn.btn-chip.is-active{
+  background: linear-gradient(135deg, var(--indigo-600) 0%, var(--purple) 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(79,70,229,.35), inset 0 0 0 1px rgba(255,255,255,.12);
+  transform: translateY(-1px);
+}
+.commands-page #setTabs .btn.btn-chip.is-active:hover{ filter: brightness(1.03); }
+.commands-page #setTabs .btn.btn-chip:focus-visible{ outline: 2px solid var(--indigo-500); outline-offset: 2px; }
+
+/* Modal & sections */
+.commands-page .modal-section{ margin-top:18px }
+.commands-page .section-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.commands-page .tabs{ display:flex; gap:6px; flex-wrap:wrap; }
+.commands-page .tabs .tab{ border:1px solid var(--border); border-radius:999px; padding:.25rem .6rem; cursor:pointer; }
+.commands-page .tabs .tab.active{ background:#0b1226; }
+.commands-page .table-wrap{ overflow:auto; border:1px solid var(--border); border-radius:12px; }
+.commands-page #paramTable{ width:100%; border-collapse:collapse; }
+.commands-page #paramTable th, 
+.commands-page #paramTable td{ padding:.5rem .6rem; border-bottom:1px solid var(--border); vertical-align:top; }
+
+/* Sub-details & summary caret */
+.commands-page .sub-details{ margin-top:8px; }
+.commands-page .sub-details > summary{ padding-left:6px; }
+.commands-page .sub-details .cmd-grid{ margin-top:8px; }
+
+/* Hide native summary marker (ensure caret only) */
+.commands-page details > summary { list-style: none; }
+.commands-page summary::-webkit-details-marker { display: none; }
+.commands-page summary::marker { display: none; content: ""; }
+.commands-page summary { cursor: pointer; }
+
+/* Search / toolbar layout on mobile */
+@media (max-width: 860px){
+  .commands-page .search{ display:flex !important; flex-wrap:wrap; gap:8px; align-items:center; width:100%; }
+  .commands-page #searchInput{ flex:1 1 auto; min-width:0; order:1; }
+  .commands-page #groupFilter{ order:2; width:100%; }
+  .commands-page #clearBtn{ order:3; width:100%; }
+  .commands-page .toolbar{ display:flex !important; flex-direction:column; gap:10px; }
+  .commands-page .count-chip{ width:100%; text-align:center; }
+}
+
+/* Commands top toolbar and cards */
+.commands-page .toolbar{ display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+.commands-page .search{ display:flex; gap:8px; align-items:center; }
+.commands-page .search input{ width: min(560px, 100%); width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:12px; background:#0b1226; color:var(--text); }
+.commands-page .search .btn{ white-space:nowrap; }
+.commands-page .count-chip{ font-size:12px; padding:2px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted); }
+.commands-page .cat-summary{ display:flex; align-items:center; gap:8px; justify-content:space-between; }
+.commands-page .cat-summary .left{ display:flex; align-items:center; gap:10px; }
+.commands-page .cat-summary .right{ display:flex; align-items:center; gap:8px; }
+.commands-page .caret{ width:14px; height:14px; transform:rotate(-90deg); transition:transform .2s ease; opacity:.75; }
+.commands-page details[open] .caret{ transform:rotate(0deg); }
+.commands-page .cmd-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+.commands-page .cmd-card{ padding:14px; }
+.commands-page .cmd-card h4{ margin:0 0 6px; font-size:16px; }
+.commands-page .cmd-meta{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.commands-page .tag{ font-size:11px; padding:2px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted); }
+.commands-page .cmd-actions{ display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+.commands-page .permalink{ opacity:.75; }
+.commands-page mark{ background:transparent; color:inherit; border-bottom:2px solid rgba(255,255,255,.15); }
+
+/* Modal frame */
+.commands-page .modal{ position:fixed; inset:0; display:none; align-items:flex-start; justify-content:center; background:rgba(0,0,0,.55); z-index:80; padding:48px 12px 24px }
+.commands-page .modal.open{ display:flex }
+.commands-page .modal-card{ background:#0b1226; border:1px solid var(--border); border-radius:16px; max-width:960px; width:100%; box-shadow:var(--shadow) }
+.commands-page .modal-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:14px 16px; border-bottom:1px solid var(--border) }
+.commands-page .modal-body{ padding:16px; display:grid; grid-template-columns:1fr; gap:14px; max-height:70vh; overflow:auto }
+.commands-page .modal h3{ margin:0 }
+.commands-page .muted-kicker{ font-size:12px; color:var(--muted) }
+.commands-page .code{ font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background:#0f172a; border:1px solid var(--border); border-radius:10px; padding:10px; overflow:auto }
+.commands-page .kv{ display:grid; grid-template-columns:180px 1fr; gap:8px }
+@media(max-width:680px){ .commands-page .kv{ grid-template-columns:1fr } }
+.commands-page .tbl{ width:100%; border-collapse:collapse }
+.commands-page .tbl th, .commands-page .tbl td{ border-bottom:1px solid var(--border); padding:8px 6px; text-align:left; vertical-align:top }
+.commands-page .tbl th{ font-size:12px; color:var(--muted) }
+.commands-page .modal-actions{ display:flex; gap:8px; flex-wrap:wrap; align-items:center }
+.commands-page .close{ border-radius:10px; border:1px solid var(--border); background:#0f172a; color:var(--text); padding:8px 10px; cursor:pointer }
+
+/* Hide empty groups when searching */
+.commands-page .group-empty{ display:none }
+
+/* Right-align copy buttons in Examples and Output */
+.commands-page #examples .card .card-head,
+.commands-page #outputCards .card .card-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.commands-page #examples .card .card-head > .btn,
+.commands-page #outputCards .card .card-head > .btn{
+  margin-left:auto;
+}
+@media (max-width: 640px) {
+  .commands-page #examples .card .card-head,
+  .commands-page #outputCards .card .card-head { flex-wrap: wrap; gap: 6px; }
+  .commands-page #examples .card .card-head > .btn,
+  .commands-page #outputCards .card .card-head > .btn { margin-left: 0; white-space: nowrap; }
+}
