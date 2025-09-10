@@ -212,6 +212,42 @@ body.noscroll{ overflow:hidden }
 .lightbox img{ max-width:min(96vw,1200px); max-height:90vh; border-radius:14px; border:1px solid var(--border); box-shadow:var(--shadow) }
 .lightbox .close{ position:absolute; top:14px; right:14px }
 
+/* One look for all Version chips */
+.tag-version {
+  background: #1f2430;      /* dark slate (works on dark UI) */
+  color: #e8edff;           /* soft light text */
+  border-color: rgba(136,146,176,.35);
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* Subcategory chip: outline + bucket tint */
+.tag.tag-sub{
+  background: transparent;
+  color: #cfd4e0;                  /* neutral text */
+  border-color: rgba(180,190,210,.35);
+  font-weight: 500;
+}
+
+/* Tints by bucket */
+.tag.tag-sub.is-pam{
+  color:#cfd5ff;
+  border-color:rgba(99,102,241,.35);      /* indigo */
+}
+.tag.tag-sub.is-identity{
+  color:#b8fff1;
+  border-color:rgba(34,197,194,.35);      /* teal */
+}
+.tag.tag-sub.is-sia{
+  color:#ffe3a3;
+  border-color:rgba(245,158,11,.35);      /* amber */
+}
+.tag.tag-sub.is-connector{
+  color:#ffc4ef;
+  border-color:rgba(236,72,153,.35);      /* fuchsia */
+}
+
+
 /* Toast */
 #toast{
   position: fixed;
@@ -429,3 +465,60 @@ body.menu-open{ overflow:hidden }
   .commands-page #examples .card .card-head > .btn,
   .commands-page #outputCards .card .card-head > .btn { margin-left: 0; white-space: nowrap; }
 }
+
+
+/* === Modal header: title left, tags below title, actions right === */
+.commands-page .modal-head{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "left actions"
+    "tags actions";
+  align-items:center;
+  gap:10px;
+  padding:12px 16px;
+}
+.commands-page .modal-head .head-left{ 
+  grid-area:left; 
+  min-width:0; /* allow ellipsis */
+}
+.commands-page .modal-head #cmdTags{ 
+  grid-area:tags; 
+  margin-top:4px;
+}
+.commands-page .modal-head .modal-actions{ 
+  grid-area:actions; 
+  justify-self:end; 
+  display:flex; 
+  gap:8px; 
+  flex-wrap:nowrap; 
+}
+/* Keep long command names on one line with ellipsis */
+.commands-page #cmdTitle{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width: 100%;
+}
+
+/* Responsive: stack actions below on narrow screens */
+@media (max-width: 700px){
+  .commands-page .modal-head{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "left"
+      "tags"
+      "actions";
+  }
+  .commands-page .modal-head .modal-actions{
+    justify-self:start;
+    flex-wrap:wrap;
+  }
+}
+
+/* Clickable tag chips + active state */
+.tag.tag-click{ cursor:pointer; user-select:none; }
+.tag.tag-click:active{ transform: translateY(1px); }
+.tag.tag-click.is-active{ outline:2px solid rgba(136,146,176,.45); }
+#activeTagFilter{ display:flex; gap:6px; flex-wrap:wrap; }
+
