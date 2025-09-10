@@ -3,7 +3,7 @@
 #REMINDERS!!!
 #    Import the correct version of the module
 
-#import-module VpasModule -RequiredVersion 14.6.0 -Force
+import-module VpasModule -RequiredVersion 14.6.0 -Force
 
 function xmlout{
     param($name,$tab,$str,$initial)
@@ -294,8 +294,8 @@ function Format-LooseChunks {
 }
 
 $commandcount = 0
-$AllCommands = Get-Command -Module vpasmodule
-#$AllCommands = @{Name="Add-VPASSafeMember"} #<-- TESTING
+#$AllCommands = Get-Command -Module vpasmodule
+$AllCommands = @{Name="Remove-VPASAccount"} #<-- TESTING
 $maxcommandcount = $AllCommands.Count
 foreach($command in $AllCommands.Name){
     $commandcount += 1
@@ -508,8 +508,26 @@ foreach($command in $AllCommands.Name){
             }
         }
     
+        #Write-Host $successreturn -ForegroundColor Green
+        #$successreturn | clip
+
         if($successreturn -ne "`$true"){
-            if($command -eq "New-VPASPSMSession" -or $command -eq "Watch-VPASActivePSMSession"){        
+            $specialcommands = @(
+                "New-VPASPSMSession",
+                "Watch-VPASActivePSMSession",
+                "Add-VPASIdentityRole",
+                "Get-VPASAccountPrivateSSHKey",
+                "Get-VPASPasswordValue",
+                "Invoke-VPASAccountPasswordAction",
+                "Invoke-VPASMetricsAccounts",
+                "Invoke-VPASMetricsCPM",
+                "Invoke-VPASMetricsPlatforms",
+                "Invoke-VPASMetricsProviders",
+                "Invoke-VPASMetricsPSM",
+                "Invoke-VPASQuery",
+                "New-VPASIdentityGenerateUserPassword"
+            )
+            if($specialcommands.Contains($command)){        
                 $successreturn = Format-LooseChunks $successreturn -AsHtmlLiteral
             }
             else{
@@ -517,6 +535,7 @@ foreach($command in $AllCommands.Name){
             }
         }
 
+        #Write-Host $successreturn -ForegroundColor yellow
 
         xmlout -name $command -tab 3 -str "],"
         xmlout -name $command -tab 3 -str "output:["
