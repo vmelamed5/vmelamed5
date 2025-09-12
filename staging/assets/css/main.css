@@ -522,3 +522,54 @@ body.menu-open{ overflow:hidden }
 .tag.tag-click.is-active{ outline:2px solid rgba(136,146,176,.45); }
 #activeTagFilter{ display:flex; gap:6px; flex-wrap:wrap; }
 
+/* Beta disclaimer banner */
+.banner {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 12px; margin: 0 0 16px 0; border-radius: 10px;
+}
+.banner-warning {
+  background: #1f1400;            /* dark amber background for dark UI */
+  border: 1px solid #5f3b00;
+  color: #ffdca3;
+}
+.banner-text { line-height: 1.35; }
+.banner-close {
+  background: transparent; border: 0; color: #ffdca3; cursor: pointer;
+  font-size: 18px; line-height: 1; padding: 0 4px; opacity: 0.85;
+}
+.banner-close:hover { opacity: 1; }
+
+/* Down-arrow caret on the command combobox button */
+#cmdComboBtn {
+  position: relative;
+  padding-right: 28px;            /* room for the caret */
+}
+
+/* caret (triangle) */
+#cmdComboBtn::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);    /* vertically center */
+  pointer-events: none;
+  opacity: 0.85;
+
+  /* triangle pointing down */
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid currentColor;
+}
+
+/* flip caret when open */
+#cmdComboBtn[aria-expanded="true"]::after {
+  transform: translateY(-50%) rotate(180deg);
+  opacity: 1;
+}
+
+/* optional: hover/focus polish */
+#cmdComboBtn:hover::after,
+#cmdComboBtn:focus-visible::after {
+  opacity: 1;
+}
