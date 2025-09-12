@@ -573,3 +573,101 @@ body.menu-open{ overflow:hidden }
 #cmdComboBtn:focus-visible::after {
   opacity: 1;
 }
+
+/* Bigger, themed checkboxes for parameter fields only */
+#paramForm input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;              /* size */
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 6px;
+  background: #48494B;      /* match your dark background */
+  border: 1.5px solid #1b2a3b;
+  display: inline-grid;
+  place-content: center;
+  vertical-align: -3px;     /* aligns with label text nicely */
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+#paramForm input[type="checkbox"]:hover {
+  border-color: #2a72c6;    /* subtle hover hint */
+}
+
+#paramForm input[type="checkbox"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(42,114,198,.45); /* accessible focus ring */
+}
+
+#paramForm input[type="checkbox"]:checked {
+  background-color: #4f46e5;    /* blue fill when selected */
+  /* white checkmark */
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'>\
+<path d='M3.5 8.5l3 3 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Optional: add a bit more spacing below each checkbox control */
+#paramForm input[type="checkbox"] { margin-top: 6px; }
+
+/* Themed checkboxes for AUTH EXTRAS (same look as param fields) */
+#authExtras input[type="checkbox"],
+#optNoSSL[type="checkbox"],
+#optHideAscii[type="checkbox"],
+#optCookie[type="checkbox"],
+#optTextRec[type="checkbox"],
+#optHideWarn[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 6px;
+  background: #48494B;        /* dark bg (unchecked) */
+  border: 1.5px solid #1b2a3b;
+  display: inline-grid;
+  place-content: center;
+  vertical-align: -3px;
+  cursor: pointer;
+  margin-right: 8px;          /* gap before label text */
+  transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+#authExtras input[type="checkbox"]:hover,
+#optNoSSL[type="checkbox"]:hover,
+#optHideAscii[type="checkbox"]:hover,
+#optCookie[type="checkbox"]:hover,
+#optTextRec[type="checkbox"]:hover,
+#optHideWarn[type="checkbox"]:hover {
+  border-color: #2a72c6;
+}
+
+#authExtras input[type="checkbox"]:focus-visible,
+#optNoSSL[type="checkbox"]:focus-visible,
+#optHideAscii[type="checkbox"]:focus-visible,
+#optCookie[type="checkbox"]:focus-visible,
+#optTextRec[type="checkbox"]:focus-visible,
+#optHideWarn[type="checkbox"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(42,114,198,.45);
+}
+
+#authExtras input[type="checkbox"]:checked,
+#optNoSSL[type="checkbox"]:checked,
+#optHideAscii[type="checkbox"]:checked,
+#optCookie[type="checkbox"]:checked,
+#optTextRec[type="checkbox"]:checked,
+#optHideWarn[type="checkbox"]:checked {
+  background-color: #4f46e5;  /* blue when selected */
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'>\
+<path d='M3.5 8.5l3 3 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
