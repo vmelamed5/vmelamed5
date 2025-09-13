@@ -671,3 +671,645 @@ body.menu-open{ overflow:hidden }
   background-position: center;
 }
 
+/* ================= Theme toggle button ================= */
+.theme-btn{
+  display:flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:10px;
+  border:1px solid var(--border); background:#0f172a; color:var(--text);
+  cursor:pointer; padding:0; margin-left:10px;
+}
+.theme-btn:hover{ background:#121a2e }
+.theme-btn .i-moon{ display:none; }
+.theme-light .theme-btn{ background:#f8f9ff; color:#4338ca; border-color:#e5e7eb; }
+.theme-light .theme-btn:hover{ background:#eef2ff; }
+.theme-light .theme-btn .i-sun{ display:none; }
+.theme-light .theme-btn .i-moon{ display:block; }
+
+/* ================= Light theme (SOFT) ================= */
+/* Apply by adding .theme-light to <html> (your toggle already does this) */
+.theme-light {
+  /* softer canvas + neutrals */
+  --bg: #f5f7fb;            /* page background (soft light gray/blue) */
+  --slate-950: #f5f7fb;     /* your globals reference this */
+  --card: #ffffff;          /* cards/surfaces still white for contrast */
+  --border: #e6eaf2;        /* softer border */
+  --text: #0b1226;          /* strong readable text */
+  --muted: #52607a;         /* secondary text */
+  /* accents stay purple/indigo */
+  --indigo: #6366f1;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --purple: #a78bfa;
+  --shadow: 0 10px 30px rgba(9,17,33,.08);
+}
+
+/* Canvas/text */
+.theme-light html,
+.theme-light body{
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Header: off-white bar (not pure white) */
+.theme-light header{
+  background: #f8fafc !important;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Brand text in header */
+.theme-light header .name{ color:#0b1226; }
+.theme-light header .muted{ color:#64748b; }
+
+/* Cards / code / inputs */
+.theme-light .card{ background:var(--card); border-color:var(--border); box-shadow:var(--shadow); }
+.theme-light .code{ background:#f3f6fb; border-color:var(--border); }
+.theme-light .input{ background:#ffffff; color:#0b1226; border-color:var(--border); }
+.theme-light .btn{ background:#ffffff; color:#0b1226; border-color:var(--border); }
+.theme-light .btn:hover{ background:#eef2ff; }
+.theme-light .btn-ghost{ background:#f3f6fb; }
+.theme-light .btn-chip{ background:#f3f6fb; }
+
+/* Theme toggle button polish on light */
+.theme-light .theme-btn{
+  background:#f2f5ff;
+  color:#4338ca;
+  border-color:#e6eaf2;
+}
+.theme-light .theme-btn:hover{ background:#eaf0ff; }
+
+/* Menus / dialogs */
+.theme-light .mobilemenu{
+  background:#ffffff;
+  border-top-color:var(--border);
+  border-bottom-color:var(--border);
+}
+.theme-light .mobilemenu a:hover{ background:#eef2ff; }
+
+.theme-light .dialog .backdrop{ background:rgba(2,6,23,.40); }
+.theme-light .dialog .panel{ background:#ffffff; border-color:var(--border); }
+
+/* Details blocks */
+.theme-light details.chg,
+.theme-light details.faq{ background:#ffffff; border-color:var(--border); }
+.theme-light details.chg[open],
+.theme-light details.faq[open]{ background:#f3f6fb; }
+
+/* Labels keep contrast */
+.theme-light .label{ color:#334155; }
+
+/* Gradient accent still pops on light */
+.theme-light .gradient{
+  background: linear-gradient(90deg,#5b6efc,#a78bfa);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* Light theme: make brand text readable on light header */
+.theme-light header .brand,
+.theme-light header .brand *,
+.theme-light header .brand .name,
+.theme-light header .brand strong {
+  color: #0b1226 !important; /* deep slate */
+}
+
+/* If the mark is an inline SVG, force it to follow text color */
+.theme-light header .brand svg,
+.theme-light header .brand svg * {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.theme-light .badge,
+.theme-light .tag-version {
+  background: #e9eef7;      /* soft light gray/blue */
+  border-color: #c7cfdb;    /* subtle border */
+  color: #0b1226;           /* deep slate text */
+}
+/* Header nav links */
+.theme-light header .navlinks a:hover,
+.theme-light nav a:hover {
+  background: #e9edf5;            /* soft dark-gray/blue */
+  color: #0b1226;
+}
+
+/* Primary/secondary buttons */
+.theme-light .btn:hover,
+.theme-light .btn:focus-visible {
+  background: #e7ebf3;            /* darker than white, lighter than black */
+  border-color: #d5dbe7;
+  color: #0b1226;
+}
+
+/* Ghost/chip buttons & subtle controls */
+.theme-light .btn-ghost:hover,
+.theme-light .btn-chip:hover {
+  background: #eef2f7;
+  border-color: #dfe5ef;
+}
+
+/* Inputs on hover (optional, for parity) */
+.theme-light .input:hover {
+  border-color: #ccd4e2;
+  background: #fbfcff;
+}
+
+/* Table/list rows, if you use .row:hover anywhere */
+.theme-light .row:hover {
+  background: #f0f3f8;
+}
+
+/* Generic chip/pill buttons */
+.theme-light .btn.btn-chip,
+.theme-light .pill {
+  background: #e6ebf3;          /* soft dark gray */
+  border-color: #d5dbe7;
+  color: #0b1226;               /* deep slate text */
+}
+.theme-light .btn.btn-chip:hover,
+.theme-light .pill:hover {
+  background: #dfe5ef;          /* slightly darker on hover */
+  border-color: #c7cfdb;
+}
+
+/* Parameter-set tabs (keep active pill readable & distinct) */
+.theme-light #setTabs .btn.btn-chip.is-active {
+  background: #e0e7ff;          /* light indigo tint */
+  border-color: #c7d2fe;
+  color: #1e3a8a;
+}
+
+/* Auth pills (Step 1) */
+.theme-light #authPills .pill {
+  background: #e6ebf3;
+  border: 1px solid #d5dbe7;
+  color: #0b1226;
+}
+.theme-light #authPills .pill[aria-pressed="true"] {
+  background: #e0e7ff;
+  border-color: #c7d2fe;
+  color: #1e3a8a;
+}
+
+/* Light theme: copy icon + toast */
+.theme-light .copy-icon{
+  background:#f3f6fb;
+  color:#0b1226;
+  border-color:#e6eaf2;
+}
+.theme-light .copy-icon:hover{ background:#eaf0ff; }
+.theme-light .copy-icon.copied{ box-shadow:0 0 0 2px rgba(79,70,229,.35) inset; }
+
+.theme-light #toast{
+  background:#ffffff;
+  color:var(--text);        /* already #0b1226 in light theme */
+  border-color:var(--border);
+  box-shadow:var(--shadow);
+}
+
+/* Light theme: mobile menu toggle */
+.theme-light .menu-toggle{
+  background:#f8f9ff;
+  color:#4338ca;          /* svg uses fill="currentColor" so it swaps too */
+  border-color:#e6eaf2;
+}
+.theme-light .menu-toggle:hover{ background:#eef2ff; }
+.theme-light .menu-toggle:focus-visible{
+  outline:2px solid var(--indigo-500);
+  outline-offset:2px;
+}
+
+/* Theme button base */
+.theme-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:36px; height:36px; border-radius:999px;
+  background:#0f172a; color:#e5e7eb; border:1px solid #1f2937;
+  cursor:pointer; transition:background .16s,color .16s,border-color .16s,box-shadow .16s;
+}
+.theme-btn:hover{ background:#111827; }
+.theme-btn:focus-visible{ outline:2px solid var(--indigo-500); outline-offset:2px; }
+
+/* Icon swap: dark shows moon, light shows sun */
+.theme-btn .i-sun{ display:none; }
+.theme-btn .i-moon{ display:inline; }
+.theme-light .theme-btn{ background:#f8f9ff; color:#0b1226; border-color:#e6eaf2; }
+.theme-light .theme-btn:hover{ background:#eef2ff; }
+.theme-light .theme-btn .i-sun{ display:inline; }
+.theme-light .theme-btn .i-moon{ display:none; }
+
+/* (from earlier) light variants you wanted */
+.theme-light .copy-icon{ background:#f3f6fb; color:#0b1226; border-color:#e6eaf2; }
+.theme-light .copy-icon:hover{ background:#eaf0ff; }
+.theme-light .copy-icon.copied{ box-shadow:0 0 0 2px rgba(79,70,229,.35) inset; }
+.theme-light #toast{ background:#fff; color:var(--text); border-color:var(--border); box-shadow:var(--shadow); }
+.theme-light .menu-toggle{ background:#f8f9ff; color:#4338ca; border-color:#e6eaf2; }
+.theme-light .menu-toggle:hover{ background:#eef2ff; }
+
+.theme-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:999px;
+  background:#0f172a;color:#e5e7eb;border:1px solid #1f2937;
+  cursor:pointer;transition:background .16s,color .16s,border-color .16s,box-shadow .16s;
+}
+.theme-btn .i-sun{display:none;} .theme-btn .i-moon{display:inline;}
+.theme-light .theme-btn{background:#f8f9ff;color:#0b1226;border-color:#e6eaf2;}
+.theme-light .theme-btn:hover{background:#eef2ff;}
+.theme-light .theme-btn .i-sun{display:inline;} .theme-light .theme-btn .i-moon{display:none;}
+
+/* Light header overrides for Updates page (beats inline dark styles) */
+.theme-light .updates-page header{ background:#ffffff !important; }
+.theme-light .updates-page header .name{ color:#0b1226 !important; }
+.theme-light .updates-page header .muted{ color:#606b85 !important; }
+
+/* Mobile menu toggle (so the hamburger flips too) */
+.theme-light .menu-toggle{ background:#f8f9ff; color:#4338ca; border-color:#e6eaf2; }
+.theme-light .menu-toggle:hover{ background:#eef2ff; }
+
+/* Changelog panels (details.chg) in light */
+.theme-light details.chg{ background:#ffffff; border-color:#dfe5ef; }
+.theme-light details.chg[open]{ background:#f7faff; }
+.theme-light details.chg > summary:hover{ background:#eef2ff; }
+
+.theme-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:999px;
+  background:#0f172a;color:#e5e7eb;border:1px solid #1f2937;
+  cursor:pointer;transition:background .16s,color .16s,border-color .16s,box-shadow .16s;
+}
+.theme-btn .i-sun{display:none;} .theme-btn .i-moon{display:inline;}
+.theme-light .theme-btn{background:#f8f9ff;color:#0b1226;border-color:#e6eaf2;}
+.theme-light .theme-btn:hover{background:#eef2ff;}
+.theme-light .theme-btn .i-sun{display:inline;} .theme-light .theme-btn .i-moon{display:none;}
+
+/* Header (inline dark in the file) → force light */
+.theme-light .commands-page header{ background:#ffffff !important; }
+.theme-light .commands-page header .name{ color:#0b1226 !important; }
+.theme-light .commands-page header .muted{ color:#606b85 !important; }
+
+/* Hamburger toggle flips too */
+.theme-light .menu-toggle{ background:#f8f9ff; color:#4338ca; border-color:#e6eaf2; }
+.theme-light .menu-toggle:hover{ background:#eef2ff; }
+
+/* Nice-to-have: modal & code blocks in light */
+.theme-light .modal-card{ background:#ffffff; border-color:#e6eaf2; }
+.theme-light pre.code{ background:#f8fafc; color:#0b1226; border:1px solid #e6eaf2; }
+
+/* Tabs look lighter */
+.theme-light .tabs button{ background:#f3f6fb; border-color:#e6eaf2; color:#0b1226; }
+.theme-light .tabs button.active{ background:#eef2ff; border-color:#c7d2fe; color:#3730a3; }
+
+/* Light theme: Commands modal "Close" button */
+.theme-light .commands-page .close{
+  background:#f3f6fb;
+  color:#0b1226;
+  border-color:#e6eaf2;
+}
+.theme-light .commands-page .close:hover{ background:#eaf0ff; }
+.theme-light .commands-page .close:focus-visible{
+  outline:2px solid var(--indigo-500);
+  outline-offset:2px;
+}
+
+/* Light mode — make the whole search bar light */
+.theme-light .commands-page .toolbar{
+  align-items: stretch;
+}
+
+.theme-light .commands-page .search{
+  background:#fff;                 /* light surface */
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:8px;
+  box-shadow:var(--shadow);
+  display:flex;
+  gap:8px;
+}
+
+/* Inputs in the pill */
+.theme-light .commands-page .search input[type="search"],
+.theme-light .commands-page .search select{
+  background:#fff;
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:10px;
+}
+.theme-light .commands-page .search input::placeholder{
+  color:#8a96ab;
+}
+
+/* Count chip sits outside .search; lighten it too (if not already) */
+.theme-light .commands-page .count-chip{
+  background:#eef2f9;
+  border:1px solid #d5dbe7;
+  color:#0b1226;
+}
+
+/* Keep the toolbar items from stretching in light mode */
+.theme-light .commands-page .toolbar{
+  align-items: center;
+}
+
+/* Make the count chip a fixed-height pill in both themes */
+.commands-page .count-chip{
+  display:inline-flex;
+  align-items:center;
+  height:28px;              /* match your pill size */
+  padding:0 10px;
+  border-radius:999px;
+  line-height:1;            /* avoid vertical bloat */
+  box-sizing:border-box;    /* border included in height */
+  align-self:center;        /* don't stretch in flex rows */
+  white-space:nowrap;
+}
+
+/* If you have a small variant, keep it pill-shaped too */
+.commands-page .count-chip.small{
+  height:22px;
+  padding:0 8px;
+  border-radius:999px;
+}
+
+/* Base tag chip in light */
+.theme-light .commands-page .tag{
+  background:#f3f6fb;
+  border-color:#dfe5ef;
+  color:#0b1226;
+}
+
+/* Buckets (first chip) */
+.theme-light .commands-page .tag-pam{        background:#e7e9ff; border-color:#c7cdfa; color:#1e2a78; }
+.theme-light .commands-page .tag-identity{   background:#e6fffb; border-color:#baf3ef; color:#0b4f52; }
+.theme-light .commands-page .tag-sia{        background:#fff2e0; border-color:#ffd8a8; color:#7a4100; }
+.theme-light .commands-page .tag-connector{  background:#ffe6f5; border-color:#f7c2e6; color:#7a144f; }
+
+/* Custom tags */
+.theme-light .commands-page .tag-sharedservices{ background:#e7f7ee; border-color:#c7ebd5; color:#164a2d; }
+.theme-light .commands-page .tag-selfhosted{     background:#e6f4ff; border-color:#c7e2ff; color:#113a59; }
+.theme-light .commands-page .tag-privcloud{      background:#fff5e6; border-color:#ffe3ad; color:#5b3a0d; }
+
+/* Clickable/active state */
+.theme-light .commands-page .tag.tag-click.is-active{
+  background:#e0e7ff; border-color:#c7d2fe; color:#1e3a8a; outline-color:rgba(79,70,229,.35);
+}
+
+/* Light mode: checked state = same indigo as dark, with white check */
+.theme-light .scriptbuilder-page input[type="checkbox"]:checked{
+  background:#4338ca;              /* indigo-600 */
+  border-color:#4338ca;
+  color:#fff;
+  background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">\
+  <path fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 10.5l3 3 7-7"/>\
+</svg>');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:14px 14px;
+}
+
+.theme-light .scriptbuilder-page input[type="checkbox"]:checked:hover{
+  background:#4f46e5;              /* indigo-500 hover */
+  border-color:#4f46e5;
+}
+
+.theme-light .scriptbuilder-page input[type="checkbox"]:checked:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(99,102,241,.35);
+}
+
+/* Optional: indeterminate state (if you use it) */
+.theme-light .scriptbuilder-page input[type="checkbox"]:indeterminate{
+  background:#4338ca;
+  border-color:#4338ca;
+  background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">\
+  <rect x="5" y="9" width="10" height="2" rx="1" ry="1" fill="white"/>\
+</svg>');
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:12px 12px;
+}
+
+/* Theme button (shared) */
+.theme-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:999px;
+  background:#0f172a;color:#e5e7eb;border:1px solid #1f2937;
+  cursor:pointer;transition:background .16s,color .16s,border-color .16s,box-shadow .16s;
+}
+.theme-btn .i-sun{display:none;} .theme-btn .i-moon{display:inline;}
+.theme-light .theme-btn{background:#f8f9ff;color:#0b1226;border-color:#e6eaf2;}
+.theme-light .theme-btn:hover{background:#eef2ff;}
+.theme-light .theme-btn .i-sun{display:inline;} .theme-light .theme-btn .i-moon{display:none;}
+
+/* ScriptBuilder header + hamburger in light */
+.theme-light .scriptbuilder-page header{ background:#ffffff !important; }
+.theme-light .scriptbuilder-page header .name{ color:#0b1226 !important; }
+.theme-light .scriptbuilder-page header .muted{ color:#606b85 !important; }
+.theme-light .menu-toggle{ background:#f8f9ff; color:#4338ca; border-color:#e6eaf2; }
+.theme-light .menu-toggle:hover{ background:#eef2ff; }
+
+/* Pills (auth selectors, set tabs, etc.) — dark code uses white text, so flip to pastels in light */
+.theme-light .scriptbuilder-page .pills .pill,
+.theme-light .scriptbuilder-page .pills-row .pill{
+  background:#f3f6fb;
+  border:1px solid #e6eaf2;
+  color:#0b1226;
+}
+.theme-light .scriptbuilder-page .pill[aria-pressed="true"]{
+  background:#e0e7ff;           /* active */
+  border-color:#c7d2fe;
+  color:#1e3a8a;
+}
+
+/* Parameter-set chips (Set Tabs) */
+.theme-light #setTabs .btn.btn-chip{
+  background:#f3f6fb;
+  border:1px solid #e6eaf2;
+  color:#0b1226;
+}
+.theme-light #setTabs .btn.btn-chip.is-active{
+  background:#e0e7ff;
+  border-color:#c7d2fe;
+  color:#1e3a8a;
+  box-shadow:0 0 0 1px #c7d2fe inset;
+}
+
+/* Command combo panel (search dropdown) */
+.theme-light .combo-panel{
+  background:#ffffff;
+  border:1px solid #dfe5ef;
+  box-shadow:0 8px 24px rgba(9,17,33,.15);
+}
+.theme-light #cmdComboList li{ color:#0b1226; }
+.theme-light #cmdComboList li:hover,
+.theme-light #cmdComboList li.active{
+  background:#eef2ff;
+  color:#1e3a8a;
+}
+
+/* Inputs/fields in the auth area */
+.theme-light .scriptbuilder-page input,
+.theme-light .scriptbuilder-page select,
+.theme-light .scriptbuilder-page textarea{
+  background:#ffffff;
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+/* Cards & code blocks */
+.theme-light .scriptbuilder-page .card{ background:#ffffff; border-color:#e6eaf2; }
+.theme-light .scriptbuilder-page .card .muted{ color:#606b85; }
+.theme-light .scriptbuilder-page pre,
+.theme-light .scriptbuilder-page .code{
+  background:#f8fafc;
+  color:#0b1226;
+  border:1px solid #e6eaf2;
+}
+
+/* Light mode: all custom checkboxes (auth extras + parameter form) */
+.theme-light #paramForm input[type="checkbox"],
+.theme-light #authExtras input[type="checkbox"],
+.theme-light #optNoSSL[type="checkbox"],
+.theme-light #optHideAscii[type="checkbox"],
+.theme-light #optCookie[type="checkbox"],
+.theme-light #optTextRec[type="checkbox"],
+.theme-light #optHideWarn[type="checkbox"]{
+  background:#ffffff;
+  border-color: var(--border);
+  box-shadow: inset 0 1px 0 rgba(9,17,33,.04);
+}
+
+.theme-light #paramForm input[type="checkbox"]:hover,
+.theme-light #authExtras input[type="checkbox"]:hover,
+.theme-light #optNoSSL[type="checkbox"]:hover,
+.theme-light #optHideAscii[type="checkbox"]:hover,
+.theme-light #optCookie[type="checkbox"]:hover,
+.theme-light #optTextRec[type="checkbox"]:hover,
+.theme-light #optHideWarn[type="checkbox"]:hover{
+  background:#f3f6fb;
+  border-color:#c7d2fe; /* subtle indigo hint */
+}
+
+.theme-light #paramForm input[type="checkbox"]:focus-visible,
+.theme-light #authExtras input[type="checkbox"]:focus-visible,
+.theme-light #optNoSSL[type="checkbox"]:focus-visible,
+.theme-light #optHideAscii[type="checkbox"]:focus-visible,
+.theme-light #optCookie[type="checkbox"]:focus-visible,
+.theme-light #optTextRec[type="checkbox"]:focus-visible,
+.theme-light #optHideWarn[type="checkbox"]:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.35); /* light-friendly focus ring */
+}
+
+/* Optional: disabled state reads as disabled on light */
+.theme-light #paramForm input[type="checkbox"]:disabled,
+.theme-light #authExtras input[type="checkbox"]:disabled{
+  background:#eef2f7;
+  border-color:#e6eaf2;
+  cursor:not-allowed;
+  opacity:.75;
+}
+
+/* Light mode: all custom checkboxes (UN-checked only) */
+.theme-light #paramForm input[type="checkbox"]:not(:checked),
+.theme-light #authExtras input[type="checkbox"]:not(:checked),
+.theme-light #optNoSSL[type="checkbox"]:not(:checked),
+.theme-light #optHideAscii[type="checkbox"]:not(:checked),
+.theme-light #optCookie[type="checkbox"]:not(:checked),
+.theme-light #optTextRec[type="checkbox"]:not(:checked),
+.theme-light #optHideWarn[type="checkbox"]:not(:checked){
+  background:#ffffff;
+  border-color: var(--border);
+  box-shadow: inset 0 1px 0 rgba(9,17,33,.04);
+}
+
+/* Light mode: checked = indigo with white check (same as dark) */
+.theme-light #paramForm input[type="checkbox"]:checked,
+.theme-light #authExtras input[type="checkbox"]:checked,
+.theme-light #optNoSSL[type="checkbox"]:checked,
+.theme-light #optHideAscii[type="checkbox"]:checked,
+.theme-light #optCookie[type="checkbox"]:checked,
+.theme-light #optTextRec[type="checkbox"]:checked,
+.theme-light #optHideWarn[type="checkbox"]:checked{
+  background-color:#4f46e5;        /* indigo-600 */
+  border-color:#4f46e5;
+  background-image:url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'>\
+<path d='M3.5 8.5l3 3 6-6'/></svg>");
+  background-repeat:no-repeat;
+  background-position:center;
+}
+
+/* Light mode: make AUTH pills (top row) darker when NOT selected */
+.theme-light .scriptbuilder-page #authPills .pill{
+  background:#c7d2e6;         /* darker slate-blue */
+  border:1px solid #aebcd2;   /* stronger outline */
+  color:#0b1226;
+}
+.theme-light .scriptbuilder-page #authPills .pill:hover{
+  background:#bfcae0;
+  border-color:#a3b2c9;
+}
+
+.theme-light #authPills .pill{
+  background:#c7d2e6;        /* darker base */
+  border:1px solid #aebcd2;
+  color:#0b1226;
+}
+.theme-light #authPills .pill:hover{
+  background:#bfcae0;
+  border-color:#a3b2c9;
+}
+
+/* Active stays blue in light mode (wins over the pastel rule) */
+.theme-light #authPills .pill[aria-pressed="true"]{
+  background:var(--indigo-600);
+  border-color:var(--indigo-600);
+  color:#fff;
+  box-shadow:0 0 0 1px #1c58a1 inset; /* optional, matches other actives */
+}
+
+/* Light mode: friendlier warning banner */
+.theme-light .banner-warning{
+  background:#fff7e6;          /* soft amber */
+  border:1px solid #f3d19e;
+  color:#5a3a00;               /* readable on light */
+  box-shadow:var(--shadow);    /* optional: subtle lift */
+}
+.theme-light .banner-warning .banner-text strong{ color:#7a4100; }
+.theme-light .banner-warning a{ color:#7a4100; text-decoration:underline; }
+
+/* Close “x” matches the lighter amber */
+.theme-light .banner-close{
+  color:#7a4100;
+}
+.theme-light .banner-close:hover{
+  color:#5a2f00;
+  opacity:1;
+}
+
+/* (If needed) Theme button */
+.theme-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:999px;
+  background:#0f172a;color:#e5e7eb;border:1px solid #1f2937;
+  cursor:pointer;transition:background .16s,color .16s,border-color .16s,box-shadow .16s;
+}
+.theme-btn .i-sun{display:none;} .theme-btn .i-moon{display:inline;}
+.theme-light .theme-btn{background:#f8f9ff;color:#0b1226;border-color:#e6eaf2;}
+.theme-light .theme-btn:hover{background:#eef2ff;}
+.theme-light .theme-btn .i-sun{display:inline;} .theme-light .theme-btn .i-moon{display:none;}
+
+/* Common page header (beats inline dark header styles) */
+.theme-light .common-page header{ background:#ffffff !important; }
+.theme-light .common-page header .name{ color:#0b1226 !important; }
+.theme-light .common-page header .muted{ color:#606b85 !important; }
+
+/* Mobile menu toggle flips in light */
+.theme-light .menu-toggle{ background:#f8f9ff; color:#4338ca; border-color:#e6eaf2; }
+.theme-light .menu-toggle:hover{ background:#eef2ff; }
+
+/* Mobile menu panel on light */
+.theme-light .mobilemenu .panel{ background:#ffffff; border-color:#dfe5ef; }
+
+/* Optional: footer chips look consistent on light */
+.theme-light footer .btn.btn-chip{ background:#f3f6fb; border-color:#e6eaf2; color:#0b1226; }
+.theme-light footer .btn.btn-chip:hover{ background:#eaf0ff; }

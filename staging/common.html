@@ -10,7 +10,7 @@
 <link href="images/favicon_theme.ico" rel="icon" type="image/x-icon"/>
 <!-- Copy & Expand icon styles (safe to move to assets/css/main.css) -->
 </head>
-<body class="install-page">
+<body class="common-page">
 
 <header style="background-color:#000;">
 <div class="container nav" style="align-items:center; padding:8px 0;">
@@ -23,6 +23,16 @@
 <div class="muted" style="font-size:12px;color:#ccc;">PowerShell module for CyberArk APIs</div>
 </div>
 </a>
+
+<button id="themeToggle" class="theme-btn" aria-label="Toggle color theme" title="Toggle theme">
+  <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+    <path fill="currentColor" d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-10a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0-6h1v3h-1V2Zm0 17h1v3h-1v-3ZM2 11h3v1H2v-1Zm17 0h3v1h-3v-1ZM4.22 4.22l.7-.7 2.12 2.12-.7.7L4.22 4.22Zm12.74 12.74.7-.7 2.12 2.12-.7.7-2.12-2.12Zm2.12-12.04.7.7-2.12 2.12-.7-.7 2.12-2.12ZM6.34 17.66l.7.7-2.12 2.12-.7-.7 2.12-2.12Z"/>
+  </svg>
+  <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+    <path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+  </svg>
+</button>
+
 <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobilemenu"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 7h16v2H4V7zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg></button>
 <nav class="navlinks">
 <a href="index.html">Home</a>
@@ -113,6 +123,31 @@
     document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeMenu(); }});
     mm.addEventListener('click', function(e){ if(e.target.tagName==='A'){ closeMenu(); }});
   })();
+</script>
+<script>
+(function(){
+  var root = document.documentElement;
+  var key = 'theme';
+  function apply(theme){
+    if (theme === 'light') root.classList.add('theme-light');
+    else root.classList.remove('theme-light');
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(key); } catch(e){}
+  if (!saved) {
+    try { saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark'; }
+    catch(e){ saved = 'dark'; }
+  }
+  apply(saved);
+  var btn = document.getElementById('themeToggle');
+  if (btn){
+    btn.addEventListener('click', function(){
+      var next = root.classList.contains('theme-light') ? 'dark' : 'light';
+      apply(next);
+      try { localStorage.setItem(key, next); } catch(e){}
+    });
+  }
+})();
 </script>
 </body>
 </html>
