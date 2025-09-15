@@ -846,8 +846,13 @@ document.addEventListener('click', function(e){
 	  setTabsEl.querySelectorAll('button').forEach((b,i)=> b.classList.toggle('is-active', i===idx));
       const set = filteredSets[idx];
       paramFormEl.innerHTML = '';
-      const req = (Array.isArray(set.parameters) ? set.parameters.filter(p => !!p.required) : []);
-      const opt = (Array.isArray(set.parameters) ? set.parameters.filter(p => !p.required) : []);
+      const req = (Array.isArray(set.parameters) 
+	  ? set.parameters.filter(p => !!p.required && p.name.toLowerCase() !== "token") 
+	  : []);
+      
+	  const opt = (Array.isArray(set.parameters) 
+	  ? set.parameters.filter(p => !p.required && p.name.toLowerCase() !== "token") 
+	  : []);
 
       const mkField = (p) => {
   const wrap = document.createElement('div');
