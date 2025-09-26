@@ -1,18 +1,164 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>VpasModule • Common Usecases</title>
-<!-- Shared styles -->
-<link href="assets/css/main.css" rel="stylesheet"/>
-<link href="images/favicon_theme.ico" rel="icon" type="image/x-icon"/>
-<!-- Copy & Expand icon styles (safe to move to assets/css/main.css) -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VpasModule • Common Scripts</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="icon" href="images/favicon_theme.ico" type="image/x-icon" />
+  <style>
+    .dialog[hidden]{ display:none !important; }
+    #searchInput { width:100%;}
+		.meta-block { margin: 6px 0 10px; }
+		.meta-block h4 { margin: 0 0 6px; font-size: 14px; }
+		.meta-block p { margin: 0; }
+		.meta-block ul { margin: 6px 0 0; padding-left: 18px; }
+		.divider { border: none; border-top: 1px solid var(--border-color, #ddd); margin: 14px 0; }
+		.code-footer { display:flex; justify-content:flex-end; margin-top:8px; }
+	
+	#scriptModal .panel {
+	  width: 80vw !important;      /* make the dialog ~80% of viewport width */
+	  max-width: 80vw !important;  /* ensure nothing else shrinks it */
+	  max-height: 80vh !important; /* keep it within the viewport height */
+	  overflow-y: auto !important; /* show a vertical scrollbar when needed */
+	  display: block;              /* safety: ensure normal block layout */
+	}
+
+	/* Keep long code blocks usable inside the modal */
+	#scriptModal pre {
+	  max-height: 50vh;  /* cap code block height */
+	  overflow: auto;    /* scroll the code if it’s long */
+	}
+	.btn-group { display:inline-flex; border:1px solid var(--border-color, #ddd); border-radius:10px; overflow:hidden; }
+	.btn-group .btn { border:0; }
+	.btn-group .btn[aria-pressed="true"] { background: var(--accent, var(--brand, #4f46e5)); color:#fff; }
+	
+	/* IDE-style container */
+	.code-ide{
+	  border: 1px solid var(--border-color, #2a2f3a);
+	  border-radius: 10px;
+	  background: var(--code-bg, #0f172a);
+	  color: var(--code-fg, #e2e8f0);
+	}
+
+	/* Visible, scrollable code view with line numbers */
+	.code-ide .code-view{
+	  margin: 0;
+	  padding: 12px 16px;
+	  overflow: auto;
+	  max-height: 50vh;            /* matches your modal sizing */
+	  white-space: pre;
+	  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+	  line-height: 0.8;
+	  tab-size: 2;
+	  counter-reset: line;         /* reset line number counter */
+	}
+
+	/* One block-level span per line */
+	.code-ide .code-view .line{
+	  display: block;
+	  padding-left: 3.5em;         /* space for the gutter numbers */
+	  position: relative;
+	  margin: 0;          /* make sure there’s no per-line margin */
+	  padding-top: 0;     /* (should be 0 already) */
+	  padding-bottom: 0;
+	}
+
+	/* The line-number gutter */
+	.code-ide .code-view .line::before{
+	  content: counter(line);
+	  counter-increment: line;
+	  position: absolute;
+	  left: 0;
+	  width: 3em;
+	  text-align: right;
+	  opacity: .6;
+	  padding-right: .5em;
+	  user-select: none;           /* don't copy the numbers */
+	}
+
+	/* Keep the old raw code out of sight but intact for copy/toggles */
+	.code-hidden{ display: none !important; }
+	
+	#scriptModal .panel {
+	  width: 80vw;
+	  max-width: 80vw;
+	  max-height: 80vh;
+	  overflow-y: auto;         /* modal is the scroll container */
+	}
+
+	/* Code block: no vertical scroll, horizontal only if needed */
+	#scriptModal pre {
+	  max-height: none;         /* remove the 50vh cap */
+	  overflow-y: visible;      /* stop inner vertical scrolling */
+	  overflow-x: auto;         /* still allow long lines to scroll sideways */
+	}
+	#scriptModal .panel { overscroll-behavior: contain; }
+	
+	#scriptModal .panel > :first-child {
+	  position: sticky;
+	  top: 0;
+	  z-index: 1;
+	  /* give it a background so content doesn't show through under it */
+	  background: var(--panel-bg, #0f172a);
+	}
+	
+	.theme-light .common-page .code-ide{
+	  background:#f3f6fb;
+	  color:#0b1226;
+	  border-color:#e6eaf2;
+	}
+	/* keep code area itself transparent so it inherits the container */
+	.theme-light .common-page .code-ide .code-view{ background:transparent; }
+  
+	/* Sticky top-right actions; title scrolls with content */
+	#scriptModal .modal-actions-wrap {
+	  display: flex;
+	  justify-content: flex-end;
+	  gap: 8px;
+	  background: transparent; /* override base sticky header bg */
+	}
+	#scriptModal .modal-actions {
+	  display: inline-flex;
+	  gap: 8px;
+	  border: 1px solid var(--border-color, #2a2f3a);
+	  border-radius: 10px;
+	  padding: 6px;
+	  background: var(--panel-bg, #0f172a);
+	}
+	#scriptModal .modal-actions-wrap{
+	  /* shrink to the buttons; keep sticky at top-right */
+	  position: sticky;    /* or rely on your :first-child sticky rule */
+	  top: 0;
+	  display: block;      /* not flex */
+	  width: max-content;  /* fit to content; use fit-content if you prefer */
+	  margin-left: auto;   /* right-align */
+	  background: transparent;
+	  z-index: 3;
+	}
+	#scriptModal .modal-actions{
+	  display: inline-flex; /* unchanged */
+	  gap: 8px;
+	  border: 1px solid var(--border-color, #2a2f3a);
+	  border-radius: 10px;
+	  padding: 6px;
+	  background: var(--panel-bg, #0f172a);
+	}
+	.theme-light #scriptModal .panel > .modal-actions-wrap { background: transparent; }
+	.theme-light #scriptModal .modal-actions {
+	  background: transparent;
+	  border-color: var(--border-color, #ddd);
+	  box-shadow: none;
+	}
+	
+	#scriptGrid .card { display: flex; flex-direction: column; height: 100%; }
+	#scriptGrid .card-body { display: flex; flex-direction: column; flex: 1 1 auto; }
+	#scriptGrid .card-actions { margin-top: auto; }
+  </style>
 </head>
 <body class="common-page">
-
-<header style="background-color:#000;">
+  <!-- ===== Header ===== -->
+  <header style="background-color:#000;">
 <div class="container nav" style="align-items:center; padding:8px 0;">
 <a class="brand" href="index.html" style="display:flex;align-items:center;gap:50px;text-decoration:none;">
 <div class="logo" style="background:none;padding:0;">
@@ -25,8 +171,10 @@
 </a>
 
 <button id="themeToggle" class="theme-btn" aria-label="Toggle color theme" title="Toggle theme">
+  <!-- Sun & Moon; CSS will swap which one is visible -->
   <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-    <path fill="currentColor" d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-10a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0-6h1v3h-1V2Zm0 17h1v3h-1v-3ZM2 11h3v1H2v-1Zm17 0h3v1h-3v-1ZM4.22 4.22l.7-.7 2.12 2.12-.7.7L4.22 4.22Zm12.74 12.74.7-.7 2.12 2.12-.7.7-2.12-2.12Zm2.12-12.04.7.7-2.12 2.12-.7-.7 2.12-2.12ZM6.34 17.66l.7.7-2.12 2.12-.7-.7 2.12-2.12Z"/>
+    <path fill="currentColor"
+      d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-10a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0-6h1v3h-1V2Zm0 17h1v3h-1v-3ZM2 11h3v1H2v-1Zm17 0h3v1h-3v-1ZM4.22 4.22l.7-.7 2.12 2.12-.7.7L4.22 4.22Zm12.74 12.74.7-.7 2.12 2.12-.7.7-2.12-2.12Zm2.12-12.04.7.7-2.12 2.12-.7-.7 2.12-2.12ZM6.34 17.66l.7.7-2.12 2.12-.7-.7 2.12-2.12Z"/>
   </svg>
   <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
     <path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
@@ -39,42 +187,116 @@
 <a href="install.html">Install</a>
 <a href="commands.html">Commands</a>
 <a href="scriptbuilder.html">ScriptBuilder</a>
-<a href="common.html">Common Scripts <small><small>(coming soon)</small></small></a>
+<a href="common.html">Common Scripts</a>
 <a href="updates.html">Updates</a>
 <a href="about.html">About</a>
 <a href="https://docs.cyberark.com" rel="noopener" target="_blank">Docs</a>
 </nav>
 </div>
 </header>
-<nav id="mobilemenu" class="mobilemenu" role="navigation" aria-label="Mobile menu">
-  <div class="container panel">
-    <div class="row">
-	  <a href="index.html">Home</a>
-      <a href="install.html">Install</a>
-      <a href="commands.html">Commands</a>
-      <a href="scriptbuilder.html">ScriptBuilder</a>
-      <a href="common.html">Common Scripts <small><small>(coming soon)</small></small></a>
-      <a href="updates.html">Updates</a>
-      <a href="about.html">About</a>
-      <a href="https://docs.cyberark.com" target="_blank" rel="noopener">Docs</a>
+
+  <!-- Mobile menu panel -->
+	<nav id="mobilemenu" class="mobilemenu" role="navigation" aria-label="Mobile menu">
+	  <div class="container panel">
+		<div class="row">
+		  <a href="index.html">Home</a>
+		  <a href="install.html">Install</a>
+		  <a href="commands.html">Commands</a>
+		  <a href="scriptbuilder.html">ScriptBuilder</a>
+		  <a href="common.html">Common Scripts</a>
+		  <a href="updates.html">Updates</a>
+		  <a href="about.html">About</a>
+		  <a href="https://docs.cyberark.com" target="_blank" rel="noopener">Docs</a>
+		</div>
+	  </div>
+	</nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="gradient">Common Scripts</h1>
+      <p class="muted">Reusable, production‑ready PowerShell snippets built around VpasModule — copy, tweak, and ship.</p>
+    </div>
+  </section>
+  
+  <!-- ===== Collaboration Blurb ===== -->
+	<section class="section" id="collabBlurb">
+	  <div class="container">
+		<div class="card">
+		  <div class="card-body" style="display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap">
+			<div class="blurb-text">
+			  <h3 style="margin:0 0 6px;">More use cases coming soon</h3>
+			  <p class="muted" style="margin:0">
+				I’ll continue adding new use cases here over time. If you have a specific scenario that could be generalized, I’d love to hear from you—let’s see if we can solve it together. I also welcome any feedback on the existing common scripts. Looking forward to your ideas!
+			  </p>
+			</div>
+			<div class="blurb-actions" style="display:flex; gap:8px; align-items:center">
+			  <a class="btn btn-chip" href="mailto:vpasmodule@gmail.com">
+					<svg fill="currentColor" height="16" style="margin-right:6px;vertical-align:middle;" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+						<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 
+										 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 
+										 2-2zm0 2v.01L12 13 20 6.01V6H4zm0 
+										 12h16V8l-8 7-8-7v10z"></path>
+						</svg>vpasmodule@gmail.com</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</section>
+
+  <!-- ===== Toolbar ===== -->
+  <section class="section">
+    <div class="container" style="display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+      <input id="searchInput" class="input" type="search" placeholder="Search scripts by title…" />
+      <button id="clearBtn" class="btn btn-ghost" type="button">Clear</button>
+      <span id="countChip" class="count-chip">0 results</span>
+    </div>
+  </section>
+
+  <!-- ===== Scripts grid ===== -->
+  <section class="section">
+    <div class="container">
+      <div id="scriptGrid" class="grid grid-3"></div>
+    </div>
+  </section>
+
+  <!-- ===== Script Modal ===== -->
+  <div id="scriptModal" class="dialog" hidden>
+    <div class="backdrop" data-close></div>
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-actions-wrap">
+
+      </div>
+
+      <h3 id="modalTitle" class="title">Script</h3>
+
+      <!-- meta: Description + Assumptions -->
+      <div id="modalMeta" class="meta-block"></div>
+
+      <hr class="divider" />
+
+      <div class="code">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;">
+          <h4 style="margin:0;">Code</h4>
+		  <div class="code-toggle" style="display:flex;justify-content:flex-end;gap:8px;margin:6px 0 4px;">
+		  <div class="btn-group" role="group" aria-label="Toggle comments">
+			<button id="withCommentsBtn" class="btn btn-xs btn-ghost" type="button" aria-pressed="true">With comments</button>
+			<button id="noCommentsBtn" class="btn btn-xs btn-ghost" type="button" aria-pressed="false">Without comments</button>
+		  </div>
+		</div>
+          <button id="copyBelowBtn" class="btn btn-primary btn-xs" type="button" aria-label="Copy code">Copy code</button>
+        </div>
+
+		
+        <div class="code-ide">
+		  <pre id="modalCodeView" class="code-view" aria-label="Code (view)"></pre>
+		  <pre class="code-hidden"><code id="modalCode"></code></pre>
+		</div>
+      </div>
     </div>
   </div>
-</nav>
 
-  <!-- Main Content -->
-  <main class="section">
-  <div class="container" style="text-align:center; padding:60px 0;">
-    <h1 class="gradient">This Page is Under Construction</h1>
-    <p class="muted">We’re working hard to bring this section online soon. Check back later!</p>
-
-    <div style="margin-top:30px;">
-      <img src="images/under_construction.svg" 
-           alt="Page Under Construction" 
-           style="max-width:420px; height:auto; display:block; margin:0 auto;">
-    </div>
-  </div>
-</main>
-
+  <!-- ===== Footer ===== -->
 <footer>
 <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
 <div><strong>VpasModule</strong><div class="muted" style="margin-top:6px">© <span id="year"></span> Vadim Melamed • <a href="https://github.com/vmelamed5/VpasModule/blob/VpasModule/LICENSE.md" rel="noopener" target="_blank">MIT License</a></div></div>
@@ -109,45 +331,370 @@
 </div>
 </div>
 </footer>
-<script>
+
+  <!-- Toast for copy feedback -->
+  <div id="toast" role="status" aria-live="polite">Copied!</div>
+
+	<script>
+	  const yr = document.querySelector('#year'); if (yr) yr.textContent = new Date().getFullYear();
+	  (function(){
+		var btn = document.querySelector('.menu-toggle');
+		var mm = document.getElementById('mobilemenu');
+		if(!btn || !mm) return;
+		function closeMenu(){ document.body.classList.remove('menu-open'); btn.setAttribute('aria-expanded','false'); }
+		function openMenu(){ document.body.classList.add('menu-open'); btn.setAttribute('aria-expanded','true'); }
+		btn.addEventListener('click', function(){
+		  document.body.classList.contains('menu-open') ? closeMenu() : openMenu();
+		});
+		document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeMenu(); }});
+		mm.addEventListener('click', function(e){ if(e.target.tagName==='A'){ closeMenu(); }});
+	  })();
+	</script>
+  <script>
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const toast = (msg) => {
+    const t = $('#toast');
+    t.textContent = msg || 'Copied!';
+    const { innerWidth, innerHeight } = window;
+    t.style.left = (innerWidth/2) + 'px';
+    t.style.top = (innerHeight*0.18) + 'px';
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'), 1100);
+  };
+  const copyText = async (text) => {
+    try { await navigator.clipboard.writeText(text); toast('Copied!'); }
+    catch(e){ console.error(e); toast('Copy failed'); }
+  };
+
+  const SCRIPTS = [
+    {
+      id: 'onboard-personal-safe',
+      name: 'New User Onboarding with Personal Safe',
+      desc: 'Every person has an unprivileged (normal) account and a privileged (admin) account. When a new person joins, create a personal safe, add them to the safe, and onboard their privileged account.',
+      assumptions: [
+        'There is a defined naming convention that should be followed for safe names and account usernames',
+        'There is an existing platform that these privilege accounts should be onboarded under',
+        'The end user is able to log into the portal (meaning they are a member of the EndUser group or role)',
+		'There is a defined safe structure convention in terms of what safe members need to be added and their permission sets',
+		'And of course, the account being used to authenticate into the APIs, has permissions to create a safe, add safe members, create an account object'
+      ],
+	  example: [
+        'User accounts will always follow this format: <b><u>vadim</u></b> (unprivileged acct) + <b><u>adm-vadim</u></b> (privileged acct)',
+        'Personal safes follow this format: <b><u>pSafe-vman-vadim</u></b>',
+		'There is only one CPM in this environment: <b><u>PasswordManager</u></b>',
+		'Personal safes are set with a default retention period of <b><u>7 days</u></b>',
+		'Every personal safe should contain the following users:',
+		'&emsp;&emsp;<b><u>target user</u></b> unprivileged account with <b><u>Use</u></b>, <b><u>List</u></b>, and <b><u>Retrieve</u></b> permissions',
+		'&emsp;&emsp;<b><u>Administrator</u></b> with <b><u>full</u></b> permissions',
+		'&emsp;&emsp;<b><u>Vault Admins</u></b> with <b><u>full</u></b> permissions',
+		'&emsp;&emsp;Custom AD group called "<b><u>SafeManager</u></b>" with <b><u>List</u></b>, <b><u>Manage safe</u></b>, <b><u>Manage Safe Members</u></b>, <b><u>View Audit Log</u></b>, and <b><u>View safe members</u></b> permissions',
+		'Platform we will use to onboard the adm account will be: <b><u>WIN-DOM-7DAY-OTP-SUN</u></b>',
+		'In this environment, we auto assign the reconcile account, so when the account is added, we need to run a <b><u>reconcile</u></b> on the account',
+		'This is a <b><u>SelfHosted</u></b> environment, although the code is the same for privilege cloud environments, just the authentication line is different'
+      ],
+      code: '#Personal Safe Creation and Account onboarding\n\n#Example Environment:\n#User accounts will always follow this format: vadim (unprivileged acct) + adm-vadim (privileged acct)\n#Personal safes follow this format: pSafe-vman-vadim\n#There is only one CPM in this environment: PasswordManager\n#Personal safes are set with a default retention period of 7 days\n#Every personal safe should contain the following users:\n#    target user unprivileged account with Use, List, and Retrieve permissions\n#    Administrator with full permissions\n#    Vault Admins with full permissions\n#    Custom AD group called "SafeManager" with List, Manage safe, Manage Safe Members, View Audit Log, and View safe members permissions\n#Platform we will use to onboard the adm account will be: WIN-DOM-7DAY-OTP-SUN\n#In this environment, we auto assign the reconcile account, so when the account is added, we need to run a reconcile on the account\n#This is a SelfHosted environment, although the code is the same for privilege cloud environments, just the authentication line is different\n\nparam($targetUser)\n\n#Import the module if not already\nimport-module vpasmodule\n\n#Basic check if targetUser was not passed\nif([String]::IsNullOrEmpty($targetUser)){\n    Write-Host "ENTER TARGET USER: " -ForegroundColor Yellow -NoNewline\n    $targetUser = Read-Host\n}\n\n#Generate a credential object that will authenticate into your environment\n$creds = Get-Credential\n\n#Change the value based on your environment\n$PVWA = "components.vman.com"\n\n#Generate login token\n$token = New-VPASToken -PVWA $PVWA -AuthType cyberark -creds $creds\n\n#Notice the AuthType is set to "cyberark", this will use a local EPV account for SelfHosted solutions\n#For PrivilegeCloud environments, typically an Oauth account is created and and IdentityURL will need to be provided\n#The token line would look like this (change IdentityURL to your environment URL):\n#    $IdentityURL = "ABC1234.id.cyberark.cloud"\n#    $token = New-VPASToken -PVWA $PVWA -AuthType ispss_oauth -creds $creds -IdentityURL $IdentityURL\n\n#Basic error handling if authentication failed, the script will exit\nif(!$token){\n    Write-Host "FAILED TO AUTHENTICATE INTO $PVWA...EXITING SCRIPT" -ForegroundColor Red\n    return $false\n}\n\nWrite-Host "=== BEGIN PROCESS ===" -ForegroundColor Cyan\n\n#Build SafeName following naming convention\n$SafeName = "pSafe-vman-$targetUser"\n\n#Query the environment first to see if the Safe already exists\n$DoesSafeExist = Get-VPASSafeDetails -safe $SafeName\nif(!$DoesSafeExist){\n    #This means the safe does not exist, lets create it\n    $CreateSafe = Add-VPASSafe -safe $SafeName -passwordManager PasswordManager -numberOfDaysRetention 7 -Description "Personal Safe for $targetUser"\n\n    #Basic error handling if safe creation fails\n    if(!$CreateSafe){\n        Write-Host "STEP 1 / 4) FAILED TO CREATE SAFE $SafeName...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n    else{\n        Write-Host "STEP 1 / 4) SUCCESSFULLY CREATED SAFE $SafeName" -ForegroundColor Green\n    }\n}\nelse{\n    Write-Host "STEP 1 / 4) $SafeName ALREADY EXISTS...SKIPPING SAFE CREATION" -ForegroundColor DarkYellow\n}\n\n#Now we need to add the following safe members as an example:\n#    Administrator (Local EPV Account) - full permissions\n#    Vault Admins (Local EPV Group) - full permissions\n#    targetUser (Domain User in vman.com) - Use, list, retrieve\n#    SafeManager (AD Group in vman.com) - List, Manage safe, Manage Safe Members, View Audit Log, and View safe members\n\n#We will do the following steps for each member above\n\n#Administrator Section\n#Query if Administrator exists on the safe already\n$DoesMemberExist = Get-VPASSafeMemberSearch -safe $SafeName -member "Administrator"\nif(!$DoesMemberExist){\n    #This means that Administrator is not found on the safe, lets add it with full permissions\n    $AddMember = Add-VPASSafeMember -member "Administrator" -safe $SafeName -MemberType User -searchin Vault -AllPerms\n\n    #Basic error handling if adding member fails\n    if(!$AddMember){\n        Write-Host "STEP 2a / 4) FAILED TO ADD Administrator TO $SafeName...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n    else{\n        Write-Host "STEP 2a / 4) SUCCESSFULLY ADDED Administrator TO SAFE $SafeName" -ForegroundColor Green\n    }\n}\nelse{\n    Write-Host "STEP 2a / 4) Administrator ALREADY EXISTS AS A SAFE MEMBER...SKIPPING SAFE MEMBER ADDITION" -ForegroundColor DarkYellow\n}\n\n#Vault Admins Section\n#Query if Vault Admins exists on the safe already\n$DoesMemberExist = Get-VPASSafeMemberSearch -safe $SafeName -member "Vault Admins"\nif(!$DoesMemberExist){\n    #This means that Vault Admins is not found on the safe, lets add it with full permissions\n    $AddMember = Add-VPASSafeMember -member "Vault Admins" -safe $SafeName -MemberType Group -searchin Vault -AllPerms\n\n    #Basic error handling if adding member fails\n    if(!$AddMember){\n        Write-Host "STEP 2b / 4) FAILED TO ADD Vault Admins TO $SafeName...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n    else{\n        Write-Host "STEP 2b / 4) SUCCESSFULLY ADDED Vault Admins TO SAFE $SafeName" -ForegroundColor Green\n    }\n}\nelse{\n    Write-Host "STEP 2b / 4) Vault Admins ALREADY EXISTS AS A SAFE MEMBER...SKIPPING SAFE MEMBER ADDITION" -ForegroundColor DarkYellow\n}\n\n#targetUser Section\n#Query if targetUser exists on the safe already\n$DoesMemberExist = Get-VPASSafeMemberSearch -safe $SafeName -member "$targetUser"\nif(!$DoesMemberExist){\n    #This means that targetUser is not found on the safe, lets add it with Use, list, retrieve permissions\n    $AddMember = Add-VPASSafeMember -member "$targetUser" -safe $SafeName -MemberType User -searchin vman.com -UseAccounts -ListAccounts -RetrieveAccounts\n\n    #Basic error handling if adding member fails\n    if(!$AddMember){\n        Write-Host "STEP 2c / 4) FAILED TO ADD $targetUser TO $SafeName...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n    else{\n        Write-Host "STEP 2c / 4) SUCCESSFULLY ADDED $targetUser TO SAFE $SafeName" -ForegroundColor Green\n    }\n}\nelse{\n    Write-Host "STEP 2c / 4) $targetUser ALREADY EXISTS AS A SAFE MEMBER...SKIPPING SAFE MEMBER ADDITION" -ForegroundColor DarkYellow\n}\n\n#SafeManager Section\n#Query if SafeManager exists on the safe already\n$DoesMemberExist = Get-VPASSafeMemberSearch -safe $SafeName -member "SafeManager"\nif(!$DoesMemberExist){\n    #This means that SafeManager is not found on the safe, lets add it with List, Manage safe, Manage Safe Members, View Audit Log, and View safe members permissions\n    $AddMember = Add-VPASSafeMember -member "SafeManager" -safe $SafeName -MemberType Group -searchin vman.com -ListAccounts -ManageSafe -ViewAuditLog -ViewSafeMembers\n\n    #Basic error handling if adding member fails\n    if(!$AddMember){\n        Write-Host "STEP 2d / 4) FAILED TO ADD SafeManager TO $SafeName...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n    else{\n        Write-Host "STEP 2d / 4) SUCCESSFULLY ADDED SafeManager TO SAFE $SafeName" -ForegroundColor Green\n    }\n}\nelse{\n    Write-Host "STEP 2d / 4) SafeManager ALREADY EXISTS AS A SAFE MEMBER...SKIPPING SAFE MEMBER ADDITION" -ForegroundColor DarkYellow\n}\n\n#Just an fyi, in PrivilegeCloud environments, you can also add Roles as safe members (similar to groups), just change the -MemberType value to Roles and -Searchin value to Vault\n\n#At this point, a safe was created and the safe members have been added. Now lets handle onboarding the account and reconciling it\n#In this example the following parameters will be set\n#    SafeName: pSafe-vman-{targetUser} (what we created prior)\n#    Username: adm-{targetUser}\n#    PlatformID: WIN-DOM-7DAY-OTP-SUN\n#    Address: vman.com\n#    LogonTo: vman\n\n\n#Query if the account exists already so we do not double onboard the account\n$DoesAcctExist = Get-VPASAccountDetails -safe $SafeName -platform "WIN-DOM-7DAY-OTP-SUN" -username "adm-$targetUser" -address "vman.com" -ExactMatch\nif(!$DoesAcctExist){\n    #This means the account does not exist, lets onboard it\n    $AddAccount = Add-VPASAccount -platformID "WIN-DOM-7DAY-OTP-SUN" -safeName $SafeName -address "vman.com" -username "adm-$targetUser" -extraProps @{LogonDomain="vman.com"}\n\n    #Basic error handling if adding the account has failed\n    if(!$AddAccount){\n        Write-Host "STEP 3 / 4) FAILED TO ADD ACCOUNT adm-$targetUser...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n    else{\n        Write-Host "STEP 3 / 4) SUCCESSFULLY CREATED ACCOUNT adm-$targetUser" -ForegroundColor Green\n    }\n\n    #After the account is created, we want to reconcile it\n    $AcctID = $AddAccount.id\n    $triggerReconcile = Invoke-VPASAccountPasswordAction -action Reconcile -AcctID $AcctID\n\n    #Basic error handling if triggering reconcile has failed\n    if(!$triggerReconcile){\n        Write-Host "STEP 4 / 4) FAILED TO TRIGGER RECONCILE ON ACCOUNT adm-$targetUser...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n    else{\n        Write-Host "STEP 4 / 4) SUCCESSFULLY TRIGGERED RECONCILE ON ACCOUNT adm-$targetUser" -ForegroundColor Green\n    }\n}\nelse{\n    Write-Host "STEP 3 / 4) adm-$targetUser ALREADY EXISTS...SKIPPING ACCOUNT CREATION" -ForegroundColor DarkYellow\n    #The account was already onboarded prior, basic check to see if only one record showes up and to reconcile it\n    if($DoesAcctExist.count -eq 1){\n        $AcctID = $DoesAcctExist.value.id\n        $triggerReconcile = Invoke-VPASAccountPasswordAction -action Reconcile -AcctID $AcctID\n\n        #Basic error handling if triggering reconcile has failed\n        if(!$triggerReconcile){\n            Write-Host "STEP 4 / 4) FAILED TO TRIGGER RECONCILE ON ACCOUNT adm-$targetUser...EXITING SCRIPT" -ForegroundColor Red\n            Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n            return $false\n        }\n        else{\n            Write-Host "STEP 4 / 4) SUCCESSFULLY TRIGGERED RECONCILE ON ACCOUNT adm-$targetUser" -ForegroundColor Green\n        }\n    }\n    else{\n        #More then one record was returned, so we do not know what account is supposed to be the correct one. To avoid any issues we will leave the accounts alone and print out a message\n        Write-Host "STEP 4 / 4) TOO MANY ACCOUNTS WERE RETURNED WITH A `nUSERNAME = adm-$targetUser`nSAFE = $SafeName`nPLATFORM = WIN-DOM-7DAY-OTP-SUN`nADDRESS = vman.com" -ForegroundColor Red\n        Write-Host "SKIPPING RECONCILE STEP...RETURNING FALSE" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n}\n\nWrite-Host "=== END PROCESS ===" -ForegroundColor Cyan\nreturn $true\n\n\n'
+    },
+	{
+      id: 'safe-content',
+      name: 'Get Safe Contents',
+      desc: 'Retrieve account details for all accounts in a particular safe, and output that data to a CSV file.',
+      assumptions: [
+        'The account being used to authenticate into the APIs, has permissions to view account details for the specific safe',
+        'The target safe exists and there are accounts in the safe'
+      ],
+	  example: [
+		'This is a <b><u>PrivilegeCloud</u></b> environment, although the code is the same for SelfHosted environments, just the authentication line is different',
+		'This will only return details of the accounts as you would see under the Accounts Details page',
+		'This will <b><u>NOT</u></b> pull any secrets and this will <b><u>NOT</u></b> activate any exclusivity or One Time Password workflows'
+      ],
+      code: '#Safe Contents\n\n#Example Environment:\n#This is a PrivilegeCloud environment, although the code is the same for SelfHosted environments, just the authentication line is different\n#Keep in mind, this will only return details of the accounts as you would see under the Accounts Details page\n#This will NOT pull any secrets and this will NOT activate any exclusivity or One Time Password workflows \n\nparam($targetSafe)\n\n#Import the module if not already\nimport-module vpasmodule\n\n#Basic check if targetSafe was not passed\nif([String]::IsNullOrEmpty($targetSafe)){\n    Write-Host "ENTER TARGET SAFE: " -ForegroundColor Yellow -NoNewline\n    $targetSafe = Read-Host\n\n    #Basic check if targetSafe was still not passed\n    if([String]::IsNullOrEmpty($targetSafe)){\n        Write-Host "NO SAFE NAME PROVIDED...EXITING SCRIPT" -ForegroundColor Red\n        return $false\n    }\n}\n\n#Generate a credential object that will authenticate into your environment\n$creds = Get-Credential\n\n#Change these values based on your environment\n$PVWA = "vman.privilegecloud.cyberark.cloud"\n$IdentityURL = "ABC1234.id.cyberark.cloud"\n\n#Generate login token\n$token = New-VPASToken -PVWA $PVWA -AuthType ispss_oauth -IdentityURL $IdentityURL -creds $creds\n\n#Notice the AuthType is set to "ispss_oauth", this will use a local @cyberark.cloud account via oauth for PrivilegeCloud solutions\n#For SelfHosted environments, typically a local EPV account is created and used for API purposes\n#For SelfHosted solutions, there is no need for an IdentityURL\n#The token line would look like this (assuming CyberArk auth):\n#    $token = New-VPASToken -PVWA $PVWA -AuthType cyberark -creds $creds\n\n#Basic error handling if authentication failed, the script will exit\nif(!$token){\n    Write-Host "FAILED TO AUTHENTICATE INTO $PVWA...EXITING SCRIPT" -ForegroundColor Red\n    return $false\n}\n\nWrite-Host "=== BEGIN PROCESS ===" -ForegroundColor Cyan\n\n\n#Query the environment first to see if the Safe exists\n$DoesSafeExist = Get-VPASSafeDetails -safe $targetSafe\nif(!$DoesSafeExist){\n    #This means the safe does not exist, and so nothing to report on\n    Write-Host "$targetSafe DOES NOT EXIST...EXITING SCRIPT" -ForegroundColor Red\n    Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n    return $false\n}\nelse{\n    #The safe does exist, lets retrieve all accounts from the safe\n    Write-Host "FETCHING ALL ACCOUNTS IN SAFE: $targetSafe" -ForegroundColor Green\n\n    #This line is searching the environment for any accounts in the targetSafe, simulating searching for this safe in PVWA\n    $AllAccts = Get-VPASAccountDetails -safe $targetSafe -ExactMatch -ExportToCSV -CSVDirectory $PSScriptRoot\n    #The output will be stored in the location of where the script is saved to: $PSScriptRoot\n    #The CSVDirectory can be changed to anything: "C:\\Temp" for example\n\n    #Basic error handling if retrieving data has failed\n    if($AllAccts){\n        Write-Host "ALL ACCOUNTS FROM SAFE: $targetSafe HAVE BEEN RETURNED" -ForegroundColor Green\n    }\n    else{\n        Write-Host "ERROR GETTING ACCOUNTS FROM SAFE, OR SAFE IS EMPTY...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n}\n\nWrite-Host "=== END PROCESS ===" -ForegroundColor Cyan\nreturn $AllAccts\n'
+    },
+	{
+      id: 'safe-members',
+      name: 'Get Safe Members',
+      desc: 'Retrieve all safe members and their permissions from a particular safe, and output that data to a CSV file.',
+      assumptions: [
+        'The account being used to authenticate into the APIs, has permissions to view account details for the specific safe',
+        'The target safe exists',
+		'The code does not dip into any groups it may or may not find'
+      ],
+	  example: [
+		'This is a <b><u>PrivilegeCloud</u></b> environment, although the code is the same for SelfHosted environments, just the authentication line is different',
+		'Keep in mind, if a safe member found is a group, the script does <b><u>NOT</u></b> have the logic to parse the group for group members (regardless of EPVGroup or ADGroup)'
+      ],
+      code: '#Safe Members and Permissions\n\n#Example Environment:\n#This is a PrivilegeCloud environment, although the code is the same for SelfHosted environments, just the authentication line is different\n#Keep in mind, if a safe member found is a group, the script does not have the logic to parse the group for group members (regardless of EPVGroup or ADGroup)\n\nparam($targetSafe)\n\n#Import the module if not already\nimport-module vpasmodule\n\n#Basic check if targetSafe was not passed\nif([String]::IsNullOrEmpty($targetSafe)){\n    Write-Host "ENTER TARGET SAFE: " -ForegroundColor Yellow -NoNewline\n    $targetSafe = Read-Host\n\n    #Basic check if targetSafe was still not passed\n    if([String]::IsNullOrEmpty($targetSafe)){\n        Write-Host "NO SAFE NAME PROVIDED...EXITING SCRIPT" -ForegroundColor Red\n        return $false\n    }\n}\n\n#Generate a credential object that will authenticate into your environment\n$creds = Get-Credential\n\n#Change these values based on your environment\n$PVWA = "vman.privilegecloud.cyberark.cloud"\n$IdentityURL = "ABC1234.id.cyberark.cloud"\n\n#Generate login token\n$token = New-VPASToken -PVWA $PVWA -AuthType ispss_oauth -IdentityURL $IdentityURL -creds $creds\n\n#Notice the AuthType is set to "ispss_oauth", this will use a local @cyberark.cloud account via oauth for PrivilegeCloud solutions\n#For SelfHosted environments, typically a local EPV account is created and used for API purposes\n#For SelfHosted solutions, there is no need for an IdentityURL\n#The token line would look like this (assuming CyberArk auth):\n#    $token = New-VPASToken -PVWA $PVWA -AuthType cyberark -creds $creds\n\n#Basic error handling if authentication failed, the script will exit\nif(!$token){\n    Write-Host "FAILED TO AUTHENTICATE INTO $PVWA...EXITING SCRIPT" -ForegroundColor Red\n    return $false\n}\n\nWrite-Host "=== BEGIN PROCESS ===" -ForegroundColor Cyan\n\n\n#Query the environment first to see if the Safe exists\n$DoesSafeExist = Get-VPASSafeDetails -safe $targetSafe\nif(!$DoesSafeExist){\n    #This means the safe does not exist, and so nothing to report on\n    Write-Host "$targetSafe DOES NOT EXIST...EXITING SCRIPT" -ForegroundColor Red\n    Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n    return $false\n}\nelse{\n    #The safe does exist, lets retrieve all safe members from the safe and permissions\n    Write-Host "FETCHING ALL SAFE MEMBERS AND PERMISSIONS FROM SAFE: $targetSafe" -ForegroundColor Green\n    $AllSafeMembers = Get-VPASSafeMembers -safe $targetSafe -IncludePredefinedMembers -ExportToCSV -CSVDirectory $PSScriptRoot\n    #The output will be stored in the location of where the script is saved to: $PSScriptRoot\n    #The CSVDirectory can be changed to anything: "C:\\Temp" for example\n\n    #Basic error handling if retrieving data has failed\n    if($AllSafeMembers){\n        Write-Host "ALL SAFE MEMBERS FROM SAFE: $targetSafe HAVE BEEN RETURNED WITH THEIR PERMISSIONS" -ForegroundColor Green\n    }\n    else{\n        Write-Host "ERROR GETTING SAFE MEMBERS FROM SAFE...EXITING SCRIPT" -ForegroundColor Red\n        Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n        return $false\n    }\n}\n\nWrite-Host "=== END PROCESS ===" -ForegroundColor Cyan\nreturn $AllSafeMembers\n'
+    },
+	{
+      id: 'search-accounts',
+      name: 'Search Accounts via SearchQuery',
+      desc: 'Retrieve account details based on a search query, and output that data to a CSV file.',
+      assumptions: [
+        'The account being used to authenticate into the APIs, has permissions to view account details for possible target safes'
+      ],
+	  example: [
+		'This is a <b><u>PrivilegeCloud</u></b> environment, although the code is the same for SelfHosted environments, just the authentication line is different',
+		'This will only return details of the accounts as you would see under the Accounts Details page',
+		'This will <b><u>NOT</u></b> pull any secrets and this will <b><u>NOT</u></b> activate any exclusivity or One Time Password workflows'
+      ],
+      code: '#Search Accounts\n\n#Example Environment:\n#This is a PrivilegeCloud environment, although the code is the same for SelfHosted environments, just the authentication line is different\n#This is a free text search, simulating using the search bar in PVWA\n#This will only return details of the accounts as you would see under the Accounts Details page\n#This will NOT pull any secrets and this will NOT activate any exclusivity or One Time Password workflows\n\nparam($targetQuery)\n\n#Import the module if not already\nimport-module vpasmodule\n\n#Basic check if targetQuery was not passed\nif([String]::IsNullOrEmpty($targetQuery)){\n    Write-Host "ENTER SEARCH QUERY, SEPARATED BY SPACE FOR MULTIPLE WORDS (FOR EXAMPLE: Administrator server1): " -ForegroundColor Yellow -NoNewline\n    $targetQuery = Read-Host\n\n    #Basic check if targetQuery was still not passed\n    if([String]::IsNullOrEmpty($targetQuery)){\n        Write-Host "NO SEARCH QUERY PROVIDED...EXITING SCRIPT" -ForegroundColor Red\n        return $false\n    }\n}\n\n#Generate a credential object that will authenticate into your environment\n$creds = Get-Credential\n\n#Change these values based on your environment\n$PVWA = "vman.privilegecloud.cyberark.cloud"\n$IdentityURL = "ABC1234.id.cyberark.cloud"\n\n#Generate login token\n$token = New-VPASToken -PVWA $PVWA -AuthType ispss_oauth -IdentityURL $IdentityURL -creds $creds\n\n#Notice the AuthType is set to "ispss_oauth", this will use a local @cyberark.cloud account via oauth for PrivilegeCloud solutions\n#For SelfHosted environments, typically a local EPV account is created and used for API purposes\n#For SelfHosted solutions, there is no need for an IdentityURL\n#The token line would look like this (assuming CyberArk auth):\n#    $token = New-VPASToken -PVWA $PVWA -AuthType cyberark -creds $creds\n\n#Basic error handling if authentication failed, the script will exit\nif(!$token){\n    Write-Host "FAILED TO AUTHENTICATE INTO $PVWA...EXITING SCRIPT" -ForegroundColor Red\n    return $false\n}\n\nWrite-Host "=== BEGIN PROCESS ===" -ForegroundColor Cyan\n\n\n#Query the environment for the target value\n$SearchReturn = Get-VPASAccountDetails -username "$targetQuery" -ExportToCSV -CSVDirectory $PSScriptRoot\n#Although the line specifies -username, it is a free search field. Future updates will add a new flag -FreeSearch\n#The output will be stored in the location of where the script is saved to: $PSScriptRoot\n#The CSVDirectory can be changed to anything: "C:\\Temp" for example\n\n#Basic error handling if retrieving data has failed\nif($SearchReturn){\n    Write-Host "RETURNING ACCOUNTS THAT WERE PICKED UP VIA SEARCH QUERY: $targetQuery" -ForegroundColor Green\n}\nelse{\n    Write-Host "ERROR GETTING ACCOUNTS...EXITING SCRIPT" -ForegroundColor Red\n    Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n    return $false\n}\n\n\nWrite-Host "=== END PROCESS ===" -ForegroundColor Cyan\nreturn $SearchReturn\n'
+    },
+	{
+      id: 'platform-accounts',
+      name: 'Search Accounts via Platform',
+      desc: 'Retrieve account details based on a target platform, and output that data to a CSV file.',
+      assumptions: [
+        'The account being used to authenticate into the APIs, has permissions to view account details for possible safes',
+		'The target platform should exist, otherwise the results will return false'
+      ],
+	  example: [
+		'This is a <b><u>PrivilegeCloud</u></b> environment, although the code is the same for SelfHosted environments, just the authentication line is different',
+		'This is an <b><u>exact</u></b> text search, simulating using the search bar in PVWA and filtering to the target value',
+		'This will only return details of the accounts as you would see under the Accounts Details page',
+		'This will <b><u>NOT</u></b> pull any secrets and this will <b><u>NOT</u></b> activate any exclusivity or One Time Password workflows'
+      ],
+      code: '#Platform Accounts\n\n#Example Environment:\n#This is a PrivilegeCloud environment, although the code is the same for SelfHosted environments, just the authentication line is different\n#This is an exact text search, simulating using the search bar in PVWA and filtering to the target value\n#This will only return details of the accounts as you would see under the Accounts Details page\n#This will NOT pull any secrets and this will NOT activate any exclusivity or One Time Password workflows\n\nparam($targetPlatform)\n\n#Import the module if not already\nimport-module vpasmodule\n\n#Basic check if targetPlatform was not passed\nif([String]::IsNullOrEmpty($targetPlatform)){\n    Write-Host "ENTER TARGET PLATFORM (FOR EXAMPLE: WinDomain): " -ForegroundColor Yellow -NoNewline\n    $targetPlatform = Read-Host\n\n    #Basic check if targetPlatform was still not passed\n    if([String]::IsNullOrEmpty($targetPlatform)){\n        Write-Host "NO PLATFORM PROVIDED...EXITING SCRIPT" -ForegroundColor Red\n        return $false\n    }\n}\n\n#Generate a credential object that will authenticate into your environment\n$creds = Get-Credential\n\n#Change these values based on your environment\n$PVWA = "vman.privilegecloud.cyberark.cloud"\n$IdentityURL = "ABC1234.id.cyberark.cloud"\n\n#Generate login token\n$token = New-VPASToken -PVWA $PVWA -AuthType ispss_oauth -IdentityURL $IdentityURL -creds $creds\n\n#Notice the AuthType is set to "ispss_oauth", this will use a local @cyberark.cloud account via oauth for PrivilegeCloud solutions\n#For SelfHosted environments, typically a local EPV account is created and used for API purposes\n#For SelfHosted solutions, there is no need for an IdentityURL\n#The token line would look like this (assuming CyberArk auth):\n#    $token = New-VPASToken -PVWA $PVWA -AuthType cyberark -creds $creds\n\n#Basic error handling if authentication failed, the script will exit\nif(!$token){\n    Write-Host "FAILED TO AUTHENTICATE INTO $PVWA...EXITING SCRIPT" -ForegroundColor Red\n    return $false\n}\n\nWrite-Host "=== BEGIN PROCESS ===" -ForegroundColor Cyan\n\n\n#Query the environment for the target value\n$SearchReturn = Get-VPASAccountDetails -platform "$targetPlatform" -ExactMatch -ExportToCSV -CSVDirectory $PSScriptRoot\n#The output will be stored in the location of where the script is saved to: $PSScriptRoot\n#The CSVDirectory can be changed to anything: "C:\\Temp" for example\n\n#Basic error handling if retrieving data has failed\nif($SearchReturn){\n    Write-Host "RETURNING ACCOUNTS THAT WERE PICKED UP VIA SEARCH QUERY: $targetPlatform" -ForegroundColor Green\n}\nelse{\n    Write-Host "ERROR GETTING ACCOUNTS...EXITING SCRIPT" -ForegroundColor Red\n    Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n    return $false\n}\n\n\nWrite-Host "=== END PROCESS ===" -ForegroundColor Cyan\nreturn $SearchReturn\n'
+	},
+	{
+      id: 'bulk-safe-creation',
+      name: 'Bulk create safes via CSV',
+      desc: 'Create safes in bulk and add a safe member using a self made CSV file',
+      assumptions: [
+        'The account being used to authenticate into the APIs, has permissions to view account details for possible safes',
+		'The CSV file is prepared as is in the example provided',
+		'If the file imported has different columns, change the column value in the script in line ~70'
+      ],
+	  example: [
+		'This is a <b><u>PrivilegeCloud</u></b> environment, although the code is the same for SelfHosted environments, just the authentication line is different',
+		'This environment only has one CPM that will be assigned to safes - <b><u>PasswordManager</u></b>',
+		'This script will add an internal role "<b><u>Privilege Cloud Administrators</u></b>" with <b><u>full permissions</u></b> to each safe'
+      ],
+      code: '#Bulk Safe Creation\n\n#Example Environment:\n#This is a PrivilegeCloud environment, although the code is the same for SelfHosted environments, just the authentication line is different\n#This environment only has one CPM that will be assigned to safes - PasswordManager\n#This script will add an internal role "Privilege Cloud Administrators" with full permissions to each safe\n\n#Assume you have a CSV file located in C:\\Temp\\safeimport.cvs that looks like this:\n#    SafeName\n#    TestSafe01\n#    TestSafe02\n#    TestSafe03\n\nparam($csv)\n\n#Import the module if not already\nimport-module vpasmodule\n\n#Basic check if csv was not passed\nif([String]::IsNullOrEmpty($csv)){\n    Write-Host "ENTER TARGET CSV (FOR EXAMPLE: C:\\Temp\\safeimport.csv): " -ForegroundColor Yellow -NoNewline\n    $csv = Read-Host\n\n    #Basic check if csv was still not passed\n    if([String]::IsNullOrEmpty($csv)){\n        Write-Host "NO CSV PROVIDED...EXITING SCRIPT" -ForegroundColor Red\n        return $false\n    }\n}\n\n#Generate a credential object that will authenticate into your environment\n$creds = Get-Credential\n\n#Change these values based on your environment\n$PVWA = "vman.privilegecloud.cyberark.cloud"\n$IdentityURL = "ABC1234.id.cyberark.cloud"\n\n#Generate login token\n$token = New-VPASToken -PVWA $PVWA -AuthType ispss_oauth -IdentityURL $IdentityURL -creds $creds\n\n#Notice the AuthType is set to "ispss_oauth", this will use a local @cyberark.cloud account via oauth for PrivilegeCloud solutions\n#For SelfHosted environments, typically a local EPV account is created and used for API purposes\n#For SelfHosted solutions, there is no need for an IdentityURL\n#The token line would look like this (assuming CyberArk auth):\n#    $token = New-VPASToken -PVWA $PVWA -AuthType cyberark -creds $creds\n\n#Basic error handling if authentication failed, the script will exit\nif(!$token){\n    Write-Host "FAILED TO AUTHENTICATE INTO $PVWA...EXITING SCRIPT" -ForegroundColor Red\n    return $false\n}\n\nWrite-Host "=== BEGIN PROCESS ===" -ForegroundColor Cyan\n\n\n#Import the provided CSV file\ntry{\n    $ImportData = Import-Csv -Path $csv\n}catch{\n    #Basic check if importing the CSV failed (failed to read file, file does not exist, etc.)\n    Write-Host "ERROR IMPORTING CSV...EXITING SCRIPT" -ForegroundColor Red\n    Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n    return $false\n}\n\n#Loop through every entry and create a safe per record\nforeach($rec in $ImportData){\n    #Get the safe name\n    $safeName = $rec.SafeName\n\n    #Query the environment first to see if the Safe already exists\n    $DoesSafeExist = Get-VPASSafeDetails -safe $SafeName\n    if(!$DoesSafeExist){\n        #This means the safe does not exist, lets create it\n        $CreateSafe = Add-VPASSafe -safe $SafeName -passwordManager PasswordManager -numberOfDaysRetention 7\n\n        #Basic error handling if safe creation fails\n        if(!$CreateSafe){\n            Write-Host "FAILED TO CREATE SAFE $SafeName...EXITING SCRIPT" -ForegroundColor Red\n            Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n            return $false\n        }\n        else{\n            Write-Host "SUCCESSFULLY CREATED SAFE $SafeName" -ForegroundColor Green\n        }\n    }\n    else{\n        Write-Host "$SafeName ALREADY EXISTS...SKIPPING SAFE CREATION" -ForegroundColor DarkYellow\n    }\n\n    #Safe was created, now we want to add the role "Privilege Cloud Administrators"\n    $DoesMemberExist = Get-VPASSafeMemberSearch -safe $SafeName -member "Privilege Cloud Administrators"\n    if(!$DoesMemberExist){\n        #This means that Privilege Cloud Administrators is not found on the safe, lets add it with full permissions\n        $AddMember = Add-VPASSafeMember -member "Privilege Cloud Administrators" -safe $SafeName -MemberType Role -searchin Vault -AllPerms\n\n        #Basic error handling if adding member fails\n        if(!$AddMember){\n            Write-Host "FAILED TO ADD Privilege Cloud Administrators TO $SafeName...EXITING SCRIPT" -ForegroundColor Red\n            Write-Host "=== END PROCESS ===" -ForegroundColor Cyan\n            return $false\n        }\n        else{\n            Write-Host "SUCCESSFULLY ADDED Privilege Cloud Administrators TO SAFE $SafeName" -ForegroundColor Green\n        }\n    }\n    else{\n        Write-Host "Privilege Cloud Administrators ALREADY EXISTS AS A SAFE MEMBER...SKIPPING SAFE MEMBER ADDITION" -ForegroundColor DarkYellow\n    }\n}\n\nWrite-Host "=== END PROCESS ===" -ForegroundColor Cyan\nreturn $true\n\n'
+	}
+  ];
+
+  const grid = $('#scriptGrid');
+  const searchInput = $('#searchInput');
+  const countChip = $('#countChip');
+
+  function scriptMatches(s, q) {
+    if (!q) return true;
+    q = q.trim().toLowerCase();
+    return s.name.toLowerCase().includes(q);
+  }
+
+  function render() {
+    const q = searchInput.value;
+    const results = SCRIPTS.filter(s => scriptMatches(s, q));
+    grid.innerHTML = '';
+    results.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-body">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <h3 style="margin:0; font-size:18px;">Usecase: ${s.name}</h3>
+          </div>
+          <p class="muted" style="margin:6px 0 10px;">${s.desc}</p>
+          <div class="card-actions" style="display:flex; gap:8px;">
+            <button class="btn btn-primary btn-xs" data-act="expand">See details</button>
+          </div>
+        </div>`;
+
+      card.querySelector('[data-act="expand"]').addEventListener('click', () => window.openModal(s));
+
+      grid.appendChild(card);
+    });
+    countChip.textContent = `${results.length} result${results.length === 1 ? '' : 's'}`;
+  }
+
+  // Modal controls
   (function(){
-    var btn = document.querySelector('.menu-toggle');
-    var mm = document.getElementById('mobilemenu');
-    if(!btn || !mm) return;
-    function closeMenu(){ document.body.classList.remove('menu-open'); btn.setAttribute('aria-expanded','false'); }
-    function openMenu(){ document.body.classList.add('menu-open'); btn.setAttribute('aria-expanded','true'); }
-    btn.addEventListener('click', function(){
-      var open = document.body.classList.contains('menu-open');
-      open ? closeMenu() : openMenu();
-    });
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeMenu(); }});
-    mm.addEventListener('click', function(e){ if(e.target.tagName==='A'){ closeMenu(); }});
+    const modal = document.getElementById('scriptModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const backdrop = modal ? modal.querySelector('.backdrop') : null;
+    const copyModalBtn = document.getElementById('copyModalBtn');
+    const copyIconModal = document.getElementById('copyIconModal');
+    const copyBelowBtn = document.getElementById('copyBelowBtn');
+    const modalMeta = document.getElementById('modalMeta');
+
+	const withBtn = document.getElementById('withCommentsBtn');
+	const noBtn   = document.getElementById('noCommentsBtn');
+
+	let codeWith = '';
+	let codeWithout = '';
+
+	function stripComments(psCode) {
+	  if (!psCode) return '';
+	  // 1) remove PowerShell block comments: <# ... #>
+	  let out = psCode.replace(/<#[\s\S]*?#>/g, '');
+
+	  // 2) remove inline '#' comments (but keep # inside quotes)
+	  const lines = out.split('\n');
+	  const cleaned = [];
+	  for (let line of lines) {
+		let res = '';
+		let inSingle = false, inDouble = false;
+		for (let i = 0; i < line.length; i++) {
+		  const ch = line[i];
+		  if (ch === "'" && !inDouble) { // toggle single-quoted string
+			// PowerShell single quotes escape as doubled ''
+			if (inSingle && line[i+1] === "'") { res += "''"; i++; continue; }
+			inSingle = !inSingle; res += ch; continue;
+		  }
+		  if (ch === '"' && !inSingle) { // toggle double-quoted string
+			// naive support for `\"` not required in PS, but safe:
+			inDouble = !inDouble; res += ch; continue;
+		  }
+		  if (ch === '#' && !inSingle && !inDouble) break; // start of comment
+		  res += ch;
+		}
+		res = res.replace(/[ \t]+$/,''); // trim trailing whitespace
+		cleaned.push(res);
+	  }
+	  // 3) collapse multiple blank lines
+	  const collapsed = [];
+	  let blank = 0;
+	  for (const l of cleaned) {
+		if (l.trim() === '') { if (blank === 0) collapsed.push(''); blank++; }
+		else { blank = 0; collapsed.push(l); }
+	  }
+	  return collapsed.join('\n').trim();
+	}
+
+	function setMode(mode) {
+	  const el = document.getElementById('modalCode');
+	  const withOn = (mode !== 'without');
+	  el.textContent = withOn ? codeWith : codeWithout;
+	  if (withBtn) withBtn.setAttribute('aria-pressed', withOn ? 'true' : 'false');
+	  if (noBtn)   noBtn.setAttribute('aria-pressed', withOn ? 'false' : 'true');
+	}
+
+	if (withBtn) withBtn.addEventListener('click', () => setMode('with'));
+	if (noBtn)   noBtn.addEventListener('click', () => setMode('without'));
+
+    function isOpen(){ return modal && !modal.hasAttribute('hidden'); }
+
+    function assumptionsHTML(x){
+      if (!x || (Array.isArray(x) && x.length === 0)) return '<p class="muted">None</p>';
+      if (Array.isArray(x)) return `<ul>${x.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+      return `<p>${x}</p>`;
+    }
+	
+	function exampleHTML(x){
+      if (!x || (Array.isArray(x) && x.length === 0)) return '<p class="muted">None</p>';
+      if (Array.isArray(x)) return `<ul>${x.map(i=>`<li>${i}</li>`).join('')}</ul>`;
+      return `<p>${x}</p>`;
+    }
+
+    window.openModal = function(script){
+      if(!modal) return;
+      document.getElementById('modalTitle').textContent = script.name;
+      // Build meta: Description + Assumptions
+      const descHTML = script.desc ? `<p>${script.desc}</p>` : '<p class="muted">No description.</p>';
+      const assumptions = assumptionsHTML(script.assumptions);
+	  const example = exampleHTML(script.example);
+      modalMeta.innerHTML = `
+        <div class="meta-block">
+          <h4>Description</h4>
+          ${descHTML}
+        </div>
+        <div class="meta-block">
+          <h4>Assumptions</h4>
+          ${assumptions}
+        </div>
+		<div class="meta-block">
+          <h4>Example Environment</h4>
+          ${example}
+        </div>`;
+
+      codeWith = script.code || '';
+		codeWithout = stripComments(codeWith);
+		document.getElementById('modalCode').textContent = codeWith; // default = with comments
+		if (withBtn) withBtn.setAttribute('aria-pressed','true');
+		if (noBtn)   noBtn.setAttribute('aria-pressed','false');
+      modal.removeAttribute('hidden');
+      document.body.classList.add('noscroll');
+    };
+    window.closeModal = function(){
+      if(!modal) return;
+      modal.setAttribute('hidden','');
+      document.body.classList.remove('noscroll');
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', window.closeModal);
+    if (backdrop) backdrop.addEventListener('click', window.closeModal);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && isOpen()) window.closeModal(); });
+
+    const getCode = () => (document.getElementById('modalCode')?.textContent || '');
+    if (copyModalBtn) copyModalBtn.addEventListener('click', ()=> copyText(getCode()));
+    if (copyIconModal) copyIconModal.addEventListener('click', ()=> copyText(getCode()));
+    if (copyBelowBtn) copyBelowBtn.addEventListener('click', ()=> copyText(getCode()));
   })();
-</script>
-<script>
-(function(){
-  var root = document.documentElement;
-  var key = 'theme';
-  function apply(theme){
-    if (theme === 'light') root.classList.add('theme-light');
-    else root.classList.remove('theme-light');
-  }
-  var saved = null;
-  try { saved = localStorage.getItem(key); } catch(e){}
-  if (!saved) {
-    try { saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark'; }
-    catch(e){ saved = 'dark'; }
-  }
-  apply(saved);
-  var btn = document.getElementById('themeToggle');
-  if (btn){
-    btn.addEventListener('click', function(){
-      var next = root.classList.contains('theme-light') ? 'dark' : 'light';
-      apply(next);
-      try { localStorage.setItem(key, next); } catch(e){}
-    });
-  }
-})();
-</script>
+
+  // Init
+  document.getElementById('year').textContent = new Date().getFullYear();
+  render();
+  searchInput.addEventListener('input', render);
+  document.getElementById('clearBtn').addEventListener('click', ()=>{ searchInput.value=''; render(); });
+  </script>
+  <script>
+	/* Build a line-numbered view from the hidden raw code element (#modalCode) */
+	(function(){
+	  const hidden = document.getElementById('modalCode');      // <code id="modalCode"> (hidden)
+	  const view   = document.getElementById('modalCodeView');  // pretty, visible pane
+	  if (!hidden || !view) return;
+
+	  const esc = s => s
+		.replace(/&/g,'&amp;')
+		.replace(/</g,'&lt;')
+		.replace(/>/g,'&gt;');
+
+	  function renderFromHidden(){
+		const src = hidden.textContent || '';
+		const html = esc(src)
+		  .split('\n')
+		  .map(line => `<span class="line">${line || '&nbsp;'}</span>`)
+		  .join('\n');
+		view.innerHTML = html;
+	  }
+
+	  // Re-render whenever your existing code updates #modalCode (openModal, toggles, etc.)
+	  const mo = new MutationObserver(renderFromHidden);
+	  mo.observe(hidden, { characterData: true, subtree: true, childList: true });
+
+	  // First paint
+	  renderFromHidden();
+	})();
+	</script>
+	<script>
+	(function(){
+	  var root = document.documentElement;   // toggle class on <html>
+	  var key = 'theme';
+
+	  function apply(theme){
+		if (theme === 'light') root.classList.add('theme-light');
+		else root.classList.remove('theme-light');
+	  }
+
+	  // initial: saved → OS preference → dark
+	  var saved = null;
+	  try { saved = localStorage.getItem(key); } catch(e){}
+	  if (!saved) {
+		try {
+		  saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+		} catch(e){ saved = 'dark'; }
+	  }
+	  apply(saved);
+
+	  var btn = document.getElementById('themeToggle');
+	  if (btn){
+		btn.addEventListener('click', function(){
+		  var next = root.classList.contains('theme-light') ? 'dark' : 'light';
+		  apply(next);
+		  try { localStorage.setItem(key, next); } catch(e){}
+		});
+	  }
+	})();
+	</script>
 </body>
 </html>
