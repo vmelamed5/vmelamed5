@@ -119,9 +119,9 @@
 <!-- Updates + Docs -->
 <section class="section container">
 <article class="card card-body">
-<h3>Latest Changelog <span class="badge">v14.6.0</span></h3>
+<h3>Latest Changelog <span class="badge">v15.0.0</span></h3>
 <p class="muted">
-		  Highlights: PAM onboarding rules, Identity application templates, CSV/export fixes.
+		  Highlights: SRS Tenants now supported! PAM remediation rules, PAM accounts discovery, API reauth
 		</p>
 <!-- Collapsible: New Commands -->
 <details class="chg">
@@ -129,38 +129,35 @@
 <div class="chg-body">
 <h4 class="muted">PAM</h4>
 <ul class="tight">
-<li>New-VPASMFACacheSSHKey: Generate a new MFA Cache SSH Key for current user or on behalf of another user</li>
-<li>Remove-VPASMFACacheSSHKey: Remove an MFA cache SSH Key for current user, on behalf of a user, or for all users</li>
-<li>Get-VPASStoredPlatformDetails: Retrieve details for a temporarily stored platform</li>
-<li>Remove-VPASStoredPlatform: Delete a temporarily stored platform</li>
-<li>Set-VPASStoredPlatform: Overwrites a platform with the temporarily stored platform</li>
-<li>Import-VPASStoredPlatform: Import a stored platform with new values to clear platform conflict</li>
-<li>Get-VPASMasterPolicySettings: Retrieve Master Policy settings for a target platform</li>
-<li>Update-VPASMasterPolicySettings: Update Master Policy setting for a target platform</li>
-<li>Get-VPASAllMasterPolicySettings: Retrieve Master Policy settings for all target platforms</li>
-<li>Get-VPASAllDependentAccounts: Retrieve all dependent accounts (usages) in the environment</li>
-<li>Get-VPASDependentAccounts: Retrieve dependent accounts (usages) attached to an account</li>
-<li>Get-VPASDependentAccountDetails: Retrieve details for a dependent account (usages)</li>
-<li>Add-VPASDependentAccount: Add a dependent account (usage)</li>
-<li>Remove-VPASDependentAccount: Remove a dependent account (usage)</li>
-<li>Resume-VPASDependentAccount: Resume a dependent account (usage) that has been disabled by either CPM or user</li>
-<li>Push-VPASDependentAccountSecret: Push or Sync a secret to a dependent account (usage)</li>
-<li>Update-VPASDependentAccount: update a property for a dependent account (usage)</li>
-<li>Add-VPASOnboardingRule: Add an onboarding rule for automatic onboarding</li>
-<li>Get-VPASAllOnboardingRules: Retrieve all onboarding rules for automatic onboarding in the environment</li>
-<li>Get-VPASOnboardingRules: Retrieve onboarding rules for automatic onboarding in the environment via search query</li>
-<li>Remove-VPASOnboardingRule: delete an existing onboarding rule for automatic onboarding in the environment</li>
-<li>Get-VPASAllReports: Retrieve all reports available to the current user</li>
-<li>Get-VPASAllTasks: Retrieve all scheduled reports available to the current user</li>
+<li>Test-VPASAPIEndpoints: make an API call to an endpoint that VpasModule does NOT currently support. This call will auto adjust to VpasModule format and return data if the endpoint is valid</li>
+<li>Set-VPASDependentLinkedAccount: set an extra account (Logon Account, Jump Account, Reconcile Account) to a dependent (usage) account (SelfHosted and ISPSS)</li>
+<li>Remove-VPASDependentLinkedAccount: remove an extra account (Logon Account, Jump Account, Reconcile Account) from a dependent (usage) account (SelfHosted and ISPSS)</li>
+<li>Get-VPASReports: retrieve details and download a report based on a search query</li>
+<li>Update-VPASPlatform: update the name of an existing platform (SelfHosted)</li>
+<li>Get-VPASClientIDs: retrieve a list of CyberArk client IDs (SelfHosted)</li>
+<li>Get-VPASAllRemediationRules: retrieve all remediation/onboarding rules currently configured (ISPSS)</li>
+<li>Get-VPASRemediationRules: retrieve remediation/onboarding rule details via search query (ISPSS)</li>
+<li>Remove-VPASRemediationRule: delete a remediation/onboarding rule via search query (ISPSS)</li>
+<li>Get-VPASDiscoveredAccountDetails: retrieve details for a discovered account based on a search query or via ID (ISPSS)</li>
+<li>Remove-VPASDiscoveredAccount: delete a discovered account from the pending account list (ISPSS)</li>
+<li>Import-VPASDiscoveredAccount: onboard an account from the pending account list in accounts discovery (ISPSS)</li>
+<li>Get-VPASDiscoveredAccountActivities: retrieve the activities of a discovered account in the pending account list (ISPSS)</li>
+<li>Get-VPASAllDiscoveryScanDefinitions: retrieve all the discovery scan definitions and properties, along with last run information (ISPSS)</li>
+<li>Get-VPASPlatformRotationPolicy: retrieve the rotation policy configurations for a platform (SRS)</li>
+<li>Update-VPASPlatformRotationPolicy: update the rotation policy configuration for a platform (SRS)</li>
+<li>Get-VPASPlatformSecretPolicy: retrieve the secret policy configurations for a platform (SRS)</li>
+<li>Update-VPASPlatformSecretPolicy: update the secret policy configuration for a platform (SRS)</li>
+<li>Get-VPASAllPlatformPlugins: retrieve all plugin details for all platforms (SRS)</li>
+<li>Get-VPASPlatformPluginSettings: retrieve the plugin settings for a platform (SRS)</li>
+<li>Update-VPASPlatformPluginSettings: update the plugin settings for a platform (SRS)</li>
+<li>Get-VPASPlatformWorkflowPolicy: retrieve the workflow policy configurations for a platform (SRS)</li>
+<li>Update-VPASPlatformWorkflowPolicy: update the workflow policy configurations for a platform (SRS)</li>
+<li>Get-VPASAccountNetwork: retrieve the network details that an account is set to (SRS)</li>
+<li>Remove-VPASAccountNetwork: remove the account network that is currently assigned to an account (SRS)</li>
+<li>Update-VPASAccountNetwork: assign a different account network for a sepcific account (SRS)</li>
 </ul>
-<h4 class="muted">Identity</h4>
 <ul class="tight">
-<li>Get-VPASIdentityAllApplicationTemplates: Retrieve all application templates from Identity</li>
-<li>Get-VPASIdentityApplicationTemplates: Retrieve application templates from Identity based on a search query</li>
-<li>Get-VPASIdentityApplicationDetails: Retrieve details for an application in Identity</li>
-<li>Get-VPASIdentityAllApplications: Retrieve details for all applications in Identity</li>
-<li>Get-VPASIdentityApplications: Retrieve details for an application in Identity based on a search query</li>
-<li>Test-VPASIdentityApplicationCatalog: Tests to see if the application is still available in the application catalog</li>
+
 </ul>
 </div>
 </details>
@@ -169,18 +166,28 @@
 <summary>Bug Fixes</summary>
 <div class="chg-body">
 <ul class="tight">
-<li>Invoke-VPASCredentialProvider: fixed bug if password being pulled contained a comma would return incorrect values</li>
-<li>Update-VPASAccountFields: fixed case sensitivity issue that prevented updating "RemoteMachinesAccess" parameter for an account</li>
-<li>Updated the metrics output and graphs for the following commands:</li>
-<ul>
-<li>Invoke-VPASMetricsAccounts</li>
-<li>Invoke-VPASMetricsCPM</li>
-<li>Invoke-VPASMetricsPlatforms</li>
-<li>Invoke-VPASMetricsProviders</li>
-<li>Invoke-VPASMetricsPSM</li>
-</ul>
-<li>Get-VPASAllPlatforms: fixed bug where -ExportToCSV would display incorrect information if Get-VPASAllTargetPlatforms was run instead</li>
-<li>Remove-VPASAuthenticationMethod: fixed bug where -WhatIf did not function correctly if the target authentication method does not exist</li>
+<li>API Reauth: all commands can now handle an API reauth when approaching the default threshold of 1,000 API calls</li>
+<ul><li>Reauth will prompt for MFA or manual entry if authentication policies are configured to do so</ul></li>
+<li>Get-VPASAllAccounts: bug that only returned the last iteration of accounts found, big thanks to anishkam98 (<b>https://github.com/anishkam98</b>) for finding the issue and reporting it</li>
+<li>Get-VPASDependentAccounts: reworked to now be supported in PrivilegeCloud environments</li>
+<li>Get-VPASDependentAccountDetails: reworked to now be supported in PrivilegeCloud environments</li>
+<li>Get-VPASAllDependentAccounts: reworked to now be supported in PrivilegeCloud environments</li>
+<li>Add-VPASDependentAccount: reworked to now be supported in PrivilegeCloud environments</li>
+<li>Remove-VPASDependentAccount: reworked to now be supported in PrivilegeCloud environment</li>
+<li>Update-VPASDependentAccount: reworked to now be supported in PrivilegeCloud environment</li>
+<li>Get-VPASVaultDetails: only returned true when exporting to CSV file, now returns JSON data</li>
+<li>Invoke-VPASHealthCheck: "InactiveUserCheck" was incorrectly sorted under "InactivePlatformCheck", this has been fixed</li>
+<li>Get-VPASAllDiscoveredAccounts: added -ExportToCSV and -CSVDirectory flags to output data to a CSV file</li>
+<li>Remove-VPASDependentLinkedAccount: added -WhatIf and -HideWhatIfOutput flags to run a simulated version of the command</li>
+<li>Get-VPASOnboardingRules: example fixed to show correct syntax. Functionality remains the same. NO changes to output</li>
+<li>Get-VPASAllDiscoveredAccounts: reworked to now be supported in PrivilegeCloud environments</li>
+<li>Get-VPASDiscoveredAccounts: reworked to now be supported in PrivilegeCloud environments and added -ExportToCSV and -CSVDirectory flags to output data to a CSV file</li>
+<li>Remove-VPASAllDiscoveredAccounts: reworked to now be supported in PrivilegeCloud environments</li>
+<li>Get-VPASSystemHealth: added "SessionManagement" as a possible component to monitor to support SRS environments</li>
+<li>Get-VPASBulkTemplateFiles: Updated safe csv to remove CPM from SRS enabled tenants, and removed OLAC parameter from PrivilegeCloud environments</li>
+<li>Add-VPASBulkSafes: Updated to support no CPM in SRS enabled tenants, and the removal of OLAC in PrivilegeCloud environments</li>
+<li>New-VPASToken: included more authentication types to support SRS tenants</li>
+<li>Invoke-VPASAccountPasswordAction: added support for SRS tenants (verify, reconcile, change, changeSetNew, changeOnlyInVault)</li>
 <!-- … -->
 </ul>
 </div>
