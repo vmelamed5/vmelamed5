@@ -3,7 +3,7 @@
 #REMINDERS!!!
 #    Import the correct version of the module
 
-import-module VpasModule -RequiredVersion 14.6.0 -Force
+import-module VpasModule -RequiredVersion 15.0.0 -Force
 
 function xmlout{
     param($name,$tab,$str,$initial)
@@ -294,8 +294,8 @@ function Format-LooseChunks {
 }
 
 $commandcount = 0
-#$AllCommands = Get-Command -Module vpasmodule
-$AllCommands = @{Name="Remove-VPASAccount"} #<-- TESTING
+$AllCommands = Get-Command -Module vpasmodule
+#$AllCommands = @{Name="Get-VPASAllRemediationRules"} #<-- TESTING
 $maxcommandcount = $AllCommands.Count
 foreach($command in $AllCommands.Name){
     $commandcount += 1
@@ -336,10 +336,12 @@ foreach($command in $AllCommands.Name){
             $shenv = $CommandExtraPropsTemp[4] -replace "SelfHosted: ",""
             $psenv = $CommandExtraPropsTemp[5] -replace "PrivCloudStandard: ",""
             $ssenv = $CommandExtraPropsTemp[6] -replace "SharedServices: ",""
+            $srsenv = $CommandExtraPropsTemp[7] -replace "SRS: ",""
 
             if($shenv -eq "TRUE"){ $tagsstr += "`"SelfHosted`"," }
             if($psenv -eq "TRUE"){ $tagsstr += "`"PrivCloudStandard`"," }
             if($ssenv -eq "TRUE"){ $tagsstr += "`"SharedServices`"," }
+            if($srsenv -eq "TRUE"){ $tagsstr += "`"SRS`"," }
 
             $tagsstr = $tagsstr.Substring(0,$tagsstr.Length-1)
             $tagsstr += "],"
@@ -525,7 +527,8 @@ foreach($command in $AllCommands.Name){
                 "Invoke-VPASMetricsProviders",
                 "Invoke-VPASMetricsPSM",
                 "Invoke-VPASQuery",
-                "New-VPASIdentityGenerateUserPassword"
+                "New-VPASIdentityGenerateUserPassword",
+                "Test-VPASAPIEndpoint"
             )
             if($specialcommands.Contains($command)){        
                 $successreturn = Format-LooseChunks $successreturn -AsHtmlLiteral
